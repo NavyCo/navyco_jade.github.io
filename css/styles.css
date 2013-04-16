@@ -1,114 +1,59 @@
-@charset "UTF-8";
-/* line 5, ../scss/styles.scss */
-html, body, #container, #frogLayer, #rippleLayer {
-  background: #FBFBFB;
+/* line 8, ../scss/styles.scss */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* line 13, ../scss/styles.scss */
+body, #container {
   width: 100%;
   height: 100%;
-  cursor: url(../img/cursor.png), crosshair;
-}
-/* line 11, ../scss/styles.scss */
-html ::selection, body ::selection, #container ::selection, #frogLayer ::selection, #rippleLayer ::selection {
-  background-color: transparent;
+  background: #fffeff;
+  font-family: "Georgia", "Times", "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", "ＭＳ Ｐ明朝", "MS PMincho", serif;
+  line-height: 1em;
 }
 
-/* line 16, ../scss/styles.scss */
-#welcome {
-  display: none;
+/* line 24, ../scss/styles.scss */
+nav {
   position: fixed;
-  bottom: 40%;
-  left: 50%;
-  width: 1000px;
-  height: 700px;
-  font-weight: bold;
+  display: block;
+  overflow: hidden;
+  width: 218px;
+  height: 95%;
+  border: 16px #fffeff solid;
+  border-bottom: 32px;
+  font-family: "Georgia", "Times", "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", "ＭＳ Ｐ明朝", "MS PMincho", serif;
+}
+/* line 38, ../scss/styles.scss */
+nav div {
+  margin: 16px;
+}
+/* line 42, ../scss/styles.scss */
+nav ul {
+  padding: 0;
+  margin-before: 0;
+  margin-after: 0;
+}
+/* line 47, ../scss/styles.scss */
+nav ul li {
+  margin-bottom: 4px;
 }
 
-/* line 29, ../scss/styles.scss */
-.frog {
+/* line 53, ../scss/styles.scss */
+#main {
   position: absolute;
-  opacity: 0;
-  width: 33px;
-  height: 93px;
-  background: url(../img/rev.png) 50% 50% no-repeat;
-  background-size: contain;
-  font-size: 0px;
+  left: 218px;
+  width: auto;
+  margin: 16px 16px 0 32px;
+}
+/* line 60, ../scss/styles.scss */
+#main > div {
+  margin: 16px 16px 0 16px;
 }
 
-@keyframes swell {
-  /* line 45, ../scss/styles.scss */
-  0% {
-    padding: 0;
-  }
-
-  /* line 48, ../scss/styles.scss */
-  50% {
-    padding: 10px;
-  }
-
-  /* line 51, ../scss/styles.scss */
-  100% {
-    padding: 0;
-  }
-}
-
-/* line 56, ../scss/styles.scss */
-.released {
-  width: 33px;
-  height: 93px;
-  animation-name: 'swell';
-  animation-duration: 0.3794s;
-  animation-timing-function: ease;
-  animation-iteration-count: 1;
-  animation-direction: normal;
-  animation-fill-mode: forwards;
-}
-
-/* line 67, ../scss/styles.scss */
-.rev0 {
-  width: 45px;
-  height: 115px;
-}
-
-/* line 73, ../scss/styles.scss */
-.rev1 {
-  width: 55px;
-  height: 120px;
-}
-
-/* line 79, ../scss/styles.scss */
-.rev2 {
-  width: 70px;
-  height: 130px;
-}
-
-@keyframes ripple {
-  /* line 86, ../scss/styles.scss */
-  0% {
-    opacity: 0;
-    transform: scale(1);
-  }
-
-  /* line 90, ../scss/styles.scss */
-  45% {
-    opacity: 0.2;
-    transform: scale(0.8);
-  }
-
-  /* line 95, ../scss/styles.scss */
-  100% {
-    opacity: 0.9;
-    transform: scale(0);
-  }
-}
-
-/* line 102, ../scss/styles.scss */
-.ripple {
-  animation-name: 'ripple';
-  animation-duration: 0.542s;
-  animation-timing-function: cubic-bezier(0.69, 0.14, 0.79, 0.9);
-  animation-iteration-count: 1;
-  animation-direction: reverse;
-  animation-fill-mode: backwards;
-  position: absolute;
-  opacity: 0;
-  border: blue 3px solid;
+/* line 65, ../scss/styles.scss */
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }

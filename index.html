@@ -2,20 +2,42 @@
 <html lang='ja'>
 <head>
 <meta charset='utf-8'>
-<title>Shinnnosuke Watanabe</title>
+<title>渡邉 伸之介</title>
 
-<meta name='keywords' content="HTML5">
+<meta name='keywords' content="Portfolio">
 <meta name='description' content="">
 <meta name='author' content="Shinnosuke Watanabe">
 
+<meta name="viewport" content="width=device-width">
+
 <meta property='og:type' content='website' />
-<meta property='og:url' content="http://shinnn.github.com" />
+<meta property='og:url' content="" />
 <meta property='og:image' content="" />
 <meta property='og:description' content="" />
 <meta property='og:site_name' content="" />
 
 <link href='css/normalize.css' rel='stylesheet' media='screen' />
+
 <link href='css/styles.css' rel='stylesheet' media='screen' />
+
+<script src='//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js'></script>
+<script src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
+<script>
+if(typeof jQuery === 'undefined'){
+  console.log("Failed to load jQuery from CDN");
+  document.write(unescape("%3Cscript src='js/jquery.js'%3E%3C/script%3E"));
+} 
+</script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+<script>
+if(typeof jQuery.ui === 'undefined'){
+  console.log("Fail to load jQuery UI from CDN");
+  document.write(unescape("%3Cscript src='js/jquery.js'%3E%3C/script%3E"));
+}
+</script>
+
+<script src='js/prefixfree.js'></script>
+<script src='js/mousetrap.min.js'></script>
 
 </head>
 <body>
@@ -31,9 +53,31 @@
   })();
 </script>
 
-<div id='container0'>
-  <h1>Shinnosuke Watanabe</h1>
-  <h2>Programmer, Composer</h2>
+<div id='container'>
+<nav>
+  <div>
+    <ul>
+      <li>ウェブ</li>
+      <li>サウンド</li>
+      <li>Print</li>
+    </ul>
+  </div>
+</nav>
+
+<div id='main'>
+  <div>
+    <h1>Design Informatics Web Site</h1>
+    <h2>website</h2>
+    <p>klklkjdsjljfsjldfljlfksdlkjsfklfsdfiojkmkjokjewuirhgjnvbchjdhuiwju784yt7ugjhvihjbnxujyfgsdujvh</p>
+    <img>
+  </div>
+</div>
+
+<footer>
+  Shinnosuke Watanabe
+</footer>
+  
 </div>
 </body>
+
 </html>
