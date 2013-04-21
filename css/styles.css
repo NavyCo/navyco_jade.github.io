@@ -1,59 +1,42 @@
+/* line 4, ../scss/styles.scss */
+* {
+  border-radius: 0 !important;
+}
+
 /* line 8, ../scss/styles.scss */
 body {
-  margin: 0;
-  padding: 0;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  font-family: "Helvetica Neue", "Verdana", "Genova", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
 }
 
-/* line 13, ../scss/styles.scss */
-body, #container {
-  width: 100%;
-  height: 100%;
-  background: #fffeff;
-  font-family: "Georgia", "Times", "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", "ＭＳ Ｐ明朝", "MS PMincho", serif;
-  line-height: 1em;
+/* line 14, ../scss/styles.scss */
+h1, h2, h3, h4, .lead {
+  font-family: "Times", "Georgia", "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", "ＭＳ Ｐ明朝", "MS PMincho", serif;
 }
 
-/* line 24, ../scss/styles.scss */
-nav {
-  position: fixed;
-  display: block;
-  overflow: hidden;
-  width: 218px;
-  height: 95%;
-  border: 16px #fffeff solid;
-  border-bottom: 32px;
-  font-family: "Georgia", "Times", "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", "ＭＳ Ｐ明朝", "MS PMincho", serif;
-}
-/* line 38, ../scss/styles.scss */
-nav div {
-  margin: 16px;
-}
-/* line 42, ../scss/styles.scss */
-nav ul {
-  padding: 0;
-  margin-before: 0;
-  margin-after: 0;
-}
-/* line 47, ../scss/styles.scss */
-nav ul li {
-  margin-bottom: 4px;
+/* line 18, ../scss/styles.scss */
+table a {
+  font-family: "Helvetica Neue", "Verdana", "Genova", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
 }
 
-/* line 53, ../scss/styles.scss */
-#main {
-  position: absolute;
-  left: 218px;
-  width: auto;
-  margin: 16px 16px 0 32px;
-}
-/* line 60, ../scss/styles.scss */
-#main > div {
-  margin: 16px 16px 0 16px;
+/* line 22, ../scss/styles.scss */
+.well {
+  background-color: #fcfcfc;
 }
 
-/* line 65, ../scss/styles.scss */
-footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
+/* line 26, ../scss/styles.scss */
+.sidebar-nav {
+  padding: 12px 0;
+  background: none;
+}
+
+/* line 34, ../scss/styles.scss */
+.dropdown-menu {
+  box-shadow: none;
+}
+
+/* line 43, ../scss/styles.scss */
+.nav > .dropdown-menu {
+  display: list-item;
 }

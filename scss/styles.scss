@@ -1,69 +1,45 @@
-$common-margin : 16px;
-$common-white : #FFFEFF;
+$common-typeface-serif: "Times", "Georgia", "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", "ＭＳ Ｐ明朝", "MS PMincho", serif;
+$common-typeface-sansserif : "Helvetica Neue", "Verdana", "Genova", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
 
-$common-typeface-serif: "Georgia", "Times", "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", "ＭＳ Ｐ明朝", "MS PMincho", serif;
-$common-typeface-sansserif : "Genova", "Verdana", "Helvetica Neue", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
-
-
-body{
-  margin: 0;
-  padding: 0;
+*{
+  border-radius: 0 !important;
 }
 
-body, #container{
-  width: 100%;
-  height: 100%;
-  background: $common-white;
-  
-  font-family: $common-typeface-serif;
-  line-height: 1em;
+body {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  font-family: $common-typeface-sansserif;
 }
 
-$sidebar-width : 218px;
+h1,h2,h3,h4, .lead{
+  font-family: $common-typeface-serif;  
+}
 
-nav{
-  position: fixed;
-  display: block;
-  overflow: hidden;
-  width: $sidebar-width;
-  height: 95%;
-  //margin: $common-margin $common-margin $common-margin $common-margin;
+table a{
+  font-family: $common-typeface-sansserif;
+}
 
-  border: $common-margin $common-white solid;
-  border-bottom: $common-margin * 2;
-  //background: #F3F3F3;
-  
-  font-family: $common-typeface-serif;
-  
-  & div{
-    margin: $common-margin;
-  }
-  
-  & ul{
-    padding: 0;    
-    margin-before: 0;
-    margin-after: 0;
-    
-    & li{
-      margin-bottom: $common-margin * 0.25;
-    }
+.well{
+  background-color: #fcfcfc;
+}
+
+.sidebar-nav{
+  padding: 12px 0;
+  background: none;
+  & li a{
+    //color: red;
   }
 }
 
-#main{
-  position: absolute;
-  left: $sidebar-width;
-  width: auto;
-  //height: 100%;
-  margin: $common-margin $common-margin 0 $common-margin * 2;
-  
-  & > div{
-    margin: $common-margin $common-margin 0 $common-margin;
-  }
+.dropdown-menu{
+  //border: 0;
+  box-shadow: none;
 }
 
-footer{
-  position: fixed;
-  bottom: 0;
-  width: 100%;
+.dropdown > .dropdown-menu{
+  //display: block;
+}
+
+.nav > .dropdown-menu{
+  display: list-item;
 }
