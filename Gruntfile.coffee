@@ -10,10 +10,12 @@ module.exports = (grunt) ->
   
   _ = grunt.util._
   
+  settings = grunt.file.readYAML 'settings.yaml'
+  
   BIN = "#{ process.cwd() }/node_modules/.bin/"
 
-  SRC_ROOT = ''
-  DEST_ROOT = 'master/'
+  SRC_ROOT = settings.srcPath or ''
+  DEST_ROOT = settings.destPath or 'site/'
   
   JS_ROOT = "#{ SRC_ROOT }js/"
   
@@ -33,9 +35,6 @@ module.exports = (grunt) ->
       if filename.indexOf('.yaml') isnt -1 or filename.indexOf('.yml') isnt -1
         filename_WO_ext = filename.replace(/\..+/, '')
         data[filename_WO_ext] = grunt.file.readYAML abspath
-    
-    data = _.merge data, data.site
-    delete data.site
     
     return data
   

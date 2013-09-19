@@ -1,0 +1,6 @@
+srcPath: ''
+destPath: 'master/'
+
+templatesPath: 'jade/templates/'
+documentsPath: 'jade/pages/'
+dataPath: 'jade/data/'
