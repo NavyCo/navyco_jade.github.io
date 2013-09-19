@@ -12,7 +12,7 @@ module.exports = (grunt) ->
   
   BIN = "#{ process.cwd() }/node_modules/.bin/"
 
-  SRC_ROOT = 'src/'
+  SRC_ROOT = ''
   DEST_ROOT = 'site/'
   
   JS_ROOT = "#{ SRC_ROOT }js/"
@@ -208,6 +208,12 @@ module.exports = (grunt) ->
         files: ["#{ SRC_ROOT }/public/**/*"]
       html:
         files: ['index.html']
+    
+    githubPages:
+      site:
+        options:
+          commitMessage: 'auto commit by grunt-github-pages'
+        src: 'site'
         
   grunt.task.registerTask 'jadeTemplate', 'Compile Jade Files', ->
     readOptions =
