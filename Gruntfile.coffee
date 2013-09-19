@@ -13,7 +13,7 @@ module.exports = (grunt) ->
   BIN = "#{ process.cwd() }/node_modules/.bin/"
 
   SRC_ROOT = ''
-  DEST_ROOT = 'site/'
+  DEST_ROOT = 'master/'
   
   JS_ROOT = "#{ SRC_ROOT }js/"
   
@@ -107,9 +107,9 @@ module.exports = (grunt) ->
         dest: "#{ DEST_ROOT }js/main.js"
         
     clean:
-      site: DEST_ROOT.slice(0, -1)
+      site: DEST_ROOT
       tmpfiles: ["#{ DEST_ROOT }.tmp"]
-        
+      
     prettify:
       options:
         indent_size: 2
@@ -161,7 +161,7 @@ module.exports = (grunt) ->
         files: [
           expand: true
           cwd: "#{ SRC_ROOT }public/"
-          src: ['**']
+          src: ['**', '!**/.DS_Store', '!**/Thumbs.db']
           dest: DEST_ROOT
           dot: true
         ]
@@ -212,7 +212,7 @@ module.exports = (grunt) ->
     'gh-pages':
       site:
         options:
-          base: 'site'
+          base: DEST_ROOT
           branch: 'master'
           message: 'auto commit by grunt-gh-pages'
           user: 'shinnn'
