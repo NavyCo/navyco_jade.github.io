@@ -212,6 +212,7 @@ module.exports = (grunt) ->
     githubPages:
       site:
         options:
+          pushBranch: 'master'
           commitMessage: 'auto commit by grunt-github-pages'
         src: 'site'
         
