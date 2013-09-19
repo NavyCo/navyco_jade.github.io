@@ -1,0 +1,149 @@
+/* 
+html5doctor.com Reset Stylesheet v1.6.1
+Last Updated: 2010-09-17
+Author: Richard Clark - http://richclarkdesign.com 
+*/
+/* line 17, ../../../scss/_reset.scss */
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+/* line 26, ../../../scss/_reset.scss */
+body {
+  line-height: 1;
+}
+
+/* line 30, ../../../scss/_reset.scss */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+/* line 33, ../../../scss/_reset.scss */
+nav ul {
+  list-style: none;
+}
+
+/* line 36, ../../../scss/_reset.scss */
+blockquote, q {
+  quotes: none;
+}
+
+/* line 40, ../../../scss/_reset.scss */
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+/* line 44, ../../../scss/_reset.scss */
+a {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+/* change colours to suit your needs */
+/* line 52, ../../../scss/_reset.scss */
+ins {
+  background-color: #ff9;
+  color: #000;
+  text-decoration: none;
+}
+
+/* change colours to suit your needs */
+/* line 58, ../../../scss/_reset.scss */
+mark {
+  background-color: #ff9;
+  color: #000;
+  font-style: italic;
+  font-weight: bold;
+}
+
+/* line 64, ../../../scss/_reset.scss */
+del {
+  text-decoration: line-through;
+}
+
+/* line 67, ../../../scss/_reset.scss */
+abbr[title], dfn[title] {
+  border-bottom: 1px dotted;
+  cursor: help;
+}
+
+/* line 71, ../../../scss/_reset.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* change border colour to suit your needs */
+/* line 76, ../../../scss/_reset.scss */
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #cccccc;
+  margin: 1em 0;
+  padding: 0;
+}
+
+/* line 84, ../../../scss/_reset.scss */
+input, select {
+  vertical-align: middle;
+}
+
+/* line 3, ../../../scss/_elements.scss */
+body {
+  border: none;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+/* line 14, ../../../scss/_elements.scss */
+a {
+  text-decoration: none;
+  color: #feffff;
+}
+/* line 18, ../../../scss/_elements.scss */
+a:focus, a:active, a::-moz-focus-inner {
+  border: none;
+  outline: 0;
+}
+
+/* line 24, ../../../scss/_elements.scss */
+p, h1, h2, h3, h4, hr, ol, ul, menu {
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+  -webkit-margin-start: 0;
+  -webkit-margin-end: 0;
+  -webkit-padding-start: 0;
+  -webkit-padding-end: 0;
+  line-height: 1.75em;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 18, ../../../scss/styles.scss */
+#container {
+  position: absolute;
+}
