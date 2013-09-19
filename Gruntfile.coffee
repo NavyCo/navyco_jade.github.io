@@ -209,12 +209,14 @@ module.exports = (grunt) ->
       html:
         files: ['index.html']
     
-    githubPages:
+    'gh-pages':
       site:
         options:
-          pushBranch: 'master'
-          commitMessage: 'auto commit by grunt-github-pages'
-        src: 'site'
+          base: 'site'
+          branch: 'master'
+          message: 'auto commit by grunt-gh-pages'
+          user: 'shinnn'
+        src: '**/*'
         
   grunt.task.registerTask 'jadeTemplate', 'Compile Jade Files', ->
     readOptions =

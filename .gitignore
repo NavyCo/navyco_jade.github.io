@@ -1,6 +1,7 @@
 .DS_Store
 .sass-cache
 開発
+site
 
 # Node
 # https://github.com/github/gitignore/blob/master/Node.gitignore
