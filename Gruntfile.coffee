@@ -43,12 +43,12 @@ module.exports = (grunt) ->
       options:
         config: "#{ SRC_ROOT }scss/config.rb"
         sassDir: "#{ SRC_ROOT }scss/"
-      readable:
+      dev:
         options:
           cssDir: "#{ DEST_ROOT }/debug/css-readable/"
           environment: 'development'
           outputStyle: 'expanded'
-      compress:
+      dist:
         options:
           cssDir: "#{ DEST_ROOT }css/"
           environment: 'production'
@@ -108,6 +108,7 @@ module.exports = (grunt) ->
     clean:
       site: DEST_ROOT
       tmpfiles: ["#{ DEST_ROOT }.tmp"]
+      debugFiles: ["#{ DEST_ROOT }debug"]
       
     prettify:
       options:
@@ -214,10 +215,13 @@ module.exports = (grunt) ->
           base: DEST_ROOT
           branch: 'master'
           message: 'auto commit by grunt-gh-pages'
-          user: 'shinnn'
+          user:
+            name: 'shinnn'
+            email: 'snnskwtnb@gmail.com'
         src: '**/*'
         
-  grunt.task.registerTask 'jadeTemplate', 'Compile Jade Files', ->
+  grunt.task.registerTask 'jadeTemplate',
+  'Compile Jade Files with front-matter', (mode) ->
     readOptions =
       cwd: "#{ SRC_ROOT }jade/pages/"
       filter: 'isFile'
@@ -238,21 +242,22 @@ module.exports = (grunt) ->
       if localData.template
         addition += "extend ../templates/#{ localData.template }\n"
       if localData.layout
-        addition += "extend ../layouts/#{ localData.template }\n"
+        addition += "extend ../layouts/#{ localData.layout }\n"
 
       jadeTxt = addition + splitted.__content
       
       allData = grunt.util._.extend globalJadeData(), localData, compileOptions
       
-      jade.render jadeTxt, allData, (err, html) ->
-        if err then throw err
-        grunt.file.write DEST_ROOT + file.replace('.jade', '.html'), html
+      if(mode isnt 'dev')      
+        jade.render jadeTxt, allData, (err, html) ->
+          if err then throw err
+          grunt.file.write DEST_ROOT + file.replace('.jade', '.html'), html
       
-      allDataDebug = _.extend allData, {DEBUG: true}
-
-      jade.render jadeTxt, allDataDebug, (err, html) ->
-        if err then throw err
-        grunt.file.write DEST_ROOT + file.replace('.jade', '-debug.html'), html
+      if(mode isnt 'dist')
+        allDataDebug = _.extend allData, {DEBUG: true}
+        jade.render jadeTxt, allDataDebug, (err, html) ->
+          if err then throw err
+          grunt.file.write DEST_ROOT + file.replace('.jade', '-debug.html'), html
 
   
   # SVG の width, height 属性を取り除く
@@ -268,13 +273,29 @@ module.exports = (grunt) ->
   
   defaultTasks = [
     'clean:site' #reset
-    'compass', #SCSS -> CSS
-    'shell:coffeelint_grunt', 'shell:coffeelint', 'coffee' #Coffee
+    'copy'
+    'compass:dev', 'compass:dist' #SCSS -> CSS
+    'shell:coffeelint_grunt', 'shell:coffeelint'
+    'coffee:dev', 'coffee:dist' #Coffee
     'uglify', 'concat' #minify JS
-    'jadeTemplate', 'prettify' #Jade -> HTML
+    'jadeTemplate:dev', 'jadeTemplate:dist', 'prettify' #Jade -> HTML
     'flexSVG', 'svgmin' # optimize SVG
-    'copy', 'clean:tmpfiles'
+    'clean:tmpfiles'
     'connect', 'watch'
   ]
   
   grunt.task.registerTask 'default', defaultTasks
+  
+  # task list for 'dist' tasks
+  distTasks = grunt.util._.reject defaultTasks, (val) ->
+    val is 'prettify' or val.indexOf('dev') isnt -1
+
+  # タスクの配列の最後から2番目、'watch'タスクに入る前に、新たなタスクを追加
+  distTasks.splice distTasks.length-2, 0, 'clean:debugFiles'
+
+  grunt.task.registerTask 'dist',
+  'Generate only the files to publish a website', distTasks
+  
+  grunt.task.registerTask 'deploy',
+  'Deploy to Github Pages', ['dist', 'gh-pages']
+  

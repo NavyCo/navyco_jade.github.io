@@ -1,19 +1,19 @@
 {
-  "name": "jade-website-boilerplate",
+  "name": "Shinnosuke Watanabe's Website",
   "version": "0.0.1",
-  "description": "Inspired by Yeoman Web App Generator, Wintersmith, and Docpad",
+  "description": "",
   "main": "Gruntfile.coffee",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/shinnn/jade-website-boilerplate.git"
+    "url": "https://github.com/shinnn/shinnn.github.io.git"
   },
   "author": "Shinnosuke Watanabe",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/shinnn/jade-website-boilerplate/issues"
+    "url": "https://github.com/shinnn/shinnn.github.io/issues"
   },
   "devDependencies": {
     "grunt": "~0.4.1",

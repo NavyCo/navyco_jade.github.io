@@ -1,0 +1,19 @@
+- function concatTitle(joinStr){
+-   var res = '' + site.title;
+-   if(title){
+-     res = title + ' ' + joinStr + ' ' + res;
+-   }
+-   return res;
+- };
+
+- var joinedKeywords = (function(){
+-   var res = ''
+-   if(Array.isArray(site.keywords)){
+-     res = site.keywords.join(',')
+-   }else{
+-     res = site.keywords;
+-   }
+-   
+-   return res;
+- }());
+

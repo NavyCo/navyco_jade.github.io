@@ -4,3 +4,7 @@ destPath: 'master/'
 templatesPath: 'jade/templates/'
 documentsPath: 'jade/pages/'
 dataPath: 'jade/data/'
+
+github:
+  username: shinnn
+  email: snnskwtnb@gmail.com
