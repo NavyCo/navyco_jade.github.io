@@ -8,28 +8,25 @@ block content
     p.top-subtitle Software Engineer, User Interface Designer
     .line-wide
 
-  .columns
+   //.columns
     section.two-column
-      h1
+      //-h1
         span.header-rect
-        | About Me
-      p 渡邉伸之介は、Webサイト制作、ライブラリ開発、ユーザーインターフェースデザイン、インタラクティブコンテンツ制作などを行っているソフトウェア開発者です。
-      p 神奈川県に在住、東京芸術大学大学院に在学し、研究・制作を行っています。
+        | About
+      p Webサイト制作、ライブラリ開発、ユーザーインターフェースデザイン、インタラクティブコンテンツ制作などを行う渡邉伸之介のウェブサイトです。
       hr
       p
-        | 本ウェブサイトは
-        a(href='http://pages.github.com/') Github Pages
-        | を用いてホスティングしています。
-        a(href='https://github.com/shinnn/shinnn.github.io') 本サイトのリポジトリ
-        | のほか、開発成果は随時Githubに公開しています。
+        a(href='https://github.com/shinnn/shinnn.github.io') 本ウェブサイト
+        | のほか、ソフトウェアの開発成果は随時Githubに公開しています。
+      hr
       p
         a.github.inline-icon(href='https://github.com/shinnn?tab=repositories') Github リポジトリ一覧
-      hr
-      p
+      //-hr
+      //-p
         a.read-more(href='./about.html') >> 筆者についての詳細
-  
-    section.two-column
-      h1
+      
+    //- section.two-column
+      //-h1
         span.header-rect
         | Skill Set
       .skills
@@ -49,17 +46,22 @@ block content
         a.read-more >> スキルセットの詳細
 
   section
-    h1 
+    h1
       span.header-rect
-      | Featured Works
-    #frontispiece
-
+      | Featured Projects
+    .featured-works
+      a.wide-image(href='')
+        img(src='img/openstudio.jpg')
+      h2.work-title 東京芸術大学 成果発表会 OPEN STUDIO 2013 ウェブサイト
+      .role プログラミング / ユーザーインターフェースデザイン
+      
+    .featured-works
+      a.wide-image(href='')
+        img(src='img/R0012670.JPG')
+      p 東京芸術大学 OPEN STUDIO 2013 ウェブサイト
+    .wide-image
     p 東京芸術大学 OPEN STUDIO 2013 ウェブサイト
-    #frontispiece
-    p 東京芸術大学 OPEN STUDIO 2013 ウェブサイト
-    #frontispiece
-    p 東京芸術大学 OPEN STUDIO 2013 ウェブサイト
-    #frontispiece
+    .wide-image
     p 東京芸術大学 OPEN STUDIO 2013 ウェブサイト
 
   //-section#profile

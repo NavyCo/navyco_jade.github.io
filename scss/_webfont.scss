@@ -99,11 +99,14 @@ src: url('../font/icon.svg?39909792#link') format('svg');
 .icon-up:before { content: '\e804'; } /* '' */
 .icon-list:before { content: '\e782'; } /* '' */
 .icon-facebook:before { content: '\f300'; } /* '' */
+
 .icon-twitter {
   &:before {
     content: '\f303'; // ''
+    color: #00acee;
   }
 }
+
 .icon-tumblr:before { content: '\f311'; } /* '' */
 .icon-link:before { content: '🔗'; } /* '\1f517' */
 .icon-star {
@@ -119,5 +122,6 @@ src: url('../font/icon.svg?39909792#link') format('svg');
 .icon-github {
   &:before {
     content: '\e805'; // ''
+    color: #171515;
   }
 }

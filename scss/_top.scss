@@ -1,22 +1,54 @@
 @charset 'UTF-8';
 
-.top-title {
-  font-size: 44px;
-  font-weight: 400;
-  margin-bottom: 0;
-  color: $common-black;
+#content {
+  .top-title {
+    font-family: 'Open Sans', $sans-serif;
+    font-size: 48px;
+    font-weight: 400;
+    margin-bottom: 0;
+    color: $common-black;
+  }
+
+  .top-subtitle {
+    font-family: 'Open Sans', $sans-serif;
+    font-size: 26px;
+    color: #c8a9d5;
+    //color: darken(#c8a9d5, 10);
+    color: gray;
+  }
+
+  .featured-works {
+    margin-bottom: $gutter;
+  }
+
+  .wide-image {
+    overflow: hidden;
+    
+    img {
+      position: relative;
+      width: 100%;
+      height: auto;
+      max-height: 1000px;
+      //background: 0 0px gray image-url('openstudio.jpg') no-repeat;
+      //background-size: cover;
+      background-color: gray;
+      margin-bottom: $gutter * 0.5;
+    }
+  }
+  
+  .work-title {
+    font-family: $sans-serif;
+    font-size: $default-font-size + 2px;
+    margin-bottom: 0.5em;
+  }
 }
 
-.top-subtitle {
-  font-size: 24px;
-  color: gray;
-}
-
-#frontispiece {
-  width: 100%;
-  height: 400px;
-  background: 0 -100px gray image-url('R0012670.JPG') no-repeat;
-  background-size: cover;
+#go {
+  position: relative;
+  overflow: visible;
+  text-align: right;
+  height: 0px;
+  z-index: 10;
 }
 
 #profile {

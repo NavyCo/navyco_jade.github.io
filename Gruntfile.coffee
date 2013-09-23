@@ -39,6 +39,29 @@ module.exports = (grunt) ->
     return data
   
   grunt.initConfig
+    modernizr:
+      devFile: 'remote'
+      outputFile: "#{ JS_ROOT }vendor/modernizr.gruntbuild.js"
+      extensibility:
+        mq: true
+        svg: true
+        touch: true
+        cssanimations: true
+        css_mask: true
+        video: true
+        rgba: true
+  
+    lodash:
+      options:
+        modifier: 'legacy'
+        include: []
+        flags: ['--minify']
+      custom:
+        dest: "#{ JS_ROOT }vendor/lodash.gruntbuild.js"
+
+    casperjs:
+      files: ["#{ SRC_ROOT }casperjs/**/*.js", "#{ SRC_ROOT }casperjs/**/*.coffee"]
+
     compass:
       options:
         config: "#{ SRC_ROOT }scss/config.rb"
@@ -60,14 +83,6 @@ module.exports = (grunt) ->
           import: false
           ids: false
         src: ['<%= compass.readable.options.cssDir %>/*.css']
-    
-    lodash:
-      options:
-        modifier: 'legacy'
-        include: []
-        flags: ['--minify']
-      custom:
-        dest: "#{ JS_ROOT }vendor/lodash.gruntbuild.js"
     
     coffee:
       dev:
@@ -119,18 +134,6 @@ module.exports = (grunt) ->
         src: ['**/*.html', '!debug/**/*', '!**/*-debug.html']
         dest: "#{ DEST_ROOT }debug/html-readable"
 
-    modernizr:
-      devFile: 'remote'
-      outputFile: "#{ JS_ROOT }vendor/modernizr.gruntbuild.js"
-      extensibility:
-        mq: true
-        svg: true
-        touch: true
-        cssanimations: true
-        css_mask: true
-        video: true
-        rgba: true
-    
     svgmin:
       options:
         plugins: [
@@ -247,7 +250,7 @@ module.exports = (grunt) ->
       splitted = yamlFront.loadFront(raw)
       
       localData = _.omit splitted, '__content'
-    
+            
       addition = ''
       if localData.template
         addition += "extend ../templates/#{ localData.template }\n"

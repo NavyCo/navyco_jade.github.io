@@ -52,15 +52,17 @@ html(lang='ja')
       header
         #menubar
           #menu
-            a ABOUT
-            a WORKS
+            a#home(href='./')
+            a(href='./about.html') ABOUT
+            a(href='./works.html') WORKS
             
             #webservices
               a.github(href='https://github.com/shinnn')
               a.twitter(href='https://twitter.com/shinnn_tw')
             
       main
-        block content
+        #content
+          block content
 
       footer
     
