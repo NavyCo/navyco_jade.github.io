@@ -26,7 +26,7 @@ $common-text-gray: #727272;
 //$common-violet: #C900FF;
 $common-violet: darken(#C900FF, 8);
 
-@import "reset";
+@import "normalize";
 @import "elements";
 @import "webfont";
 
