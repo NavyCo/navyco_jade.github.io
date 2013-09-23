@@ -1,27 +1,212 @@
 @charset 'UTF-8';
 
 $sans-serif : "Helvetica Neue", "Arial", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
-$serif : "Times", "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", "ＭＳ Ｐ明朝", "MS PMincho", serif;
+$serif: "Times", "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", "ＭＳ Ｐ明朝", "MS PMincho", serif;
 
-$gutter : 24px;
+$gutter: 24px;
 
 $default-font-size: 15px;
 
+$main-width: 1200px;
+
 $common-white: #FEFFFF;
-$common-black: #0F0F0F;
-$common-azure: #4EA4EA;
+$common-gray: #FCFDFC;
+$common-black: #1F1F1F;
+
+$common-text-gray: #727272;
+
+$common-violet: #C900FF;
 
 @import "reset";
 @import "elements";
 @import "webfont";
 
-#container{
-  position: absolute; // 必要
+@import "top";
+
+%centered {
+  margin: 0 auto;
+  width: 100%;
+  max-width: $main-width;
+  padding-left: $gutter;
+  padding-right: $gutter;
+  overflow: auto;
+  
+  @media screen and(max-height: $main-width){
+    & {
+      width: auto;
+    }
+  }
+}
+
+body {
+  font-size: $default-font-size;
+}
+
+#container {
+  position: absolute;
+  background: $common-gray;
+  //background: #ebddf2;
+  width: 100%;
+  height: 100%;
+  
+  font-family: $sans-serif;
+  color: $common-black;
 }
 
 header{
+  width: 100%;
 }
 
+#menubar {
+  @extend %centered;
+  padding-top: $gutter * 2;
+  padding-bottom: $gutter;
+}
+
+#menu {
+  a {
+    display: block;
+    float: left;
+    margin-right: $gutter;
+    padding-bottom: 2px;
+    
+    border-bottom: solid 2px #ebddf2;
+  }
+}
+
+#webservices {
+  float: right;
+  
+  a {
+    font-size: $default-font-size + 5px;
+    border-bottom: none;
+  }
+}
+
+.github {
+  @extend .icon-github;
+}
+.twitter {
+  @extend .icon-twitter;    
+}
+
+main {
+  @extend %centered;
+  
+  margin-top: $gutter;
+  
+  section {
+    float: left;
+    margin-bottom: $gutter * 1.5;
+    width: 100%;
+    
+    a {
+      //text-decoration: underline;
+      color: #b728cc;
+    }
+    
+    h1, h2, h3 {
+      font-weight: normal;
+    }
+    
+    h1 {
+      font-size: $default-font-size + 8px;
+      margin-bottom: 0.75em;
+      color: $common-text-gray;
+    }
+    
+    p {
+      line-height: 1.75em;
+    }
+    
+    hr {
+      height: 0;
+      margin-bottom: 1em;
+      border: none;
+    }
+  }
+}
+
+.columns {
+  position: relative;
+  float: left;
+  width: 100%;
+
+  .two-column {
+    float: left;
+    width: 100%;
+    min-width: 350px;
+    
+    &+.two-column {
+    }
+  }    
+}
+
+
+.line-wide {
+  width: 100%;
+  height: 2px;
+  background-color: $common-violet;
+}
+
+.header-rect {
+  display: block;
+  float: left;
+  width: 4px;
+  height: 1em;
+  margin-right: 8px;
+  background-color: #bd8fd1;
+}
+
+.inline-icon {
+  display: block;
+  margin-top: 8px;
+  
+  &:before {
+    font-size: $default-font-size + 10px;
+    margin-right: 0.25em;
+  }
+}
+
+.skills+.skills {
+  margin-top: 0.75em;
+}
+
+.skill-code {
+  font-size: $default-font-size + 1px;
+  margin-bottom: 0.5em;
+  
+  @extend .icon-code;
+  &:before {
+    font-size: $default-font-size - 2px;
+    color: #c8a9d5;
+    margin-right: 0.5em;
+  }
+}
+
+.skill-other {
+
+  font-size: $default-font-size + 1px;
+  margin-bottom: 0.5em;
+  
+  @extend .icon-star;
+  &:before {
+    color: #c8a9d5;
+    margin-right: 0.5em;
+  }
+}
+
+.read-more {
+  font-size: $default-font-size - 1px;
+}
+
+footer {
+  float: left;
+  width: 100%;
+  height: 10px;
+  padding-top: $gutter;
+  padding-bottom: $gutter * 2;
+}
 
 @import "mediaqueries";
 

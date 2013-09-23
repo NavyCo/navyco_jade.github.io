@@ -3,4 +3,73 @@ template: default
 ---
 
 block content
-  p Hello!
+  section
+    h1.top-title Shinnosuke Watanabe
+    p.top-subtitle Software Engineer, User Interface Designer
+    .line-wide
+
+  .columns
+    section.two-column
+      h1
+        span.header-rect
+        | About Me
+      p 渡邉伸之介は、Webサイト制作、ライブラリ開発、ユーザーインターフェースデザイン、インタラクティブコンテンツ制作などを行っているソフトウェア開発者です。
+      p 神奈川県に在住、東京芸術大学大学院に在学し、研究・制作を行っています。
+      hr
+      p
+        | 本ウェブサイトは
+        a(href='http://pages.github.com/') Github Pages
+        | を用いてホスティングしています。
+        a(href='https://github.com/shinnn/shinnn.github.io') 本サイトのリポジトリ
+        | のほか、開発成果は随時Githubに公開しています。
+      p
+        a.github.inline-icon(href='https://github.com/shinnn?tab=repositories') Github リポジトリ一覧
+      hr
+      p
+        a.read-more(href='./about.html') >> 筆者についての詳細
+  
+    section.two-column
+      h1
+        span.header-rect
+        | Skill Set
+      .skills
+        .skill-code JavaScript (Client Side / Node.js)
+        .skill-code CoffeeScript
+        .skill-code HTML5
+        .skill-code CSS / Sass / Compass
+        .skill-code PHP
+        .skill-code C++ (openFramworks)
+        .skill-code Arduino
+      .skills
+        .skill-other ユーザーインターフェース・デザイン
+        .skill-other タイポグラフィ（日本語 / 英語）
+        .skill-other 映像撮影・編集 / 写真撮影・加工
+      hr
+      p
+        a.read-more >> スキルセットの詳細
+
+  section
+    h1 
+      span.header-rect
+      | Featured Works
+    #frontispiece
+
+    p 東京芸術大学 OPEN STUDIO 2013 ウェブサイト
+    #frontispiece
+    p 東京芸術大学 OPEN STUDIO 2013 ウェブサイト
+    #frontispiece
+    p 東京芸術大学 OPEN STUDIO 2013 ウェブサイト
+    #frontispiece
+    p 東京芸術大学 OPEN STUDIO 2013 ウェブサイト
+
+  //-section#profile
+    h1 渡邉 伸之介
+    h2 来歴
+    p 1988年生まれ
+    p 2012年 武蔵野美術大学造形学部 デザイン情報学科 卒業
+    p 東京芸術大学大学院映像研究科 メディア映像専攻 在学中
+  
+    h2 スキル
+    ul
+      li JavaScript
+      li CoffeeScript

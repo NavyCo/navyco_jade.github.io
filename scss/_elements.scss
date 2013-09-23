@@ -13,7 +13,6 @@ body{
 
 a{
   text-decoration: none;
-  color: $common-white;
   
   &:focus, &:active, &::-moz-focus-inner{
     border: none;
@@ -28,7 +27,7 @@ p, h1, h2, h3, h4, hr, ol, ul, menu{
   -webkit-margin-end: 0;
   -webkit-padding-start: 0;
   -webkit-padding-end: 0;
-  line-height: 1.75em;
+  line-height: 1;
   margin: 0;
   padding: 0;
 }

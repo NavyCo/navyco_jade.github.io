@@ -5,6 +5,8 @@ templatesPath: 'jade/templates/'
 documentsPath: 'jade/pages/'
 dataPath: 'jade/data/'
 
+liveReloadPort: 8000
+
 github:
   username: shinnn
   email: snnskwtnb@gmail.com

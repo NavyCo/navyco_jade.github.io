@@ -1,5 +1,5 @@
 {
-  "name": "Shinnosuke Watanabe's Website",
+  "name": "shinnn.github.io",
   "version": "0.0.1",
   "description": "",
   "main": "Gruntfile.coffee",
@@ -37,6 +37,8 @@
     "grunt-contrib-connect": "~0.3.0",
     "yaml-front-matter": "~2.1.0",
     "grunt-sails-linker": "~0.9.2",
-    "grunt-gh-pages": "~0.7.3"
+    "grunt-gh-pages": "~0.7.3",
+    "grunt-concurrent": "~0.3.1",
+    "grunt-open": "~0.2.2"
   }
 }

@@ -43,14 +43,25 @@ html(lang='ja')
     meta(name='msapplication-TileImage', content='')
     meta(name='msapplication-TileColor', content='#FFFFFF')
     
-    link(href='css/styles.css', media='screen', rel='stylesheet')
+    link(href='./css/styles.css', media='screen', rel='stylesheet')
     
   body
     include _google-analytics
     
     #container
       header
-      block content
+        #menubar
+          #menu
+            a ABOUT
+            a WORKS
+            
+            #webservices
+              a.github(href='https://github.com/shinnn')
+              a.twitter(href='https://twitter.com/shinnn_tw')
+            
+      main
+        block content
+
       footer
     
     block scripts

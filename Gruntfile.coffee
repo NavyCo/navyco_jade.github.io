@@ -171,6 +171,11 @@ module.exports = (grunt) ->
         options:
           base: DEST_ROOT
     
+    open:
+      site:
+        path: 'http://127.0.0.1:8000/'
+        app: 'Google Chrome'
+    
     watch:
       options:
         # http://feedback.livereload.com/knowledgebase/articles/86242
@@ -208,7 +213,7 @@ module.exports = (grunt) ->
         files: ["#{ SRC_ROOT }/public/**/*"]
       html:
         files: ['index.html']
-    
+        
     'gh-pages':
       site:
         options:
@@ -219,7 +224,12 @@ module.exports = (grunt) ->
             name: 'shinnn'
             email: 'snnskwtnb@gmail.com'
         src: '**/*'
-        
+
+    concurrent:
+      beginning: ['flexSVG', 'shell:coffeelint_grunt', 'shell:coffeelint']
+      dev: ['compass:dev', 'coffee:dev', 'jadeTemplate:dev']
+      dist: ['compass:dist', 'coffee:dist', 'jadeTemplate:dist']
+      
   grunt.task.registerTask 'jadeTemplate',
   'Compile Jade Files with front-matter', (mode) ->
     readOptions =
@@ -273,12 +283,11 @@ module.exports = (grunt) ->
   
   defaultTasks = [
     'clean:site' #reset
+    'concurrent:beginning'
     'copy'
-    'compass:dev', 'compass:dist' #SCSS -> CSS
-    'shell:coffeelint_grunt', 'shell:coffeelint'
-    'coffee:dev', 'coffee:dist' #Coffee
+    'concurrent:dev', 'concurrent:dist'
     'uglify', 'concat' #minify JS
-    'jadeTemplate:dev', 'jadeTemplate:dist', 'prettify' #Jade -> HTML
+    'prettify'
     'flexSVG', 'svgmin' # optimize SVG
     'clean:tmpfiles'
     'connect', 'watch'
@@ -291,7 +300,7 @@ module.exports = (grunt) ->
     val is 'prettify' or val.indexOf('dev') isnt -1
 
   # タスクの配列の最後から2番目、'watch'タスクに入る前に、新たなタスクを追加
-  distTasks.splice distTasks.length-2, 0, 'clean:debugFiles'
+  distTasks.splice distTasks.length-2, 0, 'clean:debugFiles', 'open'
 
   grunt.task.registerTask 'dist',
   'Generate only the files to publish a website', distTasks
