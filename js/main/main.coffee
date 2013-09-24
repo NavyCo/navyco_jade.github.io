@@ -3,9 +3,9 @@ $('.two-column').wookmark
   autoResize: true
   container: $('.columns')
   direction: 'left'
-  itemWidth: 350
+  itemWidth:360
   flexibleWidth: '50%'
-  offset: 48
+  offset: 36
   resizeDelay: 0
   onLayoutChanged: ->
     if parseInt(this.handler[0].style.width, 10) is this.itemWidth

@@ -61,6 +61,16 @@ module.exports = (grunt) ->
 
     casperjs:
       files: ["#{ SRC_ROOT }casperjs/**/*.js", "#{ SRC_ROOT }casperjs/**/*.coffee"]
+      
+    copy:
+      public:
+        files: [
+          expand: true
+          cwd: "#{ SRC_ROOT }public/"
+          src: ['**', '!**/.DS_Store', '!**/Thumbs.db']
+          dest: DEST_ROOT
+          dot: true
+        ]
 
     compass:
       options:
@@ -133,6 +143,17 @@ module.exports = (grunt) ->
         cwd: DEST_ROOT
         src: ['**/*.html', '!debug/**/*', '!**/*-debug.html']
         dest: "#{ DEST_ROOT }debug/html-readable"
+        
+    imagemin:
+      all:
+        options:
+          progressive: false
+        files: [
+          expand: true
+          cwd: "#{ DEST_ROOT }/img/"
+          src: ['**/*.{png,jpg,gif}']
+          dest: "#{ DEST_ROOT }/img/"
+        ]
 
     svgmin:
       options:
@@ -158,16 +179,6 @@ module.exports = (grunt) ->
           "#{ BIN }coffeelint Gruntfile.coffee"
         options:
           stdout: true
-    
-    copy:
-      public:
-        files: [
-          expand: true
-          cwd: "#{ SRC_ROOT }public/"
-          src: ['**', '!**/.DS_Store', '!**/Thumbs.db']
-          dest: DEST_ROOT
-          dot: true
-        ]
     
     connect:
       site:
@@ -214,6 +225,7 @@ module.exports = (grunt) ->
         tasks: ['jadeTemplate', 'prettify']
       copy:
         files: ["#{ SRC_ROOT }/public/**/*"]
+        tasks: ['copy', 'imagemin']
       html:
         files: ['index.html']
         
@@ -231,7 +243,7 @@ module.exports = (grunt) ->
     concurrent:
       beginning: ['flexSVG', 'shell:coffeelint_grunt', 'shell:coffeelint']
       dev: ['compass:dev', 'coffee:dev', 'jadeTemplate:dev']
-      dist: ['compass:dist', 'coffee:dist', 'jadeTemplate:dist']
+      dist: ['compass:dist', 'coffee:dist', 'jadeTemplate:dist', 'imagemin']
       
   grunt.task.registerTask 'jadeTemplate',
   'Compile Jade Files with front-matter', (mode) ->

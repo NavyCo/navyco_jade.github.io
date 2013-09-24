@@ -8,22 +8,25 @@ block content
     p.top-subtitle Software Engineer, User Interface Designer
     .line-wide
 
-   //.columns
+   .columns
     section.two-column
       //-h1
         span.header-rect
         | About
-      p Webサイト制作、ライブラリ開発、ユーザーインターフェースデザイン、インタラクティブコンテンツ制作などを行う渡邉伸之介のウェブサイトです。
+      
+      //- レスポンシブデザインを見せるために半カラムのモノがあった方が良い  
+      
+      p.lead Webサイト制作、ライブラリ開発、ユーザーインターフェースデザイン、インタラクティブコンテンツ制作などを行う渡邉伸之介のウェブサイトです。
       hr
-      p
+      
+      //- いきなりほかのサイトに誘導するのはおかしい
+      
+      //-p
         a(href='https://github.com/shinnn/shinnn.github.io') 本ウェブサイト
         | のほか、ソフトウェアの開発成果は随時Githubに公開しています。
       hr
-      p
-        a.github.inline-icon(href='https://github.com/shinnn?tab=repositories') Github リポジトリ一覧
-      //-hr
       //-p
-        a.read-more(href='./about.html') >> 筆者についての詳細
+        a.github.inline-icon(href='https://github.com/shinnn?tab=repositories') Github リポジトリ一覧
       
     //- section.two-column
       //-h1
@@ -48,7 +51,7 @@ block content
   section
     h1
       span.header-rect
-      | Featured Projects
+      | Projects
     .featured-works
       a.wide-image(href='')
         img(src='img/openstudio.jpg')

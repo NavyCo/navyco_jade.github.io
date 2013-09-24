@@ -1,18 +1,31 @@
 ---
   - 
-    name: "openstudio"
-    title: "東京芸術大学 夏期成果発表会 OPEN STUDIO 2013 Webサイト"
-    genre: []
-    description: 
+    name: openstudio
+    title: 東京芸術大学 夏期成果発表会 OPEN STUDIO 2013 Webサイト
+    genre: [web]
+    description: tmp
 
   - 
-    name: "misabi-degreeshow"
-    title: "武蔵野美術大学デザイン情報学科 卒業制作展 2011 Webサイト"
-    genre: []
-    description: 
+    name: misabi-degreeshow
+    title: 武蔵野美術大学デザイン情報学科 卒業制作展 2011 Webサイト
+    genre: [web]
+    description: tmp
 
   - 
-    name: "aquarium"
-    title: "東京芸術大学 夏期成果発表会 OPEN STUDIO 2013 Webサイト"
-    genre: []
-    description: 
+    name: aquarium
+    title: ひかりひらり水族館
+    genre: [インスタレーション]
+    description: tmp
+
+  - 
+    name: wave
+    title: Wave to Wave
+    genre: [インスタレーション]
+    description: tmp
+
+  - 
+    name: 
+    title: ひかりひらり水族館
+    genre: [web]
+    description: tmp
+    

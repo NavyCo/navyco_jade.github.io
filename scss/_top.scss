@@ -16,6 +16,11 @@
     //color: darken(#c8a9d5, 10);
     color: gray;
   }
+  
+  .lead {
+    color: $common-text-gray;
+    font-size: $default-font-size - 1px;    
+  }
 
   .featured-works {
     margin-bottom: $gutter;

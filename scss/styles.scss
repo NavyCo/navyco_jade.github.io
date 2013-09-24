@@ -44,7 +44,7 @@ $common-violet: darken(#C900FF, 8);
       width: auto;
     }
   }
-  @media screen and(max-width: 720px){
+  @media screen and(max-width: 680px){
     & {
       padding-left: $gutter;
       padding-right: $gutter;
@@ -73,12 +73,14 @@ header{
 
 #menubar {
   @extend %centered;
-  padding-top: $gutter * 3;
+  padding-top: $gutter * 5;
   padding-bottom: $gutter;
 }
 
+$home-icon-size: 50px;
+
 #menu {
-  height: 40px;
+  height: $home-icon-size;
   font-family: 'Open Sans', $sans-serif;
 
   a {
@@ -95,10 +97,10 @@ header{
   
   #home {
     background: $common-violet;
-    width: 40px;
-    height: 40px;
+    width: $home-icon-size;
+    height: $home-icon-size;
     // 
-    margin-top: -40px + $default-font-size + 2px + 2px + 2px;
+    margin-top: -$home-icon-size + ($default-font-size + 2px) + 2px + 2px;
     padding-bottom: 0;
     border-bottom: none; 
   }
@@ -156,7 +158,7 @@ main {
     }
     
     h1 {
-      font-size: $default-font-size + 8px;
+      font-size: $default-font-size + 12px;
       margin-bottom: 0.75em;
       // color: $common-text-gray;
     }
@@ -184,14 +186,14 @@ main {
   //background-color: transparent;
   background-color: #F0F0F0;
   //background-color: $common-violet;
-  margin-bottom: $gutter;
+  margin-bottom: $gutter * 0.5;
 }
 
 .columns {
   position: relative;
   float: left;
   width: 100%;
-  font-size: $default-font-size - 1px;
+  // font-size: $default-font-size - 1px;
 
   .two-column {
     float: left;
@@ -206,7 +208,7 @@ main {
 .header-rect {
   display: block;
   float: left;
-  width: 4px;
+  width: 6px;
   height: 1em;
   margin-right: 8px;
   background-color: #bd8fd1;
