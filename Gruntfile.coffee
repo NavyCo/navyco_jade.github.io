@@ -54,7 +54,7 @@ module.exports = (grunt) ->
     lodash:
       options:
         modifier: 'legacy'
-        include: []
+        #include: []
         flags: ['--minify']
       custom:
         dest: "#{ JS_ROOT }vendor/lodash.gruntbuild.js"
@@ -271,7 +271,7 @@ module.exports = (grunt) ->
 
       jadeTxt = addition + splitted.__content
       
-      allData = grunt.util._.extend globalJadeData(), localData, compileOptions
+      allData = _.extend globalJadeData(), localData, compileOptions
       
       if(mode isnt 'dev')      
         jade.render jadeTxt, allData, (err, html) ->
@@ -311,7 +311,7 @@ module.exports = (grunt) ->
   grunt.task.registerTask 'default', defaultTasks
   
   # task list for 'dist' tasks
-  distTasks = grunt.util._.reject defaultTasks, (val) ->
+  distTasks = _.reject defaultTasks, (val) ->
     val is 'prettify' or val.indexOf('dev') isnt -1
 
   # タスクの配列の最後から2番目、'watch'タスクに入る前に、新たなタスクを追加
