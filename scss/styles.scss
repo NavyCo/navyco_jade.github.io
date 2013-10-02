@@ -11,11 +11,10 @@ $gutter: 24px;
 
 $base-font-size: 15px;
 
-$base-line-height: $base-font-size * 1.75;
+$base-line-height: $base-font-size * 1.25;
 
-$default-font-size: 15px;
-
-$main-width: 1200px;
+$main-width: 1080px;
+//$main-width: 1200px;
 
 $common-white: #FEFFFF;
 $common-gray: #FCFDFC;
@@ -52,8 +51,13 @@ $common-violet: darken(#C900FF, 8);
   }
 }
 
+%text {
+  line-height: 1.75;
+}
+
 body {
-  font-size: $default-font-size;
+  font-size: $base-font-size;
+  min-height: 100%;
 }
 
 #container {
@@ -65,6 +69,10 @@ body {
   
   font-family: $sans-serif;
   color: $common-black;
+  
+  a {
+    color: $common-black;
+  }
 }
 
 header{
@@ -73,8 +81,8 @@ header{
 
 #menubar {
   @extend %centered;
-  padding-top: $gutter * 5;
-  padding-bottom: $gutter;
+  padding-top: $gutter * 4;
+  //padding-bottom: $gutter;
 }
 
 $home-icon-size: 50px;
@@ -90,7 +98,7 @@ $home-icon-size: 50px;
     margin-left: 0;
     padding-bottom: 2px;
     
-    font-size: $default-font-size + 2px;
+    font-size: $base-font-size + 2px;
     
     border-bottom: solid 2px #ebddf2;
   }
@@ -100,7 +108,7 @@ $home-icon-size: 50px;
     width: $home-icon-size;
     height: $home-icon-size;
     // 
-    margin-top: -$home-icon-size + ($default-font-size + 2px) + 2px + 2px;
+    margin-top: -$home-icon-size + ($base-font-size + 2px) + 2px + 2px;
     padding-bottom: 0;
     border-bottom: none; 
   }
@@ -112,17 +120,17 @@ $home-icon-size: 50px;
   a {
     margin-right: 0;
     margin-left: $gutter;
-    font-size: $default-font-size + 5px;
+    font-size: $base-font-size + 5px;
     border-bottom: none;
   }
   
   .github {
-    margin-top: -38px + $default-font-size;
+    margin-top: -38px + $base-font-size;
     font-size: 38px;
   }
 
   .twitter {
-    margin-top: -32px + $default-font-size;
+    margin-top: -32px + $base-font-size;
     font-size: 32px;
   }
 }
@@ -136,7 +144,8 @@ $home-icon-size: 50px;
 
 main {
   width: 100%;
-  margin-top: $gutter;
+  margin-top: $gutter * 2;
+  margin-bottom: $gutter;
 }
 
 #content {
@@ -158,7 +167,7 @@ main {
     }
     
     h1 {
-      font-size: $default-font-size + 12px;
+      font-size: $base-font-size + 12px;
       margin-bottom: 0.75em;
       // color: $common-text-gray;
     }
@@ -174,7 +183,8 @@ main {
     }
     
     .role {
-      font-size: $default-font-size - 1px;
+      font-size: $base-font-size - 1px;
+      color: $common-text-gray;
     }
   }
 }
@@ -185,7 +195,7 @@ main {
   background-color: #c8a9d5;
   //background-color: transparent;
   background-color: #F0F0F0;
-  //background-color: $common-violet;
+  //background-color: $common-violet; // bad...
   margin-bottom: $gutter * 0.5;
 }
 
@@ -193,7 +203,7 @@ main {
   position: relative;
   float: left;
   width: 100%;
-  // font-size: $default-font-size - 1px;
+  // font-size: $base-font-size - 1px;
 
   .two-column {
     float: left;
@@ -217,10 +227,10 @@ main {
 .inline-icon {
   display: block;
   margin-top: 8px;
-  font-size: $default-font-size;
+  font-size: $base-font-size;
   
   &:before {
-    font-size: $default-font-size + 10px;
+    font-size: $base-font-size + 10px;
     margin-right: 0.25em;
   }
 }
@@ -234,7 +244,7 @@ main {
   
   @extend .icon-code;
   &:before {
-    font-size: $default-font-size - 2px;
+    font-size: $base-font-size - 2px;
     color: #c8a9d5;
     margin-right: 0.5em;
   }
@@ -242,7 +252,7 @@ main {
 
 .skill-other {
 
-  font-size: $default-font-size + 1px;
+  font-size: $base-font-size + 1px;
   margin-bottom: 0.5em;
   
   @extend .icon-star;
@@ -253,13 +263,33 @@ main {
 }
 
 .read-more {
-  font-size: $default-font-size - 1px;
+  font-size: $base-font-size - 1px;
 }
 
 footer {
-  height: 10px;
+  position: relative;
+  bottom: 0;
   padding-top: $gutter;
-  padding-bottom: $gutter * 2;
+  padding-bottom: $gutter * 4;
+  background-color: #F0F0F0;
+}
+
+#colophon {
+  @extend %centered;
+  
+  a {
+    display: block;
+  }
+  
+  p {
+    @extend %text;
+  }
+}
+
+#license {
+  p {
+    color: $common-text-gray;
+  }
 }
 
 @import "top";

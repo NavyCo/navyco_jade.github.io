@@ -16,10 +16,12 @@ $('.two-column').wookmark
 # 右上に表示する要素
 go = $ '<div id="go"></div>'
 
-$('.wide-image')
+$('.wzide-image')
 .on 'mouseover', ->
   $(this).children('img').animate {
-    'opacity': '0.85'
+    'border-width': '24px'
+    'top': '-12px'
+    'left': '-12px'
   }, 100
   
   go.css 'top', - $(this).children('img').height() + 'px'

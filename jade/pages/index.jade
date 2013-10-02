@@ -5,10 +5,11 @@ template: default
 block content
   section
     h1.top-title Shinnosuke Watanabe
-    p.top-subtitle Software Engineer, User Interface Designer
+    //-p.top-subtitle Software Engineer, User Interface Designer
+    p.top-subtitle Web Development / Design, User Interface Design
     .line-wide
 
-   .columns
+   //.columns
     section.two-column
       //-h1
         span.header-rect
@@ -49,23 +50,39 @@ block content
         a.read-more >> スキルセットの詳細
 
   section
-    h1
+    //h1
       span.header-rect
       | Projects
     .featured-works
       a.wide-image(href='')
-        img(src='img/openstudio.jpg')
-      h2.work-title 東京芸術大学 成果発表会 OPEN STUDIO 2013 ウェブサイト
-      .role プログラミング / ユーザーインターフェースデザイン
+        img(src='img/openstudio-large.jpg', alt='')
+      h2.work-title
+        span 東京芸術大学 成果発表会 OPEN STUDIO 2013 Webサイト
+      .role フロントエンド開発 / ユーザーインターフェースデザイン
       
     .featured-works
       a.wide-image(href='')
-        img(src='img/R0012670.JPG')
-      p 東京芸術大学 OPEN STUDIO 2013 ウェブサイト
-    .wide-image
-    p 東京芸術大学 OPEN STUDIO 2013 ウェブサイト
-    .wide-image
-    p 東京芸術大学 OPEN STUDIO 2013 ウェブサイト
+        img(src='img/g11-large.jpg', alt='')
+      h2.work-title
+        span 武蔵野美術大学デザイン情報学科 卒業研究・制作展 2011 Webサイト
+      .role フロントエンド・バックエンド開発 / ユーザーインターフェースデザイン
+
+    .featured-works
+      a.wide-image(href='')
+        img(src='img/wave-large.jpg', alt='')
+      h2.work-title
+        span Wave to Wave
+      .role 電子工作 / インタラクションデザイン
+
+    .featured-works
+      a.wide-image(href='')
+        img(src='img/aquarium-large.jpg', alt='')
+      h2.work-title
+        span ひかりひらり水族館
+      .role グラフィックプログラミング
+    
+    p
+      a(href='./projects.html') 全てのプロジェクト
 
   //-section#profile
     h1 渡邉 伸之介

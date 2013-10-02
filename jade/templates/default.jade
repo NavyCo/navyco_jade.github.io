@@ -54,7 +54,7 @@ html(lang='ja')
           #menu
             a#home(href='./')
             a(href='./about.html') ABOUT
-            a(href='./works.html') WORKS
+            a(href='./projects.html') PROJECTS
             
             #webservices
               a.github(href='https://github.com/shinnn')
@@ -65,6 +65,17 @@ html(lang='ja')
           block content
 
       footer
+        #colophon
+          //#footer-menu
+            a(href='about.html') About
+            a(href='about.html') Projects
+          
+          //#footer-webservices
+            a(href='https://github.com/shinnn') Github
+            a(href='https://twitter.com/shinnn_tw') Twitter
+            
+          #license
+            p Copyright &copy; 2013 Shinnosuke Watanabe All rights reserved.
     
     block scripts
       include _jquery

@@ -234,10 +234,9 @@ module.exports = (grunt) ->
         options:
           base: DEST_ROOT
           branch: 'master'
-          message: 'auto commit by grunt-gh-pages'
+          message: 'deployed by grunt-gh-pages'
           user:
             name: 'shinnn'
-            email: 'snnskwtnb@gmail.com'
         src: '**/*'
 
     concurrent:
