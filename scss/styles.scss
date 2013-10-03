@@ -16,6 +16,8 @@ $base-line-height: $base-font-size * 1.25;
 $main-width: 1080px;
 //$main-width: 1200px;
 
+$footer-height: 180px;
+
 $common-white: #FEFFFF;
 $common-gray: #FCFDFC;
 $common-black: #1F1F1F;
@@ -28,6 +30,9 @@ $common-violet: darken(#C900FF, 8);
 @import "normalize";
 @import "elements";
 @import "webfont";
+@import "griddle";
+
+@include griddle-build(2);
 
 %centered {
   margin: 0 auto;
@@ -55,18 +60,27 @@ $common-violet: darken(#C900FF, 8);
   line-height: 1.75;
 }
 
+// フッターを最下部に持っていくため必須
+html, body {
+  height: 100%;
+}
+
 body {
   font-size: $base-font-size;
-  min-height: 100%;
 }
 
 #container {
-  position: absolute;
+  position: relative;
+
+  width: 100%;
+  
+  height: auto !important;
+  height: 100%;
+  min-height: 100%;
+  
   background: $common-gray;
   // background: #ebddf2;
-  width: 100%;
-  height: 100%;
-  
+
   font-family: $sans-serif;
   color: $common-black;
   
@@ -144,12 +158,17 @@ $home-icon-size: 50px;
 
 main {
   width: 100%;
+  height: auto;
+  min-height: 100%;
+  
   margin-top: $gutter * 2;
-  margin-bottom: $gutter;
+  padding-bottom: $footer-height;
 }
 
 #content {
   @extend %centered;
+  
+  padding-bottom: $gutter;
   
   section {
     float: left;
@@ -200,19 +219,22 @@ main {
 }
 
 .columns {
-  position: relative;
-  float: left;
   width: 100%;
   // font-size: $base-font-size - 1px;
 
   .two-column {
     float: left;
-    width: 100%;
+    box-sizing: border-box;
+    
+    width: 50%;
     min-width: 350px;
+    padding-right: $gutter * 0.5;
     
     &+.two-column {
+      float: left;
+      padding-right: $gutter * 0.5;
     }
-  }    
+  }
 }
 
 .header-rect {
@@ -251,7 +273,6 @@ main {
 }
 
 .skill-other {
-
   font-size: $base-font-size + 1px;
   margin-bottom: 0.5em;
   
@@ -267,15 +288,23 @@ main {
 }
 
 footer {
-  position: relative;
+  position: absolute;
   bottom: 0;
-  padding-top: $gutter;
-  padding-bottom: $gutter * 4;
+
+  width: 100%;
+  height: $footer-height;
+
   background-color: #F0F0F0;
 }
 
 #colophon {
   @extend %centered;
+  
+  margin-top: $gutter;
+
+  p, a {
+    color: $common-text-gray;
+  }
   
   a {
     display: block;
@@ -286,9 +315,12 @@ footer {
   }
 }
 
+#footer-menu, #contact, #email {
+  margin-bottom: 0.25em;
+}
+
 #license {
-  p {
-    color: $common-text-gray;
+  p, a {
   }
 }
 

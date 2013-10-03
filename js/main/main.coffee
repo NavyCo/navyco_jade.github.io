@@ -1,3 +1,4 @@
+###
 $('.two-column').wookmark
   align: 'left'
   autoResize: true
@@ -12,6 +13,7 @@ $('.two-column').wookmark
       this.handler.css('width', '')
       this.handler.css('position', '')
       this.container.css('height', '')
+###
 
 # 右上に表示する要素
 go = $ '<div id="go"></div>'

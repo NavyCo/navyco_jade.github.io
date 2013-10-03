@@ -150,9 +150,9 @@ module.exports = (grunt) ->
           progressive: false
         files: [
           expand: true
-          cwd: "#{ DEST_ROOT }/img/"
+          cwd: "#{ SRC_ROOT }img/"
           src: ['**/*.{png,jpg,gif}']
-          dest: "#{ DEST_ROOT }/img/"
+          dest: "#{ DEST_ROOT }img/"
         ]
 
     svgmin:
@@ -215,6 +215,9 @@ module.exports = (grunt) ->
       concat_dist:
         files: ["#{ DEST_ROOT }js/debug/*.js"]
         tasks: ['concat:dist', 'clean:tmpfiles']
+      images:
+        files: ["#{ SRC_ROOT }img/**/*.{png,jpg,gif}"]
+        tasks: ['imagemin']
       svg:
         files: ["#{ SRC_ROOT }/svg/*.svg"]
         tasks: ['flexSVG', 'svgmin']

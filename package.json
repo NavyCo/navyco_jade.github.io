@@ -47,6 +47,7 @@
     "grunt-open": "~0.2.2",
     "grunt-casperjs": "~1.0.9",
     "grunt-csscss": "~0.6.1",
-    "grunt-contrib-imagemin": "~0.3.0"
+    "grunt-contrib-imagemin": "~0.3.0",
+    "connect-livereload": "~0.3.0"
   }
 }
