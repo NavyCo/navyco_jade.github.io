@@ -4,7 +4,8 @@ include _helpers
 html(lang='ja')
   head
     meta(charset='utf-8')
-    meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(http-equiv='x-pjax-title', content= concatTitle('-'))
     
     title= concatTitle('-')
     meta(name='keywords', content= joinedKeywords)
@@ -68,17 +69,33 @@ html(lang='ja')
         #colophon.columns
           .two-column
             #footer-menu
-              a(href='about.html') About
-              a(href='about.html') Projects
+              div
+                a(href='about.html') About
+              div
+                a(href='projects.html') Projects
             #contact
-              a(href='https://github.com/shinnn') shinnn on Github
-              a(href='https://twitter.com/shinnn_tw') @shinnn_tw on Twitter
+              div
+                a(href='https://github.com/shinnn')
+                  b shinnn
+                  | &nbsp;on Github
+              div
+                a(href='https://twitter.com/shinnn_tw')
+                  b @shinnn_tw
+                  | &nbsp;on Twitter
             #email
-              a(href='mailto:snnskwtnb@gmail.com') Mail to snnskwtnb@gmail.com
+              div
+                a(href='mailto:snnskwtnb@gmail.com')
+                  | Mail to&nbsp;
+                  b snnskwtnb@gmail.com
           
           #license.two-column
             p Copyright &copy; 2013 Shinnosuke Watanabe All rights reserved.
-            p Unless otherwise stated, all source code in this website is licensed under the MIT license.
+            p
+              | Unless otherwise stated,&nbsp;
+              a(href='https://github.com/shinnn/shinnn.github.io') all source code in this website
+              | &nbsp;is licensed under the&nbsp;
+              a(href='http://opensource.org/licenses/mit-license.php') MIT license
+              | .
     
     block scripts
       include _jquery

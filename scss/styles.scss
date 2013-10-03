@@ -16,7 +16,7 @@ $base-line-height: $base-font-size * 1.25;
 $main-width: 1080px;
 //$main-width: 1200px;
 
-$footer-height: 180px;
+$footer-height: 185px;
 
 $common-white: #FEFFFF;
 $common-gray: #FCFDFC;
@@ -60,7 +60,8 @@ $common-violet: darken(#C900FF, 8);
   line-height: 1.75;
 }
 
-// フッターを最下部に持っていくため必須
+// フッターを最下部に持っていくために必須
+// http://www.lucky-bag.com/archives/2005/04/footer.html
 html, body {
   height: 100%;
 }
@@ -163,6 +164,12 @@ main {
   
   margin-top: $gutter * 2;
   padding-bottom: $footer-height;
+  
+  @media screen and(max-width: $main-width - 270px){
+    & {
+      padding-bottom: $footer-height * 1.5;
+    }
+  }
 }
 
 #content {
@@ -234,6 +241,12 @@ main {
       float: left;
       padding-right: $gutter * 0.5;
     }
+    
+    @media screen and(max-width: $main-width - 270px){
+      & {
+        width: auto;
+      }
+    }
   }
 }
 
@@ -293,6 +306,12 @@ footer {
 
   width: 100%;
   height: $footer-height;
+  
+  @media screen and(max-width: $main-width - 270px){
+    & {
+      height: $footer-height * 1.5;
+    }
+  }
 
   background-color: #F0F0F0;
 }
@@ -307,7 +326,9 @@ footer {
   }
   
   a {
-    display: block;
+    &:hover {
+      text-decoration: underline;
+    };
   }
   
   p {
@@ -316,11 +337,13 @@ footer {
 }
 
 #footer-menu, #contact, #email {
-  margin-bottom: 0.25em;
+  line-height: 1.5;
+  margin-bottom: 0.5em;
 }
 
 #license {
-  p, a {
+  a {
+    text-decoration: underline;    
   }
 }
 
