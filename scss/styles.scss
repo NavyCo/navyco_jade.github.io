@@ -5,7 +5,7 @@ $serif: "Times", "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", "ＭＳ Ｐ
 
 $gutter: 24px;
 
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600);
 
 @import "compass/typography/vertical_rhythm";
 
@@ -16,7 +16,9 @@ $base-line-height: $base-font-size * 1.25;
 $main-width: 1080px;
 //$main-width: 1200px;
 
-$footer-height: 185px;
+$main-space-width: $gutter * 3;
+
+$footer-height: 220px;
 
 $common-white: #FEFFFF;
 $common-gray: #FCFDFC;
@@ -30,22 +32,25 @@ $common-violet: darken(#C900FF, 8);
 @import "normalize";
 @import "elements";
 @import "webfont";
-@import "griddle";
-
-@include griddle-build(2);
 
 %centered {
   margin: 0 auto;
   width: 100%;
   max-width: $main-width;
-  padding-left: $gutter * 2;
-  padding-right: $gutter * 2;
+  padding-left: $main-space-width;
+  padding-right: $main-space-width;
   overflow: auto;
   
   // 左右の padding の分も考慮
-  @media screen and(max-width: $main-width + ($gutter * 2) * 2){
+  @media screen and(max-width: $main-width + $main-space-width * 2){
     & {
       width: auto;
+    }
+  }
+  @media screen and(max-width: 860px){
+    & {
+      padding-left: $gutter * 2;
+      padding-right: $gutter * 2;
     }
   }
   @media screen and(max-width: 680px){
@@ -97,7 +102,6 @@ header{
 #menubar {
   @extend %centered;
   padding-top: $gutter * 4;
-  //padding-bottom: $gutter;
 }
 
 $home-icon-size: 50px;
@@ -198,7 +202,7 @@ main {
       // color: $common-text-gray;
     }
     
-    p {
+    p,li {
       line-height: 1.75em;
     }
     
@@ -271,14 +275,14 @@ main {
 }
 
 .skills+.skills {
-  margin-top: 0.75em;
+  margin-top: 1em;
 }
 
 .skill-code {
-  margin-bottom: 0.5em;
   
   @extend .icon-code;
   &:before {
+    width: $base-font-size + 4px;
     font-size: $base-font-size - 2px;
     color: #c8a9d5;
     margin-right: 0.5em;
@@ -286,18 +290,31 @@ main {
 }
 
 .skill-other {
-  font-size: $base-font-size + 1px;
-  margin-bottom: 0.5em;
   
   @extend .icon-star;
   &:before {
+    width: $base-font-size + 4px;
     color: #c8a9d5;
-    margin-right: 0.5em;
+    margin-right: 0.25em;
   }
 }
 
 .read-more {
   font-size: $base-font-size - 1px;
+}
+
+.key {
+  line-height: 1.75;
+  float: left;
+  width: 7em;
+}
+
+.value {
+  line-height: 1.25;
+  
+  &:first-line {
+    line-height: 1.75;    
+  }
 }
 
 footer {
@@ -318,6 +335,7 @@ footer {
 
 #colophon {
   @extend %centered;
+  font-family: 'Open Sans', $sans-serif;
   
   margin-top: $gutter;
 
@@ -337,17 +355,42 @@ footer {
 }
 
 #footer-menu, #contact, #email {
+  float: left;
+  clear: both;
+
+  width: 100%;
+  
+  // 本文よりは小さいのが妥当
+  font-size: $base-font-size - 1px;
+
   line-height: 1.5;
   margin-bottom: 0.5em;
 }
 
+#footer-menu {
+  margin-bottom: 1em;
+  
+  div {
+    float: left;
+    margin-right: $gutter * 0.25;
+  }
+  
+  .separator {
+    font-weight: 300;
+    color: lighten($common-text-gray, 30);
+  }
+}
+
 #license {
+  font-size: $base-font-size - 2px;
+  
   a {
     text-decoration: underline;    
   }
 }
 
 @import "top";
+@import "project";
 
 @import "mediaqueries";
 

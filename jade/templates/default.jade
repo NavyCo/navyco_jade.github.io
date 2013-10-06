@@ -58,8 +58,8 @@ html(lang='ja')
             a(href='./projects.html') PROJECTS
             
             #webservices
-              a.github(href='https://github.com/shinnn')
-              a.twitter(href='https://twitter.com/shinnn_tw')
+              a.github(href='https://github.com/shinnn',target='_blank')
+              a.twitter(href='https://twitter.com/shinnn_tw',target='_blank')
             
       main
         #content
@@ -70,21 +70,25 @@ html(lang='ja')
           .two-column
             #footer-menu
               div
+                a(href='./') Home
+              div.separator |
+              div
                 a(href='about.html') About
+              div.separator |
               div
                 a(href='projects.html') Projects
             #contact
               div
-                a(href='https://github.com/shinnn')
+                a(href='https://github.com/shinnn',target='_blank')
                   b shinnn
                   | &nbsp;on Github
               div
-                a(href='https://twitter.com/shinnn_tw')
+                a(href='https://twitter.com/shinnn_tw',target='_blank')
                   b @shinnn_tw
                   | &nbsp;on Twitter
             #email
               div
-                a(href='mailto:snnskwtnb@gmail.com')
+                a(href='mailto:snnskwtnb@gmail.com',target='_blank')
                   | Mail to&nbsp;
                   b snnskwtnb@gmail.com
           
@@ -92,9 +96,9 @@ html(lang='ja')
             p Copyright &copy; 2013 Shinnosuke Watanabe All rights reserved.
             p
               | Unless otherwise stated,&nbsp;
-              a(href='https://github.com/shinnn/shinnn.github.io') all source code in this website
+              a(href='https://github.com/shinnn/shinnn.github.io',target='_blank') all source code in this website
               | &nbsp;is licensed under the&nbsp;
-              a(href='http://opensource.org/licenses/mit-license.php') MIT license
+              a(href='http://opensource.org/licenses/mit-license.php',target='_blank') MIT license
               | .
     
     block scripts

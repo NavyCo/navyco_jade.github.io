@@ -1,0 +1,57 @@
+---
+  - 
+    name: openstudio
+    title: 東京芸術大学映像研究科メディア映像専攻 OPEN STUDIO 2013 Webサイト
+    short_title: 東京芸術大学 OPEN STUDIO 2013 Webサイト
+    genre: [Web]
+    description: tmp
+
+  - 
+    name: musabi-degreeshow
+    title: 武蔵野美術大学デザイン情報学科 卒業研究・制作展 2011 Webサイト
+    short_title: 武蔵野美術大学デザイン情報学科 卒研・制作展 ’11 Webサイト
+    genre: [Web]
+    description: tmp
+
+  - 
+    name: react
+    title: re(a)ct
+    genre: [Web]
+    description: tmp
+
+  - 
+    name: aquarium
+    title: ひかりひらり水族館
+    genre: [インスタレーション]
+    description: tmp
+
+  - 
+    name: wave
+    title: Wave to Wave
+    genre: [インスタレーション]
+    description: tmp
+
+  - 
+    name: led-workshop
+    title: 「七色に光るLEDをつくる」ワークショップ
+    genre: [イベント]
+    description: tmp
+
+  - 
+    name: scrollsmartly
+    title: scrollsmartly.js
+    genre: [Library]
+    description: tmp
+
+  - 
+    name: jadebp
+    title: Jade Website Boilerplate
+    genre: [Library]
+    description: tmp
+
+  - 
+    name: snow-melting
+    title: 写真集『融雪』
+    genre: [写真]
+    description: tmp
+    

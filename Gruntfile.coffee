@@ -316,8 +316,8 @@ module.exports = (grunt) ->
   distTasks = _.reject defaultTasks, (val) ->
     val is 'prettify' or val.indexOf('dev') isnt -1
 
-  # タスクの配列の最後から2番目、'watch'タスクに入る前に、新たなタスクを追加
-  distTasks.splice distTasks.length-2, 0, 'clean:debugFiles', 'open'
+  # 'watch'タスクを取り除き、新たなタスクを追加
+  distTasks.splice distTasks.length-1, 1, 'clean:debugFiles', 'open'
 
   grunt.task.registerTask 'dist',
   'Generate only the files to publish a website', distTasks

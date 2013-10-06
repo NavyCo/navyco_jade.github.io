@@ -5,6 +5,8 @@
     font-family: 'Open Sans', $sans-serif;
     font-size: 48px;
     font-weight: 400;
+    //letter-spacing: -0px;
+    //margin-bottom: $gutter * 2;
     margin-bottom: 0;
     color: $common-black;
     
@@ -13,6 +15,31 @@
 
   .top-subtitle {
     font-family: 'Open Sans', $sans-serif;
+    font-size: 26px;
+    font-weight: 300;
+    line-height: 1.0;
+
+    color: #c8a9d5;
+    //color: darken(#c8a9d5, 10);
+    color: gray;
+    
+    p {
+      //line-height: 1.75;
+    }
+  }
+
+  .page-title {
+    font-size: 36px;
+    font-weight: 400;
+    margin-bottom: 0;
+  }
+
+  .only-kana {
+    letter-spacing: -0.1em;
+  }
+
+  .page-subtitle {
+    font-family: $sans-serif;
     font-size: 26px;
     font-weight: 300;
     color: #c8a9d5;
@@ -32,19 +59,21 @@
   .wide-image {
     display: block;
     overflow: hidden;
-    margin-bottom: $gutter * 0.5;
     height: 240px;
+    margin-bottom: $gutter * 0.5;
     line-height: 0;
     
     img {
       position: relative;
       float: right;
-      left: 1080px * 0.5;
+      left: $main-width * 0.5;
       margin-right: 50%;
+
       width: auto;
-      max-width: 1080px;
+      max-width: $main-width;
       height: auto;
       min-height: 240px;
+
       //background: 0 0px gray image-url('openstudio.jpg') no-repeat;
       //background-size: cover;
       background-color: gray;

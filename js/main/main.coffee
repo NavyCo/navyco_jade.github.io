@@ -1,12 +1,13 @@
 ###
-$('.two-column').wookmark
-  align: 'left'
+$('.project').wookmark
+  align: 'center'
   autoResize: true
-  container: $('.columns')
+  container: $('.projects')
   direction: 'left'
-  itemWidth:360
-  flexibleWidth: '50%'
-  offset: 36
+  #itemWidth:10
+  #fillEmptySpace: true
+  #flexibleWidth: true
+  offset: 24
   resizeDelay: 0
   onLayoutChanged: ->
     if parseInt(this.handler[0].style.width, 10) is this.itemWidth

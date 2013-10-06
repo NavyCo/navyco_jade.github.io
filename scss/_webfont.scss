@@ -11,7 +11,7 @@
 
 $icons : setPre-Suffix(
   '.icon-',
-  (flickr, wordpress, home, youtube, facebook, twitter, tumblr, code, star, github)
+  (flickr, wordpress, home, youtube, facebook, twitter, tumblr, code, star, github, angle-double-right)
 );
 
 $filename-icon : 'icon';
@@ -109,6 +109,7 @@ src: url('../font/icon.svg?39909792#link') format('svg');
 
 .icon-tumblr:before { content: '\f311'; } /* '' */
 .icon-link:before { content: '🔗'; } /* '\1f517' */
+
 .icon-star {
   &:before {
     content: '\e800'; // ''
@@ -124,4 +125,10 @@ src: url('../font/icon.svg?39909792#link') format('svg');
     content: '\e805'; // ''
     color: #171515;
   }
+}
+
+.icon-angle-double-right {
+  &:before {
+    content: '\e807'; // ''
+  };
 }
