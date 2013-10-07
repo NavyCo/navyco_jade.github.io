@@ -42,16 +42,12 @@
     title: scrollsmartly.js
     genre: [Library]
     description: tmp
+    image_format: 'png'
 
   - 
     name: jadebp
     title: Jade Website Boilerplate
     genre: [Library]
     description: tmp
-
-  - 
-    name: snow-melting
-    title: 写真集『融雪』
-    genre: [写真]
-    description: tmp
+    image_format: 'png'
     

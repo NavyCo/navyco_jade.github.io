@@ -44,13 +44,14 @@ $thumbnail-size: ($main-width - $grid-gutter * 2) / 4.0;
   }
   
   a {
+    position: relative;
     overflow: hidden;
     
     img {
       position: relative;
-      //float: left;
-      //left: 250px;
-      margin-left: - percentage($thumbnail-size / ($thumbnail-size + $grid-gutter)) * 0.5;
+      left: 50%;
+      height: 250px;
+      margin-left: - 500px * 0.5;
     }
   }
   
@@ -90,11 +91,6 @@ $thumbnail-size: ($main-width - $grid-gutter * 2) / 4.0;
     
     & > * {
       width: 100%;      
-    }
-    
-    a img {
-      //left: 250px;
-      margin-left: 0;
     }
   }
 }

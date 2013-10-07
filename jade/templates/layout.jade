@@ -1,0 +1,123 @@
+include _helpers
+
+!!! 5
+html(lang='ja')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(http-equiv='x-pjax-title', content= concatTitle('-'))
+    
+    title= concatTitle('-')
+    meta(name='keywords', content= joinedKeywords)
+    meta(name='description', content= description || site.description)
+    meta(name='author', content= site.author)
+    
+    meta(property='og:type', content='website')
+    meta(property='og:url', content= site.url)
+    meta(property='og:image', content='')
+    meta(property='og:description', content= description || site.description)
+    meta(property='og:site_name', content= concatTitle('-'))
+    
+    script.
+      /* 'SVG' feature detection is based on Modernizr (MIT & BSD)*/
+      if(!document.createElementNS ||
+      !document.createElementNS('http://www.w3.org/2000/svg', 'svg').createSVGRect){
+        document.write('<script defer src="/js/sie.js"><\/script>');
+      }
+    
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='format-detection', content='telephone=no')
+    
+    link(rel='shortcut icon', href='/favicon.ico', media='screen')
+    
+    link(href='', rel='apple-touch-icon-precomposed', sizes='144x144')
+    link(href='', rel='apple-touch-icon-precomposed', sizes='114x114')
+    link(href='', rel='apple-touch-icon-precomposed', sizes='72x72')
+    link(href='', rel='apple-touch-icon-precomposed')
+    
+    meta(name='twitter:card', content='summary')
+    meta(name='twitter:title', content= concatTitle('-'))
+    meta(name='twitter:description', content= description || site.description)
+    meta(name='twitter:image:src', content='')
+    meta(name='twitter:domain', content='')
+    
+    meta(name='msapplication-TileImage', content='')
+    meta(name='msapplication-TileColor', content='#FFFFFF')
+    
+    link(href='/css/styles.css', media='screen', rel='stylesheet')
+  body
+    include _google-analytics
+    
+    #container
+      header
+        #menubar
+          #menu
+            a#home(href='/')
+            a(href='/about.html') ABOUT
+            a(href='/projects.html') PROJECTS
+            
+            #webservices
+              a.github(href='https://github.com/shinnn',target='_blank')
+              a.twitter(href='https://twitter.com/shinnn_tw',target='_blank')
+      
+      main
+        #content
+          block inner
+
+      footer
+        #colophon.columns
+          .two-column
+            #footer-menu
+              div
+                a(href='/') Home
+              div.separator |
+              div
+                a(href='/about.html') About
+              div.separator |
+              div
+                a(href='/projects.html') Projects
+            #contact
+              div
+                a(href='https://github.com/shinnn',target='_blank')
+                  b shinnn
+                  | &nbsp;on Github
+              div
+                a(href='https://twitter.com/shinnn_tw',target='_blank')
+                  b @shinnn_tw
+                  | &nbsp;on Twitter
+            #email
+              div
+                a(href='mailto:snnskwtnb@gmail.com',target='_blank')
+                  | Mail to&nbsp;
+                  b snnskwtnb@gmail.com
+          
+          #license.two-column
+            p Copyright &copy; 2013 Shinnosuke Watanabe All rights reserved.
+            p
+              | Unless otherwise stated,&nbsp;
+              a(href='https://github.com/shinnn/shinnn.github.io',target='_blank') all source code in this website
+              | &nbsp;is licensed under the&nbsp;
+              a(href='http://opensource.org/licenses/mit-license.php',target='_blank') MIT license
+              | .
+    
+    block scripts
+      include _jquery
+      
+      //if lt IE 7
+        script(src='/js/IE7.js')
+      //if lt IE 8
+        script(src='/js/IE8.js')
+      //if lt IE 9
+        script(src='/js/IE9.js')
+        script(src='/js/vendor.ie.js')
+        mixin loadJQuery('1.10.2')
+      //if gte IE 9
+        <!-->
+        mixin loadJQuery('2.0.3')
+        <!--
+
+      if DEBUG
+        script(src='/debug/js/vendor.js')
+        script(src='/debug/js/main.js')
+      else
+        script(src='/js/main.js')

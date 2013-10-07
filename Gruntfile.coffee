@@ -129,7 +129,7 @@ module.exports = (grunt) ->
       dist:
         src: ["#{ DEST_ROOT }debug/js/vendor.js", '<%= uglify.main.dest %>']
         dest: "#{ DEST_ROOT }js/main.js"
-        
+    
     clean:
       site: DEST_ROOT
       tmpfiles: ["#{ DEST_ROOT }.tmp"]
@@ -241,12 +241,24 @@ module.exports = (grunt) ->
           user:
             name: 'shinnn'
         src: '**/*'
+    
+    prompt:
+      message:
+        options:
+          questions: [
+            {
+              config: 'gh-pages.site.options.message'
+              type: 'input'
+              message: 'Please enter the commit message for your changes.'
+              default: 'deployed by grunt-gh-pages'
+            }
+          ]
 
     concurrent:
       beginning: ['flexSVG', 'shell:coffeelint_grunt', 'shell:coffeelint']
       dev: ['compass:dev', 'coffee:dev', 'jadeTemplate:dev']
       dist: ['compass:dist', 'coffee:dist', 'jadeTemplate:dist', 'imagemin']
-      
+  
   grunt.task.registerTask 'jadeTemplate',
   'Compile Jade Files with front-matter', (mode) ->
     readOptions =
@@ -256,8 +268,10 @@ module.exports = (grunt) ->
     jadeFiles = grunt.file.expand readOptions, '**/*.jade'
     
     compileOptions =
+      # 可読化する際は grunt-prettify で行う
       pretty: false
-      filename: readOptions.cwd + '/../'
+      # HTMLファイルのパスは書き出し先のフォルダのルートが基準となる
+      filename: readOptions.cwd + '../'
     
     for file in jadeFiles
       raw = grunt.file.read readOptions.cwd + file
@@ -266,6 +280,12 @@ module.exports = (grunt) ->
       localData = _.omit splitted, '__content'
             
       addition = ''
+      
+      # テンプレートファイルの参照先のパス
+      _templatePath = ''
+      _dirDepth = file.match(/\//g)?.length or 0
+      _templatePath += '../' while _dirDepth--
+      
       if localData.template
         addition += "extend ../templates/#{ localData.template }\n"
       if localData.layout
@@ -323,5 +343,5 @@ module.exports = (grunt) ->
   'Generate only the files to publish a website', distTasks
   
   grunt.task.registerTask 'deploy',
-  'Deploy to Github Pages', ['dist', 'gh-pages']
+  'Deploy to Github Pages', ['dist', 'prompt', 'gh-pages']
   
