@@ -18,22 +18,19 @@ html(lang='ja')
     meta(property='og:description', content= description || site.description)
     meta(property='og:site_name', content= concatTitle('-'))
     
-    script.
-      /* 'SVG' feature detection is based on Modernizr (MIT & BSD)*/
-      if(!document.createElementNS ||
-      !document.createElementNS('http://www.w3.org/2000/svg', 'svg').createSVGRect){
-        document.write('<script defer src="/js/sie.js"><\/script>');
-      }
+    //-script.
+      ///* 'SVG' feature detection is based on Modernizr (MIT & BSD)*/
+      //if(!document.createElementNS ||
+      //!document.createElementNS('http://www.w3.org/2000/svg', 'svg').createSVGRect){
+        //document.write('<script defer src="/js/sie.js"><\/script>');
+      //}
     
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     meta(name='format-detection', content='telephone=no')
     
-    link(rel='shortcut icon', href='/favicon.ico', media='screen')
-    
-    link(href='', rel='apple-touch-icon-precomposed', sizes='144x144')
-    link(href='', rel='apple-touch-icon-precomposed', sizes='114x114')
-    link(href='', rel='apple-touch-icon-precomposed', sizes='72x72')
-    link(href='', rel='apple-touch-icon-precomposed')
+    //-link(href='/img/icons/', rel='apple-touch-icon-precomposed', sizes='144x144')
+    //-link(href='/img/icons/', rel='apple-touch-icon-precomposed', sizes='114x114')
+    //-link(href='/img/icons/', rel='apple-touch-icon-precomposed', sizes='72x72')
     
     meta(name='twitter:card', content='summary')
     meta(name='twitter:title', content= concatTitle('-'))
@@ -41,7 +38,7 @@ html(lang='ja')
     meta(name='twitter:image:src', content='')
     meta(name='twitter:domain', content='')
     
-    meta(name='msapplication-TileImage', content='')
+    //-meta(name='msapplication-TileImage', content='')
     meta(name='msapplication-TileColor', content='#FFFFFF')
     
     link(href='/css/styles.css', media='screen', rel='stylesheet')

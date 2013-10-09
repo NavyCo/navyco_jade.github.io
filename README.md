@@ -1,5 +1,7 @@
 # Shinnosuke Watanabe's Website
 
+[![endorse](https://api.coderwall.com/shinnn/endorsecount.png)](https://coderwall.com/shinnn)
+
 ## Development
 
 Make sure you have installed Grunt, [Sass](http://sass-lang.com/) and [Compass](http://compass-style.org/).

@@ -31,7 +31,11 @@
   .page-title {
     font-size: 36px;
     font-weight: 400;
-    margin-bottom: 0;
+    margin-bottom: 6px;
+    
+    &+.page-subtitle {
+      margin-bottom: 0;      
+    }
   }
 
   .only-kana {

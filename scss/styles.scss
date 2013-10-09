@@ -221,11 +221,12 @@ main {
 
 .line-wide {
   width: 100%;
-  height: 2px;
+  //height: 2px;
+  height: 1px;
   background-color: #c8a9d5;
   //background-color: transparent;
-  background-color: #F0F0F0;
-  //background-color: $common-violet; // bad...
+  // background-color: #F0F0F0;
+  // background-color: $common-violet; // bad...
   margin-bottom: $gutter * 0.5;
 }
 
