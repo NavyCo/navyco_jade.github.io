@@ -278,7 +278,7 @@ module.exports = (grunt) ->
       splitted = yamlFront.loadFront(raw)
       
       localData = _.omit splitted, '__content'
-            
+      
       addition = ''
       
       # テンプレートファイルの参照先のパス
@@ -292,6 +292,10 @@ module.exports = (grunt) ->
         addition += "extend ../layouts/#{ localData.layout }\n"
 
       jadeTxt = addition + splitted.__content
+      
+      # ヘルパー
+      ## ディレクトリ名と拡張子を取り除いたファイル名 
+      localData.fileName = file.substring file.lastIndexOf('/')+1, file.lastIndexOf('.')
       
       allData = _.extend globalJadeData(), localData, compileOptions
       

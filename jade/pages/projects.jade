@@ -14,7 +14,7 @@ block content
         div.project
           a(href= 'projects/' + proj.name + '.html')
             - var _ext = proj.image_format || 'jpg'
-            img.thumbnail(src= 'img/projects/thumbnails/' + proj.name + '.' + _ext)
+            img.thumbnail(src= '/img/projects/thumbnails/' + proj.name + '.' + _ext)
           .summary
             p.name= proj.short_title || proj.title
             p.genre= proj.genre.join(', ')
