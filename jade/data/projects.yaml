@@ -1,30 +1,68 @@
 ---
   - 
     name: openstudio
-    title: 東京芸術大学映像研究科メディア映像専攻 OPEN STUDIO 2013 Webサイト
-    short_title: 東京芸術大学 OPEN STUDIO 2013 Webサイト
+    title: 東京芸術大学 OPEN STUDIO 2013 Webサイト
+    short_title: OPEN STUDIO 2013 Webサイト
+    time: 2013
     genre: [Web]
-    description: tmp
+    role: [フロントエンド開発, UIデザイン]
+    links:
+      -
+        name: Webサイト
+        url: http://www.fm.geidai.ac.jp/openstudio/2013/
+      -
+        name: Githubリポジトリ
+        url: https://github.com/shinnn/openstudio2013
+    description: 東京芸術大学新港校舎で行われた展示会「OPEN STUDIO 2013」のWebサイトです。横スクロール、およびパララックスの手法を採用し、ページのスクロールに合わせて背景写真が左右に移動します。横にスクロールするサイトでは多くの場合、「コンテンツの縦の長さがウィンドウの縦の長さを超える」場合の対処の仕方が問題になります。本サイトではウィンドウサイズが一定以下の大きさになった際に、スクロール方向ごと変更して縦スクロールサイトとして再レイアウトする、という大胆な方法で、その問題に対処しています。
+    features:
+      - パララックス・スクロールによる背景画像のダイナミックな移動
+      - レスポンシブWebデザイン
+      - コンテンツデータ（JSON）とHTMLテンプレート（Jade）の分離
+      - HTML5のタグやSchema.orgを利用したセマンティックなマークアップ
+      - Gruntによる自動化（拡張メタ言語の変換、JavaScriptやSVGファイルの圧縮、Lintなど）
     imageFileNum: 3
 
   - 
     name: musabi-degreeshow
-    title: 武蔵野美術大学デザイン情報学科 卒業研究・制作展 2011 Webサイト
-    short_title: 武蔵野美術大学デザイン情報学科 卒研・制作展 ’11 Webサイト
+    title: 武蔵野美大デザイン情報学科 卒業研究・制作展 2011 Webサイト
+    short_title: 武蔵野美大デザイン情報学科 卒研・卒制展 2011 Webサイト
+    time: 2011 - 2012
     genre: [Web]
-    description: tmp
+    role: [バックエンド・フロントエンド開発, UIデザイン]
+    links:
+      -
+        name: Webサイト
+        url: http://dipale.musabi.ac.jp/g11/
+      -
+        name: Githubリポジトリ
+        url: https://github.com/shinnn/dipale.musabi.ac.jp-g11
+    description: 武蔵野美術大学造形学部デザイン情報学科の、2011年度卒業研究・制作展のWebサイトです。ページ内スクロールでリンクを代替したシングルページデザインです。作品名や説明文などを入力してもらうために出展者向けのページを用意し、そこで登録されたデータを基に、各出展者の情報を出力しています。History APIを利用し、ブラウザ履歴の進む／戻る操作に合わせて、URLと表示位置が一致するように自動スクロールします。
+    
+    features:
+      - PostgreSQLによる出展者・出展作品情報の管理
+      - レスポンシブWebデザイン
+      - セマンティック・マークアップ
+      - Gruntによる自動化（拡張メタ言語の変換、JavaScriptやSVGファイルの圧縮、Lintなど）
+    imageFileNum: 3
 
   - 
     name: react
     title: re(a)ct
+    time: 2013
     genre: [Web]
+    role: [フロントエンド開発, UIデザイン, 楽曲・効果音制作]
     description: tmp
+    features:
+      - レスポンシブWebデザイン
 
   - 
     name: aquarium
     title: ひかりひらり水族館
-    genre: [インスタレーション]
+    time: 2013
+    genre: [デスクトップアプリケーション, インスタレーション]
     description: tmp
+    features:
+      - ボイド理論に基づく魚群の移動
 
   - 
     name: wave

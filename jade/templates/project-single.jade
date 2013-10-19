@@ -1,0 +1,40 @@
+extend layout
+
+prepend title
+  - var project = getProject(basename);
+  - var title = project.short_title || project.title;
+
+block inner
+  
+  //- block の外で project の値を求めると、name の値が未定義なのでエラーとなる
+  - var project = getProject(basename);
+  
+  section
+    h1.page-title= project.title
+    .line-wide
+  
+  section
+    ul.slider
+      - for(var i=0; i < project.imageFileNum; i++)
+        li
+          img(src='/img/projects/' + basename + '/' + i + '.jpg')
+
+  section
+    p.small-info= project.time
+    p.small-info= project.role.join(' / ')
+    
+    if(project.links)
+      ul.project-links
+        each link in project.links
+          li
+            div= link.name
+            a(href=link.url, target='_blank')= link.url
+    
+    p.project-description= project.description
+
+    - if(project.features)
+      ul.features
+        each feature in project.features
+          li= feature
+  
+  block content

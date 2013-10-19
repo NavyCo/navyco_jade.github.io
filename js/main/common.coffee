@@ -6,7 +6,6 @@ if not DEBUG?
 if DEBUG
   console.log '--- DEBUG MODE ---'
 
-
 ua = navigator.userAgent
 
 isMobile = do ->

@@ -1,0 +1,33 @@
+@charset 'UTF-8';
+
+.bx-wrapper {
+  visibility: hidden;
+}
+
+.features {
+  margin-top: 1em;
+  
+  li {
+    @extend .icon-ok;
+  
+    &:before {
+      color: #c8a9d5;
+      margin-right: 0.5em;
+    }
+  }
+}
+
+.project-description {
+  margin-top: 2em;
+}
+
+.project-links {
+  margin-top: 1em;  
+  
+  div {
+    float: left;
+    margin-right: 1em;
+  }
+  a {
+  }
+}

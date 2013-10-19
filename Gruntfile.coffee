@@ -295,20 +295,27 @@ module.exports = (grunt) ->
       
       # ヘルパー
       ## ディレクトリ名と拡張子を取り除いたファイル名 
-      localData.fileName = file.substring file.lastIndexOf('/')+1, file.lastIndexOf('.')
+      localData.basename = file.substring file.lastIndexOf('/')+1, file.lastIndexOf('.')
       
       allData = _.extend globalJadeData(), localData, compileOptions
       
       if(mode isnt 'dev')      
         jade.render jadeTxt, allData, (err, html) ->
-          if err then throw err
-          grunt.file.write DEST_ROOT + file.replace('.jade', '.html'), html
+          if err
+            console.warn err
+          else
+            grunt.file.write DEST_ROOT + file.replace('.jade', '.html'), html
+            console.log "File \"#{ DEST_ROOT +
+              readOptions.cwd +
+              file.replace('.jade', '.html') }\" created."
       
       if(mode isnt 'dist')
         allDataDebug = _.extend allData, {DEBUG: true}
         jade.render jadeTxt, allDataDebug, (err, html) ->
-          if err then throw err
-          grunt.file.write DEST_ROOT + file.replace('.jade', '-debug.html'), html
+          if err
+            console.warn err
+          else
+            grunt.file.write "#{ DEST_ROOT }debug/#{ file.replace('.jade', '.html') }", html
 
   
   # SVG の width, height 属性を取り除く

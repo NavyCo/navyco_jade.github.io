@@ -16,3 +16,7 @@
 -   
 -   return res;
 - }());
+
+- function getProject( projName ) {
+-   return projects.filter(function(proj){ return proj.name === projName; })[0];
+- }

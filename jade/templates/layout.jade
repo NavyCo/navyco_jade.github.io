@@ -5,9 +5,11 @@ html(lang='ja')
   head
     meta(charset='utf-8')
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
-    meta(http-equiv='x-pjax-title', content= concatTitle('-'))
+
+    block title
+      meta(http-equiv='X-PJAX-Title', content= concatTitle('-'))
+      title= concatTitle('-')
     
-    title= concatTitle('-')
     meta(name='keywords', content= joinedKeywords)
     meta(name='description', content= description || site.description)
     meta(name='author', content= site.author)

@@ -14,6 +14,16 @@ $bx-img-controls: 'controls.png' !default;
 $bx-img-loader-url: image-url($bx-img-loader) !default;
 $bx-img-controls-url: image-url($bx-img-controls) !default;
 
+$bx-theme-color: #666 !default;
+
+$bx-font-family: "Helvetica Neue", "Arial", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "ＭＳ Ｐゴシック", "MS PGothic", sans-serif !default;
+
+$bx-border-width: 0px !default;
+
+$bx-pager-size: 13px !default;
+
+$bx-direction-control-margin: 1% !default;
+
 .bx-wrapper {
   // RESET AND LAYOUT
   // ===================================
@@ -32,11 +42,13 @@ $bx-img-controls-url: image-url($bx-img-controls) !default;
   // ===================================
 
   .bx-viewport {
-    -moz-box-shadow: 0 0 5px #ccc;
-    -webkit-box-shadow: 0 0 5px #ccc;
-    box-shadow: 0 0 5px #ccc;
-    border: solid #fff 5px;
-    left: -5px;
+    @if($bx-border-width != 0) {
+      -moz-box-shadow: 0 0 $bx-border-width #ccc;
+      -webkit-box-shadow: 0 0 $bx-border-width #ccc;
+      box-shadow: 0 0 $bx-border-width #ccc;
+      border: solid #fff $bx-border-width;
+      left: -$bx-border-width;
+    }
     background: #fff;
   }
 
@@ -64,7 +76,7 @@ $bx-img-controls-url: image-url($bx-img-controls) !default;
   .bx-pager {
     text-align: center;
     font-size: .85em;
-    font-family: Arial;
+    font-family: $bx-font-family;
     font-weight: bold;
     color: #666;
     padding-top: 20px;
@@ -81,29 +93,30 @@ $bx-img-controls-url: image-url($bx-img-controls) !default;
     background: #666;
     text-indent: -9999px;
     display: block;
-    width: 10px;
-    height: 10px;
-    margin: 0 5px;
+    width: $bx-pager-size;
+    height: $bx-pager-size;
+    margin: 0 $bx-pager-size * 0.5;
     outline: 0;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
+    -moz-border-radius: $bx-pager-size * 0.5;
+    -webkit-border-radius: $bx-pager-size * 0.5;
+    border-radius: $bx-pager-size * 0.5;
   }
   
-  .bx-pager.bx-default-pager a:hover,
-  .bx-pager.bx-default-pager a.active {
-    background: #000;
+  .bx-pager.bx-default-pager a{
+    &:hover, &.active{
+      background: #000;      
+    }
   }
   
   // DIRECTION CONTROLS (NEXT / PREV)
   
   .bx-prev {
-    left: 10px;
+    left: $bx-direction-control-margin;
     background: no-repeat 0 -32px;
   }
 
   .bx-next {
-    right: 10px;
+    right: $bx-direction-control-margin;
     background: no-repeat -43px -32px;
   }
 
@@ -181,8 +194,6 @@ $bx-img-controls-url: image-url($bx-img-controls) !default;
       width: 35px;
     }
   }
-  
-
 
   // IMAGE CAPTIONS
 
@@ -197,6 +208,7 @@ $bx-img-controls-url: image-url($bx-img-controls) !default;
     span {
       color: #fff;
       display: block;
+      font-family: $bx-font-family;
       font-size: .85em;
       padding: 10px;
     }
