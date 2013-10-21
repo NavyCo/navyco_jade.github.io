@@ -52,13 +52,14 @@ html(lang='ja')
         #menubar
           #menu
             a#home(href='/')
-            a(href='/about.html') ABOUT
-            a(href='/projects.html') PROJECTS
+            a.tab(href='/about.html') ABOUT
+            a.tab(href='/projects.html') PROJECTS
             
             #webservices
               a.github(href='https://github.com/shinnn',target='_blank')
               a.twitter(href='https://twitter.com/shinnn_tw',target='_blank')
-      
+      .header-line
+
       main
         #content
           block inner
@@ -114,6 +115,8 @@ html(lang='ja')
         <!-->
         mixin loadJQuery('2.0.3')
         <!--
+
+      script(src='http://cdnjs.cloudflare.com/ajax/libs/knockout/2.3.0/knockout-min.js')
 
       if DEBUG
         script(src='/debug/js/vendor.js')

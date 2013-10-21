@@ -14,4 +14,6 @@ To build the site and run it in a server, run `grunt` command. Then the [Grunt t
 
 ## License
 
+Copyright (C) 2013 Shinnosuke Watanabe All rights reserved.
+
 Unless otherwise stated, all source code in this repository are licensed under the [MIT license](http://opensource.org/licenses/mit-license.php).

@@ -11,7 +11,12 @@ block inner
   
   section
     h1.page-title= project.title
-    .line-wide
+    //-.line-wide
+    div.project-info
+      p
+        span= project.time
+        span.bar |
+        span= project.role.join(' / ')
   
   section
     ul.slider
@@ -20,9 +25,6 @@ block inner
           img(src='/img/projects/' + basename + '/' + i + '.jpg')
 
   section
-    p.small-info= project.time
-    p.small-info= project.role.join(' / ')
-    
     if(project.links)
       ul.project-links
         each link in project.links
@@ -30,11 +32,17 @@ block inner
             div= link.name
             a(href=link.url, target='_blank')= link.url
     
-    p.project-description= project.description
-
     - if(project.features)
       ul.features
         each feature in project.features
           li= feature
+    
+    //- 技術情報は Github に任せて、ここには掲載しないのも一手
+    //- if(project.technologies)
+      p.skill-code= project.technologies.join(', ')
+    
+    .project-description
+      hr.line-wide
+      p= project.description
   
   block content

@@ -1,9 +1,10 @@
-$(document).ready ->
+$ ->
+
   # 外部リンクと bxSlider の UI には pjax を適用しない
   if $.support.pjax
-    $(document).on 'click', 'a:not([target], .bx-wrapper *)', (e) ->
+    $('#container').on 'click', 'a:not([target], .bx-wrapper *)', (e) ->
       e.preventDefault()
-      
+
       $('main').fadeTo 4, 0.010, ->
         $.pjax.click e, {
           container: '#content'
@@ -35,6 +36,7 @@ $(document).ready ->
     _redraw()
   
   resetContent = (e, xhr) ->
+
     if xhr?.getResponseHeader 'X-PJAX-Title'
       document.title = xhr.getResponseHeader 'X-PJAX-Title'
     
@@ -42,7 +44,25 @@ $(document).ready ->
       resetSlider()
     
   resetContent()
+
+  _activateTab = ->
+    $("#home.active, .tab.active").removeClass('active')
+
+    for page, i in ['about', 'project']
+      if location.href.indexOf(page) isnt -1
+        $(".tab[href*='#{ page }']").addClass('active')
+        break
+
+      if i is 1
+        $('#home')
+        .addClass('active')
+
+
+  
+  $doc.on 'pjax:start ready', null, (e) ->
+    _activateTab()
   
   $doc.on 'pjax:end', null, resetContent
+  
   $doc.on 'pjax:complete', null, ->
     $('main').stop().fadeTo(150, 1)

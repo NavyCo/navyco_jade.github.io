@@ -187,7 +187,7 @@ module.exports = (grunt) ->
     
     open:
       site:
-        path: 'http://127.0.0.1:8000/'
+        path: 'http://shinnn.github.io/'
         app: 'Google Chrome'
     
     watch:
@@ -297,6 +297,10 @@ module.exports = (grunt) ->
       ## ディレクトリ名と拡張子を取り除いたファイル名 
       localData.basename = file.substring file.lastIndexOf('/')+1, file.lastIndexOf('.')
       
+      ## インライン JavaScript
+      ## tmp
+      # localData.inline = 
+      
       allData = _.extend globalJadeData(), localData, compileOptions
       
       if(mode isnt 'dev')      
@@ -348,11 +352,11 @@ module.exports = (grunt) ->
     val is 'prettify' or val.indexOf('dev') isnt -1
 
   # 'watch'タスクを取り除き、新たなタスクを追加
-  distTasks.splice distTasks.length-1, 1, 'clean:debugFiles', 'open'
+  distTasks.splice distTasks.length-1, 1, 'clean:debugFiles'
 
   grunt.task.registerTask 'dist',
   'Generate only the files to publish a website', distTasks
   
   grunt.task.registerTask 'deploy',
-  'Deploy to Github Pages', ['dist', 'prompt', 'gh-pages']
+  'Deploy to Github Pages', ['dist', 'prompt', 'gh-pages', 'open']
   

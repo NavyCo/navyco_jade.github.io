@@ -5,21 +5,29 @@
     short_title: OPEN STUDIO 2013 Webサイト
     time: 2013
     genre: [Web]
-    role: [フロントエンド開発, UIデザイン]
+    role: [フロントエンド開発, UIデザイン, 映像編集]
     links:
       -
-        name: Webサイト
+        name: URL 
         url: http://www.fm.geidai.ac.jp/openstudio/2013/
       -
         name: Githubリポジトリ
         url: https://github.com/shinnn/openstudio2013
     description: 東京芸術大学新港校舎で行われた展示会「OPEN STUDIO 2013」のWebサイトです。横スクロール、およびパララックスの手法を採用し、ページのスクロールに合わせて背景写真が左右に移動します。横にスクロールするサイトでは多くの場合、「コンテンツの縦の長さがウィンドウの縦の長さを超える」場合の対処の仕方が問題になります。本サイトではウィンドウサイズが一定以下の大きさになった際に、スクロール方向ごと変更して縦スクロールサイトとして再レイアウトする、という大胆な方法で、その問題に対処しています。
     features:
+      - 水平スクロールのシングルページWebサイト
       - パララックス・スクロールによる背景画像のダイナミックな移動
       - レスポンシブWebデザイン
       - コンテンツデータ（JSON）とHTMLテンプレート（Jade）の分離
       - HTML5のタグやSchema.orgを利用したセマンティックなマークアップ
-      - Gruntによる自動化（拡張メタ言語の変換、JavaScriptやSVGファイルの圧縮、Lintなど）
+      - Gruntによる自動化（拡張メタ言語の変換、Lodashなどのビルド、ファイル圧縮、Lintなど）
+    technologies:
+      - CoffeeScript
+      - Grunt
+      - Jade
+      - Compass
+      - jQuery
+      
     imageFileNum: 3
 
   - 
@@ -42,7 +50,7 @@
       - PostgreSQLによる出展者・出展作品情報の管理
       - レスポンシブWebデザイン
       - セマンティック・マークアップ
-      - Gruntによる自動化（拡張メタ言語の変換、JavaScriptやSVGファイルの圧縮、Lintなど）
+      - Gruntによる自動化（拡張メタ言語の変換、ファイル圧縮、Lint、デプロイなど）
     imageFileNum: 3
 
   - 
@@ -59,7 +67,8 @@
     name: aquarium
     title: ひかりひらり水族館
     time: 2013
-    genre: [デスクトップアプリケーション, インスタレーション]
+    genre: [インスタレーション]
+    role: [グラフィックプログラミング]
     description: tmp
     features:
       - ボイド理論に基づく魚群の移動
@@ -67,26 +76,33 @@
   - 
     name: wave
     title: Wave to Wave
+    time: 2011 - 2012
     genre: [インスタレーション]
+    role: [電子工作, インタラクションデザイン]
     description: tmp
 
   - 
     name: led-workshop
     title: 「七色に光るLEDをつくる」ワークショップ
+    time: 2010
     genre: [イベント]
+    role: [マネジメント]
     description: tmp
 
   - 
     name: scrollsmartly
     title: scrollsmartly.js
-    genre: [Library]
+    time: 2012 -
+    genre: [ライブラリ]
+    role: [ライブラリ開発]
     description: tmp
     image_format: 'png'
 
   - 
     name: jadebp
     title: Jade Website Boilerplate
-    genre: [Library]
+    genre: [テンプレート]
+    role: [テンプレート設計]
     description: tmp
     image_format: 'png'
     
