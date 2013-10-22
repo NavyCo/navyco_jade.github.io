@@ -27,6 +27,23 @@ module.exports = (grunt) ->
   DEST_ROOT = _addLastSlash(settings.destPath) or 'site/'
   
   JS_ROOT = "#{ SRC_ROOT }js/"
+
+  # For Uglify
+  getCommentIsBanner = do ->
+    prevCommentLine = 0
+
+    return (node, comment) ->
+      # コメントが先頭行にあるか、先頭行から連なるコメントである場合、バナーであると判断する
+      result = comment.line <= 1 or comment.line is prevCommentLine + 1
+
+      # コメントがバナーに含まれる場合、そのコメントの行番号を保存する
+      # コメントがバナーではない場合、行番号の保存をリセットする
+      if result
+        prevCommentLine = comment.line
+      else
+        prevCommentLine = 0
+        
+      return result
   
   # For Jade
   DEBUG = true
@@ -48,6 +65,12 @@ module.exports = (grunt) ->
     return data
   
   grunt.initConfig
+    bower:
+      install:
+        options:
+          targetDir: "#{ SRC_ROOT }lib"
+          cleanTargetDir: true
+      
     modernizr:
       devFile: 'remote'
       outputFile: "#{ JS_ROOT }vendor/modernizr.gruntbuild.js"
@@ -116,7 +139,7 @@ module.exports = (grunt) ->
     uglify:
       main:
         options:
-          preserveComments: 'true'
+          preserveComments: getCommentIsBanner
           banner: grunt.file.read "#{ JS_ROOT }main/banner.js"
           compress:
             global_defs:
