@@ -1,3 +1,5 @@
+'use strict'
+
 yamlFront = require 'yaml-front-matter'
 jade = require 'jade'
 
@@ -14,8 +16,15 @@ module.exports = (grunt) ->
   
   BIN = "#{ process.cwd() }/node_modules/.bin/"
 
-  SRC_ROOT = settings.srcPath or ''
-  DEST_ROOT = settings.destPath or 'site/'
+  # 文字列の末尾が '/' でなければ、それを追加する
+  _addLastSlash = (str) ->
+    if str.charAt(str.length - 1) is '/' or str is ''
+      str
+    else
+      "#{ str }/"
+
+  SRC_ROOT = _addLastSlash(settings.srcPath) or ''
+  DEST_ROOT = _addLastSlash(settings.destPath) or 'site/'
   
   JS_ROOT = "#{ SRC_ROOT }js/"
   
@@ -75,17 +84,14 @@ module.exports = (grunt) ->
     compass:
       options:
         config: "#{ SRC_ROOT }scss/config.rb"
-        sassDir: "#{ SRC_ROOT }scss/"
       dev:
         options:
           cssDir: "#{ DEST_ROOT }/debug/css-readable/"
           environment: 'development'
-          outputStyle: 'expanded'
       dist:
         options:
           cssDir: "#{ DEST_ROOT }css/"
           environment: 'production'
-          outputStyle: 'compressed'
     
     csslint:
       lax:

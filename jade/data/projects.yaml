@@ -59,9 +59,9 @@
     time: 2013
     genre: [Web]
     role: [フロントエンド開発, UIデザイン, 楽曲・効果音制作]
-    description: tmp
+    description: ブラウザで動作するリッチオーディオコンテンツを実現する期待されるWeb Audio APIの習作として制作しました。
     features:
-      - レスポンシブWebデザイン
+      - Web Audio APIのiOS向けバッドノウハウを駆使し、iOSでの音声再生に対応
 
   - 
     name: aquarium
@@ -69,7 +69,7 @@
     time: 2013
     genre: [インスタレーション]
     role: [グラフィックプログラミング]
-    description: tmp
+    description: sdfgh
     features:
       - ボイド理論に基づく魚群の移動
 

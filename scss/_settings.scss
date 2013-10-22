@@ -1,0 +1,26 @@
+@charset 'UTF-8';
+
+// font-family alias
+$sans-serif : "Helvetica Neue", "Arial", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+$serif: "Times", "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", "ＭＳ Ｐ明朝", "MS PMincho", serif;
+
+// basic interval width between the elements
+$gutter: 24px;
+
+$base-font-size: 15px;
+$base-line-height: $base-font-size * 1.25;
+
+// main content in the center
+$main-width: 1080px; // or 1200px
+$main-space-width: $gutter * 3;
+
+// theme colors
+$common-white: #FEFFFF;
+$common-gray: #FCFDFC;
+$common-black: #242424;
+$common-violet: #a900d6; // or #C900FF; //or #b44c97;
+
+$common-text-gray: #727272;
+$common-line-gray: #E3E3E3;
+
+$footer-color: #F0F0F0;

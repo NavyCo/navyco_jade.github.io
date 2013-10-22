@@ -1,39 +1,19 @@
 @charset 'UTF-8';
 
-$sans-serif : "Helvetica Neue", "Arial", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
-$serif: "Times", "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", "ＭＳ Ｐ明朝", "MS PMincho", serif;
-
-$gutter: 24px;
+@import "compass/typography/vertical_rhythm";
 
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600);
 
-@import "compass/typography/vertical_rhythm";
-
-$base-font-size: 15px;
-
-$base-line-height: $base-font-size * 1.25;
-
-$main-width: 1080px;
-//$main-width: 1200px;
-
-$main-space-width: $gutter * 3;
-
 $footer-height: 220px;
 
-$common-white: #FEFFFF;
-$common-gray: #FCFDFC;
-$common-black: #242424;
-
-$common-text-gray: #727272;
-
-// $common-violet: #C900FF;
-$common-violet: darken(#C900FF, 8);
-// $common-violet: #b44c97;
-
+// vendor files
 @import "normalize";
+@import "bxslider";
+
+// global setting files
+@import "settings";
 @import "elements";
 @import "webfont";
-@import "bxslider";
 
 %centered {
   margin: 0 auto;
@@ -114,7 +94,7 @@ header{
   width: 100%;
   height: 1px;
   margin-top: -1px;
-  background: #E3E3E3; //#c8a9d5;//$common-violet;
+  background: $common-line-gray; //#c8a9d5;//$common-violet;
 }
 
 #menubar {
@@ -418,7 +398,7 @@ footer {
     }
   }
 
-  background-color: #F0F0F0;
+  background-color: $footer-color;
 }
 
 #colophon {
@@ -482,4 +462,3 @@ footer {
 @import "project-single";
 
 @import "mediaqueries";
-

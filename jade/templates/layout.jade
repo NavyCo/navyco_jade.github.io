@@ -43,7 +43,7 @@ html(lang='ja')
     //-meta(name='msapplication-TileImage', content='')
     meta(name='msapplication-TileColor', content='#FFFFFF')
     
-    link(href='/css/styles.css', media='screen', rel='stylesheet')
+    link(href='/css/styles.css?v=' + randStr(), rel='stylesheet')
   body
     include _google-analytics
     
@@ -51,13 +51,13 @@ html(lang='ja')
       header
         #menubar
           #menu
-            a#home(href='/')
-            a.tab(href='/about.html') ABOUT
-            a.tab(href='/projects.html') PROJECTS
+            a#home(href= htmlPath())
+            a.tab(href= htmlPath('about.html')) ABOUT
+            a.tab(href= htmlPath('projects.html')) PROJECTS
             
             #webservices
-              a.github(href='https://github.com/shinnn',target='_blank')
-              a.twitter(href='https://twitter.com/shinnn_tw',target='_blank')
+              a.github(href='https://github.com/shinnn', target='_blank')
+              a.twitter(href='https://twitter.com/shinnn_tw', target='_blank')
       .header-line
 
       main
@@ -69,13 +69,13 @@ html(lang='ja')
           .two-column
             #footer-menu
               div
-                a(href='/') Home
+                a(href= htmlPath()) Home
               div.separator |
               div
-                a(href='/about.html') About
+                a(href= htmlPath('about.html')) About
               div.separator |
               div
-                a(href='/projects.html') Projects
+                a(href= htmlPath('projects.html')) Projects
             #contact
               div
                 a(href='https://github.com/shinnn',target='_blank')
@@ -122,4 +122,4 @@ html(lang='ja')
         script(src='/debug/js/vendor.js')
         script(src='/debug/js/main.js')
       else
-        script(src='/js/main.js')
+        script(src='/js/main.js?v=' + randStr())

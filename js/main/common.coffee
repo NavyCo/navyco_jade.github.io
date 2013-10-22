@@ -17,8 +17,9 @@ $w = $ window
 $doc = $ document
 
 # 'safeAnimate' メソッド - アニメーション開始前に、それまでのアニメーションを中止する
-_protoSlice = Array::slice
-
-jQuery.fn.safeAnimate = ->
-  args = _protoSlice.call arguments, 0
-  return this.stop().animate args...
+jQuery.fn.safeAnimate = do ->
+  _protoSlice = Array::slice
+  
+  return ->
+    args = _protoSlice.call arguments, 0
+    return this.stop().animate args...
