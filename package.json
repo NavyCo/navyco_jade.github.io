@@ -44,11 +44,13 @@
     "grunt-gh-pages": "~0.8.0",
     "grunt-concurrent": "~0.4.1",
     "grunt-open": "~0.2.2",
-    "grunt-casperjs": "~1.1.2",
+    "grunt-casperjs": "~1.2.0",
     "grunt-csscss": "~0.6.1",
     "grunt-contrib-imagemin": "~0.3.0",
     "connect-livereload": "~0.3.0",
     "grunt-prompt": "~0.1.2",
-    "grunt-bower-task": "~0.3.2"
+    "grunt-bower-task": "~0.3.2",
+    "load-grunt-tasks": "~0.2.0",
+    "grunt-autoprefixer": "~0.4.0"
   }
 }

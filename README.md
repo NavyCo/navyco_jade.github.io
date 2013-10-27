@@ -2,6 +2,8 @@
 
 [![endorse](https://api.coderwall.com/shinnn/endorsecount.png)](https://coderwall.com/shinnn)
 
+[![devDependency Status](https://david-dm.org/shinnn/shinnn.github.io/dev-status.png)](https://david-dm.org/shinnn/shinnn.github.io#info=devDependencies)
+
 ## Development
 
 Make sure you have installed Grunt, [Sass](http://sass-lang.com/) and [Compass](http://compass-style.org/).

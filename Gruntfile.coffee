@@ -4,11 +4,7 @@ yamlFront = require 'yaml-front-matter'
 jade = require 'jade'
 
 module.exports = (grunt) ->
-  devDeps = grunt.file.readJSON('package.json').devDependencies
-
-  for taskName of devDeps
-    if 'grunt-' is taskName.substring 0, 6
-      grunt.loadNpmTasks taskName
+  require('load-grunt-tasks')(grunt)
   
   _ = grunt.util._
   
@@ -33,6 +29,10 @@ module.exports = (grunt) ->
     prevCommentLine = 0
 
     return (node, comment) ->
+      if comment.type is 'comment2' and
+      (/^\!|@preserve|@license|@cc_on/mi.test comment.value)
+        return true
+      
       # コメントが先頭行にあるか、先頭行から連なるコメントである場合、バナーであると判断する
       result = comment.line <= 1 or comment.line is prevCommentLine + 1
 
@@ -66,16 +66,20 @@ module.exports = (grunt) ->
   
   grunt.initConfig
     bower:
-      install:
-        options:
-          targetDir: "#{ SRC_ROOT }lib"
-          cleanTargetDir: true
+      options:
+        targetDir: "#{ DEST_ROOT }.tmp/bower_exports"
+        cleanTargetDir: true
+        
+      install: {}
       
     modernizr:
       devFile: 'remote'
-      outputFile: "#{ JS_ROOT }vendor/modernizr.gruntbuild.js"
-      extensibility:
+      outputFile: "#{ SRC_ROOT }public/js/modernizr.js"
+      extra:
+        shiv : false
+        printshiv : false
         mq: true
+      extensibility:
         svg: true
         touch: true
         cssanimations: true
@@ -98,9 +102,25 @@ module.exports = (grunt) ->
       public:
         files: [
           expand: true
-          cwd: "#{ SRC_ROOT }public/"
-          src: ['**', '!**/.DS_Store', '!**/Thumbs.db']
+          cwd: "#{ SRC_ROOT }public"
+          src: ['**', '!**/{.DS_Store,Thumbs.db}']
           dest: DEST_ROOT
+          dot: true
+        ]
+      bower:
+        files: [
+          expand: true
+          cwd: '<%= bower.options.targetDir %>/public'
+          src: ['**', '!**/{.DS_Store,Thumbs.db}']
+          dest: "#{ DEST_ROOT }bower_components"
+          dot: true
+        ]
+      bower_debug:
+        files: [
+          expand: true
+          cwd: '<%= bower.options.targetDir %>/debug'
+          src: ['**', '!**/{.DS_Store,Thumbs.db}']
+          dest: "#{ DEST_ROOT }/debug/bower_components"
           dot: true
         ]
 
@@ -109,12 +129,19 @@ module.exports = (grunt) ->
         config: "#{ SRC_ROOT }scss/config.rb"
       dev:
         options:
-          cssDir: "#{ DEST_ROOT }/debug/css-readable/"
+          cssDir: "#{ DEST_ROOT }debug/css-readable/"
           environment: 'development'
       dist:
         options:
           cssDir: "#{ DEST_ROOT }css/"
           environment: 'production'
+    
+    autoprefixer:
+      all:
+        src: [
+          "#{ DEST_ROOT }debug/css-readable/**/*.css"
+          "#{ DEST_ROOT }css/**/*.css"
+        ]
     
     csslint:
       lax:
@@ -124,38 +151,62 @@ module.exports = (grunt) ->
         src: ['<%= compass.readable.options.cssDir %>/*.css']
     
     coffee:
+      options:
+        sourceMap: true
+
       dev:
         options:
           bare: true
-          sourceMap: true
         src: ["#{ JS_ROOT }main/*.coffee"]
         dest: "#{ DEST_ROOT }debug/js/main.js"
       dist:
-        options:
-          sourceMap: true
         src: ['js/main/*.coffee']
         dest: "#{ DEST_ROOT }.tmp/main.js"
     
     uglify:
+      options:
+        preserveComments: getCommentIsBanner
+        
       main:
         options:
-          preserveComments: getCommentIsBanner
-          banner: grunt.file.read "#{ JS_ROOT }main/banner.js"
+          banner: do ->
+            if grunt.file.isFile "#{ JS_ROOT }main/banner.js"
+              grunt.file.read "#{ JS_ROOT }main/banner.js"
+            else
+              ''
           compress:
             global_defs:
               DEBUG: false
             dead_code: true
         src: '<%= coffee.dist.dest %>'
         dest: '<%= uglify.main.src %>'
+      bower:
+        options:
+          compress:
+            # For /*cc_on!*/ comments
+            dead_code: false          
+        files: [
+          expand: true
+          cwd: '<%= bower.options.targetDir %>'
+          src: ['**/*.js', '!**/*{.min,-min}.js', '!debug/**/*']
+          dest: '<%= bower.options.targetDir %>'
+        ]
     
     concat:
       vendor:
-        src: ["#{ JS_ROOT }vendor/*.js"]
+        src: [
+          "#{ JS_ROOT }vendor/**/*.js"
+          '<%= bower.options.targetDir %>/**/*.js'
+          '!<%= bower.options.targetDir %>/{public,ie,debug}/**/*.js'
+        ]
         dest: "#{ DEST_ROOT }debug/js/vendor.js"
       vendor_ie:
-        src: ["#{ JS_ROOT }vendor-ie/*.js"]
+        src: [
+          "#{ JS_ROOT }vendor-ie/*.js"
+          '<%= bower.options.targetDir %>/ie/**/*.js'
+        ]
         dest: "#{ DEST_ROOT }js/vendor.ie.js"
-      dist:
+      main:
         src: ["#{ DEST_ROOT }debug/js/vendor.js", '<%= uglify.main.dest %>']
         dest: "#{ DEST_ROOT }js/main.js"
     
@@ -226,12 +277,15 @@ module.exports = (grunt) ->
         # be sure to enable “Allow access to file URLs” checkbox
         # in Tools > Extensions > LiveReload after installation.
         livereload: true
+      bower:
+        files: ["#{ SRC_ROOT }bower.json"]
+        tasks: ['bower']
       compass:
         files: ["#{ SRC_ROOT }scss/*.scss"]
-        tasks: ['compass']
+        tasks: ['compass', 'autoprefixer']
       coffee:
         files: ["#{ JS_ROOT }main/*.coffee"]
-        tasks: ['shell:coffeelint', 'coffee', 'uglify', 'concat:dist']
+        tasks: ['shell:coffeelint', 'coffee', 'uglify', 'concat:main']
       coffee_grunt:
         files: ['Gruntfile.coffee']
         tasks: ['shell:coffeelint_grunt']
@@ -251,9 +305,7 @@ module.exports = (grunt) ->
         files: ["#{ SRC_ROOT }/svg/*.svg"]
         tasks: ['flexSVG', 'svgmin']
       jade:
-        files: ["#{ SRC_ROOT }jade/**/*.jade"
-                "#{ SRC_ROOT }jade/**/*.json"
-                "#{ SRC_ROOT }jade/**/*.yaml", "#{ SRC_ROOT }jade/**/*.yml"]
+        files: ["#{ SRC_ROOT }jade/**/*.{jade,json,yaml,yml}"]
         tasks: ['jadeTemplate', 'prettify']
       copy:
         files: ["#{ SRC_ROOT }/public/**/*"]
@@ -284,7 +336,7 @@ module.exports = (grunt) ->
           ]
 
     concurrent:
-      beginning: ['flexSVG', 'shell:coffeelint_grunt', 'shell:coffeelint']
+      beginning: ['bower', 'flexSVG', 'shell:coffeelint_grunt', 'shell:coffeelint']
       dev: ['compass:dev', 'coffee:dev', 'jadeTemplate:dev']
       dist: ['compass:dist', 'coffee:dist', 'jadeTemplate:dist', 'imagemin']
   
@@ -368,7 +420,7 @@ module.exports = (grunt) ->
     'copy'
     'concurrent:dev', 'concurrent:dist'
     'uglify', 'concat' #minify JS
-    'prettify'
+    'prettify', 'autoprefixer'
     'flexSVG', 'svgmin' # optimize SVG
     'clean:tmpfiles'
     'connect', 'watch'
