@@ -3,26 +3,21 @@
   "version": "0.0.0",
   "homepage": "https://github.com/shinnn/shinnn.github.io",
   "authors": [
-    "shinnn"
+    "Shinnosuke Watanabe <snnskwtnb@gmail.com>"
   ],
   "license": "MIT",
   "private": true,
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components"
-  ],
   "dependencies": {
-    "jquery": "jquery#~2",
+    "jquery": "latest",
     "jquery1": "jquery#1",
-    "jquery-pjax": "~1.7.3",
-    "html5shiv": "~3.7.0",
-    "selectivizr": "~1.0.2",
-    "respond": "~1.3.0",
+    "jquery-pjax": "latest",
+    "html5shiv": "latest",
+    "selectivizr": "latest",
+    "respond": "latest",
     "jquery.belatedPNG": "git://github.com/wakuworks/jquery.belatedPNG.git"
   },
   "devDependencies": {
-    "benchmark": "~1.0.0"
+    "benchmark": "latest"
   },
   "exportsOverride": {
     "/jquery\\d?$/": {

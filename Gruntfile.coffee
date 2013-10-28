@@ -76,8 +76,8 @@ module.exports = (grunt) ->
       devFile: 'remote'
       outputFile: "#{ SRC_ROOT }public/js/modernizr.js"
       extra:
-        shiv : false
-        printshiv : false
+        shiv: false
+        printshiv: false
         mq: true
       extensibility:
         svg: true
@@ -96,7 +96,7 @@ module.exports = (grunt) ->
         dest: "#{ JS_ROOT }vendor/lodash.gruntbuild.js"
 
     casperjs:
-      files: ["#{ SRC_ROOT }casperjs/**/*.js", "#{ SRC_ROOT }casperjs/**/*.coffee"]
+      files: ["#{ SRC_ROOT }casperjs/**/*.{js,coffee}"]
       
     copy:
       public:
@@ -184,7 +184,7 @@ module.exports = (grunt) ->
         options:
           compress:
             # For /*cc_on!*/ comments
-            dead_code: false          
+            dead_code: false
         files: [
           expand: true
           cwd: '<%= bower.options.targetDir %>'
@@ -336,7 +336,11 @@ module.exports = (grunt) ->
           ]
 
     concurrent:
-      beginning: ['bower', 'flexSVG', 'shell:coffeelint_grunt', 'shell:coffeelint']
+      preparing: [
+        'bower'
+        'flexSVG'
+        'shell:coffeelint_grunt', 'shell:coffeelint'
+      ]
       dev: ['compass:dev', 'coffee:dev', 'jadeTemplate:dev']
       dist: ['compass:dist', 'coffee:dist', 'jadeTemplate:dist', 'imagemin']
   
@@ -375,12 +379,8 @@ module.exports = (grunt) ->
       jadeTxt = addition + splitted.__content
       
       # ヘルパー
-      ## ディレクトリ名と拡張子を取り除いたファイル名 
+      ## ディレクトリ名と拡張子を取り除いたファイル名
       localData.basename = file.substring file.lastIndexOf('/')+1, file.lastIndexOf('.')
-      
-      ## インライン JavaScript
-      ## tmp
-      # localData.inline = 
       
       allData = _.extend globalJadeData(), localData, compileOptions
       
@@ -416,7 +416,7 @@ module.exports = (grunt) ->
   
   defaultTasks = [
     'clean:site' #reset
-    'concurrent:beginning'
+    'concurrent:preparing'
     'copy'
     'concurrent:dev', 'concurrent:dist'
     'uglify', 'concat' #minify JS
