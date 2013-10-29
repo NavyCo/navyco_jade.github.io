@@ -333,7 +333,7 @@ module.exports = (grunt) ->
             {
               config: 'gh-pages.site.options.message'
               type: 'input'
-              message: 'Please enter the commit message for your changes.'
+              message: 'Enter the commit message.'
               default: 'deployed by grunt-gh-pages'
             }
           ]
