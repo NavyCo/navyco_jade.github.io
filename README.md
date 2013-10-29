@@ -30,6 +30,15 @@ Basically, installed bower components are minified and concatenated into single 
 
 * The files exported to `ie` is minified and concatenated into `vendor.ie.js` and it will be loaded in `head` tag.
 
+## Deployment
+
+You can easily host the site on [Github Pages](http://pages.github.com/) in the following way:
+
+1. Run `grunt deploy` command.
+2. Enter the commit message.
+3. Enter username and password of your Github account.
+
+If successful, all files in the `master` directory will be copied to the `master` branch.
 
 ## License
 
