@@ -23,9 +23,6 @@
     "/jquery\\d?$/": {
       "public": "jquery.min.js"
     },
-    "jquery-pjax": {
-      "main": "./jquery.pjax.js"
-    },
     "html5shiv": {
       "ie": "dist/html5shiv.js"
     },

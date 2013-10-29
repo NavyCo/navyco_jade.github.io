@@ -94,7 +94,7 @@ header{
   width: 100%;
   height: 1px;
   margin-top: -1px;
-  background: $common-line-gray; //#c8a9d5;//$common-violet;
+  background: $common-hover-violet; //$common-line-gray; //#c8a9d5;//$common-violet;
 }
 
 #menubar {
@@ -139,18 +139,18 @@ $home-icon-size: 60px;
         height: 31px - 1px;
         margin-right: - 1px;
  
-        border: 1px solid #E1E1E1;
-        border-right-color: #DDDDDD;
+        border: 1px solid $common-hover-violet;//#E1E1E1;
+        border-right-color: $common-hover-violet;//#DDDDDD;
         border-bottom-color: $common-gray;        
 
         background-color: $common-gray;
         color: $common-violet;
 
         &:hover {
-          border-color: #DADADA;
-          border-right-color: #CACACA;
+          //border-color:  $common-violet;//#DADADA;
+          //border-right-color: $common-violet;//#CACACA;
           border-bottom-color: $common-gray;
-          color: #c8a9d5;
+          color: $common-hover-violet;
         }
       }
     }
@@ -328,7 +328,7 @@ hr.line-wide {
   width: 6px;
   height: 1em;
   margin-right: 8px;
-  background-color: #bd8fd1;
+  background-color: $head-decoration-violet;
 }
 
 .inline-icon {

@@ -12,7 +12,7 @@ module.exports = (grunt) ->
   
   BIN = "#{ process.cwd() }/node_modules/.bin/"
 
-  # 文字列の末尾が '/' でなければ、それを追加する
+  # Add '/' to the string if it's last character is not '/'
   _addLastSlash = (str) ->
     if str.charAt(str.length - 1) is '/' or str is ''
       str
@@ -24,8 +24,8 @@ module.exports = (grunt) ->
   
   JS_ROOT = "#{ SRC_ROOT }js/"
 
-  # For Uglify
-  getCommentIsBanner = do ->
+  # Preserve banner/license comments certainly
+  isIncludedInBanner = do ->
     prevCommentLine = 0
 
     return (node, comment) ->
@@ -76,6 +76,9 @@ module.exports = (grunt) ->
       devFile: 'remote'
       outputFile: "#{ SRC_ROOT }public/js/modernizr.js"
       extra:
+        # Modernizr won't includes the HTML5 Shiv.
+        # Instead, the Shiv will be included in the IE-fix script file.
+        # This saves 2kb, the Shiv's file size, on modern browser.
         shiv: false
         printshiv: false
         mq: true
@@ -165,7 +168,7 @@ module.exports = (grunt) ->
     
     uglify:
       options:
-        preserveComments: getCommentIsBanner
+        preserveComments: isIncludedInBanner
         
       main:
         options:
