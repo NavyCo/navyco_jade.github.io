@@ -1,4 +1,5 @@
 $ ->
+  $main = $ 'main'
 
   # 外部リンクと bxSlider の UI には pjax を適用しない
   if $.support.pjax
@@ -40,6 +41,13 @@ $ ->
     if xhr?.getResponseHeader 'X-PJAX-Title'
       document.title = xhr.getResponseHeader 'X-PJAX-Title'
     
+    # top page
+    if location.href.indexOf('projects') is -1 and
+    location.href.indexOf('about') is -1
+      $main.addClass 'top'
+    else
+      $main.removeClass 'top'      
+      
     if location.href.indexOf('projects/') isnt -1
       resetSlider()
     

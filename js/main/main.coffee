@@ -1,21 +1,3 @@
-###
-$('.project').wookmark
-  align: 'center'
-  autoResize: true
-  container: $('.projects')
-  direction: 'left'
-  #itemWidth:10
-  #fillEmptySpace: true
-  #flexibleWidth: true
-  offset: 24
-  resizeDelay: 0
-  onLayoutChanged: ->
-    if parseInt(this.handler[0].style.width, 10) is this.itemWidth
-      this.handler.css('width', '')
-      this.handler.css('position', '')
-      this.container.css('height', '')
-###
-
 # 右上に表示する要素
 go = $ '<div id="go"></div>'
 

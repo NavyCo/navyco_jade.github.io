@@ -3,12 +3,33 @@ template: default
 ---
 
 block content
-  section
-    h1.top-title Shinnosuke Watanabe
-    //-p.top-subtitle Software Engineer, User Interface Designer
-    .top-subtitle
-      p Web Development / Design, User Interface Design
-    //-.line-wide
+  section.full-width
+    .inner
+      h1.top-title
+        span.first-name
+          span.capital S
+          | hinnosuke
+        span.family-name
+          span.capital W
+          | atanabe
+      //-p.top-subtitle Software Engineer, User Interface Designer
+      .top-subtitle
+        p
+          span.capital W
+          | eb&#32;
+          span.capital D
+          | eveloper
+          span.narrow-slash /
+          span.capital D
+          | esigner
+        p
+          span.capital U
+          | ser&#32;
+          span.capital I
+          | nterface&#32;
+          span.capital D
+          | esigner
+    .line-wide
 
    //-.columns
     section.two-column
@@ -53,13 +74,14 @@ block content
     //-h1
       span.header-rect
       | Projects
+
     .featured-works
       a.wide-image(href= htmlPath('projects/openstudio.html'))
         img(src='/img/openstudio-large.jpg', alt='')
       h2.work-title
         span 東京芸術大学 成果発表会 OPEN STUDIO 2013 Webサイト
       .role フロントエンド開発 / ユーザーインターフェースデザイン
-      
+
     .featured-works
       a.wide-image(href= htmlPath('projects/musabi-degreeshow.html'))
         img(src='/img/g11-large.jpg', alt='')

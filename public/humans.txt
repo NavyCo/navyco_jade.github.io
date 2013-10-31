@@ -1,0 +1,23 @@
+/* Humans responsible & Colophon */
+/* humanstxt.org */
+
+/* TEAM */
+  Development & Design: Shinnosuke Watanabe
+  Site: shinnn.github.io
+  Github: shinnn
+  Twitter: @shinnn_tw
+  Location: Japan
+  
+/* TECHNOLOGY COLOPHON */
+  HTML5, CSS3
+  jQuery, Modernizr, Normalize.css, pjax
+  Node.js, Grunt, Jade, CoffeeScript
+  Bower
+  Sass, Compass
+  Git
+  
+/* SITE */
+  Host: Github Pages
+  Language: Japanese
+  Doctype: HTML5
+  Software: TextMate, Terminal, Adobe Illustrator, Adobe Photoshop

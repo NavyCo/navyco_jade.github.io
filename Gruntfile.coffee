@@ -1,12 +1,12 @@
 'use strict'
 
+path = require 'path'
+_ = require 'lodash'
 yamlFront = require 'yaml-front-matter'
 jade = require 'jade'
 
 module.exports = (grunt) ->
   require('load-grunt-tasks')(grunt)
-  
-  _ = grunt.util._
   
   settings = grunt.file.readYAML 'settings.yaml'
   
@@ -53,14 +53,14 @@ module.exports = (grunt) ->
     
     grunt.file.recurse "#{ SRC_ROOT }jade/data/",
     (abspath, rootdir, subdir, filename) ->
-      filename_WO_ext = filename.replace(/\..+/, '')
+      _basename = path.basename filename, path.extname(filename)
       
-      if filename.indexOf('.json') isnt -1
-        data[filename_WO_ext] = grunt.file.readJSON abspath
+      if path.extname(filename) is '.json'
+        data[_basename] = grunt.file.readJSON abspath
 
-      if filename.indexOf('.yaml') isnt -1 or filename.indexOf('.yml') isnt -1
-        filename_WO_ext = filename.replace(/\..+/, '')
-        data[filename_WO_ext] = grunt.file.readYAML abspath
+      if path.extname(filename) is '.yaml' or
+      path.extname(filename) is '.yml'
+        data[_basename] = grunt.file.readYAML abspath
     
     return data
   
@@ -130,20 +130,21 @@ module.exports = (grunt) ->
     compass:
       options:
         config: "#{ SRC_ROOT }scss/config.rb"
-      dev:
-        options:
-          cssDir: "#{ DEST_ROOT }debug/css-readable/"
-          environment: 'development'
-      dist:
-        options:
-          cssDir: "#{ DEST_ROOT }css/"
-          environment: 'production'
+        cssDir: "#{ DEST_ROOT }debug/css-readable/"
+        environment: 'development'
+      all: {}
     
     autoprefixer:
       all:
-        src: [
-          "#{ DEST_ROOT }debug/css-readable/**/*.css"
-          "#{ DEST_ROOT }css/**/*.css"
+        src: ['<%= compass.options.cssDir%>**/*.css']
+    
+    cssmin:
+      dist:
+        files: [
+          expand: true
+          cwd: '<%= compass.options.cssDir%>'
+          src: ['**/*.css']
+          dest: "#{ DEST_ROOT }css/"
         ]
     
     csslint:
@@ -200,12 +201,12 @@ module.exports = (grunt) ->
         src: [
           "#{ JS_ROOT }vendor/**/*.js"
           '<%= bower.options.targetDir %>/**/*.js'
-          '!<%= bower.options.targetDir %>/{public,ie,debug}/**/*.js'
+          '!<%= bower.options.targetDir %>/{public,ie,debug}/**/*'
         ]
         dest: "#{ DEST_ROOT }debug/js/vendor.js"
       vendor_ie:
         src: [
-          "#{ JS_ROOT }vendor-ie/*.js"
+          "#{ JS_ROOT }vendor-ie/**/*.js"
           '<%= bower.options.targetDir %>/ie/**/*.js'
         ]
         dest: "#{ DEST_ROOT }js/vendor.ie.js"
@@ -219,13 +220,15 @@ module.exports = (grunt) ->
       debugFiles: ["#{ DEST_ROOT }debug"]
       
     prettify:
-      options:
-        indent_size: 2
-      files:
-        expand: true
-        cwd: DEST_ROOT
-        src: ['**/*.html', '!debug/**/*', '!**/*-debug.html']
-        dest: "#{ DEST_ROOT }debug/html-readable"
+      all:
+        options:
+          indent_size: 2
+        files: [
+          expand: true
+          cwd: DEST_ROOT
+          src: ['**/*.html', '!debug/**/*', '!**/*-debug.html']
+          dest: "#{ DEST_ROOT }debug/html-readable"
+        ]
         
     imagemin:
       all:
@@ -282,39 +285,34 @@ module.exports = (grunt) ->
         livereload: true
       bower:
         files: ["#{ SRC_ROOT }bower.json"]
-        tasks: ['bower']
+        tasks: ['bower', 'uglify:bower']
       compass:
         files: ["#{ SRC_ROOT }scss/*.scss"]
-        tasks: ['compass', 'autoprefixer']
+        tasks: ['compass', 'autoprefixer:all', 'cssmin']
       coffee:
         files: ["#{ JS_ROOT }main/*.coffee"]
-        tasks: ['shell:coffeelint', 'coffee', 'uglify', 'concat:main']
+        tasks: ['shell:coffeelint', 'coffee', 'uglify:main', 'concat:main']
       coffee_grunt:
-        files: ['Gruntfile.coffee']
+        files: 'Gruntfile.coffee'
         tasks: ['shell:coffeelint_grunt']
       concat_vendor:
-        files: ["#{ JS_ROOT }vendor/*.js"]
-        tasks: ['concat:vendor']
+        files: '<%= concat.vendor.src %>'
+        tasks: ['concat:vendor', 'concat:main']
       concat_vendor_ie:
-        files: ["#{ JS_ROOT }vendor-ie/*.js"]
+        files: '<%= concat.vendor_ie.src %>'
         tasks: ['concat:vendor_ie']
-      concat_dist:
-        files: ["#{ DEST_ROOT }js/debug/*.js"]
-        tasks: ['concat:dist', 'clean:tmpfiles']
       images:
         files: ["#{ SRC_ROOT }img/**/*.{png,jpg,gif}"]
-        tasks: ['imagemin']
+        tasks: ['newer:imagemin:all']
       svg:
         files: ["#{ SRC_ROOT }/svg/*.svg"]
         tasks: ['flexSVG', 'svgmin']
       jade:
         files: ["#{ SRC_ROOT }jade/**/*.{jade,json,yaml,yml}"]
-        tasks: ['jadeTemplate', 'prettify']
+        tasks: ['jadeTemplate', 'prettify:all']
       copy:
-        files: ["#{ SRC_ROOT }/public/**/*"]
-        tasks: ['copy', 'imagemin']
-      html:
-        files: ['index.html']
+        files: ["#{ SRC_ROOT }public/**/*"]
+        tasks: ['newer:copy:public']
         
     'gh-pages':
       site:
@@ -344,8 +342,8 @@ module.exports = (grunt) ->
         'flexSVG'
         'shell:coffeelint_grunt', 'shell:coffeelint'
       ]
-      dev: ['compass:dev', 'coffee:dev', 'jadeTemplate:dev']
-      dist: ['compass:dist', 'coffee:dist', 'jadeTemplate:dist', 'imagemin']
+      dev: ['coffee:dev', 'jadeTemplate:dev']
+      dist: ['compass', 'coffee:dist', 'jadeTemplate:dist', 'imagemin']
   
   grunt.task.registerTask 'jadeTemplate',
   'Compile Jade Files with front-matter', (mode) ->
@@ -383,11 +381,11 @@ module.exports = (grunt) ->
       
       # ヘルパー
       ## ディレクトリ名と拡張子を取り除いたファイル名
-      localData.basename = file.substring file.lastIndexOf('/')+1, file.lastIndexOf('.')
+      localData.basename = path.basename file, '.jade'
       
       allData = _.extend globalJadeData(), localData, compileOptions
       
-      if(mode isnt 'dev')      
+      if mode isnt 'dev'
         jade.render jadeTxt, allData, (err, html) ->
           if err
             console.warn err
@@ -397,7 +395,7 @@ module.exports = (grunt) ->
               readOptions.cwd +
               file.replace('.jade', '.html') }\" created."
       
-      if(mode isnt 'dist')
+      if mode isnt 'dist'
         allDataDebug = _.extend allData, {DEBUG: true}
         jade.render jadeTxt, allDataDebug, (err, html) ->
           if err
@@ -417,15 +415,18 @@ module.exports = (grunt) ->
         svgString = svgString.replace match, 'viewBox'
       grunt.file.write "#{ DEST_ROOT }.tmp/svg/#{ filepath }", svgString
   
+  grunt.task.registerTask 'addNoJekyll', 'Add .nojekyll if needed', ->
+    if grunt.file.expand("#{ DEST_ROOT }**/_*").length > 0
+      grunt.file.write  "#{ DEST_ROOT }.nojekyll", ''
+      
   defaultTasks = [
     'clean:site' #reset
     'concurrent:preparing'
     'copy'
     'concurrent:dev', 'concurrent:dist'
     'uglify', 'concat' #minify JS
-    'prettify', 'autoprefixer'
+    'prettify', 'autoprefixer', 'cssmin'
     'flexSVG', 'svgmin' # optimize SVG
-    'clean:tmpfiles'
     'connect', 'watch'
   ]
   
@@ -436,7 +437,7 @@ module.exports = (grunt) ->
     val is 'prettify' or val.indexOf('dev') isnt -1
 
   # 'watch'タスクを取り除き、新たなタスクを追加
-  distTasks.splice distTasks.length-1, 1, 'clean:debugFiles'
+  distTasks.splice distTasks.length-1, 1, 'clean:tmpfiles', 'clean:debugFiles', 'addNoJekyll'
 
   grunt.task.registerTask 'dist',
   'Generate only the files to publish a website', distTasks
