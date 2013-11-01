@@ -2,10 +2,10 @@
 
 #content {
   .top-title {
-    // TODO: media queries
-    $title-font-size: 50px;
+    // TODO: resize with media queries!
+    $title-font-size: 42px;
     
-    margin-top: $gutter * 0.05;
+    //margin-top: $gutter * 0.05;
     margin-bottom: $gutter * 1;
     // margin-left: $home-icon-size * 0.5;
     
@@ -16,9 +16,10 @@
     color: $common-black;
     
     .first-name {
-      font-weight: 300;
+      //font-weight: 300;
       color: darken($common-violet, 4);
-      margin-right: $gutter * 0.5;
+      //color: $common-violet;
+      margin-right: $gutter * 0.42;
     }
     
     .capital {
@@ -102,12 +103,13 @@
     height: 240px;
     margin-bottom: $gutter * 0.5;
     line-height: 0;
+    background-color: $common-black;
     
     img {
       position: relative;
       float: right;
-      left: $main-width * 0.5;
-      margin-right: 50%;
+      left: $main-width * 0.65 + 240px;
+      margin-right: 65%;
 
       width: auto;
       max-width: $main-width;
@@ -126,6 +128,15 @@
         max-width: none;
         height: 240px;
       }
+    }
+    
+    .caption {
+      position: relative;
+      width: 240px;
+      max-width: $main-width;
+      height: 240px;
+      background-color: $common-black;
+      opacity: 0.8;
     }
   }
   
