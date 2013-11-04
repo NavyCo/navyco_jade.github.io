@@ -31,7 +31,6 @@ $ ->
       , 60
 
     slider = $(slider.selector).bxSlider({
-      onSliderLoad: _redraw
     })
     
     _redraw()

@@ -12,7 +12,7 @@ module.exports = (grunt) ->
   
   BIN = "#{ process.cwd() }/node_modules/.bin/"
 
-  # Add '/' to the string if it's last character is not '/'
+  # Add '/' to the string if its last character is not '/'
   _addLastSlash = (str) ->
     if str.charAt(str.length - 1) is '/' or str is ''
       str
@@ -346,7 +346,7 @@ module.exports = (grunt) ->
       dist: ['compass', 'coffee:dist', 'jadeTemplate:dist', 'imagemin']
   
   grunt.task.registerTask 'jadeTemplate',
-  'Compile Jade Files with front-matter', (mode) ->
+  'Compile Jade files with front-matter', (mode) ->
     readOptions =
       cwd: "#{ SRC_ROOT }jade/pages/"
       filter: 'isFile'

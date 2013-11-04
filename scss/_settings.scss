@@ -1,8 +1,8 @@
 @charset 'UTF-8';
 
 // font-family alias
-$sans-serif: "Helvetica Neue", "Arial", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
-$serif: "Times", "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", "ＭＳ Ｐ明朝", "MS PMincho", serif;
+$sans-serif: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$serif: Times, serif;
 
 // basic interval width between the elements
 $gutter: 24px;
@@ -15,8 +15,8 @@ $main-width: 1080px; // or 1200px
 $main-space-width: $gutter * 3;
 
 // theme colors
-$common-white: #FEFFFF;
-$background-white: #FCFDFC;
+$background-white: #FCFCFC;
+$common-white: $background-white + #010101;
 
 $common-black: #242424;
 $common-gray: #8F8F8F;

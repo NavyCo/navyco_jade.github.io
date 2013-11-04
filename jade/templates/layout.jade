@@ -24,7 +24,7 @@ html(lang='ja')
       ///* 'SVG' feature detection is based on Modernizr (MIT & BSD)*/
       //if(!document.createElementNS ||
       //!document.createElementNS('http://www.w3.org/2000/svg', 'svg').createSVGRect){
-        //document.write('<script defer src="/js/sie.js"><\/script>');
+      //  document.write('<script defer src="/js/sie.js"><\/script>');
       //}
     
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
@@ -58,12 +58,13 @@ html(lang='ja')
         #menubar
           #menu
             a#home(href= htmlPath())
-            a.tab(href= htmlPath('about.html')) ABOUT
-            a.tab(href= htmlPath('projects.html')) PROJECTS
-            
+            //-p Shinnosuke Watanabe
             #webservices
               a.github(href='https://github.com/shinnn', target='_blank')
               a.twitter(href='https://twitter.com/shinnn_tw', target='_blank')
+            a.tab(href= htmlPath('projects.html')) PROJECTS
+            a.tab(href= htmlPath('about.html')) ABOUT
+            
       .header-line
 
       main
@@ -118,6 +119,7 @@ html(lang='ja')
 
       if DEBUG
         script(src='/debug/js/vendor.js')
+        script(src='/debug/bower_components/benchmark/benchmark.js')
         script(src='/debug/js/main.js')
       else
         script(src='/js/main.js?v=' + randStr())

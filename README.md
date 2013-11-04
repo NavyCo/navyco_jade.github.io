@@ -36,7 +36,7 @@ You can easily host the site on [Github Pages](http://pages.github.com/) in the 
 2. Enter the commit message.
 3. Enter username and password of your Github account.
 
-If successful, all files in the `master` directory will be copied to the `master` branch.
+If successful, all files in the `master` directory will be copied to the [`master` branch](https://github.com/shinnn/shinnn.github.io/tree/master).
 
 ## License
 

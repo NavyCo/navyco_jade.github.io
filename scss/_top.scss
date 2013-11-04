@@ -1,161 +1,181 @@
 @charset 'UTF-8';
 
-#content {
-  .top-title {
-    // TODO: resize with media queries!
-    $title-font-size: 42px;
-    
-    //margin-top: $gutter * 0.05;
-    margin-bottom: $gutter * 1;
-    // margin-left: $home-icon-size * 0.5;
-    
-    font-family: 'Open Sans', $sans-serif;
-    font-size: $title-font-size;
-    font-weight: 300;
-    //letter-spacing: -0px;
-    color: $common-black;
-    
-    .first-name {
-      //font-weight: 300;
-      color: darken($common-violet, 4);
-      //color: $common-violet;
-      margin-right: $gutter * 0.42;
-    }
+.top-title {
+  // TODO: resize with media queries!
+  $title-font-size: 40px;
+  
+  // margin-top: $gutter * 0.05;
+  margin-bottom: $gutter * 0.5;
+  
+  font-family: 'Crimson Txt', 'Open Sans', $sans-serif;
+  font-size: $title-font-size;
+  font-weight: 300;
+  color: $common-black;
+  
+  .first-name {
+    // font-weight: 300;
+    // color: darken($common-violet, 2);
+    margin-right: $gutter * 0.42;
+  }
+  
+  .capital {
+    //font-weight: 600;
+    font-size: $title-font-size * 1.125;
+    //color: darken($common-violet, 2);
+  }
+  .family-name > .capital{
+    letter-spacing: -2px;
+  }
+}
+
+.top-subtitle {
+  margin-bottom: $gutter;
+
+  // font-size: 21px; //old
+  font-size: $base-font-size - 1px;
+  font-weight: 300;
+  line-height: 1.0;
+
+  color: #c8a9d5;
+  //color: darken(#c8a9d5, 10);
+  color: $common-gray;
+  
+  p {
+    line-height: 1.4;
     
     .capital {
-      // font-weight: 400;
-      font-size: $title-font-size + 4px;
-      // color: darken($common-violet, 2);
-    }
-    .family-name > .capital{
-      letter-spacing: -2px;
-    }
-  }
-
-  .top-subtitle {
-    margin-bottom: $gutter;
-    // margin-left: $home-icon-size * 0.5;
-
-    font-family: 'Open Sans', $sans-serif;
-    font-size: 21px;
-    font-weight: 300;
-    line-height: 1.0;
-
-    color: #c8a9d5;
-    //color: darken(#c8a9d5, 10);
-    color: $common-gray;
-    
-    p {
-      line-height: 1.32;
-      
-      .capital {
-        font-size: 22px;
-      }
-    }
-    
-    .narrow-slash {
-      letter-spacing: 1px;
-      margin: 5px 3px;
-      
-      color: lighten($common-gray, 8);
+      font-size: 22px;
     }
   }
   
-  .full-width .line-wide {
-    margin-bottom: $gutter * 1.5;
-  }
-
-  .page-title {
-    font-size: 30px;
-    font-weight: 400;
-    margin-bottom: 6px;
-    
-    &+.page-subtitle {
-      margin-bottom: 0;      
+  
+  @media screen and(max-width: $main-width - 420){
+    br {
+      display: none;
     }
   }
-
-  .only-kana {
-    letter-spacing: -0.1em;
-  }
-
-  .page-subtitle {
-    font-family: $sans-serif;
-    font-size: 26px;
-    font-weight: 300;
-    color: #c8a9d5;
-    //color: darken(#c8a9d5, 10);
-    color: gray;
-  }
   
-  .lead {
-    color: $common-text-gray;
-    font-size: $base-font-size - 1px;    
-  }
-  
-  .featured-works {
-    margin-bottom: $gutter * 2;
-  }
-
-  .wide-image {
-    display: block;
-    overflow: hidden;
-    height: 240px;
-    margin-bottom: $gutter * 0.5;
-    line-height: 0;
-    background-color: $common-black;
+  .narrow-slash {
+    letter-spacing: 1px;
+    margin: 5px 3px;
     
+    color: lighten($common-gray, 8);
+  }
+}
+
+.full-width .line-wide {
+  margin-bottom: $gutter * 1.5;
+  background-color: lighten($common-line-violet, 8);
+}
+
+.page-title {
+  font-size: 30px;
+  font-weight: 400;
+  margin-bottom: 12px;
+  
+  &+.page-subtitle {
+    margin-bottom: 0;      
+  }
+}
+
+.only-kana {
+  letter-spacing: -0.1em;
+}
+
+.page-subtitle {
+  font-family: $sans-serif;
+  font-size: 26px;
+  font-weight: 300;
+  color: #c8a9d5;
+  //color: darken(#c8a9d5, 10);
+  color: gray;
+}
+
+$featured-image-height: 240px;
+
+.featured-works {
+  margin-bottom: $gutter * 2;
+}
+
+.wide-image {
+  display: block;
+  overflow: hidden;
+  height: $featured-image-height;
+  margin-bottom: $gutter * 0.25;
+  line-height: 0;
+  background-color: $common-black;
+  //border: 4px solid #FFFFFF;
+  //box-shadow: 0 0 2px #ccc;
+  
+  $img-border-width: $gutter * 0.25;
+  
+  img {
+    position: relative;
+    float: right;
+    left: $main-width * 0.65;
+    margin-right: 65%;
+
+    width: auto;
+    max-width: $main-width;
+    height: auto;
+    min-height: $featured-image-height;
+
+    // background-size: cover;
+    background-color: gray;
+    //border: solid $img-border-width rgba(0,0,0,0);
+  }
+
+  @media screen and(max-width: $main-width){
     img {
-      position: relative;
-      float: right;
-      left: $main-width * 0.65 + 240px;
-      margin-right: 65%;
-
-      width: auto;
-      max-width: $main-width;
-      height: auto;
-      min-height: 240px;
-
-      //background: 0 0px gray image-url('openstudio.jpg') no-repeat;
-      //background-size: cover;
-      background-color: gray;
-      //border: solid 0 rgba(255,255,255,.4);
-    }
-
-    @media screen and(max-width: $main-width){
-      img {
-        //width: 100%;
-        max-width: none;
-        height: 240px;
-      }
-    }
-    
-    .caption {
-      position: relative;
-      width: 240px;
-      max-width: $main-width;
+      //width: 100%;
+      max-width: none;
       height: 240px;
+    }
+  }
+  
+  .caption {
+    //display: none;
+    position: relative;
+    width: 200px;
+    max-width: $main-width;
+    height: $featured-image-height;
+    //height: 0;
+    
+    div.back {
+      height: $featured-image-height;
+      opacity: 0.69;
       background-color: $common-black;
-      opacity: 0.8;
+    }
+    
+    div.front {
+      position: absolute;
+      z-index: 2;
+      margin-left: $gutter * 0.5;
+      margin-top: -$featured-image-height + $gutter * 0.5;
+      
+      width: 200px - $gutter * 2;
+
+      color: $common-white;
+      text-shadow: 0 0 6px #464646;
     }
   }
+}
+
+.work-title {
+  font-family: $sans-serif;
+  font-size: $base-font-size + 2px;
+  margin-bottom: 0.5em;
   
-  .work-title {
-    font-family: $sans-serif;
-    font-size: $base-font-size + 2px;
-    margin-bottom: 0.5em;
-    
-    @include adjust-leading-to(1);
-    
-    span {
-      //border-bottom: solid 2px #ebddf2;
-    }
-  }
+  @include adjust-leading-to(1);
   
-  .role {
-    //float: left;
-    margin-right: $gutter;
+  span {
+    //border-bottom: solid 2px #ebddf2;
   }
+}
+
+.role {
+  //float: left;
+  margin-right: $gutter;
 }
 
 #profile {

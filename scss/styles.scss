@@ -3,7 +3,8 @@
 @import "compass/typography/vertical_rhythm";
 
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600);
-@import url(http://fonts.googleapis.com/css?family=Arimo);
+@import url(http://fonts.googleapis.com/css?family=Oxygen:400,300,700);
+@import url(http://fonts.googleapis.com/css?family=Crimson+Text);
 
 $footer-height: 220px;
 
@@ -32,7 +33,7 @@ $footer-height: 220px;
     padding-left: $gutter * 2;
     padding-right: $gutter * 2;
   }
-  @media screen and(max-width: 680px){
+  @media screen and(max-width: 720px){
     padding-left: $gutter;
     padding-right: $gutter;
   }
@@ -71,151 +72,12 @@ body {
 
   font-family: $sans-serif;
   color: $common-black;
-  
+}
+
+header, main, footer {
   a {
     color: $common-black;
   }
-}
-
-header{
-  width: 100%;
-
-  // background-color: #F8F8F8;
-  // border-bottom: 1px solid #c8a9d5;//#ebddf2;//#E8E8E8;
-}
-
-.header-line {
-  z-index: -100;
-  width: 100%;
-  height: 1px;
-  margin-top: -1px;
-  background: $common-line-violet; //$common-line-gray; $common-violet;
-}
-
-#menubar {
-  @extend %centered;
-  padding-top: $gutter * 3.5;
-  height: 32px;
-}
-
-$home-icon-size: 60px;
-
-#menu {
-
-  height: $home-icon-size - (($base-font-size + 2px) + 14px);
-  font-family: 'Open Sans', $sans-serif;
-  //border-bottom: 1px solid $common-violet;
-
-  a {
-    display: block;
-    float: left;
-
-    height: 31px;
-    margin-left: 0;
-    margin-top: 0;
-    
-    text-align: center;
-    font-size: $base-font-size + 2px;
-
-    &:hover {
-      // background-color: #EEEEEE;
-    }
-
-    &.tab {
-      padding: 0 14px;
-      padding-top: 14px;
-      margin-top: -14px;
-      color: $common-black;
-
-      &:hover {
-        color: gray;
-      }
-      &.active {
-        height: 31px - 1px;
-        margin-right: - 1px;
- 
-        border: 1px solid $common-hover-violet;//#E1E1E1;
-        border-right-color: $common-hover-violet;//#DDDDDD;
-        border-bottom-color: $background-white;        
-
-        background-color: $background-white;
-        color: $common-violet;
-
-        &:hover {
-          //border-color:  $common-violet;//#DADADA;
-          //border-right-color: $common-violet;//#CACACA;
-          border-bottom-color: $background-white;
-          color: $common-hover-violet;
-        }
-      }
-    }
-  }
-  
-  #home {
-    width: $home-icon-size;
-
-    margin-top: -14px;
-    height: $home-icon-size - 15px;
-
-    margin-right: 1em;
-
-    background: image-url('home.gif') gray;
-    color: $common-violet;
-
-    &:hover {
-      margin-top: -19px;      
-      height: $home-icon-size - 10px;
-    }
-
-    &.active {
-      height: $home-icon-size;
-      margin-top: -$home-icon-size + ($base-font-size + 2px) + 14px;
-
-      background-color: $common-violet;
-      color: $common-white;
-
-      &:hover {
-        margin-top: -$home-icon-size + ($base-font-size + 2px) + 10px;
-        height: $home-icon-size + 4px;
-      }
-
-    }
-  }
-}
-
-#webservices {
-  float: right;
-  
-  a {
-    padding: 0;
-    margin-right: 0;
-    margin-left: $gutter;
-    font-size: $base-font-size + 5px;
-    border-bottom: none;
-  }
-  
-  .github, .twitter {
-    &:before {
-      // color: $common-violet;
-    }
-  }
-
-  .github {
-    margin-top: -38px + $base-font-size;
-    font-size: 38px;
-  }
-
-  .twitter {
-    margin-top: -32px + $base-font-size;
-    font-size: 32px;
-  }
-}
-
-.github {
-  @extend .icon-github;
-}
-.twitter {
-  @extend .icon-twitter;    
 }
 
 main {
@@ -234,54 +96,56 @@ main {
 #content {
   padding-bottom: $gutter;
   width: 100%;
+}
+
+main section {
+  @extend %centered;
   
-  section {
-    @extend %centered;
+  margin-bottom: $gutter * 1.5;
+  
+  a {
+    //text-decoration: underline;
+    color: #b728cc;
+  }
+  
+  h1, h2, h3 {
+    font-family: 'Open Sans', $sans-serif;
+    font-weight: normal;
+  }
+  
+  h1 {
+    font-size: $base-font-size + 8px;
+    margin-bottom: 0.75em;
+    // color: $common-text-gray;
+  }
+  
+  p,li {
+    @extend %text;
+  }
+  
+  hr {
+    margin-bottom: 1em;
+    border: none;
+  }
+  
+  .role {
+    font-size: $base-font-size - 1px;
+    color: $common-text-gray;
+  }
+  
+  &.full-width {
+    max-width: none;
+    margin-top: -$gutter * 0.5;
+    padding-left: 0;
+    padding-right: 0;
     
-    margin-bottom: $gutter * 1.5;
-    
-    a {
-      //text-decoration: underline;
-      color: #b728cc;
-    }
-    
-    h1, h2, h3 {
-      font-family: 'Open Sans', $sans-serif;
-      font-weight: normal;
-    }
-    
-    h1 {
-      font-size: $base-font-size + 8px;
-      margin-bottom: 0.75em;
-      // color: $common-text-gray;
-    }
-    
-    p,li {
-      @extend %text;
-    }
-    
-    hr {
-      margin-bottom: 1em;
-      border: none;
-    }
-    
-    .role {
-      font-size: $base-font-size - 1px;
-      color: $common-text-gray;
-    }
-    
-    &.full-width {
-      max-width: none;
-      padding-left: 0;
-      padding-right: 0;
-      
-      .inner {
-        @extend %centered;
-        width: auto;
-      } 
-    }
+    .inner {
+      @extend %centered;
+      width: auto;
+    } 
   }
 }
+
 
 .line-wide {
   width: 100%;
@@ -458,6 +322,7 @@ footer {
   }
 }
 
+@import "header";
 @import "top";
 @import "project";
 @import "project-single";

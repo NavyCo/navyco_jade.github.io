@@ -43,6 +43,10 @@ block inner
     
     .project-description
       hr.line-wide
-      p= project.description
+      if(typeof project.description === 'string')
+        p!= project.description
+      else if(Array.isArray(project.description))
+        each paragraph in project.description
+          p!= paragraph
   
   block content
