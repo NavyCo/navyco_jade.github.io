@@ -3,19 +3,19 @@ $ ->
 
   # 外部リンクと bxSlider の UI には pjax を適用しない
   if $.support.pjax
-    $('#container').on 'click', 'a:not([target], .bx-wrapper *)', (e) ->
+    $('#container').on 'click', 'a:not([target], .bx-wrapper *, .pager)', (e) ->
       e.preventDefault()
 
-      $('main').fadeTo 4, 0.010, ->
+      $main.fadeTo 4, 0.010, ->
         $.pjax.click e, {
           container: '#content'
           fragment: '#content'
         }
   
-  sliderSelector = '.slider'
+  sliderSelector = '#slider > ul'
   # .selector is deprecated
   # http://api.jquery.com/selector/
-  slider = $(sliderSelector)
+  slider = $ sliderSelector
 
   resetSlider = ->
     # 既存の bxSlider 製のスライダーを削除
@@ -30,7 +30,17 @@ $ ->
         slider.redrawSlider()
       , 60
 
-    slider = $(slider.selector).bxSlider({
+    slider = $(sliderSelector).bxSlider({
+      mode: 'fade'
+      speed: 250
+      pagerCustom: '#slider-select'
+      onSliderLoad: (currentIndex) ->
+        if DEBUG
+          console.log "slider: #{ currentIndex }"
+        Mousetrap.bind 'left', ->
+          slider.goToPrevSlide()
+        Mousetrap.bind 'right', ->
+          slider.goToNextSlide()
     })
     
     _redraw()
@@ -53,11 +63,11 @@ $ ->
   resetContent()
 
   _activateTab = ->
-    $("#home.active, .tab.active").removeClass('active')
+    $("#home.active, #tabs > .active").removeClass('active')
 
     for page, i in ['about', 'project']
       if location.href.indexOf(page) isnt -1
-        $(".tab[href*='#{ page }']").addClass('active')
+        $("#tabs > a[href*='#{ page }']").addClass('active')
         break
 
       if i is 1

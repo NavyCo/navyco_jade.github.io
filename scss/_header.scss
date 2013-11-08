@@ -2,6 +2,9 @@
 
 header {
   width: 100%;
+  // background-color: #F3F0F9;
+  background: $background-white;
+  background: linear-gradient(to bottom, #F8F9F9 0%, $background-white 100%);
 }
 
 .header-line {
@@ -9,16 +12,35 @@ header {
   width: 100%;
   height: 1px;
   margin-top: -1px;
-  background: $common-line-violet; //$common-line-gray; $common-violet;
+  background-color: $common-line-violet; //$common-line-gray; $common-violet;
+}
+/*
+.pace .pace-progress {
+  z-index: -100;
+  width: 100%;
+  height: 1px;
+  margin-top: -1px;
+  
+  background-color: $common-line-violet; //$common-line-gray; $common-violet;
+
+  -webkit-transition: width 1s;
+  -moz-transition: width 1s;
+  -o-transition: width 1s;
+  transition: width 1s;
 }
 
+.pace-inactive {
+  //display: none;
+}
+*/
 #menubar {
   @extend %centered;
-  padding-top: $gutter * 3;
+  overflow: hidden;
+  padding-top: $gutter * 2.5;
   height: 32px;
 }
 
-$home-icon-size: 60px;
+$home-icon-size: 45px;
 
 #menu {
   height: $home-icon-size - (($base-font-size + 2px) + 14px);
@@ -43,18 +65,26 @@ header a{
   }
 }
 
-#menu .tab {
+#tabs {
   float: right;
-  padding-left: 14px;
-  padding-right: 14px;
+  @media screen and(max-width: $main-width){
+    float: left;
+  }
+}
+
+#tabs > a {
+  height: 31px - 1px;// - 1px
+
+  padding-left: 12px;
+  padding-right: 12px;
 
   @media screen and(max-width: $main-width - 270px){
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 8px;
+    padding-right: 8px;
   }
   
-  padding-top: 14px;
-  margin-top: -14px;
+  padding-top: 8px;
+  margin-top: -7px;
 
   font-weight: 600;
   color: $common-black;
@@ -63,20 +93,18 @@ header a{
     color: gray;
   }
   &.active {
-    height: 31px - 1px;
     margin-right: - 1px;
-
-    border: 1px solid $common-hover-violet;//#E1E1E1;
-    border-right-color: $common-hover-violet;//#DDDDDD;
-    border-bottom-color: $background-white;        
 
     background-color: $background-white;
     color: $common-violet;
 
+    border: 1px solid $common-hover-violet; //#E1E1E1;
+    border-top-color: lighten($common-hover-violet, 20);
+    border-left-color: lighten($common-hover-violet, 12);
+    //border-bottom: 1px solid $common-hover-violet;
+    border-bottom-color: $background-white;
+
     &:hover {
-      //border-color:  $common-violet;//#DADADA;
-      //border-right-color: $common-violet;//#CACACA;
-      border-bottom-color: $background-white;
       color: $common-hover-violet;
     }
   }
@@ -85,16 +113,17 @@ header a{
 #home {
   width: $home-icon-size;
 
-  margin-top: -14px;
+  margin-top: 1px;
   height: $home-icon-size - 15px;
 
   margin-right: 1em;
 
   background: image-url('home.gif') gray;
+  background-size: 100%;
   color: $common-violet;
 
   &:hover {
-    margin-top: -19px;      
+    margin-top: -4px;
     height: $home-icon-size - 10px;
   }
 
@@ -114,7 +143,7 @@ header a{
 
 #webservices {
   float: right;
-  margin-left: $gutter * 1.5;
+  margin-left: $gutter;
   
   @media screen and(max-width: $main-width - 120px){
     margin-left: $gutter * 0.5;

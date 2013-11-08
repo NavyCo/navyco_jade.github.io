@@ -1,31 +1,39 @@
 @charset 'UTF-8';
 
+@mixin top-title-font-size($base-size) {
+  .top-title {
+    font-size: $base-size;
+    .capital {
+      font-size: $base-size * 1.125;
+    }
+  }
+}
+
+@include top-title-font-size(40px);
+
 .top-title {
-  // TODO: resize with media queries!
-  $title-font-size: 40px;
-  
   // margin-top: $gutter * 0.05;
   margin-bottom: $gutter * 0.5;
   
-  font-family: 'Crimson Txt', 'Open Sans', $sans-serif;
-  font-size: $title-font-size;
+  font-family: Roboto, 'Open Sans', $sans-serif;
   font-weight: 300;
   color: $common-black;
   
   .first-name {
-    // font-weight: 300;
     // color: darken($common-violet, 2);
     margin-right: $gutter * 0.42;
   }
   
-  .capital {
-    //font-weight: 600;
-    font-size: $title-font-size * 1.125;
-    //color: darken($common-violet, 2);
-  }
   .family-name > .capital{
     letter-spacing: -2px;
   }
+}
+
+@media screen and(max-width: $main-width){
+  @include top-title-font-size(38px);
+}
+@media screen and(max-width: $main-width - 270){
+  @include top-title-font-size(36px);
 }
 
 .top-subtitle {
@@ -33,7 +41,6 @@
 
   // font-size: 21px; //old
   font-size: $base-font-size - 1px;
-  font-weight: 300;
   line-height: 1.0;
 
   color: #c8a9d5;
@@ -47,7 +54,6 @@
       font-size: 22px;
     }
   }
-  
   
   @media screen and(max-width: $main-width - 420){
     br {
@@ -63,13 +69,37 @@
   }
 }
 
-.full-width .line-wide {
-  margin-bottom: $gutter * 1.5;
-  background-color: lighten($common-line-violet, 8);
+section.full-width {
+  max-width: none;
+  margin-top: -$gutter * 0.5;
+  margin-bottom: 48px;
+  padding-left: 0;
+  padding-right: 0;
+  
+  background-color: $common-violet;
+  background-color: $background-white;
+  
+  .inner {
+    @extend %centered;
+    width: auto;
+  } 
+}
+
+.top {
+  padding-top: $gutter * 2;
+  
+  .full-width {
+    padding-top: $gutter * 0.5;
+  }
 }
 
 .page-title {
-  font-size: 30px;
+  font-size: 24px;
+  
+  @media screen and(max-width: $main-width){
+    font-size: 23px;
+  }
+  
   font-weight: 400;
   margin-bottom: 12px;
   
@@ -141,22 +171,30 @@ $featured-image-height: 240px;
     height: $featured-image-height;
     //height: 0;
     
-    div.back {
+    .back {
       height: $featured-image-height;
-      opacity: 0.69;
+      opacity: 0.721;
       background-color: $common-black;
     }
     
-    div.front {
+    .front {
       position: absolute;
       z-index: 2;
-      margin-left: $gutter * 0.5;
       margin-top: -$featured-image-height + $gutter * 0.5;
       
       width: 200px - $gutter * 2;
 
       color: $common-white;
       text-shadow: 0 0 6px #464646;
+      
+      p {
+        padding-left: 12px;
+        
+        border-left: 12px solid lighten($common-hover-violet, 8);
+
+        font-size: $base-font-size - 1px;
+        line-height: 1.65;
+      }
     }
   }
 }

@@ -6,7 +6,12 @@ yamlFront = require 'yaml-front-matter'
 jade = require 'jade'
 
 module.exports = (grunt) ->
-  require('load-grunt-tasks')(grunt)
+  require('load-grunt-tasks') grunt, {pattern: [
+    'grunt-*'
+    '!grunt-gh-pages'
+    '!grunt-prompt'
+    '!grunt-open'
+  ]}
   
   settings = grunt.file.readYAML 'settings.yaml'
   
@@ -220,14 +225,15 @@ module.exports = (grunt) ->
       debugFiles: ["#{ DEST_ROOT }debug"]
       
     prettify:
+      options:
+        indent_size: 2
+        unformatted: ['pre', 'code', 'script']
       all:
-        options:
-          indent_size: 2
         files: [
           expand: true
           cwd: DEST_ROOT
-          src: ['**/*.html', '!debug/**/*', '!**/*-debug.html']
-          dest: "#{ DEST_ROOT }debug/html-readable"
+          src: 'debug/**/*.html'
+          dest: DEST_ROOT
         ]
         
     imagemin:
@@ -267,10 +273,13 @@ module.exports = (grunt) ->
           stdout: true
     
     connect:
+      options:
+        livereload: 35729
+        
       site:
         options:
           base: DEST_ROOT
-    
+              
     open:
       site:
         path: 'http://shinnn.github.io/'
@@ -282,7 +291,7 @@ module.exports = (grunt) ->
         # if you want to use it with local files,
         # be sure to enable “Allow access to file URLs” checkbox
         # in Tools > Extensions > LiveReload after installation.
-        livereload: true
+        livereload: '<%= connect.options.livereload %>'
       bower:
         files: ["#{ SRC_ROOT }bower.json"]
         tasks: ['bower', 'uglify:bower']
@@ -389,19 +398,21 @@ module.exports = (grunt) ->
         jade.render jadeTxt, allData, (err, html) ->
           if err
             console.warn err
-          else
-            grunt.file.write DEST_ROOT + file.replace('.jade', '.html'), html
-            console.log "File \"#{ DEST_ROOT +
-              readOptions.cwd +
-              file.replace('.jade', '.html') }\" created."
+            return
+
+          grunt.file.write DEST_ROOT + file.replace('.jade', '.html'), html
+          console.log "File \"#{ DEST_ROOT +
+            readOptions.cwd +
+            file.replace('.jade', '.html') }\" created."
       
       if mode isnt 'dist'
         allDataDebug = _.extend allData, {DEBUG: true}
         jade.render jadeTxt, allDataDebug, (err, html) ->
           if err
             console.warn err
-          else
-            grunt.file.write "#{ DEST_ROOT }debug/#{ file.replace('.jade', '.html') }", html
+            return
+
+          grunt.file.write "#{ DEST_ROOT }debug/#{ file.replace('.jade', '.html') }", html
 
   
   # SVG の width, height 属性を取り除く
@@ -415,9 +426,12 @@ module.exports = (grunt) ->
         svgString = svgString.replace match, 'viewBox'
       grunt.file.write "#{ DEST_ROOT }.tmp/svg/#{ filepath }", svgString
   
-  grunt.task.registerTask 'addNoJekyll', 'Add .nojekyll if needed', ->
-    if grunt.file.expand("#{ DEST_ROOT }**/_*").length > 0
-      grunt.file.write  "#{ DEST_ROOT }.nojekyll", ''
+  grunt.task.registerTask 'addNoJekyll',
+    'Add .nojekyll if needed',
+    ->
+      if grunt.file.expand("#{ DEST_ROOT }**/_*").length > 0
+        console.log "File \"#{ DEST_ROOT }.nojekyll\" created."
+        grunt.file.write  "#{ DEST_ROOT }.nojekyll", ''
       
   defaultTasks = [
     'clean:site' #reset
@@ -440,8 +454,14 @@ module.exports = (grunt) ->
   distTasks.splice distTasks.length-1, 1, 'clean:tmpfiles', 'clean:debugFiles', 'addNoJekyll'
 
   grunt.task.registerTask 'dist',
-  'Generate only the files to publish a website', distTasks
+    'Generate only the files to publish a website'
+    distTasks
   
   grunt.task.registerTask 'deploy',
-  'Deploy to Github Pages', ['dist', 'prompt', 'gh-pages', 'open']
-  
+    'Deploy to Github Pages',
+    ->
+      grunt.loadNpmTasks 'grunt-prompt'
+      grunt.loadNpmTasks 'grunt-gh-pages'
+      grunt.loadNpmTasks 'grunt-open'
+    
+      grunt.task.run 'dist', 'prompt', 'gh-pages', 'open'

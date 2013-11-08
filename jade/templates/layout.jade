@@ -62,8 +62,10 @@ html(lang='ja')
             #webservices
               a.github(href='https://github.com/shinnn', target='_blank')
               a.twitter(href='https://twitter.com/shinnn_tw', target='_blank')
-            a.tab(href= htmlPath('projects.html')) PROJECTS
-            a.tab(href= htmlPath('about.html')) ABOUT
+            #tabs
+              //-a(href= htmlPath()) Home
+              a(href= htmlPath('about.html')) About
+              a(href= htmlPath('projects.html')) Projects
             
       .header-line
 

@@ -1,5 +1,11 @@
 @charset 'UTF-8';
 
+@import "compass/typography/vertical_rhythm";
+
+// load webfonts
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600);
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,300,500);
+
 // font-family alias
 $sans-serif: "Helvetica Neue", Helvetica, Arial, sans-serif;
 $serif: Times, serif;
@@ -11,18 +17,18 @@ $base-font-size: 15px;
 $base-line-height: $base-font-size * 1.25;
 
 // main content in the center
-$main-width: 1080px; // or 1200px
+$main-width: 1080px; // or 1080px
 $main-space-width: $gutter * 3;
 
 // theme colors
-$background-white: #FCFCFC;
+$background-white: #FDFDFD;
 $common-white: $background-white + #010101;
 
-$common-black: #242424;
+$common-black: #292929;
 $common-gray: #8F8F8F;
-$common-violet: #a900d6; // or #C900FF; //or #b44c97;
+$common-violet: #8e44ad; //#a900d6; // or #C900FF; //or #b44c97;
 
-$common-hover-violet: #c8a9d5;
+$common-hover-violet: #9b59b6;// #C8A9D6;
 $common-line-violet: $common-hover-violet;
 
 $common-text-gray: #727272;

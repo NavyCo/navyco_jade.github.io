@@ -11,7 +11,7 @@
 
 $icons : setPre-Suffix(
   '.icon-',
-  (flickr, wordpress, home, youtube, facebook, twitter, tumblr, code, star, github, angle-double-right, ok)
+  (flickr, wordpress, home, youtube, facebook, twitter, tumblr, code, star, github, angle-double-right, ok, right)
 );
 
 $filename-icon : 'icon';
@@ -137,4 +137,10 @@ src: url('../font/icon.svg?39909792#link') format('svg');
   &:before {
     content: '\e808'; // ''
   }
+}
+
+.icon-right {
+  &:before {
+    content: '\e809';
+  } /* '' */
 }

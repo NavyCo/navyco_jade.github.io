@@ -19,10 +19,26 @@ block inner
         span= project.role.join(' / ')
   
   section
-    ul.slider
-      - for(var i=0; i < project.imageFileNum; i++)
-        li
-          img(src='/img/projects/' + basename + '/' + i + '.jpg')
+    #slider
+      ul
+        if(project.imageFileNum)
+          - for(var i=0; i < project.imageFileNum; i++)
+            li
+              img(src='/img/projects/' + basename + '/' + i + '.jpg')
+        else
+          - for(var i=0; i < 4; i++)
+            li
+              img(src='http://placehold.it/1248x702')
+    #slider-select
+      if(project.imageFileNum)
+        - for(var i=0; i < project.imageFileNum; i++)
+          a.pager(data-slide-index=i, href='')
+            img(src='/img/projects/' + basename + '/' + i + '.jpg')
+      else
+        - for(var i=0; i < 4; i++)
+          li
+            img(src='http://placehold.it/1248x702')
+      
 
   section
     if(project.links)
@@ -43,10 +59,15 @@ block inner
     
     .project-description
       hr.line-wide
+      //if(project.description)
+        .skill-other
       if(typeof project.description === 'string')
         p!= project.description
       else if(Array.isArray(project.description))
         each paragraph in project.description
           p!= paragraph
+    
+    .prev-next
+    
   
   block content

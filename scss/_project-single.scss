@@ -17,7 +17,33 @@
   }
 }
 
-.project-links {  
+#slider {
+  float: left;
+  width: 80%;
+  
+  margin-right: $gutter * 2;
+}
+
+#slider-select {
+  .pager {
+    display: block;
+  }
+  
+  a {
+    margin-bottom: $gutter * 0.5;
+  }
+  img {
+    width: 14%
+  }
+}
+
+.project-links {
+  li {
+    // max-width: $main-width * 0.4;
+    // height: $base-font-size + 8px;
+    // border: solid 1px $common-violet;
+  }
+  
   div {
     float: left;
     margin-right: 1em;
@@ -36,10 +62,6 @@
       color: #b728cc;
       margin-right: 0.5em;
     }
-    
-    &:nth-child(even):before {
-      //color: #bd8fd1;
-    }
   }
 }
 p.skill-code {
@@ -51,10 +73,22 @@ p.skill-code {
 }
 
 .project-description {
-  margin-top: 1.5em;
-  //font-size: $base-font-size - 1px;
+  margin-top: $gutter * 2;
+  
+  .header-rect {
+    background-color: $common-gray;
+    height: 200px;
+  }
   
   p {
+    max-width: $main-width * 0.75 - $gutter;
+    @media screen and(max-width: $main-width * 0.92){
+      max-width: none;
+    }
+    
     margin-top: 0.5em;
+    line-height: 1.86;
+    color: #505050;
+    // text-indent: 1em;
   }
 }

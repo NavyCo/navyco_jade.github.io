@@ -11,6 +11,7 @@
     "jquery": "latest",
     "jquery1": "jquery#1",
     "jquery-pjax": "latest",
+    "mousetrap": "latest",
     "html5shiv": "latest",
     "selectivizr": "latest",
     "respond": "latest",
@@ -22,6 +23,9 @@
   "exportsOverride": {
     "/jquery\\d?$/": {
       "public": "jquery.min.js"
+    },
+    "mousetrap": {
+      "mousetrap": "mousetrap.min.js"
     },
     "html5shiv": {
       "ie": "dist/html5shiv.js"

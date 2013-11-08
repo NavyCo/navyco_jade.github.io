@@ -24,9 +24,9 @@ This project uses [Bower](http://bower.io/) to manage client-side libraries, and
 
 Basically, installed bower components are minified and concatenated into single script file. However, if you describe `exportsOverride` in `bower.json` to specify export destination of the components, you can use them in other ways:
 
-* The files exported to `public` is not concatenated and directly copied to the `master` directory.
+* The files exported to `public` are not concatenated and directly copied to the `master` directory.
 
-* The files exported to `ie` is minified and concatenated into `vendor.ie.js` and it will be loaded in `head` tag.
+* The files exported to `ie` are minified and concatenated into `vendor.ie.js` and they will be loaded in `head` tag.
 
 ## Deployment
 
@@ -42,6 +42,6 @@ If successful, all files in the `master` directory will be copied to the [`maste
 
 Copyright (c) 2013 Shinnosuke Watanabe All rights reserved.
 
-Unless otherwise stated, all source code in this repository are licensed under the [MIT license](http://opensource.org/licenses/mit-license.php).
+Unless otherwise stated, all source code in this repository is licensed under the [MIT license](http://opensource.org/licenses/mit-license.php).
 
 [![endorse](https://api.coderwall.com/shinnn/endorsecount.png)](https://coderwall.com/shinnn)
