@@ -1,5 +1,9 @@
 @charset 'UTF-8';
 
+.top * {
+  text-align: center;
+}
+
 @mixin top-title-font-size($base-size) {
   .top-title {
     font-size: $base-size;
@@ -9,15 +13,17 @@
   }
 }
 
-@include top-title-font-size(40px);
+@include top-title-font-size(36px);
 
 .top-title {
-  // margin-top: $gutter * 0.05;
+  margin-left: -12px;
+  margin-top: $gutter * 2;
   margin-bottom: $gutter * 0.5;
   
   font-family: Roboto, 'Open Sans', $sans-serif;
   font-weight: 300;
   color: $common-black;
+  //color: $common-violet;
   
   .first-name {
     // color: darken($common-violet, 2);
@@ -39,7 +45,7 @@
 .top-subtitle {
   margin-bottom: $gutter;
 
-  // font-size: 21px; //old
+  //font-size: 21px; //old
   font-size: $base-font-size - 1px;
   line-height: 1.0;
 
@@ -72,7 +78,7 @@
 section.full-width {
   max-width: none;
   margin-top: -$gutter * 0.5;
-  margin-bottom: 48px;
+  margin-bottom: $gutter * 3;
   padding-left: 0;
   padding-right: 0;
   
@@ -91,6 +97,8 @@ section.full-width {
   .full-width {
     padding-top: $gutter * 0.5;
   }
+  
+  #content {}
 }
 
 .page-title {
@@ -131,7 +139,7 @@ $featured-image-height: 240px;
   display: block;
   overflow: hidden;
   height: $featured-image-height;
-  margin-bottom: $gutter * 0.25;
+  margin-bottom: $gutter * 0.5;
   line-height: 0;
   background-color: $common-black;
   //border: 4px solid #FFFFFF;
@@ -164,7 +172,7 @@ $featured-image-height: 240px;
   }
   
   .caption {
-    //display: none;
+    display: none;
     position: relative;
     width: 200px;
     max-width: $main-width;
@@ -200,20 +208,15 @@ $featured-image-height: 240px;
 }
 
 .work-title {
-  font-family: $sans-serif;
-  font-size: $base-font-size + 2px;
+  font-size: $base-font-size;
   margin-bottom: 0.5em;
-  
-  @include adjust-leading-to(1);
-  
-  span {
-    //border-bottom: solid 2px #ebddf2;
-  }
 }
 
 .role {
-  //float: left;
+  font-size: $base-font-size - 2px;
   margin-right: $gutter;
+  color: $common-text-gray;
+  
 }
 
 #profile {

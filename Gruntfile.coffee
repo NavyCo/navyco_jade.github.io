@@ -72,7 +72,7 @@ module.exports = (grunt) ->
   grunt.initConfig
     bower:
       options:
-        targetDir: "#{ DEST_ROOT }.tmp/bower_exports"
+        targetDir: "#{ DEST_ROOT }.tmp/bower_exports/"
         cleanTargetDir: true
         
       install: {}
@@ -104,7 +104,7 @@ module.exports = (grunt) ->
         dest: "#{ JS_ROOT }vendor/lodash.gruntbuild.js"
 
     casperjs:
-      files: ["#{ SRC_ROOT }casperjs/**/*.{js,coffee}"]
+      files: ["#{ SRC_ROOT }casperjs/{,*/}*.{js,coffee}"]
       
     copy:
       public:
@@ -135,20 +135,20 @@ module.exports = (grunt) ->
     compass:
       options:
         config: "#{ SRC_ROOT }scss/config.rb"
-        cssDir: "#{ DEST_ROOT }debug/css-readable/"
+        cssDir: "#{ DEST_ROOT }debug/css-readable"
         environment: 'development'
       all: {}
     
     autoprefixer:
       all:
-        src: ['<%= compass.options.cssDir%>**/*.css']
+        src: '<%= compass.options.cssDir%>**/*.css'
     
     cssmin:
       dist:
         files: [
           expand: true
           cwd: '<%= compass.options.cssDir%>'
-          src: ['**/*.css']
+          src: ['{,*/}*.css']
           dest: "#{ DEST_ROOT }css/"
         ]
     
@@ -197,22 +197,22 @@ module.exports = (grunt) ->
         files: [
           expand: true
           cwd: '<%= bower.options.targetDir %>'
-          src: ['**/*.js', '!**/*{.min,-min}.js', '!debug/**/*']
+          src: ['{,*/,*/*/}*.js', '!{,*/,*/*/}*{.min,-min}.js', '!debug/{,*/}*']
           dest: '<%= bower.options.targetDir %>'
         ]
     
     concat:
       vendor:
         src: [
-          "#{ JS_ROOT }vendor/**/*.js"
-          '<%= bower.options.targetDir %>/**/*.js'
-          '!<%= bower.options.targetDir %>/{public,ie,debug}/**/*'
+          "#{ JS_ROOT }vendor/{,*/}*.js"
+          '<%= bower.options.targetDir %>{,*/,*/*/}*.js'
+          '!<%= bower.options.targetDir %>{public,ie,debug}{,*/,*/*/}*.js'
         ]
         dest: "#{ DEST_ROOT }debug/js/vendor.js"
       vendor_ie:
         src: [
-          "#{ JS_ROOT }vendor-ie/**/*.js"
-          '<%= bower.options.targetDir %>/ie/**/*.js'
+          "#{ JS_ROOT }vendor-ie/{,*/}*.js"
+          '<%= bower.options.targetDir %>/ie/{,*/}*.js'
         ]
         dest: "#{ DEST_ROOT }js/vendor.ie.js"
       main:
@@ -220,7 +220,7 @@ module.exports = (grunt) ->
         dest: "#{ DEST_ROOT }js/main.js"
     
     clean:
-      site: DEST_ROOT
+      site: path.resolve DEST_ROOT
       tmpfiles: ["#{ DEST_ROOT }.tmp"]
       debugFiles: ["#{ DEST_ROOT }debug"]
       
@@ -275,7 +275,6 @@ module.exports = (grunt) ->
     connect:
       options:
         livereload: 35729
-        
       site:
         options:
           base: DEST_ROOT
@@ -312,7 +311,7 @@ module.exports = (grunt) ->
         tasks: ['concat:vendor_ie']
       images:
         files: ["#{ SRC_ROOT }img/**/*.{png,jpg,gif}"]
-        tasks: ['newer:imagemin:all']
+        tasks: ['imagemin:all']
       svg:
         files: ["#{ SRC_ROOT }/svg/*.svg"]
         tasks: ['flexSVG', 'svgmin']
@@ -321,7 +320,7 @@ module.exports = (grunt) ->
         tasks: ['jadeTemplate', 'prettify:all']
       copy:
         files: ["#{ SRC_ROOT }public/**/*"]
-        tasks: ['newer:copy:public']
+        tasks: ['copy:public']
         
     'gh-pages':
       site:
@@ -354,6 +353,7 @@ module.exports = (grunt) ->
       dev: ['coffee:dev', 'jadeTemplate:dev']
       dist: ['compass', 'coffee:dist', 'jadeTemplate:dist', 'imagemin']
   
+  # Compile .jade files with frontmatter
   grunt.task.registerTask 'jadeTemplate',
   'Compile Jade files with front-matter', (mode) ->
     readOptions =
@@ -363,7 +363,6 @@ module.exports = (grunt) ->
     jadeFiles = grunt.file.expand readOptions, '**/*.jade'
     
     compileOptions =
-      # 可読化する際は grunt-prettify で行う
       pretty: false
       # HTMLファイルのパスは書き出し先のフォルダのルートが基準となる
       filename: readOptions.cwd + '../'
@@ -388,7 +387,7 @@ module.exports = (grunt) ->
 
       jadeTxt = addition + splitted.__content
       
-      # ヘルパー
+      # helper
       ## ディレクトリ名と拡張子を取り除いたファイル名
       localData.basename = path.basename file, '.jade'
       
@@ -406,7 +405,7 @@ module.exports = (grunt) ->
             file.replace('.jade', '.html') }\" created."
       
       if mode isnt 'dist'
-        allDataDebug = _.extend allData, {DEBUG: true}
+        allDataDebug = _.extend allData, {DEBUG: true, pretty: true}
         jade.render jadeTxt, allDataDebug, (err, html) ->
           if err
             console.warn err
@@ -439,7 +438,7 @@ module.exports = (grunt) ->
     'copy'
     'concurrent:dev', 'concurrent:dist'
     'uglify', 'concat' #minify JS
-    'prettify', 'autoprefixer', 'cssmin'
+    'autoprefixer', 'cssmin'
     'flexSVG', 'svgmin' # optimize SVG
     'connect', 'watch'
   ]
@@ -447,14 +446,13 @@ module.exports = (grunt) ->
   grunt.task.registerTask 'default', defaultTasks
   
   # task list for 'dist' tasks
-  distTasks = _.reject defaultTasks, (val) ->
-    val is 'prettify' or val.indexOf('dev') isnt -1
-
-  # 'watch'タスクを取り除き、新たなタスクを追加
-  distTasks.splice distTasks.length-1, 1, 'clean:tmpfiles', 'clean:debugFiles', 'addNoJekyll'
-
+  distTasks = _(defaultTasks)
+    .without('concurrent:dev', 'watch')
+    .union(['clean:tmpfiles', 'clean:debugFiles', 'addNoJekyll'])
+    .valueOf()
+  
   grunt.task.registerTask 'dist',
-    'Generate only the files to publish a website'
+    'Generate only the files to publish a website',
     distTasks
   
   grunt.task.registerTask 'deploy',

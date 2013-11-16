@@ -4,7 +4,7 @@ header {
   width: 100%;
   // background-color: #F3F0F9;
   background: $background-white;
-  background: linear-gradient(to bottom, #F8F9F9 0%, $background-white 100%);
+  background: linear-gradient(to left, #F7F8F8 0%, $background-white 80%);
 }
 
 .header-line {
@@ -48,7 +48,7 @@ $home-icon-size: 45px;
   //border-bottom: 1px solid $common-violet;
 }
 
-header a{
+header a {
 
   display: block;
   float: left;
@@ -93,13 +93,13 @@ header a{
     color: gray;
   }
   &.active {
-    margin-right: - 1px;
+    //margin-right: - 1px;
 
     background-color: $background-white;
     color: $common-violet;
 
-    border: 1px solid $common-hover-violet; //#E1E1E1;
-    border-top-color: lighten($common-hover-violet, 20);
+    //border: 1px solid $common-hover-violet; //#E1E1E1;
+    //border-top-color: lighten($common-hover-violet, 20);
     border-left-color: lighten($common-hover-violet, 12);
     //border-bottom: 1px solid $common-hover-violet;
     border-bottom-color: $background-white;
