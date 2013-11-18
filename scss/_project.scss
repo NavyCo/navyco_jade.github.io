@@ -1,6 +1,6 @@
 @charset 'UTF-8';
 
-$grid-gutter: $gutter * 2;
+$grid-gutter: $gutter;
 
 // TODO: グリッドのモジュール化
 @mixin grid-parent {
@@ -32,7 +32,7 @@ $thumbnail-size: ($main-width - $grid-gutter * 2) / 4.0;
   position: relative;
   float: left;
   width: percentage(1/4);
-  height: $thumbnail-size * 1.35;
+  height: $thumbnail-size * 1.2;
 
   margin-left: $grid-gutter;
   margin-right: -$grid-gutter;
@@ -50,7 +50,7 @@ $thumbnail-size: ($main-width - $grid-gutter * 2) / 4.0;
     img {
       position: relative;
       left: 50%;
-      height: 250px;
+      height: 250px * 0.8;
       margin-left: - 500px * 0.5;
     }
   }
@@ -77,6 +77,10 @@ $thumbnail-size: ($main-width - $grid-gutter * 2) / 4.0;
 @media screen and(max-width: $main-width + $main-space-width * 2 - 1 - $thumbnail-size * 1){
   .project {
     width: percentage(1/2);
+
+    a img {
+      height: 250px * 0.9;
+    }
   }
 }
 
@@ -88,6 +92,10 @@ $thumbnail-size: ($main-width - $grid-gutter * 2) / 4.0;
   .project {
     margin-left: 0;
     width: 100%;
+
+    a img {
+      height: 250px;
+    }
     
     & > * {
       width: 100%;      

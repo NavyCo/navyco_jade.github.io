@@ -5,6 +5,7 @@ template: default
 block content
   section.full-width
     .inner
+      #logo
       h1.top-title
         span.first-name
           span.capital S
@@ -19,7 +20,7 @@ block content
       //-p.top-subtitle Software Engineer, User Interface Designer
       .top-subtitle
         p.
-            Webフロントエンド開発／デザイン、ユーザーインターフェースデザイン、<br>インタラクティブコンテンツ制作などを行う渡邉伸之介のウェブサイトです。
+          Webフロントエンド開発／デザイン、ユーザーインターフェースデザイン、<br>インタラクティブコンテンツ制作などを行う渡邉伸之介のウェブサイトです。
         //p
           span.capital W
           | eb&#32;
@@ -36,31 +37,13 @@ block content
           span.capital D
           | esigner
     //-.line-wide
-
-   //-.columns
-    section.two-column
-      //-h1
-        span.header-rect
-        | About
-      
-      //- レスポンシブデザインを見せるために半カラムのモノがあった方が良い
-      p.lead Webサイト制作、ライブラリ開発、ユーザーインターフェースデザイン、インタラクティブコンテンツ制作などを行う渡邉伸之介のウェブサイトです。
-      hr
-      
-      //- いきなりほかのサイトに誘導するのはおかしい
-      
-      //-p
-        a(href='https://github.com/shinnn/shinnn.github.io') 本ウェブサイト
-        | のほか、ソフトウェアの開発成果は随時Githubに公開しています。
-      hr
-      //-p
-        a.github.inline-icon(href='https://github.com/shinnn?tab=repositories') Github リポジトリ一覧
-      
+  
+  #ribbon
+    #left-ribbon
+    #right-ribbon
+    .icon#scroll-down
+  
   section
-    //-h1
-      span.header-rect
-      | Projects
-
     .featured-works
       a.wide-image(href= htmlPath('projects/openstudio.html'))
         img(src='/img/openstudio-large.jpg', alt='')
@@ -70,8 +53,8 @@ block content
             p 東京芸術大学<br>OPEN STUDIO 2013<br>Webサイト
       h2.work-title
         span 東京芸術大学 成果発表会 OPEN STUDIO 2013 Webサイト
-      //.role フロントエンド開発 / ユーザーインターフェースデザイン
-      hr.line-wide
+      .line-wide
+      .role フロントエンド開発 / ユーザーインターフェースデザイン
 
     .featured-works
       a.wide-image(href= htmlPath('projects/musabi-degreeshow.html'))
@@ -82,8 +65,8 @@ block content
             p 武蔵野美術大学<br>デザイン情報学科<br>卒業研究・制作展 '11<br>Webサイト
       h2.work-title
         span 武蔵野美術大学デザイン情報学科 卒業研究・制作展 '11 Webサイト
-      //.role フロントエンド・バックエンド開発 / ユーザーインターフェースデザイン
-      hr.line-wide
+      .line-wide
+      .role フロントエンド・バックエンド開発 / ユーザーインターフェースデザイン
 
     .featured-works
       a.wide-image(href= htmlPath('projects/wave.html'))
@@ -94,8 +77,8 @@ block content
             p Wave to Wave
       h2.work-title
         span Wave to Wave
-      //.role 電子工作 / インタラクションデザイン
-      hr.line-wide
+      .line-wide
+      .role 電子工作 / インタラクションデザイン
 
     .featured-works
       a.wide-image(href= htmlPath('projects/aquarium.html'))
@@ -106,8 +89,8 @@ block content
             p ひかりひらり水族館
       h2.work-title
         span ひかりひらり水族館
-      //.role グラフィックプログラミング
-      hr.line-wide
+      .line-wide
+      .role グラフィックプログラミング
     
     p
       a(href=htmlPath('projects.html'))

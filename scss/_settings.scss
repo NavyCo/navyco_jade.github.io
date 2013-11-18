@@ -17,11 +17,11 @@ $base-font-size: 15px;
 $base-line-height: $base-font-size * 1.25;
 
 // main content in the center
-$main-width: 1080px; // or 1080px
+$main-width: 920px; // or 1080px
 $main-space-width: $gutter * 3;
 
 // theme colors
-$background-white: #FDFDFD;
+$background-white: #FEFEFE;
 $common-white: $background-white + #010101;
 
 $common-black: #292929;
@@ -32,7 +32,7 @@ $common-hover-violet: #9b59b6;// #C8A9D6;
 $common-line-violet: $common-hover-violet;
 
 $common-text-gray: #727272;
-$common-line-gray: #E3E3E3;
+$common-line-gray: #E1E1E1;
 
 $head-decoration-violet: #bd8fd1;
 

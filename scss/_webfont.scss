@@ -9,11 +9,6 @@
   @return $result_string;
 }
 
-$icons : setPre-Suffix(
-  '.icon-',
-  (flickr, wordpress, home, youtube, facebook, twitter, tumblr, code, star, github, angle-double-right, ok, right)
-);
-
 $filename-icon : 'icon';
 
 @font-face {
@@ -40,7 +35,7 @@ src: url('../font/icon.svg?39909792#link') format('svg');
 }
 */
 
-#{$icons} {
+.icon {
   &:before{
     font-family: 'icon';
     speak: none;

@@ -19,25 +19,10 @@ block inner
         span= project.role.join(' / ')
   
   section
-    #slider
-      ul
-        if(project.imageFileNum)
-          - for(var i=0; i < project.imageFileNum; i++)
-            li
-              img(src='/img/projects/' + basename + '/' + i + '.jpg')
-        else
-          - for(var i=0; i < 4; i++)
-            li
-              img(src='http://placehold.it/1248x702')
-    #slider-select
-      if(project.imageFileNum)
-        - for(var i=0; i < project.imageFileNum; i++)
-          a.pager(data-slide-index=i, href='')
-            img(src='/img/projects/' + basename + '/' + i + '.jpg')
-      else
-        - for(var i=0; i < 4; i++)
-          li
-            img(src='http://placehold.it/1248x702')
+    if(projectImagePaths.length)
+      img.project-image(src='/' + projectImagePaths[0])
+    else
+      img.project-image(src='http://placehold.it/1248x702')
       
 
   section
@@ -51,23 +36,20 @@ block inner
     - if(project.features)
       ul.features
         each feature in project.features
-          li= feature
-    
-    //- 技術情報は Github に任せて、ここには掲載しないのも一手
-    //- if(project.technologies)
-      p.skill-code= project.technologies.join(', ')
-    
+          li.icon= feature
+
     .project-description
       hr.line-wide
-      //if(project.description)
-        .skill-other
+      //-if(project.description)
+        .icon.skill-other
       if(typeof project.description === 'string')
         p!= project.description
       else if(Array.isArray(project.description))
         each paragraph in project.description
           p!= paragraph
-    
-    .prev-next
-    
+  
+  section
+    - for(var i=1; i < projectImagePaths.length; i++)
+        img.project-image(src='/' + projectImagePaths[i])
   
   block content

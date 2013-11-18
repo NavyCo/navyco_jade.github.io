@@ -57,13 +57,15 @@ html(lang='ja')
       header
         #menubar
           #menu
-            a#home(href= htmlPath())
+            //-a#home(href= htmlPath())
             //-p Shinnosuke Watanabe
             #webservices
-              a.github(href='https://github.com/shinnn', target='_blank')
-              a.twitter(href='https://twitter.com/shinnn_tw', target='_blank')
+              a.icon.github(href='https://github.com/shinnn', target='_blank')
+              a.icon.twitter(href='https://twitter.com/shinnn_tw', target='_blank')
+              //-a(href='https://github.com/shinnn', target='_blank') Github
+              //-a(href='https://twitter.com/shinnn_tw', target='_blank') Twitter
             #tabs
-              //-a(href= htmlPath()) Home
+              a(href= htmlPath()) Home
               a(href= htmlPath('about.html')) About
               a(href= htmlPath('projects.html')) Projects
             

@@ -4,7 +4,7 @@ header {
   width: 100%;
   // background-color: #F3F0F9;
   background: $background-white;
-  background: linear-gradient(to left, #F7F8F8 0%, $background-white 80%);
+  //background: linear-gradient(to left, #F7F8F8 0%, $background-white 80%);
 }
 
 .header-line {
@@ -14,29 +14,11 @@ header {
   margin-top: -1px;
   background-color: $common-line-violet; //$common-line-gray; $common-violet;
 }
-/*
-.pace .pace-progress {
-  z-index: -100;
-  width: 100%;
-  height: 1px;
-  margin-top: -1px;
-  
-  background-color: $common-line-violet; //$common-line-gray; $common-violet;
 
-  -webkit-transition: width 1s;
-  -moz-transition: width 1s;
-  -o-transition: width 1s;
-  transition: width 1s;
-}
-
-.pace-inactive {
-  //display: none;
-}
-*/
 #menubar {
   @extend %centered;
   overflow: hidden;
-  padding-top: $gutter * 2.5;
+  padding-top: $gutter * 2;
   height: 32px;
 }
 
@@ -77,6 +59,8 @@ header a {
 
   padding-left: 12px;
   padding-right: 12px;
+  
+  font-weight: 600;
 
   @media screen and(max-width: $main-width - 270px){
     padding-left: 8px;
@@ -86,7 +70,6 @@ header a {
   padding-top: 8px;
   margin-top: -7px;
 
-  font-weight: 600;
   color: $common-black;
 
   &:hover {
@@ -95,7 +78,7 @@ header a {
   &.active {
     //margin-right: - 1px;
 
-    background-color: $background-white;
+    // background-color: $background-white;
     color: $common-violet;
 
     //border: 1px solid $common-hover-violet; //#E1E1E1;
@@ -127,7 +110,7 @@ header a {
     height: $home-icon-size - 10px;
   }
 
-  &.active {
+  &.active, section & {
     height: $home-icon-size;
     margin-top: -$home-icon-size + ($base-font-size + 2px) + 14px;
 
@@ -156,7 +139,6 @@ header a {
     padding: 0;
     margin-right: 0;
     margin-left: $gutter;
-    font-size: $base-font-size + 5px;
     border-bottom: none;
   }
   
@@ -167,13 +149,13 @@ header a {
   }
 
   .github {
-    margin-top: -38px + $base-font-size;
-    font-size: 38px;
+    margin-top: -32px + $base-font-size;
+    font-size: 32px;
   }
 
   .twitter {
-    margin-top: -32px + $base-font-size;
-    font-size: 32px;
+    margin-top: -27px + $base-font-size;
+    font-size: 27px;
   }
 }
 

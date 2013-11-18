@@ -4,6 +4,15 @@
   text-align: center;
 }
 
+#logo {
+  width: 60px;
+  height: 60px;
+
+  background: image-url('logo.gif');
+  background-size: 100%;
+  margin: $gutter * 2 auto 0 auto;
+}
+
 @mixin top-title-font-size($base-size) {
   .top-title {
     font-size: $base-size;
@@ -16,12 +25,12 @@
 @include top-title-font-size(36px);
 
 .top-title {
-  margin-left: -12px;
-  margin-top: $gutter * 2;
+  margin-left: -6px;
+  margin-top: $gutter * 0.5;
   margin-bottom: $gutter * 0.5;
   
   font-family: Roboto, 'Open Sans', $sans-serif;
-  font-weight: 300;
+  font-weight: 400;
   color: $common-black;
   //color: $common-violet;
   
@@ -36,14 +45,14 @@
 }
 
 @media screen and(max-width: $main-width){
-  @include top-title-font-size(38px);
+  @include top-title-font-size(34px);
 }
 @media screen and(max-width: $main-width - 270){
-  @include top-title-font-size(36px);
+  @include top-title-font-size(32px);
 }
 
 .top-subtitle {
-  margin-bottom: $gutter;
+  margin-bottom: $gutter * 2;
 
   //font-size: 21px; //old
   font-size: $base-font-size - 1px;
@@ -61,7 +70,7 @@
     }
   }
   
-  @media screen and(max-width: $main-width - 420){
+  @media screen and(max-width: $main-width - 520){
     br {
       display: none;
     }
@@ -97,12 +106,62 @@ section.full-width {
   .full-width {
     padding-top: $gutter * 0.5;
   }
+}
+
+#ribbon {
+  display: none;
+}
+
+.js #ribbon {
+  display: block;
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+  bottom: 0;
+  height: 40px;
+}
+
+#left-ribbon, #right-ribbon {
+  position: absolute;
+  background-color: $common-violet;
+  bottom: 0;
+  width: 50%;
+  height: 8px;
+}
+
+#left-ribbon {
+  left: 0;
+}
+
+#right-ribbon {
+  right: 0;
+}
+
+#scroll-down {
+  @include icon-down;
   
-  #content {}
+  position: relative;
+  
+  margin: 0 auto;
+  height: 32px;
+  width: 60px;
+  padding-top: 8px;
+  cursor: pointer;
+  
+  background-color: $common-violet;
+  //border-radius: 60px 60px 0 0 / 60px 60px 0 0;
+  border-radius: 8px 8px 0 0 / 8px 8px 0 0;
+  
+  &:before {
+    z-index: 101;
+    font-size: 24px;
+    color: $common-white;
+  }
 }
 
 .page-title {
-  font-size: 24px;
+  text-align: center;
+  font-size: 22px;
   
   @media screen and(max-width: $main-width){
     font-size: 23px;
@@ -121,25 +180,37 @@ section.full-width {
 }
 
 .page-subtitle {
+  text-align: center;
   font-family: $sans-serif;
   font-size: 26px;
   font-weight: 300;
   color: #c8a9d5;
-  //color: darken(#c8a9d5, 10);
   color: gray;
 }
 
 $featured-image-height: 240px;
 
 .featured-works {
-  margin-bottom: $gutter * 2;
+  margin-bottom: $gutter * 3;
+  
+  .js & {
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+
+.featured-works .line-wide {
+  max-width: 60%;
+  margin-left: 20%;
+  margin-bottom: 0.25em;
+  background-color: $common-line-gray;
 }
 
 .wide-image {
   display: block;
   overflow: hidden;
   height: $featured-image-height;
-  margin-bottom: $gutter * 0.5;
+  margin-bottom: $gutter * 1;
   line-height: 0;
   background-color: $common-black;
   //border: 4px solid #FFFFFF;
@@ -150,11 +221,11 @@ $featured-image-height: 240px;
   img {
     position: relative;
     float: right;
-    left: $main-width * 0.65;
-    margin-right: 65%;
+    left: 1080px * 0.5;
+    margin-right: 50%;
 
     width: auto;
-    max-width: $main-width;
+    max-width: 1080px;
     height: auto;
     min-height: $featured-image-height;
 
@@ -170,50 +241,15 @@ $featured-image-height: 240px;
       height: 240px;
     }
   }
-  
-  .caption {
-    display: none;
-    position: relative;
-    width: 200px;
-    max-width: $main-width;
-    height: $featured-image-height;
-    //height: 0;
-    
-    .back {
-      height: $featured-image-height;
-      opacity: 0.721;
-      background-color: $common-black;
-    }
-    
-    .front {
-      position: absolute;
-      z-index: 2;
-      margin-top: -$featured-image-height + $gutter * 0.5;
-      
-      width: 200px - $gutter * 2;
-
-      color: $common-white;
-      text-shadow: 0 0 6px #464646;
-      
-      p {
-        padding-left: 12px;
-        
-        border-left: 12px solid lighten($common-hover-violet, 8);
-
-        font-size: $base-font-size - 1px;
-        line-height: 1.65;
-      }
-    }
-  }
 }
 
 .work-title {
-  font-size: $base-font-size;
-  margin-bottom: 0.5em;
+  font-size: $base-font-size - 1;
+  margin-bottom: 0.25em;
 }
 
 .role {
-  font-size: $base-font-size - 2px;
+  font-size: $base-font-size - 3px;
   margin-right: $gutter;
   color: $common-text-gray;
   

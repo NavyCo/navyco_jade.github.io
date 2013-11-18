@@ -278,19 +278,17 @@ module.exports = (grunt) ->
       site:
         options:
           base: DEST_ROOT
-              
+    
     open:
       site:
-        path: 'http://shinnn.github.io/'
+        # http://stackoverflow.com/questions/1349404/#comment13539914_8084248
+        path: "http://shinnn.github.io/?v=#{ Math.random().toString(36).substr(2, 5) }"
         app: 'Google Chrome'
     
     watch:
       options:
-        # http://feedback.livereload.com/knowledgebase/articles/86242
-        # if you want to use it with local files,
-        # be sure to enable “Allow access to file URLs” checkbox
-        # in Tools > Extensions > LiveReload after installation.
         livereload: '<%= connect.options.livereload %>'
+
       bower:
         files: ["#{ SRC_ROOT }bower.json"]
         tasks: ['bower', 'uglify:bower']
@@ -328,8 +326,6 @@ module.exports = (grunt) ->
           base: DEST_ROOT
           branch: 'master'
           message: 'deployed by grunt-gh-pages'
-          user:
-            name: 'shinnn'
         src: '**/*'
     
     prompt:
@@ -356,42 +352,38 @@ module.exports = (grunt) ->
   # Compile .jade files with frontmatter
   grunt.task.registerTask 'jadeTemplate',
   'Compile Jade files with front-matter', (mode) ->
+
     readOptions =
       cwd: "#{ SRC_ROOT }jade/pages/"
       filter: 'isFile'
     
-    jadeFiles = grunt.file.expand readOptions, '**/*.jade'
+    jadeFilePaths = grunt.file.expand readOptions, '**/*.jade'
     
     compileOptions =
       pretty: false
       # HTMLファイルのパスは書き出し先のフォルダのルートが基準となる
       filename: readOptions.cwd + '../'
     
-    for file in jadeFiles
+    for file in jadeFilePaths
       raw = grunt.file.read readOptions.cwd + file
       splitted = yamlFront.loadFront(raw)
       
       localData = _.omit splitted, '__content'
       
-      addition = ''
-      
-      # テンプレートファイルの参照先のパス
-      _templatePath = ''
-      _dirDepth = file.match(/\//g)?.length or 0
-      _templatePath += '../' while _dirDepth--
-      
-      if localData.template
-        addition += "extend ../templates/#{ localData.template }\n"
-      if localData.layout
-        addition += "extend ../layouts/#{ localData.layout }\n"
-
-      jadeTxt = addition + splitted.__content
+      jadeTxt = """
+      extend ../templates/#{ localData.template or localData.layout }
+      #{ splitted.__content }
+      """
       
       # helper
       ## ディレクトリ名と拡張子を取り除いたファイル名
       localData.basename = path.basename file, '.jade'
+      ## プロジェクトの画像
+      localData.projectImagePaths = grunt.file.expand {
+        cwd: SRC_ROOT
+      }, "img/projects/#{ localData.basename }/**/*.{png,jpg,gif}"
       
-      allData = _.extend globalJadeData(), localData, compileOptions
+      allData = _.assign globalJadeData(), localData, compileOptions
       
       if mode isnt 'dev'
         jade.render jadeTxt, allData, (err, html) ->
@@ -405,7 +397,7 @@ module.exports = (grunt) ->
             file.replace('.jade', '.html') }\" created."
       
       if mode isnt 'dist'
-        allDataDebug = _.extend allData, {DEBUG: true, pretty: true}
+        allDataDebug = _.assign allData, {DEBUG: true, pretty: true}
         jade.render jadeTxt, allDataDebug, (err, html) ->
           if err
             console.warn err
@@ -461,5 +453,12 @@ module.exports = (grunt) ->
       grunt.loadNpmTasks 'grunt-prompt'
       grunt.loadNpmTasks 'grunt-gh-pages'
       grunt.loadNpmTasks 'grunt-open'
-    
+      
+      HOME_DIR = process.env.HOME or process.env.HOMEPATH or process.env.USERPROFILE
+
+      ini = require 'ini'
+      gitConfig = ini.parse grunt.file.read("#{ HOME_DIR }/.gitconfig")
+      
+      grunt.config.set 'gh-pages.site.options.user', gitConfig.user
+
       grunt.task.run 'dist', 'prompt', 'gh-pages', 'open'

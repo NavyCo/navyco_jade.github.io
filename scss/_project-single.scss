@@ -2,12 +2,17 @@
 
 .project-info {
   margin-top: -0.5em;
+  margin-bottom: $gutter;
 
-  font-size: $base-font-size;
+  font-size: $base-font-size - 1px;
   color: gray;
   
+  p {
+    text-align: center;
+  }
+  
   span {
-    float: left;
+    //float: left;
   }
   
   .bar {
@@ -15,6 +20,11 @@
     color: #C0C0C0;
     // border-left: solid 1px #C0C0C0;
   }
+}
+
+.project-image {
+  width: 100%;
+  //margin-left: 5%;
 }
 
 #slider {
@@ -39,9 +49,7 @@
 
 .project-links {
   li {
-    // max-width: $main-width * 0.4;
-    // height: $base-font-size + 8px;
-    // border: solid 1px $common-violet;
+    margin-left: 10%;
   }
   
   div {
@@ -56,6 +64,7 @@
   
   li {
     @extend .icon-ok;
+    margin-left: 10%;
     font-size: $base-font-size - 1px;
     
     &:before {
@@ -73,7 +82,8 @@ p.skill-code {
 }
 
 .project-description {
-  margin-top: $gutter * 2;
+  margin-top: $gutter;
+  font-size: $base-font-size - 1px;
   
   .header-rect {
     background-color: $common-gray;
@@ -81,9 +91,12 @@ p.skill-code {
   }
   
   p {
-    max-width: $main-width * 0.75 - $gutter;
+    max-width: 80%;
+    margin-left: 10%;
+    
     @media screen and(max-width: $main-width * 0.92){
       max-width: none;
+      margin-left: 0;
     }
     
     margin-top: 0.5em;
