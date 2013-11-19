@@ -24,8 +24,5 @@ jQuery.fn.safeAnimate = do ->
     args = _protoSlice.call arguments, 0
     return this.stop().animate args...
 
-# true if MQ are supported, false if not
-# http://modernizr.com/docs/#mq
-if Modernizr.mq 'only all'
-  true
-  # TODO: load Respond.js
+if not $.support.transition
+  $.fn.transition = $.fn.animate

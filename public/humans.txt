@@ -1,4 +1,3 @@
-/* Humans responsible & Colophon */
 /* humanstxt.org */
 
 /* TEAM */
@@ -20,4 +19,4 @@
   Host: Github Pages
   Language: Japanese
   Doctype: HTML5
-  Software: TextMate, Terminal, Adobe Illustrator, Adobe Photoshop
+  Software: TextMate2, Terminal, Adobe Illustrator, Adobe Photoshop

@@ -19,21 +19,21 @@ block inner
         span= project.role.join(' / ')
   
   section
-    if(projectImagePaths.length)
-      img.project-image(src='/' + projectImagePaths[0])
+    if projectImagePaths.length
+      img.project-image(src='/' + projectImagePaths.shift())
     else
       img.project-image(src='http://placehold.it/1248x702')
       
 
   section
-    if(project.links)
+    if project.links
       ul.project-links
         each link in project.links
           li
             div= link.name
             a(href=link.url, target='_blank')= link.url
     
-    - if(project.features)
+    if project.features
       ul.features
         each feature in project.features
           li.icon= feature
@@ -42,14 +42,15 @@ block inner
       hr.line-wide
       //-if(project.description)
         .icon.skill-other
-      if(typeof project.description === 'string')
+      if (typeof project.description === 'string')
         p!= project.description
       else if(Array.isArray(project.description))
         each paragraph in project.description
           p!= paragraph
   
-  section
-    - for(var i=1; i < projectImagePaths.length; i++)
-        img.project-image(src='/' + projectImagePaths[i])
+  if (projectImagePaths.length)
+    section.subsequent-images
+      each path in projectImagePaths
+        img.project-image(src='/' + path)
   
   block content

@@ -105,3 +105,13 @@ p.skill-code {
     // text-indent: 1em;
   }
 }
+
+section.subsequent-images {
+  .project-image {
+    margin-bottom: $gutter;
+    
+    &:first-child {
+      margin-top: $gutter * 2;
+    }
+  }
+}

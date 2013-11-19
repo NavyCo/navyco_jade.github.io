@@ -2,7 +2,7 @@
 
 path = require 'path'
 _ = require 'lodash'
-yamlFront = require 'yaml-front-matter'
+yfm = require('assemble-front-matter')
 jade = require 'jade'
 
 module.exports = (grunt) ->
@@ -49,25 +49,6 @@ module.exports = (grunt) ->
         prevCommentLine = 0
         
       return result
-  
-  # For Jade
-  DEBUG = true
-  
-  globalJadeData = ->
-    data = {}
-    
-    grunt.file.recurse "#{ SRC_ROOT }jade/data/",
-    (abspath, rootdir, subdir, filename) ->
-      _basename = path.basename filename, path.extname(filename)
-      
-      if path.extname(filename) is '.json'
-        data[_basename] = grunt.file.readJSON abspath
-
-      if path.extname(filename) is '.yaml' or
-      path.extname(filename) is '.yml'
-        data[_basename] = grunt.file.readYAML abspath
-    
-    return data
   
   grunt.initConfig
     bower:
@@ -197,7 +178,7 @@ module.exports = (grunt) ->
         files: [
           expand: true
           cwd: '<%= bower.options.targetDir %>'
-          src: ['{,*/,*/*/}*.js', '!{,*/,*/*/}*{.min,-min}.js', '!debug/{,*/}*']
+          src: ['{,*/,*/*/}*.js', '!{,*/,*/*/}*{.min,-min}.js', '!debug/{,*/}*.js']
           dest: '<%= bower.options.targetDir %>'
         ]
     
@@ -321,11 +302,11 @@ module.exports = (grunt) ->
         tasks: ['copy:public']
         
     'gh-pages':
+      options:
+        base: DEST_ROOT
+        branch: 'master'
+        message: 'deployed by grunt-gh-pages'
       site:
-        options:
-          base: DEST_ROOT
-          branch: 'master'
-          message: 'deployed by grunt-gh-pages'
         src: '**/*'
     
     prompt:
@@ -333,7 +314,7 @@ module.exports = (grunt) ->
         options:
           questions: [
             {
-              config: 'gh-pages.site.options.message'
+              config: 'gh-pages.options.message'
               type: 'input'
               message: 'Enter the commit message.'
               default: 'deployed by grunt-gh-pages'
@@ -352,63 +333,73 @@ module.exports = (grunt) ->
   # Compile .jade files with frontmatter
   grunt.task.registerTask 'jadeTemplate',
   'Compile Jade files with front-matter', (mode) ->
+    
+    devMode = mode isnt 'dist'
 
-    readOptions =
+    globalData = {}
+    
+    grunt.file.recurse "#{ SRC_ROOT }jade/data/",
+      (abspath, rootdir, subdir, filename) ->
+        _basename = path.basename filename, path.extname(filename)
+    
+        if path.extname(filename) is '.json'
+          globalData[_basename] = grunt.file.readJSON abspath
+
+        if path.extname(filename) is '.yaml' or
+        path.extname(filename) is '.yml'
+          globalData[_basename] = grunt.file.readYAML abspath
+
+    mapOptions =
       cwd: "#{ SRC_ROOT }jade/pages/"
       filter: 'isFile'
+      ext: '.html'
+      rename: (dest, src) ->
+        dest + (if devMode then 'debug/' else '') + src
     
-    jadeFilePaths = grunt.file.expand readOptions, '**/*.jade'
-    
+    fileMap = grunt.file.expandMapping '**/*.jade', DEST_ROOT, mapOptions
+        
     compileOptions =
       pretty: false
       # HTMLファイルのパスは書き出し先のフォルダのルートが基準となる
-      filename: readOptions.cwd + '../'
+      filename: mapOptions.cwd + '../'
     
-    for file in jadeFilePaths
-      raw = grunt.file.read readOptions.cwd + file
-      splitted = yamlFront.loadFront(raw)
+    for filePath in fileMap
+      srcPath = filePath.src[0]
+      destPath = filePath.dest
       
-      localData = _.omit splitted, '__content'
+      raw = yfm.extract srcPath
+      
+      localData = raw.context
       
       jadeTxt = """
       extend ../templates/#{ localData.template or localData.layout }
-      #{ splitted.__content }
+      #{ raw.content }
       """
       
       # helper
       ## ディレクトリ名と拡張子を取り除いたファイル名
-      localData.basename = path.basename file, '.jade'
+      localData.basename = path.basename srcPath, '.jade'
       ## プロジェクトの画像
       localData.projectImagePaths = grunt.file.expand {
         cwd: SRC_ROOT
       }, "img/projects/#{ localData.basename }/**/*.{png,jpg,gif}"
       
-      allData = _.assign globalJadeData(), localData, compileOptions
+      allData = _.assign globalData, localData, compileOptions
       
-      if mode isnt 'dev'
-        jade.render jadeTxt, allData, (err, html) ->
-          if err
-            console.warn err
-            return
-
-          grunt.file.write DEST_ROOT + file.replace('.jade', '.html'), html
-          console.log "File \"#{ DEST_ROOT +
-            readOptions.cwd +
-            file.replace('.jade', '.html') }\" created."
+      if devMode
+        allData = _.assign allData, {DEBUG: true, pretty: true}
       
-      if mode isnt 'dist'
-        allDataDebug = _.assign allData, {DEBUG: true, pretty: true}
-        jade.render jadeTxt, allDataDebug, (err, html) ->
-          if err
-            console.warn err
-            return
-
-          grunt.file.write "#{ DEST_ROOT }debug/#{ file.replace('.jade', '.html') }", html
-
+      jade.render jadeTxt, allData, (err, html) ->
+        if err
+          console.warn err
+        else
+          grunt.file.write destPath, html
+          console.log "File \"#{ destPath }\" created."
+      
   
-  # SVG の width, height 属性を取り除く
+  # Remove 'width' and 'height' properties from SVG
   grunt.task.registerTask 'flexSVG', 'An internal task.', ->
-    _cwd = 'svg/'
+    _cwd = "#{ SRC_ROOT }svg/"
     srcSVGs = grunt.file.expand {cwd: _cwd}, '*.svg'
     srcSVGs.forEach (filepath) ->
       svgString = grunt.file.read _cwd + filepath
@@ -454,11 +445,13 @@ module.exports = (grunt) ->
       grunt.loadNpmTasks 'grunt-gh-pages'
       grunt.loadNpmTasks 'grunt-open'
       
-      HOME_DIR = process.env.HOME or process.env.HOMEPATH or process.env.USERPROFILE
-
       ini = require 'ini'
-      gitConfig = ini.parse grunt.file.read("#{ HOME_DIR }/.gitconfig")
+      gitConfig = ini.parse grunt.file.read("#{
+        process.env.HOME or
+        process.env.HOMEPATH or
+        process.env.USERPROFILE
+      }/.gitconfig")
       
-      grunt.config.set 'gh-pages.site.options.user', gitConfig.user
+      grunt.config.set 'gh-pages.options.user', gitConfig.user
 
       grunt.task.run 'dist', 'prompt', 'gh-pages', 'open'

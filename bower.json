@@ -11,6 +11,7 @@
     "jquery": "latest",
     "jquery1": "jquery#1",
     "jquery-pjax": "latest",
+    "jquery.transit": "latest",
     "mousetrap": "latest",
     "html5shiv": "latest",
     "selectivizr": "latest",
@@ -23,6 +24,9 @@
   "exportsOverride": {
     "/jquery\\d?$/": {
       "public": "jquery.min.js"
+    },
+    "jquery.transit": {
+      "jquery.transit": "jquery.transit.js"
     },
     "mousetrap": {
       "mousetrap": "mousetrap.min.js"

@@ -58,7 +58,7 @@ $ ->
       setTitlePos()
       $w.one 'scroll', resetTop
       $('#scroll-down').on 'click', ->
-        $('html,body').animate {
+        $('html,body').transition {
           scrollTop: "#{ $('header').height() }px"
         }, 400
         resetTop()
@@ -73,13 +73,13 @@ $ ->
     #ribbon
     $('#scroll-down').fadeOut 80, ->
       $(this).remove()
-    $('#left-ribbon, #right-ribbon').animate {
+    $('#left-ribbon, #right-ribbon').transition {
       width: 0
     }, 250, ->
       $(this).remove()
       
     
-    $('.top .inner').animate {
+    $('.top .inner').transition {
       paddingTop: '0'
     }, 400
     $('.featured-works')
