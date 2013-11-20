@@ -65,6 +65,7 @@ body {
   color: $common-black;
 
   background: $background-white;
+  background: image-url('subttle.jpg');
 }
 
 header, main, footer {
@@ -94,11 +95,13 @@ main {
 main section {
   @extend %centered;
   
-  margin-bottom: $gutter * 1.5;
+  padding-bottom: $gutter * 1.5;
+  
+  //background-color: $background-white;
   
   a {
     //text-decoration: underline;
-    color: #b728cc;
+    color: $common-violet;
   }
   
   h1, h2, h3 {

@@ -64,21 +64,35 @@
   
   li {
     @extend .icon-ok;
+    max-width: 80%;
     margin-left: 10%;
-    font-size: $base-font-size - 1px;
+    margin-bottom: 2px;
+    
+    font-size: $base-font-size - 2px;
+    font-weight: bold;
+    color: darken($common-text-gray, 16);
     
     &:before {
-      color: #b728cc;
+      color: $common-hover-violet;
       margin-right: 0.5em;
     }
+    
+    &:nth-child(odd):before {
+      color: $common-violet;
+    }
+    
   }
 }
 p.skill-code {
   margin-top: 1.0em;
   
   &:before {
-    color: #b728cc;
+    color: $common-violet;
   };
+}
+
+.project-links {
+  margin-top: $gutter;
 }
 
 .project-description {
@@ -104,11 +118,21 @@ p.skill-code {
     color: #505050;
     // text-indent: 1em;
   }
+  
+  hr.line-wide {
+    max-width: 76%;
+    margin-left: 12%;
+  }
 }
 
 section.subsequent-images {
+  hr.line-wide {
+    max-width: 88%;
+    margin-left: 6%;
+  }
+  
   .project-image {
-    margin-bottom: $gutter;
+    margin-bottom: $gutter * 2;
     
     &:first-child {
       margin-top: $gutter * 2;

@@ -40,16 +40,18 @@ block inner
 
     .project-description
       hr.line-wide
+
       //-if(project.description)
         .icon.skill-other
       if (typeof project.description === 'string')
         p!= project.description
-      else if(Array.isArray(project.description))
+      else if Array.isArray(project.description)
         each paragraph in project.description
           p!= paragraph
-  
+        
   if (projectImagePaths.length)
     section.subsequent-images
+      //-hr.line-wide
       each path in projectImagePaths
         img.project-image(src='/' + path)
   

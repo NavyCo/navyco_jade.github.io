@@ -90,10 +90,7 @@ section.full-width {
   margin-bottom: $gutter * 3;
   padding-left: 0;
   padding-right: 0;
-  
-  background-color: $common-violet;
-  background-color: $background-white;
-  
+    
   .inner {
     @extend %centered;
     width: auto;

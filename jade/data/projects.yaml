@@ -28,7 +28,9 @@
       - Compass
       - jQuery
       
-    imageFileNum: 3
+    imageCaptions:
+      - ファーストビュー
+      - 挨拶
 
   - 
     name: musabi-degreeshow

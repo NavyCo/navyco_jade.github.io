@@ -296,7 +296,7 @@ module.exports = (grunt) ->
         tasks: ['flexSVG', 'svgmin']
       jade:
         files: ["#{ SRC_ROOT }jade/**/*.{jade,json,yaml,yml}"]
-        tasks: ['jadeTemplate', 'prettify:all']
+        tasks: ['jadeTemplate:dev', 'jadeTemplate:dist']
       copy:
         files: ["#{ SRC_ROOT }public/**/*"]
         tasks: ['copy:public']
