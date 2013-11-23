@@ -27,10 +27,10 @@
       - Jade
       - Compass
       - jQuery
-      
-    imageCaptions:
+    image_captions:
       - ファーストビュー
       - 挨拶
+      - 横スクロール
 
   - 
     name: musabi-degreeshow
@@ -55,7 +55,9 @@
       - レスポンシブWebデザイン
       - セマンティック・マークアップ
       - Gruntによる自動化（拡張メタ言語の変換、ファイル圧縮、Lint、デプロイなど）
-    imageFileNum: 3
+    image_captions:
+      - ファーストビュー
+      - 挨拶
 
   - 
     name: react
@@ -79,6 +81,9 @@
     features:
       - ボイド理論に調整を加えた、魚群の動きのシミュレーション
       - スクリーンキャプチャ（静止画／動画）などのユーティリティ
+    image_captions:
+      - ファーストビュー
+      - 挨拶
       
 
   - 
@@ -89,6 +94,9 @@
     role: [電子工作, インタラクションデザイン]
     description: tmp
     features: tmp
+    image_captions:
+      - ファーストビュー
+      - 挨拶
 
   - 
     name: led-workshop
@@ -97,6 +105,9 @@
     genre: [イベント]
     role: [マネジメント]
     description: tmp
+    image_captions:
+      - ファーストビュー
+      - 挨拶
 
   - 
     name: scrollsmartly
@@ -105,7 +116,10 @@
     genre: [ライブラリ]
     role: [ライブラリ開発]
     description: tmp
-    image_format: 'png'
+    image_format: png
+    image_captions:
+      - ファーストビュー
+      - 挨拶
 
   - 
     name: jadebp
@@ -113,5 +127,8 @@
     genre: [テンプレート]
     role: [テンプレート設計]
     description: tmp
-    image_format: 'png'
+    image_format: png
+    image_captions:
+      - ファーストビュー
+      - 挨拶
     

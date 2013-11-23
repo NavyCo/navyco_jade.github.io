@@ -1,6 +1,35 @@
 @charset 'UTF-8';
 
-.project-info {
+.project-menu {
+  width: 100%;
+  
+  div {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  
+  .prev {
+    //float: left;
+    width: $main-width * 0.25;
+  }
+  
+  .back {
+    //float: left;
+    width: $main-width * 0.25;
+  }
+  
+  .next {
+    //float: right;
+    width: $main-width * 0.25;
+    
+    a {
+      //float: right;
+    }
+  }
+}
+
+#project-info {
   margin-top: -0.5em;
   margin-bottom: $gutter;
 
@@ -25,6 +54,7 @@
 .project-image {
   width: 100%;
   //margin-left: 5%;
+  @include image-shadow;
 }
 
 #slider {
@@ -38,7 +68,6 @@
   .pager {
     display: block;
   }
-  
   a {
     margin-bottom: $gutter * 0.5;
   }
@@ -83,6 +112,7 @@
     
   }
 }
+
 p.skill-code {
   margin-top: 1.0em;
   

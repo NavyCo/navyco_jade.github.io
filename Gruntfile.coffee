@@ -2,7 +2,7 @@
 
 path = require 'path'
 _ = require 'lodash'
-yfm = require('assemble-front-matter')
+yfm = require 'assemble-front-matter'
 jade = require 'jade'
 
 module.exports = (grunt) ->

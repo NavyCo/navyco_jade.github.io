@@ -17,7 +17,7 @@ $base-font-size: 15px;
 $base-line-height: $base-font-size * 1.25;
 
 // main content in the center
-$main-width: 920px; // or 1080px
+$main-width: 980px; // or 1080px
 $main-space-width: $gutter * 3;
 
 // theme colors
@@ -37,3 +37,9 @@ $common-line-gray: #E1E1E1;
 $head-decoration-violet: #bd8fd1;
 
 $footer-color: #F0F0F0;
+
+@mixin image-shadow {
+  box-shadow: 0 0 4px $common-text-gray;
+  box-shadow: 0 0 2px rgba(155, 155, 155, 0.8);
+  //border-radius: 4px;
+}

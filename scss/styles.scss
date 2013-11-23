@@ -79,7 +79,7 @@ main {
   height: auto;
   min-height: 100%;
   
-  margin-top: $gutter * 3;
+  margin-top: $gutter * 2.5;
   padding-bottom: $footer-height;
   
   @media screen and(max-width: $main-width - 270px){

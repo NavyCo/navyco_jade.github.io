@@ -74,11 +74,11 @@ header a {
 
   &:hover {
     color: gray;
+    text-decoration: underline;
   }
   &.active {
     //margin-right: - 1px;
 
-    // background-color: $background-white;
     color: $common-violet;
 
     //border: 1px solid $common-hover-violet; //#E1E1E1;
@@ -86,7 +86,7 @@ header a {
     border-left-color: lighten($common-hover-violet, 12);
     //border-bottom: 1px solid $common-hover-violet;
     border-bottom-color: $background-white;
-
+    
     &:hover {
       color: $common-hover-violet;
     }

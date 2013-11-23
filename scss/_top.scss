@@ -157,15 +157,14 @@ section.full-width {
 }
 
 .page-title {
+  margin-bottom: 12px;
+
   text-align: center;
+
   font-size: 22px;
-  
   @media screen and(max-width: $main-width){
     font-size: 23px;
   }
-  
-  font-weight: 400;
-  margin-bottom: 12px;
   
   &+.page-subtitle {
     margin-bottom: 0;      
@@ -188,7 +187,7 @@ section.full-width {
 $featured-image-height: 240px;
 
 .featured-works {
-  margin-bottom: $gutter * 3;
+  margin-bottom: $gutter * 2.5;
   
   .js & {
     visibility: hidden;
@@ -210,8 +209,7 @@ $featured-image-height: 240px;
   margin-bottom: $gutter * 1;
   line-height: 0;
   background-color: $common-black;
-  //border: 4px solid #FFFFFF;
-  //box-shadow: 0 0 2px #ccc;
+  @include image-shadow;
   
   $img-border-width: $gutter * 0.25;
   

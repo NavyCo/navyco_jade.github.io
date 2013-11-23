@@ -58,7 +58,7 @@ $ ->
       setTitlePos()
       $w.one 'scroll', resetTop
       $('#scroll-down').on 'click', ->
-        $('html,body').transition {
+        $('html,body').animate {
           scrollTop: "#{ $('header').height() }px"
         }, 400
         resetTop()
@@ -89,7 +89,7 @@ $ ->
 
   setTitlePos = ->
     $('.top .inner').css {
-      paddingTop: "#{ Math.max($w.height() * 0.5 - 320, 0) }px"
+      paddingTop: "#{ Math.max($w.height() * 0.5 - 350, 0) }px"
     }
 
   _activateTab = ->

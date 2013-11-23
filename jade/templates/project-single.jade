@@ -8,11 +8,29 @@ block inner
   
   //- block の外で project の値を求めると、name の値が未定義なのでエラーとなる
   - var project = getProject(basename);
+  - var projectIndex = projects.indexOf(project);
   
+  - var prevProject = projects.slice(projectIndex - 1)[0];
+  - var nextProject = projects.slice(projectIndex + 1)[0] || projects[0];
+  
+  mixin project-menu
+    .project-menu
+      .back
+        a(href=htmlPath('projects.html')) プロジェクト一覧
+      .prev
+        a(href=htmlPath('projects/' + prevProject.name + '.html'))
+          != '&larr; ' + prevProject.title
+      .next
+        a(href=htmlPath('projects/' + nextProject.name + '.html'))
+          != '&rarr; ' + nextProject.title
+
+  section
+    +project-menu
+    
   section
     h1.page-title= project.title
     //-.line-wide
-    div.project-info
+    #project-info
       p
         span= project.time
         span.bar |
@@ -20,10 +38,12 @@ block inner
   
   section
     if projectImagePaths.length
-      img.project-image(src='/' + projectImagePaths.shift())
+      img.project-image(
+        src= '/' + projectImagePaths.shift(),
+        alt= project.image_captions.shift() || ''
+      )
     else
       img.project-image(src='http://placehold.it/1248x702')
-      
 
   section
     if project.links
@@ -52,7 +72,13 @@ block inner
   if (projectImagePaths.length)
     section.subsequent-images
       //-hr.line-wide
-      each path in projectImagePaths
-        img.project-image(src='/' + path)
+      each path, i in projectImagePaths
+        img.project-image(
+          src= '/' + path,
+          alt= project.image_captions[i] || ''
+        )
+  
+  section
+    +project-menu
   
   block content
