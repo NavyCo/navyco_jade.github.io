@@ -95,7 +95,8 @@ main {
 main section {
   @extend %centered;
   
-  padding-bottom: $gutter * 1.5;
+  padding-top: $gutter * 1.5 * 0.5;
+  padding-bottom: $gutter * 1.5 * 0.5;
   
   //background-color: $background-white;
   
@@ -297,6 +298,14 @@ footer {
   a {
     text-decoration: underline;    
   }
+}
+
+[data-original] {
+  visibility: hidden;
+}
+
+.js [data-original] {
+  visibility: visible;  
 }
 
 @import "header";

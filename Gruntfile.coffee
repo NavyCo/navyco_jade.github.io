@@ -1,11 +1,13 @@
-'use strict'
-
-path = require 'path'
-_ = require 'lodash'
-yfm = require 'assemble-front-matter'
-jade = require 'jade'
-
 module.exports = (grunt) ->
+  'use strict'
+
+  path = require 'path'
+  
+  _ = require 'lodash'
+  yfm = require 'assemble-front-matter'
+  sizeOf = require 'image-size'
+  jade = require 'jade'
+
   require('load-grunt-tasks') grunt, {pattern: [
     'grunt-*'
     '!grunt-gh-pages'
@@ -64,7 +66,7 @@ module.exports = (grunt) ->
       extra:
         # Modernizr won't includes the HTML5 Shiv.
         # Instead, the Shiv will be included in the IE-fix script file.
-        # This saves 2kb, the Shiv's file size, on modern browser.
+        # It saves 2kb on modern browser.
         shiv: false
         printshiv: false
         mq: true
@@ -205,18 +207,6 @@ module.exports = (grunt) ->
       tmpfiles: ["#{ DEST_ROOT }.tmp"]
       debugFiles: ["#{ DEST_ROOT }debug"]
       
-    prettify:
-      options:
-        indent_size: 2
-        unformatted: ['pre', 'code', 'script']
-      all:
-        files: [
-          expand: true
-          cwd: DEST_ROOT
-          src: 'debug/**/*.html'
-          dest: DEST_ROOT
-        ]
-        
     imagemin:
       all:
         options:
@@ -379,10 +369,22 @@ module.exports = (grunt) ->
       # helper
       ## ディレクトリ名と拡張子を取り除いたファイル名
       localData.basename = path.basename srcPath, '.jade'
-      ## プロジェクトの画像
-      localData.projectImagePaths = grunt.file.expand {
+
+      ## プロジェクトの画像のファイルパス、サイズ
+      localData.projectImages = []
+
+      projectImagePaths = grunt.file.expand {
         cwd: SRC_ROOT
       }, "img/projects/#{ localData.basename }/**/*.{png,jpg,gif}"
+      
+      for imagePath, i in projectImagePaths
+        _dimesions = sizeOf imagePath
+        
+        localData.projectImages[i] =
+          path: imagePath
+          width: _dimesions.width
+          height: _dimesions.height
+          
       
       allData = _.assign globalData, localData, compileOptions
       

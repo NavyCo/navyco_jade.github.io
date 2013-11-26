@@ -36,12 +36,27 @@ block inner
         span.bar |
         span= project.role.join(' / ')
   
-  section
-    if projectImagePaths.length
+  mixin lazyload-image(image, caption)
+    .image-wrapper(
+      style='padding-bottom: ' + 100 * image.height / image.width + '%;'
+    )
       img.project-image(
-        src= '/' + projectImagePaths.shift(),
-        alt= project.image_captions.shift() || ''
+        src= '/img/transparent.gif',
+        data-original= '/' + image.path,
+        alt= caption
       )
+    noscript
+      img.project-image(
+        src= '/' + image.path,
+        alt= caption
+      )
+    
+  
+  section
+    if projectImages.length
+      - var mainImg = projectImages.shift();
+      - var mainImgCaption = project.image_captions.shift() || '';      
+      +lazyload-image(mainImg, mainImgCaption)
     else
       img.project-image(src='http://placehold.it/1248x702')
 
@@ -61,22 +76,17 @@ block inner
     .project-description
       hr.line-wide
 
-      //-if(project.description)
-        .icon.skill-other
       if (typeof project.description === 'string')
         p!= project.description
       else if Array.isArray(project.description)
         each paragraph in project.description
           p!= paragraph
-        
-  if (projectImagePaths.length)
+      
+  if projectImages.length
     section.subsequent-images
       //-hr.line-wide
-      each path, i in projectImagePaths
-        img.project-image(
-          src= '/' + path,
-          alt= project.image_captions[i] || ''
-        )
+      each image, i in projectImages
+        +lazyload-image(image, project.image_captions[i])
   
   section
     +project-menu

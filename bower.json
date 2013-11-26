@@ -12,7 +12,7 @@
     "jquery1": "jquery#1",
     "jquery-pjax": "latest",
     "jquery.transit": "latest",
-    "mousetrap": "latest",
+    "jquery.lazyload": "latest",
     "html5shiv": "latest",
     "selectivizr": "latest",
     "respond": "latest",
@@ -28,8 +28,8 @@
     "jquery.transit": {
       "jquery.transit": "jquery.transit.js"
     },
-    "mousetrap": {
-      "mousetrap": "mousetrap.min.js"
+    "jquery.lazyload": {
+      "jquery.lazyload": "jquery.lazyload.min.js"
     },
     "html5shiv": {
       "ie": "dist/html5shiv.js"

@@ -68,6 +68,10 @@
     description: ブラウザで動作するリッチオーディオコンテンツを実現する期待されるWeb Audio APIの習作として制作しました。
     features:
       - Web Audio APIのiOS向けバッドノウハウを駆使し、iOSでの音声再生に対応
+    image_captions:
+      - ファーストビュー
+      - 挨拶
+      - 横スクロール
 
   - 
     name: aquarium
