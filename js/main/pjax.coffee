@@ -30,6 +30,13 @@ $ ->
           scrollTop: "#{ $('header').height() }px"
         }, 400
         resetTop()
+        
+      $('img[data-original]')
+      .removeAttr('src')
+      .lazyload {
+        effect : 'fadeIn'
+        threshold : $w.height() * 0.25
+      }
       
     else
       $main.removeClass 'top'
@@ -41,17 +48,19 @@ $ ->
         effect : 'fadeIn'
         threshold : $w.height() * 0.5
         effect_speed: ->
-          $(this).unwrap()
+          # 「'.image-wrapper' の子孫である」要素に限定せずに .unwrap() すると、
+          # ブラウザバックのたびに親要素を一つずつ消していってしまう
+          $('.image-wrapper').find(this).unwrap()
       }
   
   resetTop = ->
-    #ribbon
+    # Open the ribbon
     $('#scroll-down').fadeOut 80, ->
       $(this).remove()
     $('#left-ribbon, #right-ribbon').transition {
       width: 0
     }, 250, ->
-      $(this).remove()
+      $('#ribbon').remove()
       
     
     $('.top .inner').transition {

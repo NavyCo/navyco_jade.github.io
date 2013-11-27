@@ -30,7 +30,7 @@ module.exports = (grunt) ->
   DEST_ROOT = _addLastSlash(settings.destPath) or 'site/'
   
   JS_ROOT = "#{ SRC_ROOT }js/"
-
+  
   # Preserve banner/license comments certainly
   isIncludedInBanner = do ->
     prevCommentLine = 0
@@ -57,7 +57,9 @@ module.exports = (grunt) ->
       options:
         targetDir: "#{ DEST_ROOT }.tmp/bower_exports/"
         cleanTargetDir: true
-        
+        bowerOptions:
+          production: true
+      
       install: {}
       
     modernizr:
@@ -338,6 +340,13 @@ module.exports = (grunt) ->
         if path.extname(filename) is '.yaml' or
         path.extname(filename) is '.yml'
           globalData[_basename] = grunt.file.readYAML abspath
+    
+    getComponentVersion = (name) ->
+      _bowerPath = "#{ SRC_ROOT }bower_components/#{ name }/bower.json"
+      return grunt.file.readJSON(_bowerPath).version
+
+    globalData.jquery_ver = getComponentVersion 'jquery'
+    globalData.jquery1_ver = getComponentVersion 'jquery1'
 
     mapOptions =
       cwd: "#{ SRC_ROOT }jade/pages/"

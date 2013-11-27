@@ -15,20 +15,21 @@ block inner
   
   mixin project-menu
     .project-menu
-      .back
-        a(href=htmlPath('projects.html')) プロジェクト一覧
-      .prev
-        a(href=htmlPath('projects/' + prevProject.name + '.html'))
-          != '&larr; ' + prevProject.title
-      .next
-        a(href=htmlPath('projects/' + nextProject.name + '.html'))
-          != '&rarr; ' + nextProject.title
+      //-a.back
+        span.icon(href=htmlPath('projects.html'))
+      a.next(href=htmlPath('projects/' + nextProject.name + '.html'))
+        span.icon
+          != nextProject.title
+      a.prev(href=htmlPath('projects/' + prevProject.name + '.html'))
+        span.icon
+          != prevProject.title
 
   section
     +project-menu
+    //-div#number!= projectIndex + 1 + '&nbsp;/&nbsp;' + projects.length
     
   section
-    h1.page-title= project.title
+    h1#page-title= project.title
     //-.line-wide
     #project-info
       p
@@ -54,36 +55,43 @@ block inner
   
   section
     if projectImages.length
-      - var mainImg = projectImages.shift();
-      - var mainImgCaption = project.image_captions.shift() || '';      
-      +lazyload-image(mainImg, mainImgCaption)
+      +lazyload-image(
+        projectImages.shift(),
+        project.image_captions.shift() || ''
+      )
     else
       img.project-image(src='http://placehold.it/1248x702')
 
   section
-    if project.links
-      ul.project-links
-        each link in project.links
-          li
-            div= link.name
-            a(href=link.url, target='_blank')= link.url
-    
-    if project.features
-      ul.features
-        each feature in project.features
-          li.icon= feature
+    #project-details
+      //-if project.lead
+        #project-lead= project.lead
+      if project.links
+        table.links
+          tbody
+            each link in project.links
+              tr
+                td.key
+                  div= link.name
+                td.value
+                  a(href=link.url, target='_blank')= link.url
+        
+      if project.features
+        ul.features
+          each feature in project.features
+            li.icon= feature
 
-    .project-description
-      hr.line-wide
+      #description
+        hr.line-wide
 
-      if (typeof project.description === 'string')
-        p!= project.description
-      else if Array.isArray(project.description)
-        each paragraph in project.description
-          p!= paragraph
+        if (typeof project.description === 'string')
+          p!= project.description
+        else if Array.isArray(project.description)
+          each paragraph in project.description
+            p!= paragraph
       
   if projectImages.length
-    section.subsequent-images
+    section#subsequent-images
       //-hr.line-wide
       each image, i in projectImages
         +lazyload-image(image, project.image_captions[i])

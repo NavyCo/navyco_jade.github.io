@@ -1,5 +1,6 @@
 ---
 template: default
+pageClass: top
 title: ''
 ---
 
@@ -7,7 +8,7 @@ block content
   section.full-width
     .inner
       #logo
-      h1.top-title
+      h1#top-title
         span.first-name
           span.capital S
           | hinnosuke
@@ -19,7 +20,7 @@ block content
           span.narrow-slash /
           | designer, and user interface designer
       //-p.top-subtitle Software Engineer, User Interface Designer
-      .top-subtitle
+      #top-subtitle
         p.
           Webフロントエンド開発／デザイン、ユーザーインターフェースデザイン、<br>インタラクティブコンテンツ制作などを行う渡邉伸之介のウェブサイトです。
         //-p
@@ -43,57 +44,38 @@ block content
     #left-ribbon
     #right-ribbon
     .icon#scroll-down
-    
+  
+  mixin featured-work(name, role)
+    - var _proj = getProject(name);
+  
+    .featured-works
+      a.wide-image(href= htmlPath('projects/' + name + '.html'))
+        img(
+          src= '/img/transparent.gif',
+          data-original= '/img/large/' + name + '.jpg',
+          alt= ''
+        )
+        noscript
+          img(
+            src= '/img/large/' + name + '.jpg',
+            alt=''
+          )
+        //-.caption
+          div.back
+          div.front
+            p= _proj.title
+      h2.work-title
+        span= _proj.title
+      .line-wide
+      .role= role
+  
   section
-    .featured-works
-      a.wide-image(href= htmlPath('projects/openstudio.html'))
-        img(src='/img/openstudio-large.jpg', alt='')
-        .caption
-          div.back
-          div.front
-            p 東京芸術大学<br>OPEN STUDIO 2013<br>Webサイト
-      h2.work-title
-        span 東京芸術大学 成果発表会 OPEN STUDIO 2013 Webサイト
-      .line-wide
-      .role フロントエンド開発 / ユーザーインターフェースデザイン
+    +featured-work('openstudio', 'フロントエンド開発 / ユーザーインターフェースデザイン')
+    +featured-work('musabi-degreeshow', 'フロントエンド・バックエンド開発 / ユーザーインターフェースデザイン')
+    +featured-work('wave', '電子工作 / インタラクションデザイン')
+    +featured-work('aquarium', 'グラフィックプログラミング')
 
-    .featured-works
-      a.wide-image(href= htmlPath('projects/musabi-degreeshow.html'))
-        img(src='/img/g11-large.jpg', alt='')
-        .caption
-          div.back
-          div.front
-            p 武蔵野美術大学<br>デザイン情報学科<br>卒業研究・制作展 '11<br>Webサイト
-      h2.work-title
-        span 武蔵野美術大学デザイン情報学科 卒業研究・制作展 '11 Webサイト
-      .line-wide
-      .role フロントエンド・バックエンド開発 / ユーザーインターフェースデザイン
-
-    .featured-works
-      a.wide-image(href= htmlPath('projects/wave.html'))
-        img(src='/img/wave-large.jpg', alt='')
-        .caption
-          div.back
-          div.front
-            p Wave to Wave
-      h2.work-title
-        span Wave to Wave
-      .line-wide
-      .role 電子工作 / インタラクションデザイン
-
-    .featured-works
-      a.wide-image(href= htmlPath('projects/aquarium.html'))
-        img(src='/img/aquarium-large.jpg', alt='')
-        .caption
-          div.back
-          div.front
-            p ひかりひらり水族館
-      h2.work-title
-        span ひかりひらり水族館
-      .line-wide
-      .role グラフィックプログラミング
-    
     p
       a(href=htmlPath('projects.html'))
         | 全てのプロジェクト 
-        span.icon-angle-double-right
+        span.icon.icon-angle-double-right

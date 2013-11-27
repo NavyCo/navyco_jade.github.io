@@ -1,14 +1,5 @@
 @charset 'UTF-8';
 
-@function setPre-Suffix($prefix: '', $suffix: ''){
-  $result_string : '';
-  @each $val in $suffix{
-    $result_string : $result_string + $prefix + quote(#{$val}) + ','; // (String) quote(string)
-  }
-  
-  @return $result_string;
-}
-
 $filename-icon : 'icon';
 
 @font-face {
@@ -102,40 +93,52 @@ src: url('../font/icon.svg?39909792#link') format('svg');
   }
 }
 
-.icon-tumblr:before { content: '\f311'; } /* '' */
-.icon-link:before { content: '🔗'; } /* '\1f517' */
+.icon-tumblr:before { content: '\f311'; }
+.icon-link:before { content: '🔗'; }
 
 .icon-star {
   &:before {
-    content: '\e800'; // ''
+    content: '\e800';
   }
 }
 .icon-code {
   &:before {
-    content: '\e806'; // ''
+    content: '\e806';
   }
 }
 .icon-github {
   &:before {
-    content: '\e805'; // ''
+    content: '\e805';
     color: #171515;
   }
 }
 
 .icon-angle-double-right {
   &:before {
-    content: '\e807'; // ''
+    content: '\e807';
   };
 }
 
 .icon-ok {
   &:before {
-    content: '\e808'; // ''
+    content: '\e808';
+  }
+}
+
+.icon-left {
+  &:before {
+    content: '\e80a';
   }
 }
 
 .icon-right {
   &:before {
     content: '\e809';
-  } /* '' */
+  }
+}
+
+.icon-th {
+  &:before {
+    content: '\e80b';
+  }
 }

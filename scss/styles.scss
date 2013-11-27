@@ -4,7 +4,6 @@ $footer-height: 220px;
 
 // vendor files
 @import "normalize";
-@import "bxslider";
 
 // global setting files
 @import "settings";
@@ -79,7 +78,7 @@ main {
   height: auto;
   min-height: 100%;
   
-  margin-top: $gutter * 2.5;
+  margin-top: $gutter * 2.25;
   padding-bottom: $footer-height;
   
   @media screen and(max-width: $main-width - 270px){
@@ -215,9 +214,9 @@ hr.line-wide {
 }
 
 .key {
-  line-height: 1.75;
   float: left;
-  width: 7em;
+  line-height: 1.75;
+  margin-right: 1em;
 }
 
 .value {

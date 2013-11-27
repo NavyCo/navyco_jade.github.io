@@ -1,8 +1,17 @@
 @charset 'UTF-8';
 
-.top * {
-  text-align: center;
+.top {
+  padding-top: $gutter * 2;
+  
+  * {
+    text-align: center;
+  }
+  
+  .full-width {
+    padding-top: $gutter * 0.5;
+  }
 }
+
 
 #logo {
   width: 60px;
@@ -14,7 +23,7 @@
 }
 
 @mixin top-title-font-size($base-size) {
-  .top-title {
+  #top-title {
     font-size: $base-size;
     .capital {
       font-size: $base-size * 1.125;
@@ -24,7 +33,7 @@
 
 @include top-title-font-size(36px);
 
-.top-title {
+#top-title {
   margin-left: -6px;
   margin-top: $gutter * 0.5;
   margin-bottom: $gutter * 0.5;
@@ -51,7 +60,7 @@
   @include top-title-font-size(32px);
 }
 
-.top-subtitle {
+#top-subtitle {
   margin-bottom: $gutter * 2;
 
   //font-size: 21px; //old
@@ -95,14 +104,6 @@ section.full-width {
     @extend %centered;
     width: auto;
   } 
-}
-
-.top {
-  padding-top: $gutter * 2;
-  
-  .full-width {
-    padding-top: $gutter * 0.5;
-  }
 }
 
 #ribbon {
@@ -156,14 +157,14 @@ section.full-width {
   }
 }
 
-.page-title {
+#page-title {
   margin-bottom: 12px;
 
   text-align: center;
 
   font-size: 22px;
   @media screen and(max-width: $main-width){
-    font-size: 23px;
+    font-size: 20px;
   }
   
   &+.page-subtitle {
@@ -208,7 +209,6 @@ $featured-image-height: 240px;
   height: $featured-image-height;
   margin-bottom: $gutter * 1;
   line-height: 0;
-  background-color: $common-black;
   @include image-shadow;
   
   $img-border-width: $gutter * 0.25;

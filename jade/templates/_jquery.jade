@@ -12,3 +12,10 @@ mixin loadJQuery(version)
   each url in jQueryFallbacks
     script.
       window.jQuery || document.write("<script src=#{ url }><\/script>");
+  
+//if lt IE 9
+  mixin loadJQuery(jquery1_ver)
+//if gte IE 9
+  <!-->
+  mixin loadJQuery(jquery_ver)
+  <!--

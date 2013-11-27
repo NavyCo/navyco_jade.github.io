@@ -3,9 +3,6 @@
 if not DEBUG?
   this.DEBUG = true
 
-if DEBUG
-  console.log '--- DEBUG MODE ---'
-
 ua = navigator.userAgent
 
 isMobile = do ->

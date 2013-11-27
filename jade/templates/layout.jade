@@ -60,7 +60,6 @@ html(lang='ja')
         #menubar
           #menu
             //-a#home(href= htmlPath())
-            //-p Shinnosuke Watanabe
             #webservices
               a.icon.github(href='https://github.com/shinnn', target='_blank')
               a.icon.twitter(href='https://twitter.com/shinnn_tw', target='_blank')
@@ -73,7 +72,7 @@ html(lang='ja')
             
       //.header-line
       
-      main
+      main(class= pageClass)
         #content
           block inner
 
@@ -116,13 +115,6 @@ html(lang='ja')
     block scripts
       include _jquery
       
-      //if lt IE 9
-        mixin loadJQuery('1.10.2')
-      //if gte IE 9
-        <!-->
-        mixin loadJQuery('2.0.3')
-        <!--
-
       if DEBUG
         script(src='/debug/js/vendor.js')
         script(src='/debug/bower_components/benchmark/benchmark.js')
