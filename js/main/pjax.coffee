@@ -1,6 +1,9 @@
 $ ->
   $main = $ 'main'
 
+  urlContains = (string) ->
+    location.pathname.indexOf(string) isnt -1
+
   # 外部リンクと bxSlider の UI には pjax を適用しない
   if $.support.pjax
     $('#container').on 'click', 'a:not([target])', (e) ->
@@ -41,7 +44,7 @@ $ ->
     else
       $main.removeClass 'top'
     
-    if location.href.indexOf('projects/') isnt -1
+    if urlContains('projects/')
       $('img[data-original]')
       .removeAttr('src')
       .lazyload {
@@ -51,6 +54,15 @@ $ ->
           # 「'.image-wrapper' の子孫である」要素に限定せずに .unwrap() すると、
           # ブラウザバックのたびに親要素を一つずつ消していってしまう
           $('.image-wrapper').find(this).unwrap()
+      }
+
+    if urlContains('projects.htm')
+      $('img[data-original]')
+      .removeAttr('src')
+      .lazyload {
+        effect : 'fadeIn'
+        threshold : $w.height() * 0.15
+        placeholder: '/img/transparent.gif'
       }
   
   resetTop = ->
@@ -80,7 +92,7 @@ $ ->
     $("#home.active, #tabs > .active").removeClass('active')
 
     for page, i in ['about', 'project']
-      if location.href.indexOf(page) isnt -1
+      if urlContains(page)
         $('#tabs > a').eq(i+1).addClass('active')
         break
 

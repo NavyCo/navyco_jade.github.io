@@ -4,9 +4,9 @@
 
 ## Features
 
-* Fast browsing and clean URL with [pjax](https://github.com/defunkt/jquery-pjax/)
-* Responsive web design
-* Flexible template system with Jade and Frontmatter
+* Fast browsing and clean URL by using [pjax](https://github.com/defunkt/jquery-pjax/)
+* [Responsive web design](http://en.wikipedia.org/wiki/Responsive_web_design)
+* Flexible template system with [Jade](http://jade-lang.com/) and Frontmatter inspired by [Jekyll](http://jekyllrb.com/)
 
 ## Development
 

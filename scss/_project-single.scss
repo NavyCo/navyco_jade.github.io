@@ -11,7 +11,7 @@
     display: block;
 
     width: $_width;
-    height: $base-font-size + 2px;
+    height: $base-font-size + 8px;
 
     overflow: hidden;
     white-space: nowrap;
@@ -27,26 +27,24 @@
     //float: left;
     width: $main-width * 0.25;
     margin-bottom: 18px;
-    
-    span {
-      @extend .icon-th;
-    }
   }
   
   @mixin prev-next-icon {
+
     &:before {
+      margin-top: 2px;
       margin-left: 2px;
       margin-right: 8px;
-      font-size: $base-font-size - 2px;
+      font-size: $base-font-size + 2px;
     }
   }
   
   .next {
     //float: right;
-    margin-bottom: 8px;
+    margin-bottom: 2px;
     
     span {
-      @extend .icon-right;
+      @extend .icon-right-circled;
       @include prev-next-icon;
     }
   }
@@ -55,7 +53,7 @@
     //float: left;
     
     span {
-      @extend .icon-left;
+      @extend .icon-left-circled;
       @include prev-next-icon;
     }
   }
@@ -67,6 +65,12 @@
   color: $common-text-gray;
   font-family: 'Open Sans', $sans-serif;
   font-size: $base-font-size + 1px;
+}
+
+#project-title {
+  @extend #page-title;
+  
+  margin-bottom: 12px;
 }
 
 #project-info {
@@ -133,17 +137,6 @@
     color: $common-white;
     padding: 0 8px;
     margin-right: 24px;
-    
-    &:afweter {
-      
-      content: "";
-    	border-top: $link-height * 0.5 solid transparent;
-    	border-bottom: $link-height * 0.5 solid transparent;
-    	border-left: $link-height * 0.4 solid $head-decoration-violet;
-    	position: absolute;
-      right: - $link-height * 0.4;
-      top: 0;
-    }
   }
   
   .value {

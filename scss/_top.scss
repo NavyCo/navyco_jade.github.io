@@ -79,7 +79,7 @@
     }
   }
   
-  @media screen and(max-width: $main-width - 520){
+  @media screen and(max-width: 540px){
     br {
       display: none;
     }
@@ -158,7 +158,7 @@ section.full-width {
 }
 
 #page-title {
-  margin-bottom: 12px;
+  margin-bottom: 24px;
 
   text-align: center;
 

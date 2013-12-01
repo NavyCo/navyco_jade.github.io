@@ -76,8 +76,6 @@ module.exports = (grunt) ->
         svg: true
         touch: true
         cssanimations: true
-        css_mask: true
-        video: true
         rgba: true
   
     lodash:
@@ -160,14 +158,10 @@ module.exports = (grunt) ->
     uglify:
       options:
         preserveComments: isIncludedInBanner
-        
+      
       main:
         options:
-          banner: do ->
-            if grunt.file.isFile "#{ JS_ROOT }main/banner.js"
-              grunt.file.read "#{ JS_ROOT }main/banner.js"
-            else
-              ''
+          banner: "/*! Copyright (c) 2013 #{ settings.author } | MIT License */"
           compress:
             global_defs:
               DEBUG: false
@@ -182,7 +176,10 @@ module.exports = (grunt) ->
         files: [
           expand: true
           cwd: '<%= bower.options.targetDir %>'
-          src: ['{,*/,*/*/}*.js', '!{,*/,*/*/}*{.min,-min}.js', '!debug/{,*/}*.js']
+          src: [
+            '{,*/,*/*/}*.js',
+            '!{,*/,*/*/}*{.min,-min}.js', '!debug/{,*/}*.js'
+          ]
           dest: '<%= bower.options.targetDir %>'
         ]
     
@@ -241,21 +238,26 @@ module.exports = (grunt) ->
           stdout: true
       coffeelint_grunt:
         command:
-          "#{ BIN }coffeelint Gruntfile.coffee"
+          "#{ BIN }coffeelint #{ __filename }"
         options:
           stdout: true
     
     connect:
       options:
         livereload: 35729
+        port: settings.liveReloadPort
       site:
         options:
           base: DEST_ROOT
     
     open:
       site:
-        # http://stackoverflow.com/questions/1349404/#comment13539914_8084248
-        path: "http://shinnn.github.io/?v=#{ Math.random().toString(36).substr(2, 5) }"
+        # stackoverflow.com/questions/1349404/#comment13539914_8084248
+        path: "#{ settings.siteURL }?v=#{
+          Math.random()
+            .toString(36)
+            .substr(2, 5)
+        }"
         app: 'Google Chrome'
     
     watch:
@@ -315,12 +317,16 @@ module.exports = (grunt) ->
 
     concurrent:
       preparing: [
-        'bower'
-        'flexSVG'
-        'shell:coffeelint_grunt', 'shell:coffeelint'
+        'bower', 'shell'
       ]
       dev: ['coffee:dev', 'jadeTemplate:dev']
-      dist: ['compass', 'coffee:dist', 'jadeTemplate:dist', 'imagemin']
+      dist: [
+        'compass'
+        'coffee:dist'
+        'jadeTemplate:dist'
+        'imagemin'
+        'flexSVG'
+      ]
   
   # Compile .jade files with frontmatter
   grunt.task.registerTask 'jadeTemplate',
@@ -423,8 +429,8 @@ module.exports = (grunt) ->
     'Add .nojekyll if needed',
     ->
       if grunt.file.expand("#{ DEST_ROOT }**/_*").length > 0
-        console.log "File \"#{ DEST_ROOT }.nojekyll\" created."
         grunt.file.write  "#{ DEST_ROOT }.nojekyll", ''
+        console.log "File \"#{ DEST_ROOT }.nojekyll\" created."
       
   defaultTasks = [
     'clean:site' #reset
@@ -433,7 +439,7 @@ module.exports = (grunt) ->
     'concurrent:dev', 'concurrent:dist'
     'uglify', 'concat' #minify JS
     'autoprefixer', 'cssmin'
-    'flexSVG', 'svgmin' # optimize SVG
+    'svgmin'
     'connect', 'watch'
   ]
   
@@ -457,11 +463,11 @@ module.exports = (grunt) ->
       grunt.loadNpmTasks 'grunt-open'
       
       ini = require 'ini'
-      gitConfig = ini.parse grunt.file.read("#{
+      gitConfig = ini.parse grunt.file.read "#{
         process.env.HOME or
         process.env.HOMEPATH or
         process.env.USERPROFILE
-      }/.gitconfig")
+      }/.gitconfig"
       
       grunt.config.set 'gh-pages.options.user', gitConfig.user
 

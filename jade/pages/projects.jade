@@ -5,17 +5,26 @@ title: Projects
 
 block content
   section
-    h1#page-title.only-kana プロジェクト
+    h1#page-title プロジェクト
     //-.line-wide
-  
+    
   section
     div#projects
       each proj in projects
         div.project
           a(href= 'projects/' + proj.name + '.html')
             - var _ext = proj.image_format || 'jpg'
-            img.thumbnail(src= '/img/projects/thumbnails/' + proj.name + '.' + _ext)
-          .summary
-            p.name= proj.short_title || proj.title
-            .line-wide
-            p.genre= proj.genre.join(', ')
+            img.thumbnail(
+              src= '/img/transparent.gif',
+              data-original= '/img/projects/thumbnails/' + proj.name + '.' + _ext
+              alt= 'サムネイル'
+            )
+          .caption
+            .summary
+              p.name= proj.short_title || proj.title
+              //-hr.line-wide
+              .genre
+                span= proj.genre.join(', ')
+            .arrow
+              a(href= 'projects/' + proj.name + '.html')
+                .icon

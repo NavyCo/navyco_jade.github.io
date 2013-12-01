@@ -1,6 +1,6 @@
 @charset 'UTF-8';
 
-$grid-gutter: $gutter;
+$grid-gutter: $gutter * 2;
 
 // TODO: グリッドのモジュール化
 @mixin grid-parent {
@@ -22,86 +22,167 @@ $grid-gutter: $gutter;
 }
 
 #projects {
+  margin-top: -$gutter;
+  padding-top: $gutter;
   position: relative;
   margin-left: -$grid-gutter;
+  overflow: visible;
 }
 
 $thumbnail-size: ($main-width - $grid-gutter * 2) / 4.0;
+
+%grid-item-component {
+  width: percentage($thumbnail-size / ($thumbnail-size + $grid-gutter));    
+}
 
 .project {
   position: relative;
   float: left;
   width: percentage(1/4);
-  height: $thumbnail-size * 1.2;
+  //height: $thumbnail-size * 1.2;
 
+  padding-top: $gutter;
+  margin-top: -$gutter;
   margin-left: $grid-gutter;
   margin-right: -$grid-gutter;
   margin-bottom: $grid-gutter;
   
-  & > * {
+  > a {
+    @extend %grid-item-component;
+    
     display: block;
-    width: percentage($thumbnail-size / ($thumbnail-size + $grid-gutter));    
-  }
-  
-  a {
     position: relative;
     overflow: hidden;
+    height: 250px * 0.8;
+    @include image-shadow;
     
     img {
       position: relative;
       left: 50%;
       height: 250px * 0.8;
-      margin-left: - 500px * 0.5;
+      margin-left: - 250px * 0.8;
     }
-  }
-  
-  .genre {
-    position: absolute;
-    bottom: 0;
-    
-    font-size: $base-font-size - 2px;
   }
 }
 
 .thumbnail {
   height: $thumbnail-size;
-  background-color: gray;
+  //background-color: gray;
+}
+
+.caption {
+  @extend %grid-item-component;
+  
+  overflow : auto;
+  height: 4.5em;
+  min-height: 70px;
+  margin-top: 14px;
+  
+  .summary {
+    float: left;
+    width: 75%;
+  }
+  
+  p {
+    font-size: $base-font-size - 1px;
+    line-height: 1.5;
+  }
+  
+  .line-wide {
+    //position: absolute;
+    margin-bottom: 0;
+    bottom: $base-font-size + 8px;
+  }
+  
+  .genre {
+    //position: absolute;
+    //bottom: 4px;
+    margin-top: 4px;
+    
+    font-size: $base-font-size - 2px;
+    color: lighten($common-text-gray, 15);
+  }
+  
+  .arrow {
+    
+    float: right;
+    width: 25%;
+  }
+  
+  .icon {
+    @extend %icon-right-circle;
+    float: right;
+
+    //margin-top: 0;
+    padding-right: 5px;
+    
+    font-size: 18px;
+    //color: $common-text-gray;
+    color: $head-decoration-violet;
+    //color: $common-violet;
+
+    text-align: center;
+  }
 }
 
 @media screen and(max-width: $main-width + $main-space-width * 2 - 1 - $thumbnail-size * 0){
   .project {
     width: percentage(1/3);
+
+    a {
+      height: 250px * 0.9;
+      img {
+        height: 250px * 0.9;
+        margin-left: - 250px * 0.9;
+      }
+    }
   }
 }
 
 @media screen and(max-width: $main-width + $main-space-width * 2 - 1 - $thumbnail-size * 1){
   .project {
     width: percentage(1/2);
-
-    a img {
-      height: 250px * 0.9;
-    }
   }
 }
 
-@media screen and(max-width: $main-width + $main-space-width * 2 - 1 - $thumbnail-size * 2.75){
-  .projects {
+@media screen and(max-width: $main-width + $main-space-width * 2 - 1 - $thumbnail-size * 2.7){
+  #projects {
     margin-left: 0;
   }
   
   .project {
-    margin-left: 0;
     width: 100%;
-
-    a img {
+    //width: percentage($main-width / ($main-width + $gutter * 2));
+    margin-left: 0;
+    
+    a {
+      width: 100%;      
       height: 250px;
+      img {
+        height: 250px;
+        margin-left: - 250px;
+      }      
     }
     
-    & > * {
-      width: 100%;      
+    %grid-item-component {
+      //width: 100%;
     }
   }
-}
-
-.summary {
+  
+  .caption {
+    //width: percentage($thumbnail-size / ($thumbnail-size + $gutter)); 
+    //width: percentage($main-width / ($main-width + $gutter * 2));
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    
+    p {
+      margin: 0 auto;
+    }
+    
+    .genre {
+      position: static;
+      margin-top: 2px;
+    }
+  }
 }

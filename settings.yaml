@@ -1,3 +1,6 @@
+author: Shinnosuke Watanabe
+siteURL: http://shinnn.github.io
+
 srcPath: ''
 destPath: 'master/'
 
@@ -6,7 +9,3 @@ documentsPath: 'jade/pages/'
 dataPath: 'jade/data/'
 
 liveReloadPort: 8000
-
-github:
-  username: shinnn
-  email: snnskwtnb@gmail.com

@@ -94,6 +94,7 @@ main {
 main section {
   @extend %centered;
   
+  overflow: hidden;
   padding-top: $gutter * 1.5 * 0.5;
   padding-bottom: $gutter * 1.5 * 0.5;
   
@@ -301,10 +302,9 @@ footer {
 
 [data-original] {
   visibility: hidden;
-}
-
-.js [data-original] {
-  visibility: visible;  
+  .js & {
+    visibility: visible;  
+  }
 }
 
 @import "header";
