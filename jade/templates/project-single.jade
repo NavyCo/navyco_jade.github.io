@@ -82,7 +82,8 @@ block inner
             li.icon= feature
 
       #description
-        hr.line-wide
+        if project.features
+          hr.line-wide
 
         if (typeof project.description === 'string')
           p!= project.description
@@ -91,7 +92,7 @@ block inner
             p!= paragraph
       
   if projectImages.length
-    section#subsequent-images
+    aside
       //-hr.line-wide
       each image, i in projectImages
         +lazyload-image(image, project.image_captions[i])

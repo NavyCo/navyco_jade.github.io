@@ -227,7 +227,7 @@ module.exports = (grunt) ->
           expand: true
           cwd: "#{ DEST_ROOT }.tmp/svg/"
           src: ['*.svg']
-          dest: "#{ DEST_ROOT }svg/"
+          dest: "#{ DEST_ROOT }img/"
         ]
     
     shell:
@@ -286,7 +286,7 @@ module.exports = (grunt) ->
         files: ["#{ SRC_ROOT }img/**/*.{png,jpg,gif}"]
         tasks: ['imagemin:all']
       svg:
-        files: ["#{ SRC_ROOT }/svg/*.svg"]
+        files: ["#{ SRC_ROOT }img/**/*.svg"]
         tasks: ['flexSVG', 'svgmin']
       jade:
         files: ["#{ SRC_ROOT }jade/**/*.{jade,json,yaml,yml}"]
@@ -416,7 +416,7 @@ module.exports = (grunt) ->
   
   # Remove 'width' and 'height' properties from SVG
   grunt.task.registerTask 'flexSVG', 'An internal task.', ->
-    _cwd = "#{ SRC_ROOT }svg/"
+    _cwd = "#{ SRC_ROOT }img/"
     srcSVGs = grunt.file.expand {cwd: _cwd}, '*.svg'
     srcSVGs.forEach (filepath) ->
       svgString = grunt.file.read _cwd + filepath

@@ -1,5 +1,3 @@
-@charset 'UTF-8';
-
 .top {
   padding-top: $gutter * 2;
   
@@ -20,6 +18,10 @@
   background: image-url('logo.gif');
   background-size: 100%;
   margin: $gutter * 2 auto 0 auto;
+  
+  .svg & {
+    background-image: image-url('logo.svg');
+  }
 }
 
 @mixin top-title-font-size($base-size) {
@@ -209,7 +211,6 @@ $featured-image-height: 240px;
   height: $featured-image-height;
   margin-bottom: $gutter * 1;
   line-height: 0;
-  @include image-shadow;
   
   $img-border-width: $gutter * 0.25;
   

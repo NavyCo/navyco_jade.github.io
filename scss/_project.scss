@@ -54,7 +54,6 @@ $thumbnail-size: ($main-width - $grid-gutter * 2) / 4.0;
     position: relative;
     overflow: hidden;
     height: 250px * 0.8;
-    @include image-shadow;
     
     img {
       position: relative;

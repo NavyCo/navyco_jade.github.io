@@ -1,5 +1,3 @@
-@charset 'UTF-8';
-
 @import "compass/typography/vertical_rhythm";
 
 // load webfonts
@@ -39,7 +37,7 @@ $head-decoration-violet: #bd8fd1;
 $footer-color: #F0F0F0;
 
 @mixin image-shadow {
-  box-shadow: 0 0 4px $common-text-gray;
-  box-shadow: 0 0 2px rgba(155, 155, 155, 0.8);
+  box-shadow: 0 0 2px $common-text-gray;
+  box-shadow: 0 0 1px rgba(155, 155, 155, 0.8);
   //border-radius: 4px;
 }
