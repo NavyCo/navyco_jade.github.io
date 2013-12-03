@@ -36,34 +36,39 @@ $ ->
         
       $('img[data-original]')
       .removeAttr('src')
-      .lazyload {
+      .lazyload
         effect : 'fadeIn'
         threshold : $w.height() * 0.25
-      }
+        skip_invisible: false
+        placeholder: '/img/transparent.gif'
       
     else
       $main.removeClass 'top'
     
-    if urlContains('projects/')
+    if urlContains 'projects/'
       $('img[data-original]')
       .removeAttr('src')
-      .lazyload {
-        effect : 'fadeIn'
-        threshold : $w.height() * 0.5
-        effect_speed: ->
-          # 「'.image-wrapper' の子孫である」要素に限定せずに .unwrap() すると、
-          # ブラウザバックのたびに親要素を一つずつ消していってしまう
-          $('.image-wrapper').find(this).unwrap()
-      }
+      .lazyload
+        effect: 'fadeIn'
+        threshold: $w.height() * 0.5
+        effect_speed:
+          start: ->
+            $this = $ this
+            if $this.is('.project-image:eq(0)')
+              $main.stop().fadeTo(150, 1)
+              $this.finish()
+          always: ->
+            # 「'.image-wrapper' の子孫である」要素に限定せずに .unwrap() すると、
+            # ブラウザバックのたびに親要素を一つずつ消していってしまう
+            $('.image-wrapper').find(this).unwrap()
 
-    if urlContains('projects.htm')
+    if urlContains 'projects.htm'
       $('img[data-original]')
       .removeAttr('src')
-      .lazyload {
+      .lazyload
         effect : 'fadeIn'
         threshold : $w.height() * 0.15
         placeholder: '/img/transparent.gif'
-      }
   
   resetTop = ->
     # Open the ribbon
@@ -92,7 +97,7 @@ $ ->
     $("#home.active, #tabs > .active").removeClass('active')
 
     for page, i in ['about', 'project']
-      if urlContains(page)
+      if urlContains page
         $('#tabs > a').eq(i+1).addClass('active')
         break
 
@@ -109,5 +114,7 @@ $ ->
   $doc.on 'pjax:end', null, resetContent
   
   $doc.on 'pjax:complete', null, ->
-    $main.stop().fadeTo(150, 1)
+    console.log arguments
+    unless urlContains 'projects/'
+      $main.stop().fadeTo(150, 1)
     
