@@ -10,17 +10,21 @@
   }
 }
 
+$logo-size: 60px;
 
 #logo {
-  width: 60px;
-  height: 60px;
+  width: $logo-size;
+  height: $logo-size;
 
-  background: image-url('logo.gif');
+  background: image-url('logo.gif') transparent no-repeat;
   background-size: 100%;
   margin: $gutter * 2 auto 0 auto;
   
   .svg & {
     background-image: image-url('logo.svg');
+  }
+  .js & {
+    background-position: 0px $logo-size;
   }
 }
 
@@ -212,6 +216,10 @@ $featured-image-height: 240px;
   margin-bottom: $gutter * 1;
   line-height: 0;
   
+  .js & {
+    width: 0;
+  }
+  
   $img-border-width: $gutter * 0.25;
   
   img {
@@ -224,10 +232,6 @@ $featured-image-height: 240px;
     max-width: 1080px;
     height: auto;
     min-height: $featured-image-height;
-
-    // background-size: cover;
-    background-color: gray;
-    //border: solid $img-border-width rgba(0,0,0,0);
   }
 
   @media screen and(max-width: $main-width){

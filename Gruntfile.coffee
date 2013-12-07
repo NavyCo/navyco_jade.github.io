@@ -28,6 +28,9 @@ module.exports = (grunt) ->
 
   SRC_ROOT = _addLastSlash(settings.srcPath) or ''
   DEST_ROOT = _addLastSlash(settings.destPath) or 'site/'
+  HOME_DIR = process.env.HOME or
+    process.env.HOMEPATH or
+    process.env.USERPROFILE
   
   JS_ROOT = "#{ SRC_ROOT }js/"
   
@@ -124,8 +127,15 @@ module.exports = (grunt) ->
     
     autoprefixer:
       all:
-        src: '<%= compass.options.cssDir%>**/*.css'
+        src: '<%= compass.options.cssDir%>{,*/}*.css'
     
+    cmq:
+      all:
+        options:
+          log: true
+        src: ['<%= compass.options.cssDir%>{,*/}*.css']
+        dest: '<%= compass.options.cssDir%>'
+      
     cssmin:
       dist:
         files: [
@@ -269,7 +279,7 @@ module.exports = (grunt) ->
         tasks: ['bower', 'uglify:bower']
       compass:
         files: ["#{ SRC_ROOT }scss/*.scss"]
-        tasks: ['compass', 'autoprefixer:all', 'cssmin']
+        tasks: ['compass', 'postprocessCSS']
       coffee:
         files: ["#{ JS_ROOT }main/*.coffee"]
         tasks: ['shell:coffeelint', 'coffee', 'uglify:main', 'concat:main']
@@ -432,13 +442,15 @@ module.exports = (grunt) ->
         grunt.file.write  "#{ DEST_ROOT }.nojekyll", ''
         console.log "File \"#{ DEST_ROOT }.nojekyll\" created."
       
+  grunt.task.registerTask 'postprocessCSS', ['autoprefixer', 'cssmin']
+
   defaultTasks = [
     'clean:site' #reset
     'concurrent:preparing'
     'copy'
     'concurrent:dev', 'concurrent:dist'
     'uglify', 'concat' #minify JS
-    'autoprefixer', 'cssmin'
+    'postprocessCSS'
     'svgmin'
     'connect', 'watch'
   ]
@@ -463,11 +475,7 @@ module.exports = (grunt) ->
       grunt.loadNpmTasks 'grunt-open'
       
       ini = require 'ini'
-      gitConfig = ini.parse grunt.file.read "#{
-        process.env.HOME or
-        process.env.HOMEPATH or
-        process.env.USERPROFILE
-      }/.gitconfig"
+      gitConfig = ini.parse grunt.file.read "#{ HOME_DIR }/.gitconfig"
       
       grunt.config.set 'gh-pages.options.user', gitConfig.user
 

@@ -17,7 +17,8 @@ $ ->
         }
 
   resetContent = (e, xhr) ->
-
+    
+    # set page title
     if xhr?.getResponseHeader 'X-PJAX-Title'
       document.title = xhr.getResponseHeader 'X-PJAX-Title'
     
@@ -26,7 +27,9 @@ $ ->
     location.href.indexOf('about') is -1
       $main.addClass 'top'
       $w.on 'resize pjax:end', setTitlePos
+
       setTitlePos()
+      
       $w.one 'scroll', resetTop
       $('#scroll-down').on 'click', ->
         $('html,body').animate {
@@ -41,6 +44,10 @@ $ ->
         threshold : $w.height() * 0.25
         skip_invisible: false
         placeholder: '/img/transparent.gif'
+        
+      $('#logo').transition {
+        backgroundPosition: '0px 0px'
+      }, 500
       
     else
       $main.removeClass 'top'
@@ -54,8 +61,8 @@ $ ->
         effect_speed:
           start: ->
             $this = $ this
-            if $this.is('.project-image:eq(0)')
-              $main.stop().fadeTo(150, 1)
+            if $this.is '.project-image:eq(0)'
+              $main.stop().fadeTo 150, 1
               $this.finish()
           always: ->
             # 「'.image-wrapper' の子孫である」要素に限定せずに .unwrap() すると、
@@ -78,14 +85,17 @@ $ ->
       width: 0
     }, 250, ->
       $('#ribbon').remove()
-      
     
     $('.top .inner').transition {
       paddingTop: '0'
     }, 400
+    
+    $('.wide-image').css 'width', '100%'
+    
     $('.featured-works')
     .css('visibility', 'visible')
     .fadeTo 750, 1
+    
     $w.off 'resize pjax:end', setTitlePos
 
   setTitlePos = ->
@@ -108,13 +118,12 @@ $ ->
   # initialize
   resetContent()
 
-  $doc.on 'pjax:start ready', null, (e) ->
+  $doc.on 'pjax:start ready', ->
     _activateTab()
   
-  $doc.on 'pjax:end', null, resetContent
+  $doc.on 'pjax:end', resetContent
   
-  $doc.on 'pjax:complete', null, ->
-    console.log arguments
+  $doc.on 'pjax:complete', ->
     unless urlContains 'projects/'
-      $main.stop().fadeTo(150, 1)
+      $main.stop().fadeTo 150, 1
     
