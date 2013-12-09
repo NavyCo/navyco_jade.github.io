@@ -7,6 +7,7 @@
 * Fast browsing and clean URL by using [pjax](https://github.com/defunkt/jquery-pjax/)
 * [Responsive web design](http://en.wikipedia.org/wiki/Responsive_web_design)
 * Flexible template system with [Jade](http://jade-lang.com/) and Frontmatter inspired by [Jekyll](http://jekyllrb.com/)
+  * Based on this project, I'm developing a Yeoman generator *[generator-jade-frontmatter](https://github.com/shinnn/generator-jade-frontmatter)*.
 
 ## Development
 

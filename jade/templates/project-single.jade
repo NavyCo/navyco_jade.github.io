@@ -18,11 +18,11 @@ block inner
       //-a.back
         span.icon(href=htmlPath('projects.html'))
       a.next(href=htmlPath('projects/' + nextProject.name + '.html'))
-        span.icon
-          != nextProject.title
+        .icon
+        div!= nextProject.title
       a.prev(href=htmlPath('projects/' + prevProject.name + '.html'))
-        span.icon
-          != prevProject.title
+        .icon
+        div!= prevProject.title
 
   section
     +project-menu
@@ -74,7 +74,8 @@ block inner
                 td.key
                   div= link.name
                 td.value
-                  a(href=link.url, target='_blank')= link.url
+                  div
+                    a(href=link.url, target='_blank')= link.url
         
       if project.features
         ul.features

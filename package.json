@@ -1,7 +1,7 @@
 {
   "name": "shinnn.github.io",
   "version": "0.0.2",
-  "description": "Shinnosuke Watanabe's Website on Github Pages",
+  "description": "Shinnosuke Watanabe's website hosted on Github Pages",
   "main": "Gruntfile.coffee",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -20,6 +20,7 @@
     "url": "https://github.com/shinnn/shinnn.github.io/issues"
   },
   "gitHead": "0cf0e16710ed7528f1443106ddd0c0e3f4766490",
+  "private": true,
   "devDependencies": {
     "grunt": "~0.4.2",
     "grunt-contrib-watch": "~0.5.3",
@@ -30,7 +31,7 @@
     "grunt-contrib-concat": "~0.3.0",
     "grunt-contrib-clean": "~0.5.0",
     "grunt-modernizr": "~0.4.1",
-    "lodash": "~2.4.0",
+    "lodash": "~2.4.1",
     "grunt-lodash": "~0.3.0",
     "grunt-contrib-csslint": "~0.2.0",
     "grunt-svgmin": "~0.3.0",

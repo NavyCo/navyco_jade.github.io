@@ -2,7 +2,7 @@ module.exports = (grunt) ->
   'use strict'
 
   path = require 'path'
-  
+
   _ = require 'lodash'
   yfm = require 'assemble-front-matter'
   sizeOf = require 'image-size'
@@ -14,9 +14,9 @@ module.exports = (grunt) ->
     '!grunt-prompt'
     '!grunt-open'
   ]}
-  
+
   settings = grunt.file.readYAML 'settings.yaml'
-  
+
   BIN = "#{ process.cwd() }/node_modules/.bin/"
 
   # Add '/' to the string if its last character is not '/'
@@ -28,6 +28,7 @@ module.exports = (grunt) ->
 
   SRC_ROOT = _addLastSlash(settings.srcPath) or ''
   DEST_ROOT = _addLastSlash(settings.destPath) or 'site/'
+
   HOME_DIR = process.env.HOME or
     process.env.HOMEPATH or
     process.env.USERPROFILE
@@ -441,7 +442,7 @@ module.exports = (grunt) ->
       if grunt.file.expand("#{ DEST_ROOT }**/_*").length > 0
         grunt.file.write  "#{ DEST_ROOT }.nojekyll", ''
         console.log "File \"#{ DEST_ROOT }.nojekyll\" created."
-      
+  
   grunt.task.registerTask 'postprocessCSS', ['autoprefixer', 'cssmin']
 
   defaultTasks = [

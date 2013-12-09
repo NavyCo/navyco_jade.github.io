@@ -2,24 +2,35 @@
 
 .project-menu {
   $_width: $main-width * 0.25;
+  $_icon-size: $base-font-size + 6px;
   
-  float: left;
   width: $_width;
-  overflow: auto;
   
   .back, .prev, .next {
     display: block;
 
     width: $_width;
-    height: $base-font-size + 8px;
+    height: $_icon-size;
 
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-        
-    span:before {
-      color: $common-violet;
+    div {
+      padding-top: ($_icon-size - $base-font-size) * 0.5;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      font-size: $base-font-size - 1px;
+    }
+    
+    .icon {
+      padding-top: 0;
+      overflow: visible;
+    }
+    
+    .icon:before {
+      float: left;
       margin-right: 8px;
+      margin-left: 2px;
+      color: $common-violet;
+      font-size: $_icon-size;
     }
   }
   
@@ -29,32 +40,20 @@
     margin-bottom: 18px;
   }
   
-  @mixin prev-next-icon {
-
-    &:before {
-      margin-top: 2px;
-      margin-left: 2px;
-      margin-right: 8px;
-      font-size: $base-font-size + 2px;
-    }
-  }
-  
   .next {
     //float: right;
-    margin-bottom: 2px;
+    margin-bottom: 4px;
     
-    span {
+    .icon {
       @extend .icon-right-circled;
-      @include prev-next-icon;
     }
   }
 
   .prev {
     //float: left;
-    
-    span {
+
+    .icon {
       @extend .icon-left-circled;
-      @include prev-next-icon;
     }
   }
 }
@@ -122,38 +121,64 @@
 }
 
 #project-details .links {
-  
-  $link-height: ceil($base-font-size * 1.5);
+  $link-height: ceil($base-font-size * 1.6);
+  $radius: 2px;
+
   .key {
     width: 100%;
     margin-right: 0;
+    
+    &:first-child {
+      margin-bottom: 4px;
+    }
   }
   
   .key div{
   	position: relative;
     background-color: $head-decoration-violet;
-    font-size: $base-font-size - 1px;
+    // background-color: $common-violet;
+    font-size: $base-font-size - 2px;
     height: $link-height;
+    line-height: 2.0;
     color: $common-white;
-    padding: 0 8px;
-    margin-right: 24px;
+    padding: 0 12px;
+    border-radius: $radius 0 0 $radius;
+    //color: $common-violet;
   }
   
   .value {
-    height: $base-font-size * 1.5;
+    > div {
+    	position: relative;
+      background: #F9F9F9;
+      background: linear-gradient(
+        to right,
+        darken(#F9F9F9, 0) 88%,
+        darken(#F9F9F9, 1) 89%);
+      height: $link-height;
+      border-radius: 0 $radius $radius 0;
+      padding-right: 18px;
+      padding-left: 12px;
+      margin-bottom: 3px;
+      
+      > a {
+        line-height: 1.8;
+        font-size: $base-font-size - 1px;
+        text-shadow: 0 1px 2px $common-white;
+      }
+    }
   }
 }
 
 .features {
-  margin-top: 1.5em;
+  margin-top: $gutter * 1.5;
   
   li {
     @extend .icon-ok;
-    margin-bottom: 2px;
+    margin-bottom: 3px;
     
     font-size: $base-font-size - 2px;
     font-weight: bold;
-    color: darken($common-text-gray, 16);
+    color: darken($common-text-gray, 12);
     
     &:before {
       color: $common-hover-violet;
@@ -177,7 +202,7 @@ p.skill-code {
 
 #description {
   margin-top: $gutter;
-  font-size: $base-font-size - 1px;
+  font-size: $base-font-size - 1;
   
   .header-rect {
     background-color: $common-gray;
@@ -186,7 +211,7 @@ p.skill-code {
   
   p {
     margin-top: 0.5em;
-    line-height: 1.86;
+    line-height: 1.85;
     //color: #505050;
     // text-indent: 1em;
   }

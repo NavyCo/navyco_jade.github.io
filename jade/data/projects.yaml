@@ -1,4 +1,31 @@
 ---
+
+  - 
+    name: musabi-degreeshow
+    title: 武蔵野美大デザイン情報学科 卒業研究・制作展 2011 Webサイト
+    short_title: 武蔵野美大デザイン情報学科 卒研・卒制展 2011
+    time: 2011 - 2012
+    genre: [Web]
+    role: [バックエンド・フロントエンド開発, UIデザイン]
+    links:
+      -
+        name: サイト
+        url: http://dipale.musabi.ac.jp/g11/
+      -
+        name: Github
+        url: https://github.com/shinnn/dipale.musabi.ac.jp-g11
+    description:
+      -  武蔵野美術大学造形学部デザイン情報学科の、2011年度卒業研究・制作展のWebサイトです。全出展者の情報を管理するため、作品名や説明文などを入力してもらうための出展者向けページを用意し、そこで登録されたデータを基に、各出展者の情報を出力しています。
+      - History APIを利用し、ブラウザ履歴の進む／戻る操作に合わせて、URLと表示位置が一致するように自動スクロールします。
+    features:
+      - スクロールでページ内を行き来するシングルページWebサイト
+      - PostgreSQLによる出展者・出展作品情報の管理
+      - セマンティック・マークアップ
+      - Gruntによる自動化（拡張メタ言語の変換、ファイル圧縮、Lint、デプロイなど）
+    image_captions:
+      - ファーストビュー
+      - 挨拶
+
   - 
     name: openstudio
     title: 東京芸術大学 OPEN STUDIO 2013 Webサイト
@@ -8,10 +35,10 @@
     role: [フロントエンド開発, UIデザイン, 映像編集]
     links:
       -
-        name: URL
+        name: サイト
         url: http://www.fm.geidai.ac.jp/openstudio/2013/
       -
-        name: Githubリポジトリ
+        name: Github
         url: https://github.com/shinnn/openstudio2013
     lead: みなとみらいの海岸を見渡す水平スクロールWebサイト
     description: |-
@@ -35,33 +62,6 @@
       - 横スクロール
 
   - 
-    name: musabi-degreeshow
-    title: 武蔵野美大デザイン情報学科 卒業研究・制作展 2011 Webサイト
-    short_title: 武蔵野美大デザイン情報学科 卒研・卒制展 2011
-    time: 2011 - 2012
-    genre: [Web]
-    role: [バックエンド・フロントエンド開発, UIデザイン]
-    links:
-      -
-        name: Webサイト
-        url: http://dipale.musabi.ac.jp/g11/
-      -
-        name: Githubリポジトリ
-        url: https://github.com/shinnn/dipale.musabi.ac.jp-g11
-    description:
-      -  武蔵野美術大学造形学部デザイン情報学科の、2011年度卒業研究・制作展のWebサイトです。全出展者の情報を管理するため、作品名や説明文などを入力してもらうための出展者向けページを用意し、そこで登録されたデータを基に、各出展者の情報を出力しています。
-      - History APIを利用し、ブラウザ履歴の進む／戻る操作に合わせて、URLと表示位置が一致するように自動スクロールします。
-    
-    features:
-      - スクロールでページ内を行き来するシングルページWebサイト
-      - PostgreSQLによる出展者・出展作品情報の管理
-      - セマンティック・マークアップ
-      - Gruntによる自動化（拡張メタ言語の変換、ファイル圧縮、Lint、デプロイなど）
-    image_captions:
-      - ファーストビュー
-      - 挨拶
-
-  - 
     name: react
     title: re(a)ct
     time: 2013
@@ -69,10 +69,10 @@
     role: [フロントエンド開発, UIデザイン, 楽曲・効果音制作]
     links:
       -
-        name: Webサイト
+        name: サイト
         url: http://shinnn.github.io/re-a-ct/
       -
-        name: Githubリポジトリ
+        name: Github
         url: https://github.com/shinnn/re-a-ct
     description: ブラウザで動作するリッチオーディオコンテンツを実現するための手段として期待されるHTML5 Web Audio APIの習作として制作しました。クリックした位置にキャラクターが生成され、BGMに合わせて動き廻ります。キャラクター同士がぶつかると別の音が発生し、そのたびにキャラクターが成長していきます。
     features:
@@ -92,7 +92,7 @@
     role: [グラフィックプログラミング, 映像撮影・編集]
     links:
       -
-        name: Githubリポジトリ
+        name: Github
         url: https://github.com/shinnn/twinkle-aquarium
     description:
       - 魚群の動きを再現した半3Dの映像を鑑賞できるMac OS X用アプリケーションです。マイクからの音声入力を行っており、音が鳴るとそれに反応して逃げ去るような動きをします。
@@ -149,7 +149,7 @@
     role: [ライブラリ開発]
     links:
       -
-        name: Githubリポジトリ
+        name: Github
         url: https://github.com/shinnn/scrollsmartly
     features:
       - jQuery非依存のスムーズスクロール用JavaScriptライブラリ

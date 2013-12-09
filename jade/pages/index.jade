@@ -15,30 +15,10 @@ block content
         span.family-name
           span.capital W
           | atanabe
-        //-span.t
-          | <br>a web developer
-          span.narrow-slash /
-          | designer, and user interface designer
       //-p.top-subtitle Software Engineer, User Interface Designer
       #top-subtitle
         p.
           Webフロントエンド開発／デザイン、ユーザーインターフェースデザイン、<br>インタラクティブコンテンツ制作などを行う渡邉伸之介のウェブサイトです。
-        //-p
-          span.capital W
-          | eb&#32;
-          span.capital D
-          | eveloper
-          span.narrow-slash /
-          span.capital D
-          | esigner
-        //-p
-          span.capital U
-          | ser&#32;
-          span.capital I
-          | nterface&#32;
-          span.capital D
-          | esigner
-    //-.line-wide
   
   #ribbon
     #left-ribbon
@@ -53,25 +33,21 @@ block content
         img(
           src= '/img/transparent.gif',
           data-original= '/img/large/' + name + '.jpg',
-          alt= ''
+          alt= _proj.title
         )
         noscript
           img(
             src= '/img/large/' + name + '.jpg',
-            alt=''
+            alt= _proj.title
           )
-        //-.caption
-          div.back
-          div.front
-            p= _proj.title
       h2.work-title
         span= _proj.title
       .line-wide
       .role= role
   
   section
-    +featured-work('openstudio', 'フロントエンド開発 / ユーザーインターフェースデザイン')
     +featured-work('musabi-degreeshow', 'フロントエンド・バックエンド開発 / ユーザーインターフェースデザイン')
+    +featured-work('openstudio', 'フロントエンド開発 / ユーザーインターフェースデザイン')
     +featured-work('wave', '電子工作 / インタラクションデザイン')
     +featured-work('aquarium', 'グラフィックプログラミング')
 
