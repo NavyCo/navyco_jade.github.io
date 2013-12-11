@@ -4,10 +4,12 @@
   $_width: $main-width * 0.25;
   $_icon-size: $base-font-size + 6px;
   
+  float: left;
   width: $_width;
   
   .back, .prev, .next {
     display: block;
+    float: left;
 
     width: $_width;
     height: $_icon-size;
@@ -21,12 +23,12 @@
     }
     
     .icon {
+      float: left;
       padding-top: 0;
       overflow: visible;
     }
     
     .icon:before {
-      float: left;
       margin-right: 8px;
       margin-left: 2px;
       color: $common-violet;

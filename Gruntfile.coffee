@@ -41,10 +41,11 @@ module.exports = (grunt) ->
 
     return (node, comment) ->
       if comment.type is 'comment2' and
-      (/^\!|@preserve|@license|@cc_on/mi.test comment.value)
+      (/^\!|@preserve|@cc_on|License|\(c\)/mi.test comment.value)
         return true
       
-      # コメントが先頭行にあるか、先頭行から連なるコメントである場合、バナーであると判断する
+      # コメントが先頭行にあるか、先頭行から連なるコメントである場合、
+      # バナーであると判断する
       result = comment.line <= 1 or comment.line is prevCommentLine + 1
 
       # コメントがバナーに含まれる場合、そのコメントの行番号を保存する
@@ -172,7 +173,7 @@ module.exports = (grunt) ->
       
       main:
         options:
-          banner: "/*! Copyright (c) 2013 #{ settings.author } | MIT License */"
+          banner: "/*! Copyright (c) 2013 #{ settings.author } | MIT License */\n"
           compress:
             global_defs:
               DEBUG: false
@@ -389,7 +390,8 @@ module.exports = (grunt) ->
       
       jadeTxt = """
       extend ../templates/#{ localData.template or localData.layout }
-      #{ raw.content }
+      block content
+      #{ raw.content.replace(/\n/g, '\n  ') }
       """
       
       # helper

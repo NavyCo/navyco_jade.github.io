@@ -163,7 +163,7 @@ section.full-width {
   }
 }
 
-#page-title {
+#page-title, #subitem-title {
   margin-bottom: 24px;
 
   text-align: center;
@@ -174,8 +174,12 @@ section.full-width {
   }
   
   &+.page-subtitle {
-    margin-bottom: 0;      
+    margin-bottom: 0;
   }
+}
+
+#subitem-title {
+  margin-bottom: 0;
 }
 
 .only-kana {

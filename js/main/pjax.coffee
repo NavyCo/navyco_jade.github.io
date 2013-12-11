@@ -1,5 +1,14 @@
+NProgress.configure
+  trickleRate: 0.2
+  trickleSpeed: 265
+  showSpinner: false
+
 $ ->
   $main = $ 'main'
+  
+  showContent = ->
+    NProgress.done()
+    $main.stop().fadeTo 150, 1
 
   urlContains = (string) ->
     location.pathname.indexOf(string) isnt -1
@@ -8,7 +17,10 @@ $ ->
   if $.support.pjax
     $('#container').on 'click', 'a:not([target])', (e) ->
       e.preventDefault()
-
+      
+      NProgress.set(0.0)
+      NProgress.start()
+      
       $main.fadeTo 4, 0.010, ->
         $.pjax.click e, {
           container: '#content'
@@ -62,7 +74,7 @@ $ ->
           start: ->
             $this = $ this
             if $this.is '.project-image:eq(0)'
-              $main.stop().fadeTo 150, 1
+              showContent()
               $this.finish()
           always: ->
             # 「'.image-wrapper' の子孫である」要素に限定せずに .unwrap() すると、
@@ -125,5 +137,4 @@ $ ->
   
   $doc.on 'pjax:complete', ->
     unless urlContains 'projects/'
-      $main.stop().fadeTo 150, 1
-    
+      showContent()

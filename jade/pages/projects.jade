@@ -3,28 +3,65 @@ template: default
 title: Projects
 ---
 
-block content
-  section
-    h1#page-title プロジェクト
-    //-.line-wide
-    
-  section
-    div#projects
-      each proj in projects
-        div.project
-          a(href= 'projects/' + proj.name + '.html')
-            - var _ext = proj.image_format || 'jpg'
-            img.thumbnail(
-              src= '/img/transparent.gif',
-              data-original= '/img/projects/thumbnails/' + proj.name + '.' + _ext
-              alt= 'サムネイル'
-            )
-          .caption
-            .summary
-              p.name= proj.short_title || proj.title
-              //-hr.line-wide
-              .genre
-                span= proj.genre.join(', ')
-            .arrow
-              a(href= 'projects/' + proj.name + '.html')
-                .icon
+section
+  h1#page-title プロジェクト
+  
+section
+  div#projects
+    each proj in projects
+      div.project
+        a(href= 'projects/' + proj.name + '.html')
+          - var _ext = proj.image_format || 'jpg'
+          img.thumbnail(
+            src= '/img/transparent.gif',
+            data-original= '/img/projects/thumbnails/' + proj.name + '.' + _ext
+            alt= 'サムネイル'
+          )
+        .caption
+          .summary
+            p.name= proj.short_title || proj.title
+            //-hr.line-wide
+            .genre
+              span= proj.genre.join(', ')
+          .arrow
+            a(href= 'projects/' + proj.name + '.html')
+              .icon
+
+section
+  h1#subitem-title OSSプロジェクトへのコミット
+  
+section
+  ul#commits
+    li
+      a(
+        href='https://github.com/silvestreh/onScreen/pull/8',
+        target='_blank'
+      ) silvestreh / onScreen
+    li
+      a(
+        href='https://github.com/mizchi/TypedCoffeeScript/pull/31',
+        target='_blank'
+      ) mizchi / TypedCoffeeScript
+    li
+      a(
+        href='https://github.com/tuupola/jquery_lazyload/pull/157',
+        target='_blank'
+      ) tuupola / jquery_lazyload
+    li
+      a(
+        href='https://github.com/pbakaus/domvas/pull/6',
+        target='_blank'
+      ) pbakaus / domvas
+    li
+      a(
+        href='https://github.com/Se7enSky/grunt-group-css-media-queries/issues/1',
+        target='_blank'
+      ) Se7enSky / grunt-group-css-media-queries
+    li
+      a(
+        href='https://github.com/sindresorhus/screenfull.js/pull/39',
+        target='_blank'
+      ) sindresorhus / screenfull.js
+
+      
+      

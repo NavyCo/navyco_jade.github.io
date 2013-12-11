@@ -1,0 +1,63 @@
+$nprogress-color: $common-violet !default;
+$nprogress-height: 2px !default;
+$show-spinner: false;
+
+/* Make clicks pass-through */
+#nprogress {
+  pointer-events: none;
+  
+  .bar {
+    background: $nprogress-color;
+
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: $nprogress-height;
+  }
+  
+  // Fancy blur effect
+  .peg {
+    display: block;
+    position: absolute;
+    right: 0px;
+    width: 100px;
+    height: 100%;
+    box-shadow: 0 0 10px $head-decoration-violet, 0 0 5px $head-decoration-violet;
+    opacity: 1.0;
+
+    transform: rotate(3deg) translate(0px, -2px);
+  }
+}
+
+@if $show-spinner {
+  #nprogress {
+    .spinner {
+      display: block;
+      position: fixed;
+      z-index: 100;
+      top: 15px;
+      right: 15px;
+    }
+    
+    .spinner-icon {
+      width: 18px;
+      height: 18px;
+      box-sizing: border-box;
+
+      border: solid 2px transparent;
+      border-top-color: $nprogress-color;
+      border-left-color: $nprogress-color;
+      border-radius: 50%;
+
+      animation: nprogress-spinner 400ms linear infinite;
+    }
+  }
+  
+  @keyframes nprogress-spinner {
+    0%   { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+}

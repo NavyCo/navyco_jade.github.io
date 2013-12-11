@@ -185,3 +185,9 @@ $thumbnail-size: ($main-width - $grid-gutter * 2) / 4.0;
     }
   }
 }
+
+#commits {
+  li {
+    text-align: center;
+  }
+}

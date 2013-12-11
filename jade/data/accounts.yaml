@@ -1,0 +1,22 @@
+---
+
+  - 
+    service_name: Github
+    user_name: shinnn
+    url: https://github.com/shinnn
+  - 
+    service_name: npm
+    user_name: shinnn
+    url: https://npmjs.org/~shinnn
+  - 
+    service_name: Qiita
+    user_name: shinnn
+    url: http://qiita.com/shinnn
+  - 
+    service_name: Twitter
+    user_name: shinnn_tw
+    url: https://twitter.com/shinnn_tw
+  - 
+    service_name: メール
+    user_name: snnskwtnb@gmail.com
+    url: mailto:snnskwtnb@gmail.com

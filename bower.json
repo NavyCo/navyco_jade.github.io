@@ -13,10 +13,11 @@
     "jquery-pjax": "latest",
     "jquery.transit": "latest",
     "jquery.lazyload": "latest",
+    "nprogress": "latest",
     "html5shiv": "latest",
     "selectivizr": "latest",
     "respond": "latest",
-    "jquery.belatedPNG": "git://github.com/wakuworks/jquery.belatedPNG.git"
+    "jquery.belatedPNG": "wakuworks/jquery.belatedPNG"
   },
   "devDependencies": {
     "benchmark": "latest"

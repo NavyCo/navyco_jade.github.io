@@ -4,54 +4,53 @@ pageClass: top
 title: ''
 ---
 
-block content
-  section.full-width
-    .inner
-      #logo
-      h1#top-title
-        span.first-name
-          span.capital S
-          | hinnosuke
-        span.family-name
-          span.capital W
-          | atanabe
-      //-p.top-subtitle Software Engineer, User Interface Designer
-      #top-subtitle
-        p.
-          Webフロントエンド開発／デザイン、ユーザーインターフェースデザイン、<br>インタラクティブコンテンツ制作などを行う渡邉伸之介のウェブサイトです。
-  
-  #ribbon
-    #left-ribbon
-    #right-ribbon
-    .icon#scroll-down
-  
-  mixin featured-work(name, role)
-    - var _proj = getProject(name);
-  
-    .featured-works
-      a.wide-image(href= htmlPath('projects/' + name + '.html'))
+section.full-width
+  .inner
+    #logo
+    h1#top-title
+      span.first-name
+        span.capital S
+        | hinnosuke
+      span.family-name
+        span.capital W
+        | atanabe
+    //-p.top-subtitle Software Engineer, User Interface Designer
+    #top-subtitle
+      p.
+        Webフロントエンド開発／デザイン、ユーザーインターフェースデザイン、<br>インタラクティブコンテンツ制作などを行う渡邉伸之介のウェブサイトです。
+
+#ribbon
+  #left-ribbon
+  #right-ribbon
+  .icon#scroll-down
+
+mixin featured-work(name, role)
+  - var _proj = getProject(name);
+
+  .featured-works
+    a.wide-image(href= htmlPath('projects/' + name + '.html'))
+      img(
+        src= '/img/transparent.gif',
+        data-original= '/img/large/' + name + '.jpg',
+        alt= _proj.title
+      )
+      noscript
         img(
-          src= '/img/transparent.gif',
-          data-original= '/img/large/' + name + '.jpg',
+          src= '/img/large/' + name + '.jpg',
           alt= _proj.title
         )
-        noscript
-          img(
-            src= '/img/large/' + name + '.jpg',
-            alt= _proj.title
-          )
-      h2.work-title
-        span= _proj.title
-      .line-wide
-      .role= role
-  
-  section
-    +featured-work('musabi-degreeshow', 'フロントエンド・バックエンド開発 / ユーザーインターフェースデザイン')
-    +featured-work('openstudio', 'フロントエンド開発 / ユーザーインターフェースデザイン')
-    +featured-work('wave', '電子工作 / インタラクションデザイン')
-    +featured-work('aquarium', 'グラフィックプログラミング')
+    h2.work-title
+      span= _proj.title
+    .line-wide
+    .role= role
 
-    p
-      a(href=htmlPath('projects.html'))
-        | 全てのプロジェクト 
-        span.icon.icon-angle-double-right
+section
+  +featured-work('musabi-degreeshow', 'フロントエンド・バックエンド開発 / ユーザーインターフェースデザイン')
+  +featured-work('openstudio', 'フロントエンド開発 / ユーザーインターフェースデザイン')
+  +featured-work('aquarium', 'グラフィックプログラミング')
+  +featured-work('wave', '電子工作 / インタラクションデザイン')
+
+  p
+    a(href=htmlPath('projects.html'))
+      | 全てのプロジェクト 
+      span.icon.icon-angle-double-right
