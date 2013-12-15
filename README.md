@@ -41,7 +41,7 @@ If successful, all files in the `master` directory will be copied to the [`maste
 
 ## License
 
-Copyright (c) 2013 Shinnosuke Watanabe All rights reserved.
+Copyright (c) 2013 [Shinnosuke Watanabe](https://github.com/shinnn) All rights reserved.
 
 Unless otherwise stated, all source code in this repository is licensed under the [MIT license](http://opensource.org/licenses/mit-license.php).
 

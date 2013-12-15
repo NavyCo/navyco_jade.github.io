@@ -4,6 +4,7 @@ module.exports = (grunt) ->
   path = require 'path'
 
   _ = require 'lodash'
+  saveLicense = require 'uglify-save-license'
   yfm = require 'assemble-front-matter'
   sizeOf = require 'image-size'
   jade = require 'jade'
@@ -34,28 +35,6 @@ module.exports = (grunt) ->
     process.env.USERPROFILE
   
   JS_ROOT = "#{ SRC_ROOT }js/"
-  
-  # Preserve banner/license comments certainly
-  isIncludedInBanner = do ->
-    prevCommentLine = 0
-
-    return (node, comment) ->
-      if comment.type is 'comment2' and
-      (/^\!|@preserve|@cc_on|License|\(c\)/mi.test comment.value)
-        return true
-      
-      # コメントが先頭行にあるか、先頭行から連なるコメントである場合、
-      # バナーであると判断する
-      result = comment.line <= 1 or comment.line is prevCommentLine + 1
-
-      # コメントがバナーに含まれる場合、そのコメントの行番号を保存する
-      # コメントがバナーではない場合、行番号の保存をリセットする
-      if result
-        prevCommentLine = comment.line
-      else
-        prevCommentLine = 0
-        
-      return result
   
   grunt.initConfig
     bower:
@@ -169,7 +148,7 @@ module.exports = (grunt) ->
     
     uglify:
       options:
-        preserveComments: isIncludedInBanner
+        preserveComments: saveLicense
       
       main:
         options:
@@ -339,6 +318,13 @@ module.exports = (grunt) ->
         'imagemin'
         'flexSVG'
       ]
+      
+    save_license: {
+      dist: {
+        src: ['master/.tmp/bower_exports/**/*.js'],
+        dest: 'licenses.txt'
+      }
+    }
   
   # Compile .jade files with frontmatter
   grunt.task.registerTask 'jadeTemplate',

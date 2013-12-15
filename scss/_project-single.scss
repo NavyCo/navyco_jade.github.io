@@ -1,7 +1,7 @@
 @charset 'UTF-8';
 
 .project-menu {
-  $_width: $main-width * 0.25;
+  $_width: $main-width * 1/6;
   $_icon-size: $base-font-size + 6px;
   
   float: left;
