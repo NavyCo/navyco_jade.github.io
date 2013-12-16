@@ -4,7 +4,11 @@
   "description": "Shinnosuke Watanabe's website hosted on Github Pages",
   "main": "Gruntfile.coffee",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "grunt"
+  },
+  "config": {
+      "unsafe-perm": true
   },
   "repository": {
     "type": "git",
@@ -48,10 +52,10 @@
     "lodash": "~2.4.1",
     "coffeelint": "~1.0.2",
     "jade": "~0.35.0",
-    "grunt-autoprefixer": "~0.4.1",
+    "grunt-autoprefixer": "~0.5.0",
     "ini": "~1.1.0",
     "assemble-front-matter": "~0.1.2",
     "image-size": "~0.1.16",
-    "uglify-save-license": "0.0.1"
+    "uglify-save-license": "0.0.3"
   }
 }
