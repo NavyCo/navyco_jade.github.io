@@ -136,7 +136,6 @@ module.exports = (grunt) ->
     coffee:
       options:
         sourceMap: true
-
       dev:
         options:
           bare: true

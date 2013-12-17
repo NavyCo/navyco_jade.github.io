@@ -1,6 +1,7 @@
 # [Shinnosuke Watanabe's Website](http://shinnn.github.io)
 
 [![devDependency Status](https://david-dm.org/shinnn/shinnn.github.io/dev-status.png)](https://david-dm.org/shinnn/shinnn.github.io#info=devDependencies)
+[![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
 ## Features
 

@@ -7,9 +7,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "grunt"
   },
-  "config": {
-      "unsafe-perm": true
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/shinnn/shinnn.github.io.git"
@@ -56,6 +53,6 @@
     "ini": "~1.1.0",
     "assemble-front-matter": "~0.1.2",
     "image-size": "~0.1.16",
-    "uglify-save-license": "0.0.3"
+    "uglify-save-license": "~0.1.0"
   }
 }
