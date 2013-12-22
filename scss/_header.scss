@@ -60,7 +60,7 @@ header a {
   
   font-weight: 600;
 
-  @media screen and(max-width: $main-width - 270px){
+  @media screen and(max-width: $main-width - 270px) {
     padding-left: 8px;
     padding-right: 8px;
   }
@@ -76,14 +76,7 @@ header a {
   }
   &.active {
     //margin-right: - 1px;
-
     color: $common-violet;
-
-    //border: 1px solid $common-hover-violet; //#E1E1E1;
-    //border-top-color: lighten($common-hover-violet, 20);
-    border-left-color: lighten($common-hover-violet, 12);
-    //border-bottom: 1px solid $common-hover-violet;
-    border-bottom-color: $background-white;
     
     &:hover {
       color: $common-hover-violet;

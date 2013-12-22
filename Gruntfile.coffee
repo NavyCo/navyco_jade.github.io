@@ -1,6 +1,8 @@
 module.exports = (grunt) ->
   'use strict'
 
+  require('jit-grunt') grunt, {bower: 'grunt-bower-task'}
+
   path = require 'path'
 
   _ = require 'lodash'
@@ -8,14 +10,7 @@ module.exports = (grunt) ->
   yfm = require 'assemble-front-matter'
   sizeOf = require 'image-size'
   jade = require 'jade'
-
-  require('load-grunt-tasks') grunt, {pattern: [
-    'grunt-*'
-    '!grunt-gh-pages'
-    '!grunt-prompt'
-    '!grunt-open'
-  ]}
-
+  
   settings = grunt.file.readYAML 'settings.yaml'
 
   BIN = "#{ process.cwd() }/node_modules/.bin/"
@@ -27,19 +22,19 @@ module.exports = (grunt) ->
     else
       "#{ str }/"
 
-  SRC_ROOT = _addLastSlash(settings.srcPath) or ''
-  DEST_ROOT = _addLastSlash(settings.destPath) or 'site/'
+  SRC = _addLastSlash(settings.srcPath) or ''
+  DEST = _addLastSlash(settings.destPath) or 'site/'
 
   HOME_DIR = process.env.HOME or
     process.env.HOMEPATH or
     process.env.USERPROFILE
   
-  JS_ROOT = "#{ SRC_ROOT }js/"
+  JS = "#{ SRC }js/"
   
   grunt.initConfig
     bower:
       options:
-        targetDir: "#{ DEST_ROOT }.tmp/bower_exports/"
+        targetDir: "#{ DEST }.tmp/bower_exports/"
         cleanTargetDir: true
         bowerOptions:
           production: true
@@ -48,7 +43,7 @@ module.exports = (grunt) ->
       
     modernizr:
       devFile: 'remote'
-      outputFile: "#{ SRC_ROOT }public/js/modernizr.js"
+      outputFile: "#{ SRC }public/js/modernizr.js"
       extra:
         # Modernizr won't includes the HTML5 Shiv.
         # Instead, the Shiv will be included in the IE-fix script file.
@@ -68,18 +63,15 @@ module.exports = (grunt) ->
         #include: []
         flags: ['--minify']
       custom:
-        dest: "#{ JS_ROOT }vendor/lodash.gruntbuild.js"
+        dest: "#{ JS }vendor/lodash.gruntbuild.js"
 
-    casperjs:
-      files: ["#{ SRC_ROOT }casperjs/{,*/}*.{js,coffee}"]
-      
     copy:
       public:
         files: [
           expand: true
-          cwd: "#{ SRC_ROOT }public"
+          cwd: "#{ SRC }public"
           src: ['**', '!**/{.DS_Store,Thumbs.db}']
-          dest: DEST_ROOT
+          dest: DEST
           dot: true
         ]
       bower:
@@ -87,7 +79,7 @@ module.exports = (grunt) ->
           expand: true
           cwd: '<%= bower.options.targetDir %>/public'
           src: ['**', '!**/{.DS_Store,Thumbs.db}']
-          dest: "#{ DEST_ROOT }bower_components"
+          dest: "#{ DEST }bower_components"
           dot: true
         ]
       bower_debug:
@@ -95,27 +87,20 @@ module.exports = (grunt) ->
           expand: true
           cwd: '<%= bower.options.targetDir %>/debug'
           src: ['**', '!**/{.DS_Store,Thumbs.db}']
-          dest: "#{ DEST_ROOT }/debug/bower_components"
+          dest: "#{ DEST }/debug/bower_components"
           dot: true
         ]
 
     compass:
       options:
-        config: "#{ SRC_ROOT }scss/config.rb"
-        cssDir: "#{ DEST_ROOT }debug/css-readable"
+        config: "#{ SRC }scss/config.rb"
+        cssDir: "#{ DEST }debug/css-readable"
         environment: 'development'
       all: {}
     
     autoprefixer:
       all:
         src: '<%= compass.options.cssDir%>{,*/}*.css'
-    
-    cmq:
-      all:
-        options:
-          log: true
-        src: ['<%= compass.options.cssDir%>{,*/}*.css']
-        dest: '<%= compass.options.cssDir%>'
       
     cssmin:
       dist:
@@ -123,7 +108,7 @@ module.exports = (grunt) ->
           expand: true
           cwd: '<%= compass.options.cssDir%>'
           src: ['{,*/}*.css']
-          dest: "#{ DEST_ROOT }css/"
+          dest: "#{ DEST }css/"
         ]
     
     csslint:
@@ -139,11 +124,11 @@ module.exports = (grunt) ->
       dev:
         options:
           bare: true
-        src: ["#{ JS_ROOT }main/*.coffee"]
-        dest: "#{ DEST_ROOT }debug/js/main.js"
+        src: ["#{ JS }main/*.coffee"]
+        dest: "#{ DEST }debug/js/main.js"
       dist:
         src: ['js/main/*.coffee']
-        dest: "#{ DEST_ROOT }.tmp/main.js"
+        dest: "#{ DEST }.tmp/main.js"
     
     uglify:
       options:
@@ -176,25 +161,25 @@ module.exports = (grunt) ->
     concat:
       vendor:
         src: [
-          "#{ JS_ROOT }vendor/{,*/}*.js"
+          "#{ JS }vendor/{,*/}*.js"
           '<%= bower.options.targetDir %>{,*/,*/*/}*.js'
           '!<%= bower.options.targetDir %>{public,ie,debug}{,*/,*/*/}*.js'
         ]
-        dest: "#{ DEST_ROOT }debug/js/vendor.js"
+        dest: "#{ DEST }debug/js/vendor.js"
       vendor_ie:
         src: [
-          "#{ JS_ROOT }vendor-ie/{,*/}*.js"
+          "#{ JS }vendor-ie/{,*/}*.js"
           '<%= bower.options.targetDir %>/ie/{,*/}*.js'
         ]
-        dest: "#{ DEST_ROOT }js/vendor.ie.js"
+        dest: "#{ DEST }js/vendor.ie.js"
       main:
-        src: ["#{ DEST_ROOT }debug/js/vendor.js", '<%= uglify.main.dest %>']
-        dest: "#{ DEST_ROOT }js/main.js"
+        src: ["#{ DEST }debug/js/vendor.js", '<%= uglify.main.dest %>']
+        dest: "#{ DEST }js/main.js"
     
     clean:
-      site: path.resolve DEST_ROOT
-      tmpfiles: ["#{ DEST_ROOT }.tmp"]
-      debugFiles: ["#{ DEST_ROOT }debug"]
+      site: path.resolve DEST
+      tmpfiles: ["#{ DEST }.tmp"]
+      debugFiles: ["#{ DEST }debug"]
       
     imagemin:
       all:
@@ -202,9 +187,9 @@ module.exports = (grunt) ->
           progressive: false
         files: [
           expand: true
-          cwd: "#{ SRC_ROOT }img/"
+          cwd: "#{ SRC }img/"
           src: ['**/*.{png,jpg,gif}']
-          dest: "#{ DEST_ROOT }img/"
+          dest: "#{ DEST }img/"
         ]
 
     svgmin:
@@ -215,15 +200,15 @@ module.exports = (grunt) ->
       dist:
         files: [
           expand: true
-          cwd: "#{ DEST_ROOT }.tmp/svg/"
+          cwd: "#{ DEST }.tmp/svg/"
           src: ['*.svg']
-          dest: "#{ DEST_ROOT }img/"
+          dest: "#{ DEST }img/"
         ]
     
     shell:
       coffeelint:
         command:
-          "#{ BIN }coffeelint #{ JS_ROOT }main/*.coffee"
+          "#{ BIN }coffeelint #{ JS }main/*.coffee"
         options:
           stdout: true
       coffeelint_grunt:
@@ -238,7 +223,7 @@ module.exports = (grunt) ->
         port: settings.liveReloadPort
       site:
         options:
-          base: DEST_ROOT
+          base: DEST
     
     open:
       site:
@@ -255,13 +240,13 @@ module.exports = (grunt) ->
         livereload: '<%= connect.options.livereload %>'
 
       bower:
-        files: ["#{ SRC_ROOT }bower.json"]
+        files: ["#{ SRC }bower.json"]
         tasks: ['bower', 'uglify:bower']
       compass:
-        files: ["#{ SRC_ROOT }scss/*.scss"]
+        files: ["#{ SRC }scss/*.scss"]
         tasks: ['compass', 'postprocessCSS']
       coffee:
-        files: ["#{ JS_ROOT }main/*.coffee"]
+        files: ["#{ JS }main/*.coffee"]
         tasks: ['shell:coffeelint', 'coffee', 'uglify:main', 'concat:main']
       coffee_grunt:
         files: 'Gruntfile.coffee'
@@ -273,21 +258,21 @@ module.exports = (grunt) ->
         files: '<%= concat.vendor_ie.src %>'
         tasks: ['concat:vendor_ie']
       images:
-        files: ["#{ SRC_ROOT }img/**/*.{png,jpg,gif}"]
+        files: ["#{ SRC }img/**/*.{png,jpg,gif}"]
         tasks: ['imagemin:all']
       svg:
-        files: ["#{ SRC_ROOT }img/**/*.svg"]
+        files: ["#{ SRC }img/**/*.svg"]
         tasks: ['flexSVG', 'svgmin']
       jade:
-        files: ["#{ SRC_ROOT }jade/**/*.{jade,json,yaml,yml}"]
+        files: ["#{ SRC }jade/**/*.{jade,json,yaml,yml}"]
         tasks: ['jadeTemplate:dev', 'jadeTemplate:dist']
       copy:
-        files: ["#{ SRC_ROOT }public/**/*"]
+        files: ["#{ SRC }public/**/*"]
         tasks: ['copy:public']
         
     'gh-pages':
       options:
-        base: DEST_ROOT
+        base: DEST
         branch: 'master'
         message: 'deployed by grunt-gh-pages'
       site:
@@ -317,23 +302,16 @@ module.exports = (grunt) ->
         'imagemin'
         'flexSVG'
       ]
-      
-    save_license: {
-      dist: {
-        src: ['master/.tmp/bower_exports/**/*.js'],
-        dest: 'licenses.txt'
-      }
-    }
   
   # Compile .jade files with frontmatter
-  grunt.task.registerTask 'jadeTemplate',
+  grunt.registerTask 'jadeTemplate',
   'Compile Jade files with front-matter', (mode) ->
     
     devMode = mode isnt 'dist'
 
     globalData = {}
     
-    grunt.file.recurse "#{ SRC_ROOT }jade/data/",
+    grunt.file.recurse "#{ SRC }jade/data/",
       (abspath, rootdir, subdir, filename) ->
         _basename = path.basename filename, path.extname(filename)
     
@@ -344,21 +322,20 @@ module.exports = (grunt) ->
         path.extname(filename) is '.yml'
           globalData[_basename] = grunt.file.readYAML abspath
     
-    getComponentVersion = (name) ->
-      _bowerPath = "#{ SRC_ROOT }bower_components/#{ name }/bower.json"
-      return grunt.file.readJSON(_bowerPath).version
+    getComponentVer = (name) ->
+      require("./#{ SRC }bower_components/#{ name }/bower.json").version
 
-    globalData.jquery_ver = getComponentVersion 'jquery'
-    globalData.jquery1_ver = getComponentVersion 'jquery1'
+    globalData.jquery_ver = getComponentVer 'jquery'
+    globalData.jquery1_ver = getComponentVer 'jquery1'
 
     mapOptions =
-      cwd: "#{ SRC_ROOT }jade/pages/"
+      cwd: "#{ SRC }jade/pages/"
       filter: 'isFile'
       ext: '.html'
       rename: (dest, src) ->
         dest + (if devMode then 'debug/' else '') + src
     
-    fileMap = grunt.file.expandMapping '**/*.jade', DEST_ROOT, mapOptions
+    fileMap = grunt.file.expandMapping '**/*.jade', DEST, mapOptions
         
     compileOptions =
       pretty: false
@@ -387,7 +364,7 @@ module.exports = (grunt) ->
       localData.projectImages = []
 
       projectImagePaths = grunt.file.expand {
-        cwd: SRC_ROOT
+        cwd: SRC
       }, "img/projects/#{ localData.basename }/**/*.{png,jpg,gif}"
       
       for imagePath, i in projectImagePaths
@@ -413,24 +390,24 @@ module.exports = (grunt) ->
       
   
   # Remove 'width' and 'height' properties from SVG
-  grunt.task.registerTask 'flexSVG', 'An internal task.', ->
-    _cwd = "#{ SRC_ROOT }img/"
+  grunt.registerTask 'flexSVG', 'An internal task.', ->
+    _cwd = "#{ SRC }img/"
     srcSVGs = grunt.file.expand {cwd: _cwd}, '*.svg'
     srcSVGs.forEach (filepath) ->
       svgString = grunt.file.read _cwd + filepath
       match = svgString.match /width([^)]+)viewBox/
       if match?
         svgString = svgString.replace match, 'viewBox'
-      grunt.file.write "#{ DEST_ROOT }.tmp/svg/#{ filepath }", svgString
+      grunt.file.write "#{ DEST }.tmp/svg/#{ filepath }", svgString
   
-  grunt.task.registerTask 'addNoJekyll',
+  grunt.registerTask 'addNoJekyll',
     'Add .nojekyll if needed',
     ->
-      if grunt.file.expand("#{ DEST_ROOT }**/_*").length > 0
-        grunt.file.write  "#{ DEST_ROOT }.nojekyll", ''
-        console.log "File \"#{ DEST_ROOT }.nojekyll\" created."
+      if grunt.file.expand("#{ DEST }**/_*").length > 0
+        grunt.file.write  "#{ DEST }.nojekyll", ''
+        console.log "File \"#{ DEST }.nojekyll\" created."
   
-  grunt.task.registerTask 'postprocessCSS', ['autoprefixer', 'cssmin']
+  grunt.registerTask 'postprocessCSS', ['autoprefixer', 'cssmin']
 
   defaultTasks = [
     'clean:site' #reset
@@ -440,22 +417,24 @@ module.exports = (grunt) ->
     'uglify', 'concat' #minify JS
     'postprocessCSS'
     'svgmin'
-    'connect', 'watch'
+    'connect'
   ]
   
-  grunt.task.registerTask 'default', defaultTasks
+  grunt.registerTask 'build', defaultTasks
+  
+  grunt.registerTask 'default', ['build', 'watch']
   
   # task list for 'dist' tasks
   distTasks = _(defaultTasks)
-    .without('concurrent:dev', 'watch')
+    .without('concurrent:dev')
     .union(['clean:tmpfiles', 'clean:debugFiles', 'addNoJekyll'])
     .valueOf()
   
-  grunt.task.registerTask 'dist',
+  grunt.registerTask 'dist',
     'Generate only the files to publish a website',
     distTasks
   
-  grunt.task.registerTask 'deploy',
+  grunt.registerTask 'deploy',
     'Deploy to Github Pages',
     ->
       grunt.loadNpmTasks 'grunt-prompt'
