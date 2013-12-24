@@ -1,7 +1,10 @@
 module.exports = (grunt) ->
   'use strict'
 
-  require('jit-grunt') grunt, {bower: 'grunt-bower-task'}
+  require('jit-grunt') grunt, {
+    bower: 'grunt-bower-task'
+    merge_data: 'grunt-merge-data'
+  }
 
   path = require 'path'
 
@@ -205,6 +208,11 @@ module.exports = (grunt) ->
           dest: "#{ DEST }img/"
         ]
     
+    merge_data:
+      jade_data:
+        src: ["#{ SRC }jade/data/*.{json,yaml}"]
+        dest: "#{ DEST }.tmp/jade-data.json"
+    
     shell:
       coffeelint:
         command:
@@ -265,7 +273,7 @@ module.exports = (grunt) ->
         tasks: ['flexSVG', 'svgmin']
       jade:
         files: ["#{ SRC }jade/**/*.{jade,json,yaml,yml}"]
-        tasks: ['jadeTemplate:dev', 'jadeTemplate:dist']
+        tasks: ['merge_data', 'jadeTemplate:dev', 'jadeTemplate:dist']
       copy:
         files: ["#{ SRC }public/**/*"]
         tasks: ['copy:public']
@@ -292,7 +300,7 @@ module.exports = (grunt) ->
 
     concurrent:
       preparing: [
-        'bower', 'shell'
+        'bower', 'shell', 'merge_data'
       ]
       dev: ['coffee:dev', 'jadeTemplate:dev']
       dist: [
@@ -309,19 +317,8 @@ module.exports = (grunt) ->
     
     devMode = mode isnt 'dist'
 
-    globalData = {}
-    
-    grunt.file.recurse "#{ SRC }jade/data/",
-      (abspath, rootdir, subdir, filename) ->
-        _basename = path.basename filename, path.extname(filename)
-    
-        if path.extname(filename) is '.json'
-          globalData[_basename] = grunt.file.readJSON abspath
-
-        if path.extname(filename) is '.yaml' or
-        path.extname(filename) is '.yml'
-          globalData[_basename] = grunt.file.readYAML abspath
-    
+    globalData = grunt.file.readJSON "#{ DEST }.tmp/jade-data.json"
+        
     getComponentVer = (name) ->
       require("./#{ SRC }bower_components/#{ name }/bower.json").version
 
