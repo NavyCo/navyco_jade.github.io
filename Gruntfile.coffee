@@ -20,19 +20,20 @@ module.exports = (grunt) ->
 
   # Add '/' to the string if its last character is not '/'
   _addLastSlash = (str) ->
-    if str.charAt(str.length - 1) is '/' or str is ''
+    unless str?
+      false
+    else if str.substr(-1) is '/' or str is ''
       str
     else
       "#{ str }/"
 
   SRC = _addLastSlash(settings.srcPath) or ''
   DEST = _addLastSlash(settings.destPath) or 'site/'
+  JS = "#{ SRC }js/"
 
   HOME_DIR = process.env.HOME or
     process.env.HOMEPATH or
     process.env.USERPROFILE
-  
-  JS = "#{ SRC }js/"
   
   grunt.initConfig
     bower:
@@ -136,7 +137,6 @@ module.exports = (grunt) ->
     uglify:
       options:
         preserveComments: saveLicense
-      
       main:
         options:
           banner: "/*! Copyright (c) 2013 #{ settings.author } | MIT License */\n"
@@ -209,6 +209,18 @@ module.exports = (grunt) ->
         ]
     
     merge_data:
+      options:
+        data: ->
+          getComponentVer = (name) ->
+            grunt.file.readJSON(
+              "#{ SRC }bower_components/#{ name }/bower.json"
+            ).version
+
+          {
+            jquery_ver: getComponentVer 'jquery'
+            jquery1_ver: getComponentVer 'jquery1'
+          }
+          
       jade_data:
         src: ["#{ SRC }jade/data/*.{json,yaml}"]
         dest: "#{ DEST }.tmp/jade-data.json"
@@ -318,12 +330,6 @@ module.exports = (grunt) ->
     devMode = mode isnt 'dist'
 
     globalData = grunt.file.readJSON "#{ DEST }.tmp/jade-data.json"
-        
-    getComponentVer = (name) ->
-      require("./#{ SRC }bower_components/#{ name }/bower.json").version
-
-    globalData.jquery_ver = getComponentVer 'jquery'
-    globalData.jquery1_ver = getComponentVer 'jquery1'
 
     mapOptions =
       cwd: "#{ SRC }jade/pages/"

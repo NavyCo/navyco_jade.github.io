@@ -52,6 +52,6 @@
     "image-size": "~0.1.16",
     "uglify-save-license": "~0.1.0",
     "jit-grunt": "~0.1.2",
-    "grunt-merge-data": "0.0.3"
+    "grunt-merge-data": "~0.2.2"
   }
 }
