@@ -13,9 +13,9 @@ mixin loadJQuery(version)
     script.
       this.jQuery||document.write("<script src=#{ url }><\/script>");
   
-<!--[if lt IE 9 ]>
+|<!--[if lt IE 9 ]>
 +loadJQuery(jquery1_ver)
-<![endif]-->
+|<![endif]-->
   
 //[if gte IE 9]><!
 +loadJQuery(jquery_ver)
