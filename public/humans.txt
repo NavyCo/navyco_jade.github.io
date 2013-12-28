@@ -18,5 +18,7 @@
 /* SITE */
   Host: Github Pages
   Language: Japanese
+  Contents: profile, portfolio
+  Timezone: JST
   Doctype: HTML5
   Software: TextMate2, Terminal, Adobe Illustrator, Adobe Photoshop
