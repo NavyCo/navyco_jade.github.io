@@ -76,14 +76,10 @@
 
 #project-info {
   margin-top: -0.5em;
-  margin-bottom: $gutter;
+  margin-bottom: $gutter * 1.5;
 
   font-size: $base-font-size - 1px;
   color: gray;
-  
-  p {
-    text-align: center;
-  }
   
   .bar {
     margin: 0 0.6em;
@@ -111,10 +107,14 @@
   @include image-shadow;
 }
 
+#project-inf {
+  width: 0%;
+  float: left;
+}
+
 #project-details {
   width: 80%;
-  margin-top: $gutter;
-  margin-left: 10%;
+  margin-left: 10%;  
   
   @media screen and(max-width: $main-width * 0.92){
     width: 100%;
@@ -140,6 +140,7 @@
     background-color: $head-decoration-violet;
     // background-color: $common-violet;
     font-size: $base-font-size - 2px;
+    //font-weight: bold;
     height: $link-height;
     line-height: 2.0;
     color: $common-white;
@@ -154,8 +155,8 @@
       background: #F9F9F9;
       background: linear-gradient(
         to right,
-        darken(#F9F9F9, 0) 88%,
-        darken(#F9F9F9, 1) 89%);
+        darken(#F9F9F9, 0.2) 0%,
+        darken(#F9F9F9, 0) 89%);
       height: $link-height;
       border-radius: 0 $radius $radius 0;
       padding-right: 18px;
@@ -169,37 +170,6 @@
       }
     }
   }
-}
-
-.features {
-  margin-top: $gutter * 1.5;
-  
-  li {
-    @extend .icon-ok;
-    margin-bottom: 3px;
-    
-    font-size: $base-font-size - 2px;
-    font-weight: bold;
-    color: darken($common-text-gray, 12);
-    
-    &:before {
-      color: $common-hover-violet;
-      margin-right: 0.5em;
-    }
-    
-    &:nth-child(odd):before {
-      color: $common-violet;
-    }
-    
-  }
-}
-
-p.skill-code {
-  margin-top: 1.0em;
-  
-  &:before {
-    color: $common-violet;
-  };
 }
 
 #description {

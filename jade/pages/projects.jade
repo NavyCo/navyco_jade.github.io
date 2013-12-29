@@ -4,23 +4,21 @@ title: Projects
 ---
 
 section
-  h1#page-title プロジェクト
+  h1#page-title デザイン / コンテンツ制作
   
 section
   div#projects
     each proj in projects
-      div.project
-        a(href= 'projects/' + proj.name + '.html')
-          - var _ext = proj.image_format || 'jpg'
-          img.thumbnail(
+      .project
+        - var _ext = proj.image_format || 'jpg'
+        a.thumbnail(href= 'projects/' + proj.name + '.html')
+          img(
             src= '/img/transparent.gif',
             data-original= '/img/projects/thumbnails/' + proj.name + '.' + _ext
-            alt= 'サムネイル'
-          )
+            alt= 'サムネイル')
         .caption
           .summary
             p.name= proj.short_title || proj.title
-            //-hr.line-wide
             .genre
               span= proj.genre.join(', ')
           .arrow
@@ -28,7 +26,10 @@ section
               .icon
 
 section
-  h1#subitem-title OSSプロジェクトへのコミット
+  h1#subitem-title オープンソース・ソフトウェア
+
+section
+  h1#subitem-title オープンソース・ソフトウェアへのコミット
   
 section
   ul#commits

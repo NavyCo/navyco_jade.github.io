@@ -179,42 +179,6 @@ hr.line-wide {
   background-color: $head-decoration-violet;
 }
 
-.inline-icon {
-  display: block;
-  margin-top: 8px;
-  font-size: $base-font-size;
-  
-  &:before {
-    font-size: $base-font-size + 10px;
-    margin-right: 0.25em;
-  }
-}
-
-.skills+.skills {
-  margin-top: 1em;
-}
-
-.skill-code {
-  
-  @extend .icon-code;
-  &:before {
-    width: $base-font-size + 4px;
-    font-size: $base-font-size - 2px;
-    color: #c8a9d5;
-    margin-right: 0.5em;
-  }
-}
-
-.skill-other {
-  
-  @extend .icon-star;
-  &:before {
-    width: $base-font-size + 4px;
-    color: #c8a9d5;
-    margin-right: 0.25em;
-  }
-}
-
 .read-more {
   font-size: $base-font-size - 1px;
 }

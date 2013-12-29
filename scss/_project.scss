@@ -45,28 +45,23 @@ $thumbnail-size: ($main-width - $grid-gutter * 2) / 4.0;
   margin-top: -$gutter;
   margin-left: $grid-gutter;
   margin-right: -$grid-gutter;
-  margin-bottom: $grid-gutter;
+  margin-bottom: $gutter;
   
-  > a {
+  > .thumbnail {
     @extend %grid-item-component;
     
     display: block;
     position: relative;
     overflow: hidden;
-    height: 250px * 0.8;
+    height: 80px;
     
     img {
       position: relative;
       left: 50%;
-      height: 250px * 0.8;
+      height: 250px;
       margin-left: - 250px * 0.8;
     }
   }
-}
-
-.thumbnail {
-  height: $thumbnail-size;
-  //background-color: gray;
 }
 
 .caption {
@@ -76,10 +71,11 @@ $thumbnail-size: ($main-width - $grid-gutter * 2) / 4.0;
   height: 4.5em;
   min-height: 70px;
   margin-top: 14px;
+  background-color: rgba(255, 255, 255, .92);
   
   .summary {
     float: left;
-    width: 75%;
+    width: 82%;
   }
   
   p {
@@ -105,7 +101,7 @@ $thumbnail-size: ($main-width - $grid-gutter * 2) / 4.0;
   .arrow {
     
     float: right;
-    width: 25%;
+    width: 18%;
   }
   
   .icon {

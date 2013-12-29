@@ -25,10 +25,7 @@ block inner
         div!= prevProject.title
 
   section
-    +project-menu
-    //-div#number!= projectIndex + 1 + '&nbsp;/&nbsp;' + projects.length
-    
-  section
+    //+project-menu
     h1#project-title= project.title
     //-.line-wide
     #project-info
@@ -36,36 +33,31 @@ block inner
         span= project.time
         span.bar |
         span= project.role.join(' / ')
-  
+
   mixin lazyload-image(image, caption)
     .image-wrapper(
-      style='padding-bottom: ' + 100 * image.height / image.width + '%;'
-    )
+      style='padding-bottom: ' + 100 * image.height / image.width + '%;')
       img.project-image(
         src= '/img/transparent.gif',
         data-original= '/' + image.path,
-        alt= caption
-      )
+        alt= caption)
     noscript
       img.project-image(
         src= '/' + image.path,
-        alt= caption
-      )
-    
+        alt= caption)    
   
   section
     if projectImages.length
       +lazyload-image(
         projectImages.shift(),
-        project.image_captions.shift() || ''
-      )
+        project.image_captions.shift() || '')
     else
       img.project-image(src='http://placehold.it/1248x702')
 
   section
+    #project-inf
+      p 
     #project-details
-      //-if project.lead
-        #project-lead= project.lead
       if project.links
         table.links
           tbody
@@ -76,22 +68,8 @@ block inner
                 td.value
                   div
                     a(href=link.url, target='_blank')= link.url
-        
-      if project.features
-        ul.features
-          each feature in project.features
-            li.icon= feature
 
       #description
-        if project.features
-          hr.line-wide
-
-        if (typeof project.description === 'string')
-          p!= project.description
-        else if Array.isArray(project.description)
-          each paragraph in project.description
-            p!= paragraph
-
         block content
       
   if projectImages.length
