@@ -1,4 +1,9 @@
 ---
 template: project-single
-name: musabi-degreeshow
 ---
+
+p
+  | 武蔵野美術大学造形学部デザイン情報学科の、2011年度卒業研究・制作展のWebサイトです。スクロールでページ内を行き来するシングルページデザインのサイトです。
+  a(href='https://developer.mozilla.org/docs/Web/Guide/API/DOM/Manipulating_the_browser_history', target='_blank') History API
+  | を利用し、ブラウザ履歴の進む／戻る操作に合わせて、URLと表示位置が一致するように自動スクロールします。
+p 全出展者の情報を管理するため、作品名や説明文などを入力してもらうための出展者向けページを用意しました。PostgreSQLを用いてデータベースを設計し、そこに登録されたデータを基に、各出展者の情報を本サイトで出力しています。

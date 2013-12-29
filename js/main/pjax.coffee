@@ -57,7 +57,9 @@ $ ->
         skip_invisible: false
         placeholder: '/img/transparent.gif'
         
-      $('#logo').transition {
+      $('#logo')
+      .delay(200)
+      .transition {
         backgroundPosition: '0px 0px'
       }, 500
       

@@ -91,6 +91,8 @@ block inner
         else if Array.isArray(project.description)
           each paragraph in project.description
             p!= paragraph
+
+        block content
       
   if projectImages.length
     aside
@@ -101,4 +103,3 @@ block inner
   section
     +project-menu
   
-  block content

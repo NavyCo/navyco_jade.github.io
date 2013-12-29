@@ -1,3 +1,11 @@
 ---
 template: project-single
 ---
+  
+p 水の動きを基にしたソニフィケーション（可聴化）を行うインタラクティブ・インスタレーションです。私たちの生活に身近な水の動き、特に、手で持って動かせる程の体積の水の動きを、音を通じで体感してもらうことを目的として制作しました。
+p
+  |  8つのスピーカーに囲まれ、円形にプロジェクションされた直径約3mのスペースの中で、鑑賞者は水の入った容器を手に持って動かします。容器の四辺の水位は常時Arduinoで読み取られ、その値は
+  a(href='http://www.digi.com/products/wireless-wired-embedded-solutions/zigbee-rf-modules/zigbee-mesh-module/xbee-zb-module', target='_blank') XBee
+  | を用いた無線通信によって、パソコンで実行中の
+  a(href='http://cycling74.com/products/max/', target='_blank') Max
+  | プログラムに送信されます。Maxプログラムは水位に応じて異なる音声を生成し、各スピーカーから出力される音を変化させます。
