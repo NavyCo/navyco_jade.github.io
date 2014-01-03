@@ -13,6 +13,7 @@
     "jquery-pjax": "latest",
     "jquery.transit": "latest",
     "jquery.lazyload": "latest",
+    "backbone": "latest",
     "nprogress": "latest",
     "html5shiv": "latest",
     "selectivizr": "latest",
@@ -31,6 +32,9 @@
     },
     "jquery.lazyload": {
       "jquery.lazyload": "jquery.lazyload.min.js"
+    },
+    "backbone": {
+      "backbone": "backbone.js"
     },
     "html5shiv": {
       "ie": "dist/html5shiv.js"

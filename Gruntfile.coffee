@@ -42,7 +42,6 @@ module.exports = (grunt) ->
         cleanTargetDir: true
         bowerOptions:
           production: true
-      
       install: {}
       
     modernizr:
@@ -63,11 +62,11 @@ module.exports = (grunt) ->
   
     lodash:
       options:
-        modifier: 'legacy'
+        modifier: 'backbone'
         #include: []
         flags: ['--minify']
       custom:
-        dest: "#{ JS }vendor/lodash.gruntbuild.js"
+        dest: "#{ JS }vendor/lodash.gruntbuild.min.js"
 
     copy:
       public:
@@ -156,7 +155,7 @@ module.exports = (grunt) ->
           cwd: '<%= bower.options.targetDir %>'
           src: [
             '{,*/,*/*/}*.js',
-            '!{,*/,*/*/}*{.min,-min}.js', '!debug/{,*/}*.js'
+            '!{,*/,*/*/}*{.,-}min.js', '!debug/{,*/}*.js'
           ]
           dest: '<%= bower.options.targetDir %>'
         ]

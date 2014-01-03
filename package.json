@@ -47,7 +47,7 @@
     "grunt-autoprefixer": "~0.6.3",
     "lodash": "~2.4.1",
     "coffeelint": "~1.0.2",
-    "jade": "~1.0.1",
+    "jade": "~1.0.2",
     "ini": "~1.1.0",
     "assemble-front-matter": "~0.1.2",
     "image-size": "~0.1.16",
