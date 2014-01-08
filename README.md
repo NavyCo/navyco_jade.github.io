@@ -13,11 +13,16 @@
 
 ## Development
 
-Make sure you have installed latest [Grunt](http://gruntjs.com/), [Sass](http://sass-lang.com/) and [Compass](http://compass-style.org/).
+You can build this site in your local directory.
+
+Make sure you have installed [Grunt](http://gruntjs.com/), [Sass](http://sass-lang.com/) and [Compass](http://compass-style.org/).
+
+### Installation
+
+1. Clone this repository.
+2. Run `npm install` command in the project's root directory to install all dependencies described in [`package.json`](./package.json).
 
 ### Building the site
-
-At first, run `npm install` command in the project's root directory to install all dependencies described in [`package.json`](./package.json).
 
 To build the site and run it in a server, run `grunt` command. Then the [Grunt tasks](./Gruntfile.coffee) generate the `master` directory which contains compiled files, and you can view the site at `http://localhost:8000`.
 
