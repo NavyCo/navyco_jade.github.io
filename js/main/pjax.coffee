@@ -13,7 +13,7 @@ $ ->
   urlContains = (string) ->
     location.pathname.indexOf(string) isnt -1
 
-  # 外部リンクと bxSlider の UI には pjax を適用しない
+  # 外部リンクには pjax を適用しない
   if $.support.pjax
     $('#container').on 'click', 'a:not([target])', (e) ->
       e.preventDefault()
