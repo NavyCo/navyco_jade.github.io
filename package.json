@@ -5,7 +5,7 @@
   "main": "Gruntfile.coffee",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "grunt"
+    "start": "grunt"
   },
   "repository": {
     "type": "git",
@@ -47,11 +47,11 @@
     "grunt-autoprefixer": "~0.6.3",
     "lodash": "~2.4.1",
     "coffeelint": "~1.0.2",
-    "jade": "~1.0.2",
+    "jade": "~1.1.0",
     "ini": "~1.1.0",
     "assemble-front-matter": "~0.1.2",
     "image-size": "~0.1.16",
-    "uglify-save-license": "~0.1.2",
+    "uglify-save-license": "~0.2.1",
     "jit-grunt": "~0.1.2"
   }
 }
