@@ -131,14 +131,18 @@ module.exports = (grunt) ->
         dest: "#{ DEST }debug/js/main.js"
       dist:
         src: ['js/main/*.coffee']
-        dest: "#{ DEST }.tmp/main.js"
+        dest: "#{ DEST }.tmp/main.min.js"
     
     uglify:
       options:
         preserveComments: saveLicense
       main:
         options:
-          banner: "/*! Copyright (c) 2013 #{ settings.author } | MIT License */\n"
+          banner: '/*! Copyright (c) ' +
+            "#{ settings.copyright.first_year } - " +
+            "#{ grunt.template.today('yyyy') } " +
+            "#{ settings.author } | " +
+            "MIT License */\n"
           compress:
             global_defs:
               DEBUG: false
@@ -295,7 +299,7 @@ module.exports = (grunt) ->
         branch: 'master'
         message: 'deployed by grunt-gh-pages'
       site:
-        src: '**/*'
+        src: ['**/*', '.nojekyll']
     
     prompt:
       message:
@@ -338,7 +342,7 @@ module.exports = (grunt) ->
         dest + (if devMode then 'debug/' else '') + src
     
     fileMap = grunt.file.expandMapping '**/*.jade', DEST, mapOptions
-        
+    
     compileOptions =
       pretty: false
       # HTMLファイルのパスは書き出し先のフォルダのルートが基準となる
@@ -446,6 +450,6 @@ module.exports = (grunt) ->
       ini = require 'ini'
       gitConfig = ini.parse grunt.file.read "#{ HOME_DIR }/.gitconfig"
       
-      grunt.config.set 'gh-pages.options.user', gitConfig.user
+      grunt.config 'gh-pages.options.user', gitConfig.user
 
       grunt.task.run 'dist', 'prompt', 'gh-pages', 'open'
