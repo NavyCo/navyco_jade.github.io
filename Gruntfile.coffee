@@ -406,13 +406,6 @@ module.exports = (grunt) ->
         svgString = svgString.replace match, 'viewBox'
       grunt.file.write "#{ DEST }.tmp/svg/#{ filepath }", svgString
   
-  grunt.registerTask 'addNoJekyll',
-    'Add .nojekyll if needed',
-    ->
-      if grunt.file.expand("#{ DEST }**/_*").length > 0
-        grunt.file.write  "#{ DEST }.nojekyll", ''
-        console.log "File \"#{ DEST }.nojekyll\" created."
-  
   grunt.registerTask 'postprocessCSS', ['autoprefixer', 'cssmin']
 
   defaultTasks = [
