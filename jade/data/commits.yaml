@@ -9,11 +9,15 @@ selected:
   - praveenvijayan/grunt-html-validation/pull/27
   - outaTiME/grunt-replace/issues/34
   - outaTiME/grunt-replace/pull/35
+  - Bartvds/grunt-dogescript/pull/3
+  - dylang/grunt-prompt/pull/8
 rest:
   - sindresorhus/screenfull.js/pull/39
   - pbakaus/domvas/pull/6
   - gruntjs/grunt-contrib-jade/pull/73
   - gruntjs/grunt-contrib-jade/pull/79
   - tschaub/grunt-gh-pages/pull/27
+  - brunch/jade-brunch/pull/18
+  - ethul/grunt-roy/pull/5
   
   
