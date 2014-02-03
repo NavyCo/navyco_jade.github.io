@@ -11,6 +11,8 @@ selected:
   - outaTiME/grunt-replace/pull/35
   - Bartvds/grunt-dogescript/pull/3
   - dylang/grunt-prompt/pull/8
+  - brunch/clean-css-brunch/pull/8
+  - pghalliday/grunt-mocha-test/pull/46
 rest:
   - sindresorhus/screenfull.js/pull/39
   - pbakaus/domvas/pull/6
@@ -19,5 +21,14 @@ rest:
   - tschaub/grunt-gh-pages/pull/27
   - brunch/jade-brunch/pull/18
   - ethul/grunt-roy/pull/5
-  
-  
+  - indieisaconcept/grunt-styleguide/pull/40
+  - jonathanepollack/gulp-minify-css/pull/3
+  - kozy4324/grunt-concat-sourcemap/pull/14
+  - firstandthird/load-grunt-config/pull/27
+  - twolfson/grunt-curl/pull/13
+  - firstandthird/load-grunt-config/pull/27
+  - testdouble/grunt-asset-fingerprint/pull/2
+  - mllrsohn/grunt-node-webkit-builder/pull/55
+  - mathiasbynens/grunt-zopfli/pull/15
+  - hotchemi/private.js/pull/1
+  - kaimallea/isMobile/pull/9
