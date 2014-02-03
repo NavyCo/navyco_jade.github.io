@@ -25,7 +25,9 @@ block inner
         div!= prevProject.title
 
   section
-    //+project-menu
+    +project-menu
+  
+  section
     h1#project-title= project.title
     //-.line-wide
     #project-info
@@ -55,8 +57,6 @@ block inner
       img.project-image(src='http://placehold.it/1248x702')
 
   section
-    #project-inf
-      p 
     #project-details
       if project.links
         table.links

@@ -165,6 +165,7 @@ section.full-width {
 
 #page-title, #subitem-title {
   margin-bottom: 24px;
+  text-align: center;
 
   font-size: 24px;
   @media screen and(max-width: $main-width){
@@ -185,6 +186,7 @@ section.full-width {
 }
 
 .page-subtitle {
+  text-align: center;
   font-family: $sans-serif;
   font-size: 26px;
   font-weight: 300;
