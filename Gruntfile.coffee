@@ -4,6 +4,7 @@ module.exports = (grunt) ->
   require('jit-grunt') grunt, {
     bower: 'grunt-bower-task'
     merge_data: 'grunt-merge-data'
+    flex_svg: 'grunt-flex-svg'
   }
 
   path = require 'path'
@@ -197,6 +198,15 @@ module.exports = (grunt) ->
           src: ['**/*.{png,jpg,gif}']
           dest: "#{ DEST }img/"
         ]
+    
+    flex_svg:
+      dist:
+        files: [
+          expand: true
+          cwd: "#{ SRC }img"
+          src: ['{,*/}*.svg']
+          dest: "#{ DEST }.tmp/svg/"
+        ]
 
     svgmin:
       options:
@@ -207,7 +217,7 @@ module.exports = (grunt) ->
         files: [
           expand: true
           cwd: "#{ DEST }.tmp/svg/"
-          src: ['*.svg']
+          src: ['{,*/}*.svg']
           dest: "#{ DEST }img/"
         ]
     
@@ -285,7 +295,7 @@ module.exports = (grunt) ->
         tasks: ['imagemin:all']
       svg:
         files: ["#{ SRC }img/**/*.svg"]
-        tasks: ['flexSVG', 'svgmin']
+        tasks: ['flex_svg', 'svgmin']
       jade:
         files: ["#{ SRC }jade/**/*.{jade,json,yaml,yml}"]
         tasks: ['merge_data', 'jadeTemplate:dev', 'jadeTemplate:dist']
@@ -323,7 +333,7 @@ module.exports = (grunt) ->
         'coffee:dist'
         'jadeTemplate:dist'
         'imagemin'
-        'flexSVG'
+        'flex_svg'
       ]
   
   # Compile .jade files with frontmatter
@@ -393,18 +403,6 @@ module.exports = (grunt) ->
         else
           grunt.file.write destPath, html
           console.log "File \"#{ destPath }\" created."
-      
-  
-  # Remove 'width' and 'height' properties from SVG
-  grunt.registerTask 'flexSVG', 'An internal task.', ->
-    _cwd = "#{ SRC }img/"
-    srcSVGs = grunt.file.expand {cwd: _cwd}, '*.svg'
-    srcSVGs.forEach (filepath) ->
-      svgString = grunt.file.read _cwd + filepath
-      match = svgString.match /width([^)]+)viewBox/
-      if match?
-        svgString = svgString.replace match, 'viewBox'
-      grunt.file.write "#{ DEST }.tmp/svg/#{ filepath }", svgString
   
   grunt.registerTask 'postprocessCSS', ['autoprefixer', 'cssmin']
 
