@@ -46,20 +46,21 @@ module.exports = (grunt) ->
       install: {}
       
     modernizr:
-      devFile: 'remote'
-      outputFile: "#{ SRC }public/js/modernizr.js"
-      extra:
-        # Modernizr won't includes the HTML5 Shiv.
-        # Instead, the Shiv will be included in the IE-fix script file.
-        # It saves 2kb on modern browser.
-        shiv: false
-        printshiv: false
-        mq: true
-      extensibility:
-        svg: true
-        touch: true
-        cssanimations: true
-        rgba: true
+      dist:
+        devFile: 'remote'
+        outputFile: "#{ SRC }public/js/modernizr.js"
+        extra:
+          # Modernizr won't includes the HTML5 Shiv.
+          # Instead, the Shiv will be included in the IE-fix script file.
+          # It saves 2kb on modern browser.
+          shiv: false
+          printshiv: false
+          mq: true
+        extensibility:
+          svg: true
+          touch: true
+          cssanimations: true
+          rgba: true
   
     lodash:
       options:
