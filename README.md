@@ -2,7 +2,6 @@
 
 [![devDependency Status](https://david-dm.org/shinnn/shinnn.github.io/dev-status.png)](https://david-dm.org/shinnn/shinnn.github.io#info=devDependencies)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/shinnn/shinnn.github.io/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 ## Features
 
