@@ -28,42 +28,42 @@ $logo-size: 60px;
   }
 }
 
-@mixin top-title-font-size($base-size) {
-  #top-title {
-    font-size: $base-size;
-    .capital {
-      font-size: $base-size * 1.125;
-    }
+@mixin title-font-size($base-size) {
+  font-size: $base-size;
+  
+  .capital {
+    font-size: $base-size * 1.125;
   }
 }
 
-@include top-title-font-size(36px);
-
+// "Shinnosuke Watanabe"
 #top-title {
-  margin-left: -6px;
-  margin-top: $gutter * 0.5;
-  margin-bottom: $gutter * 0.5;
-  
   font-family: Roboto, 'Open Sans', $sans-serif;
   font-weight: 400;
   color: $common-black;
   //color: $common-violet;
+}
+
+#top-title {
+  @include title-font-size(36px);
+  margin-left: -6px;
+  margin-top: $gutter * 0.5;
+  margin-bottom: $gutter * 0.5;
   
+  @media screen and(max-width: $main-width){
+    @include title-font-size(34px);
+  }
+  @media screen and(max-width: $main-width - 270){
+    @include title-font-size(32px);
+  }
+
   .first-name {
     // color: darken($common-violet, 2);
     margin-right: $gutter * 0.42;
   }
-  
   .family-name > .capital{
     letter-spacing: -2px;
   }
-}
-
-@media screen and(max-width: $main-width){
-  @include top-title-font-size(34px);
-}
-@media screen and(max-width: $main-width - 270){
-  @include top-title-font-size(32px);
 }
 
 #top-subtitle {
@@ -107,7 +107,6 @@ section.full-width {
   padding-right: 0;
     
   .inner {
-    @extend %centered;
     width: auto;
   } 
 }
@@ -165,11 +164,12 @@ section.full-width {
 
 #page-title, #subitem-title {
   margin-bottom: 24px;
-  text-align: center;
+  //text-align: center;
+  color: $title-gray;
 
-  font-size: 24px;
+  font-size: 20px;
   @media screen and(max-width: $main-width){
-    font-size: 20px;
+    font-size: 18px;
   }
   
   &+.page-subtitle {

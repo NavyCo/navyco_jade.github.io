@@ -1,21 +1,22 @@
 selected:
   - silvestreh/onScreen/pull/8
-  - mizchi/TypedCoffeeScript/pull/31
   - Se7enSky/grunt-group-css-media-queries/issues/1
   - shootaroo/jit-grunt/pull/2
   - gruntjs/grunt-docs/pull/26
-  - kyo-ago/grunt-license-saver/pull/1
   - inuyaksa/jquery.nicescroll/pull/336
   - praveenvijayan/grunt-html-validation/pull/27
   - outaTiME/grunt-replace/issues/34
   - outaTiME/grunt-replace/pull/35
   - Bartvds/grunt-dogescript/pull/3
-  - dylang/grunt-prompt/pull/8
   - brunch/clean-css-brunch/pull/8
   - pghalliday/grunt-mocha-test/pull/46
+  - moznion/google-chrome-gist-more-url/pull/4
+  - alex-seville/blanket/pull/379
+  
 rest:
-  - sindresorhus/screenfull.js/pull/39
   - pbakaus/domvas/pull/6
+  - kyo-ago/grunt-license-saver/pull/1
+  - mizchi/TypedCoffeeScript/pull/31
   - gruntjs/grunt-contrib-jade/pull/73
   - gruntjs/grunt-contrib-jade/pull/79
   - tschaub/grunt-gh-pages/pull/27
@@ -32,3 +33,39 @@ rest:
   - mathiasbynens/grunt-zopfli/pull/15
   - hotchemi/private.js/pull/1
   - kaimallea/isMobile/pull/9
+  - ehynds/grunt-image-embed/pull/26
+  - tsvensen/equalize.js/pull/19
+  - Rowno/grunt-mocha-cli/pull/13
+  - krampstudio/grunt-jsdoc/pull/74
+  - gruntjs/grunt-contrib-jade/pull/87
+  - sindresorhus/grunt-svgmin/pull/14
+  - svg/svgo/pull/183
+  - nornagon/node-zap/pull/10
+  - brunch/uglify-js-brunch/pull/19
+  - gulpjs/gulp/pull/260
+  - github/choosealicense.com/pull/193
+
+not_publish:
+  - sindresorhus/screenfull.js/pull/39
+  - tkellen/node-adjunct/pull/1
+  - caolan/forms/pull/92
+  - docpad/docpad-plugin-coffeescript/pull/7
+  - webdoc/grunt-concat-css/pull/4
+  - reworkcss/css-stringify/pull/31
+  - somerandomdude/grunt-webp/pull/10
+  - hurrymaplelad/grunt-relative-root/pull/3
+  - thusoy/grunt-pylint/pull/6
+  - timmywil/grunt-bowercopy/pull/11
+  - stephenplusplus/grunt-bower-install/pull/49
+  - leecrossley/grunt-timer/pull/5
+  - alex-seville/grunt-blanket/pull/8
+  - ogt/slugify-url/pull/3
+  - docpad/docpad-plugin-stylus/pull/7
+  - petrbela/grunt-z-schema/pull/2
+  - ro-ka/grunt-hoodie/pull/7
+  - callmehiphop/grunt-special-html/pull/1
+  - STAH/grunt-preprocessor/pull/6
+  - gruntjs/grunt-contrib-jshint/pull/141
+  - jdcataldo/grunt-mocha-phantomjs/pull/27
+  
+  

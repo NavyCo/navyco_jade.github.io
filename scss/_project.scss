@@ -59,7 +59,7 @@ $thumbnail-size: ($main-width - $grid-gutter * 2) / 4.0;
       position: relative;
       left: 50%;
       height: 250px;
-      margin-left: - 250px * 0.8;
+      margin-left: - 250px;
     }
   }
 }
@@ -160,7 +160,7 @@ $thumbnail-size: ($main-width - $grid-gutter * 2) / 4.0;
     }
     
     %grid-item-component {
-      //width: 100%;
+      width: 100%;
     }
   }
   
@@ -184,6 +184,5 @@ $thumbnail-size: ($main-width - $grid-gutter * 2) / 4.0;
 
 #commits {
   li {
-    text-align: center;
   }
 }

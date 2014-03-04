@@ -1,7 +1,7 @@
 @import "compass/typography/vertical_rhythm";
 
 // font-family alias
-$sans-serif: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$sans-serif: Muli, "Helvetica Neue", Helvetica, Arial, sans-serif;
 $serif: Times, serif;
 
 // basic interval width between the elements
@@ -29,6 +29,7 @@ $common-text-gray: #727272;
 $common-line-gray: #E1E1E1;
 
 $head-decoration-violet: #bd8fd1;
+$title-gray: #5a5a5a;
 
 $footer-color: #F0F0F0;
 

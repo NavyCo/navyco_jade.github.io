@@ -1,35 +1,57 @@
 ---
 template: default
 title: Projects
+pageClass: ''
 ---
 
 section
-  h1#page-title デザイン / コンテンツ制作
+  h1
+    span.header-rect
+    span.only-kana デザイン
+    | &#x2005;/&#x2005;
+    span.only-kana コンテンツ
+    | 制作
   
 section
   div#projects
     each proj in projects
-      .project
+      .project(itemscope, itemtype='http://schema.org/CreativeWork')
         - var _ext = proj.image_format || 'jpg'
-        a.thumbnail(href= 'projects/' + proj.name + '.html')
+        a.thumbnail(href= 'projects/#{ proj.name }.html')
           img(
             src= '/img/transparent.gif',
-            data-original= '/img/projects/thumbnails/' + proj.name + '.' + _ext
-            alt= 'サムネイル')
+            data-original= '/img/projects/thumbnails/#{ proj.name }.#{ _ext }'
+            alt= 'サムネイル',
+            itemprop='image')
         .caption
           .summary
-            p.name= proj.short_title || proj.title
+            p.name(itemprop='name')= proj.short_title || proj.title
             .genre
               span= proj.genre.join(', ')
           .arrow
             a(href= 'projects/' + proj.name + '.html')
               .icon
 
-//section
-  h1#subitem-title オープンソース・ソフトウェア
+section
+  h1#subitem-title
+    span.header-rect
+    span.only-kana オープンソース・ソフトウェア
 
 section
-  h1#subitem-title オープンソース・ソフトウェアへのコミット
+  ul#commits
+    each oss_proj in oss
+      li
+        div
+          a(href= oss_proj.url, target='_blank')= oss_proj.title
+        //-div
+          a(href= oss_proj.url)= oss_proj.url
+        div= oss_proj.description
+        
+
+section
+  h1
+    span.header-rect
+    span.only-kana オープンソース・プロジェクトへのコミット
   
 section
   ul#commits

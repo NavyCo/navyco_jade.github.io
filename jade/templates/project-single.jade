@@ -5,7 +5,7 @@ prepend title
   - var title = project.short_title || project.title;
 
 block inner
-  
+
   //- block の外で project の値を求めると、name の値が未定義なのでエラーとなる
   - var project = getProject(basename);
   - var projectIndex = projects.indexOf(project);
@@ -17,28 +17,19 @@ block inner
     .project-menu
       //-a.back
         span.icon(href=htmlPath('projects.html'))
-      a.next(href=htmlPath('projects/' + nextProject.name + '.html'))
+      a.next(href=htmlPath('projects/#{ nextProject.name }.html'))
         .icon
         div!= nextProject.title
-      a.prev(href=htmlPath('projects/' + prevProject.name + '.html'))
+      a.prev(href=htmlPath('projects/#{ prevProject.name }.html'))
         .icon
         div!= prevProject.title
 
-  section
+  //section
     +project-menu
   
-  section
-    h1#project-title= project.title
-    //-.line-wide
-    #project-info
-      p
-        span= project.time
-        span.bar |
-        span= project.role.join(' / ')
-
   mixin lazyload-image(image, caption)
     .image-wrapper(
-      style='padding-bottom: ' + 100 * image.height / image.width + '%;')
+      style='padding-bottom: #{ 100 * image.height / image.width }%;')
       img.project-image(
         src= '/img/transparent.gif',
         data-original= '/' + image.path,

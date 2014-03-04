@@ -9,7 +9,7 @@ $footer-height: 220px;
 @import "nprogress";
 @import "webfont";
 
-%centered {
+.centered {
   margin: 0 auto;
   width: 100%;
   max-width: $main-width;
@@ -21,7 +21,7 @@ $footer-height: 220px;
   @media screen and(max-width: $main-width + $main-space-width * 2 + 24px){
     width: auto;
   }
-  @media screen and(max-width: 860px){
+  @media screen and(max-width: 920px){
     padding-left: $gutter * 2;
     padding-right: $gutter * 2;
   }
@@ -66,10 +66,22 @@ body {
   background: image-url('subttle.jpg');
 }
 
+#bg {
+  position: absolute;
+  float: left;
+  height: 100%;
+  width: 100%;
+}
+
 header, main, footer {
   a {
     color: $common-black;
   }
+}
+
+header, main {
+  // to enable 'z-index' property
+  position: relative;
 }
 
 main {
@@ -93,7 +105,7 @@ main {
 // aside に必要なセレクタのみ出力させるための措置
 
 %large-section {
-  @extend %centered;
+  @extend .centered;
   
   overflow: hidden;
   padding-top: $gutter * 1.5 * 0.5;
@@ -118,8 +130,9 @@ main section {
   }
   
   h1 {
-    font-size: $base-font-size + 8px;
+    font-size: $base-font-size + 5px;
     margin-bottom: 0.75em;
+    color: $title-gray;
   }
   
   p,li {
@@ -146,7 +159,6 @@ hr.line-wide {
 }
 
 .columns {
-  width: 100%;
   // font-size: $base-font-size - 1px;
 
   .two-column {
@@ -173,10 +185,14 @@ hr.line-wide {
 .header-rect {
   display: block;
   float: left;
-  width: 6px;
+  width: 4px;
   height: 1em;
   margin-right: 8px;
-  background-color: $head-decoration-violet;
+  background-color: $common-line-gray; //$head-decoration-violet;
+}
+
+@mixin text-content {
+  margin-left: $gutter * 0.5;
 }
 
 .read-more {
@@ -214,7 +230,6 @@ footer {
 }
 
 #colophon {
-  @extend %centered;
   font-family: 'Open Sans', $sans-serif;
   
   margin-top: $gutter;
@@ -276,6 +291,7 @@ footer {
   }
 }
 
+@import "line";
 @import "header";
 @import "top";
 @import "about";

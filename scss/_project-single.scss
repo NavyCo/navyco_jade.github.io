@@ -1,7 +1,7 @@
 @charset 'UTF-8';
 
 .project-menu {
-  $_width: $main-width * 1/6;
+  $_width: $main-width * 1/2;
   $_icon-size: $base-font-size + 6px;
   
   float: left;
@@ -71,18 +71,20 @@
 #project-title {
   @extend #page-title;
   
+  font-size: 20px;
+  margin-top: $gutter * 1.25;
   margin-bottom: 12px;
 }
 
 #project-info {
   margin-top: -0.5em;
-  margin-bottom: $gutter * 1.5;
+  margin-bottom: $gutter * 0.25;
 
   font-size: $base-font-size - 1px;
   color: gray;
   
   p {
-    text-align: center;
+    //text-align: center;
   }
   
   .bar {
@@ -106,8 +108,12 @@
 }
 
 .project-image {
+  // to set z-index
+  position: relative;
+  
+  z-index: 2;
+  
   width: 100%;
-  //margin-left: 5%;
   @include image-shadow;
 }
 
@@ -117,9 +123,11 @@
 }
 
 #project-details {
-  width: 80%;
+  @include text-content;
+  
+  width: 73%;
   margin-top: $gutter;
-  margin-left: 10%;  
+  //margin-left: $gutter * 0.5;  
   
   @media screen and(max-width: $main-width * 0.92){
     width: 100%;

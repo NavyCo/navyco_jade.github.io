@@ -5,6 +5,7 @@
     title: 武蔵野美大デザイン情報学科 卒業研究・制作展 2011 Webサイト
     short_title: 武蔵野美大デザイン情報学科 卒研・卒制展 2011
     time: 2011 - 2012
+    schema_type: WebPage
     genre: [Web]
     role: [バックエンド・フロントエンド開発, UIデザイン]
     links:
@@ -23,6 +24,7 @@
     title: 東京芸術大学 OPEN STUDIO 2013 Webサイト
     short_title: OPEN STUDIO 2013
     time: 2013
+    schema_type: WebPage
     genre: [Web]
     role: [フロントエンド開発, UIデザイン, 映像編集]
     links:
@@ -42,6 +44,7 @@
     name: react
     title: re(a)ct
     time: 2013
+    schema_type: WebPage
     genre: [Web]
     role: [フロントエンド開発, UIデザイン, 楽曲・効果音制作]
     links:
@@ -60,6 +63,7 @@
     name: aquarium
     title: Twinkle Aquarium
     time: 2013
+    schema_type: WebPage
     genre: [インスタレーション]
     role: [グラフィックプログラミング, 映像撮影・編集]
     links:

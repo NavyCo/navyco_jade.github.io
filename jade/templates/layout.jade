@@ -40,6 +40,9 @@ html(lang='ja')
     
     link(href='/css/styles.css?v=' + randStr(), rel='stylesheet')
     link(
+      href='http://fonts.googleapis.com/css?family=Muli:300,400',
+      rel='stylesheet')
+    link(
       href='http://fonts.googleapis.com/css?family=Roboto:300,400,500',
       rel='stylesheet')
     link(
@@ -52,72 +55,123 @@ html(lang='ja')
     script(src='/js/vendor.ie.js')
     |<![endif]-->
 
-  body
+  body(itemscope, itemtype='http://schema.org/WebPage')
     include _google-analytics
     
     #container
-      header
-        #menubar
-          #menu
-            //-a#home(href= htmlPath())
-            #webservices
-              a.icon.github(href='https://github.com/shinnn', target='_blank')
-              a.icon.twitter(href='https://twitter.com/shinnn_tw', target='_blank')
-              //-a(href='https://github.com/shinnn', target='_blank') Github
-              //-a(href='https://twitter.com/shinnn_tw', target='_blank') Twitter
-            #tabs
-              a(href= htmlPath()) Home
-              a(href= htmlPath('about.html')) About
-              a(href= htmlPath('projects.html')) Projects
-            
-      //.header-line
+      #bg
+        .centered
+          #vertical-line
+      #fg
+        header
+          #menubar.centered
+            #menu
+              a(href= htmlPath())
+                #home
+              #webservices
+                a.icon.github(href='https://github.com/shinnn', target='_blank')
+                  span Github
+                a.icon.twitter(href='https://twitter.com/shinnn_tw', target='_blank')
+                  span Twitter
+                //-a(href='https://github.com/shinnn', target='_blank') Github
+                //-a(href='https://twitter.com/shinnn_tw', target='_blank') Twitter
+              #tabs
+                a(href= htmlPath()) home
+                a(href= htmlPath('about.html')) about
+                a(href= htmlPath('projects.html')) projects
+          .header-line
+          nav.centered
+            div
+              case basename
+                when 'index'
+                  #first-location
+                  #project-title
+                    span
+                  #project-info
+                    p
+                      span.time
+                      span.bar |
+                      span.roles
+                when 'about'
+                  #first-location 渡邉伸之介について
+                  #project-title
+                    span
+                  #project-info
+                    p
+                      span.time
+                      span.bar |
+                      span.roles
+                when 'projects'
+                  #first-location プロジェクト一覧
+                  #project-title
+                    span
+                  #project-info
+                    p
+                      span.time
+                      span.bar |
+                      span.roles
+                default
+                  #first-location プロジェクト一覧
+                  - var project = getProject(basename);
+                  #project-title(itemscope, itemtype="http://schema.org/CreativeWork")
+                    span(itemprop='name')= project.title
+                  #project-info
+                    p
+                      span.time= project.time
+                      span.bar |
+                      span.roles= project.role.join(' / ')
+                  
       
-      main(class= pageClass)
-        #content
-          block inner
+        main
+          #content(class= pageClass)
+            block inner
 
-      footer
-        #colophon.columns
-          .two-column
-            #footer-menu
-              div
-                a(href= htmlPath()) Home
-              div.separator |
-              div
-                a(href= htmlPath('about.html')) About
-              div.separator |
-              div
-                a(href= htmlPath('projects.html')) Projects
-            #contact
-              div
-                a(href='https://github.com/shinnn',target='_blank')
-                  b shinnn
-                  | &nbsp;on Github
-              div
-                a(href='https://twitter.com/shinnn_tw',target='_blank')
-                  b @shinnn_tw
-                  | &nbsp;on Twitter
-            #email
-              div
-                a(href='mailto:snnskwtnb@gmail.com',target='_blank')
-                  | Mail to&nbsp;
-                  b snnskwtnb@gmail.com
+        footer
+          #colophon.columns.centered
+            .two-column
+              #footer-menu
+                div
+                  a(href= htmlPath()) Home
+                div.separator |
+                div
+                  a(href= htmlPath('about.html')) About
+                div.separator |
+                div
+                  a(href= htmlPath('projects.html')) Projects
+              #contact
+                div
+                  a(href='https://github.com/shinnn',target='_blank')
+                    b shinnn
+                    | &nbsp;on Github
+                div
+                  a(href='https://twitter.com/shinnn_tw',target='_blank')
+                    b @shinnn_tw
+                    | &nbsp;on Twitter
+              #email
+                div
+                  a(href='mailto:snnskwtnb@gmail.com',target='_blank')
+                    | Mail to&nbsp;
+                    b snnskwtnb@gmail.com
           
-          #license.two-column
-            p Copyright &copy; 2013 Shinnosuke Watanabe All rights reserved.
-            p
-              | Unless otherwise stated,&nbsp;
-              a(href='https://github.com/shinnn/shinnn.github.io',target='_blank') all source code in this website
-              | &nbsp;is licensed under the&nbsp;
-              a(href='http://opensource.org/licenses/mit-license.php',target='_blank') MIT license
-              | .
+            #license.two-column
+              p
+                | Copyright &copy; 2013 - #{ new Date().getFullYear() }&nbsp;
+                span(itemscope, itemtype='http://schema.org/Person')
+                  span(itemprop='name') Shinnosuke Watanabe
+                | All rights reserved.
+              p
+                | Unless otherwise stated,&nbsp;
+                a(href='https://github.com/shinnn/shinnn.github.io',target='_blank') all source code in this website
+                | &nbsp;is licensed under the&nbsp;
+                a(href='http://opensource.org/licenses/mit-license.php',target='_blank') MIT license
+                | .
     
-    block scripts
-      include _jquery
+      block scripts
+        include _jquery
       
-      if DEBUG
-        script(src='/debug/js/vendor.js')
-        script(src='/debug/bower_components/benchmark/benchmark.js')
-        script(src='/debug/js/main.js')
-      else
-        script(src='/js/main.js?v=' + randStr())
+        if DEBUG
+          script(src='/debug/js/vendor.js')
+          script(src='/debug/bower_components/benchmark/benchmark.js')
+          script(src='/debug/js/main.js')
+        else
+          script(src='/js/main.js?v=' + randStr())
