@@ -9,8 +9,8 @@ module.exports = (grunt) ->
 
   path = require 'path'
 
+  require 'string.prototype.endswith'
   _ = require 'lodash'
-  saveLicense = require 'uglify-save-license'
   yfm = require 'assemble-front-matter'
   sizeOf = require 'image-size'
   jade = require 'jade'
@@ -21,29 +21,23 @@ module.exports = (grunt) ->
 
   # Add '/' to the string if its last character is not '/'
   _addLastSlash = (str) ->
-    unless str?
-      false
-    else if str.substr(-1) is '/' or str is ''
-      str
-    else
-      "#{ str }/"
+    return false unless str?
+    return str if str.endsWith('/') or str is ''
+    return "#{ str }/"
 
   SRC = _addLastSlash(settings.srcPath) or ''
   DEST = _addLastSlash(settings.destPath) or 'site/'
   JS = "#{ SRC }js/"
 
-  HOME_DIR = process.env.HOME or
-    process.env.HOMEPATH or
-    process.env.USERPROFILE
-  
   grunt.initConfig
     bower:
       options:
         targetDir: "#{ DEST }.tmp/bower_exports/"
         cleanTargetDir: true
-        bowerOptions:
-          production: true
-      install: {}
+      install:
+        options:
+          bowerOptions:
+            production: true
       
     modernizr:
       dist:
@@ -61,6 +55,7 @@ module.exports = (grunt) ->
           touch: true
           cssanimations: true
           rgba: true
+          history: true
   
     lodash:
       options:
@@ -108,6 +103,8 @@ module.exports = (grunt) ->
         src: '<%= compass.options.cssDir%>{,*/}*.css'
       
     cssmin:
+      options:
+        report: 'min'
       dist:
         files: [
           expand: true
@@ -129,20 +126,19 @@ module.exports = (grunt) ->
       dev:
         options:
           bare: true
-        src: ["#{ JS }main/*.coffee"]
+        src: ["#{ JS }main/*.coffee", "#{ DEST }.tmp/router_data.coffee"]
         dest: "#{ DEST }debug/js/main.js"
       dist:
-        src: ['js/main/*.coffee']
+        src: '<%= coffee.dev.src %>'
         dest: "#{ DEST }.tmp/main.min.js"
     
     uglify:
       options:
-        preserveComments: saveLicense
+        preserveComments: require 'uglify-save-license'
       main:
         options:
           banner: '/*! Copyright (c) ' +
-            "#{ settings.copyright.first_year } - " +
-            "#{ grunt.template.today('yyyy') } " +
+            "2013 - #{ grunt.template.today('yyyy') } " +
             "#{ settings.author } | " +
             "MIT License */\n"
           compress:
@@ -180,12 +176,17 @@ module.exports = (grunt) ->
           '<%= bower.options.targetDir %>/ie/{,*/}*.js'
         ]
         dest: "#{ DEST }js/vendor.ie.js"
+      router_data:
+        options:
+          banner: 'routerData = '
+        src: '<%= merge_data.router_data.dest %>'
+        dest: "#{ DEST }.tmp/router_data.coffee"
       main:
         src: ["#{ DEST }debug/js/vendor.js", '<%= uglify.main.dest %>']
         dest: "#{ DEST }js/main.js"
     
     clean:
-      site: path.resolve DEST
+      site: [DEST]
       tmpfiles: ["#{ DEST }.tmp"]
       debugFiles: ["#{ DEST }debug"]
       
@@ -223,21 +224,40 @@ module.exports = (grunt) ->
         ]
     
     merge_data:
-      options:
-        data: ->
-          getComponentVer = (name) ->
-            grunt.file.readJSON(
-              "#{ SRC }bower_components/#{ name }/bower.json"
-            ).version
-
-          {
-            jquery_ver: getComponentVer 'jquery'
-            jquery1_ver: getComponentVer 'jquery1'
-          }
-          
       jade_data:
+        options:
+          data: ->
+            getComponentVer = (name) ->
+              grunt.file.readJSON(
+                "#{ SRC }bower_components/#{ name }/bower.json"
+              ).version
+
+            {
+              jquery_ver: getComponentVer 'jquery'
+              jquery1_ver: getComponentVer 'jquery1'
+            }
         src: ["#{ SRC }jade/data/*.{json,yaml}"]
         dest: "#{ DEST }.tmp/jade-data.json"
+      router_data:
+        options:
+          data: (data) ->
+            result = {}
+            data.projects.forEach (project) ->
+              result[project.name] =
+                proj_title: project.title
+                time: project.time
+                role: project.role
+            
+            result.index = {}
+            result.about =
+              title: '渡邉伸之介について'
+            result.projects =
+              title: 'プロジェクト一覧'
+            data = {}
+            result
+            
+        src: ["#{ SRC }jade/data/projects.yaml"]
+        dest: "#{ DEST }.tmp/router-data.json"
     
     shell:
       coffeelint:
@@ -310,7 +330,7 @@ module.exports = (grunt) ->
         branch: 'master'
         message: 'deployed by grunt-gh-pages'
       site:
-        src: ['**/*', '.nojekyll']
+        src: ['**/*']
     
     prompt:
       message:
@@ -326,7 +346,7 @@ module.exports = (grunt) ->
 
     concurrent:
       preparing: [
-        'bower', 'shell', 'merge_data'
+        'bower', 'shell'
       ]
       dev: ['coffee:dev', 'jadeTemplate:dev']
       dist: [
@@ -335,6 +355,11 @@ module.exports = (grunt) ->
         'jadeTemplate:dist'
         'imagemin'
         'flex_svg'
+      ]
+      finishing: [
+        'concat'
+        'postprocessCSS'
+        'svgmin'
       ]
   
   # Compile .jade files with frontmatter
@@ -374,10 +399,10 @@ module.exports = (grunt) ->
       """
       
       # helper
-      ## ディレクトリ名と拡張子を取り除いたファイル名
+      ## basename
       localData.basename = path.basename srcPath, '.jade'
 
-      ## プロジェクトの画像のファイルパス、サイズ
+      ## path and file size of project image
       localData.projectImages = []
 
       projectImagePaths = grunt.file.expand {
@@ -392,7 +417,6 @@ module.exports = (grunt) ->
           width: _dimesions.width
           height: _dimesions.height
           
-      
       allData = _.assign globalData, localData, compileOptions
       
       if devMode
@@ -407,25 +431,25 @@ module.exports = (grunt) ->
   
   grunt.registerTask 'postprocessCSS', ['autoprefixer', 'cssmin']
 
-  defaultTasks = [
-    'clean:site' #reset
+  buildTasks = [
+    'clean:site'
     'concurrent:preparing'
+    'merge_data'
     'copy'
+    'concat:router_data'
     'concurrent:dev', 'concurrent:dist'
-    'uglify', 'concat' #minify JS
-    'postprocessCSS'
-    'svgmin'
-    'connect'
+    'uglify'
+    'concurrent:finishing'
   ]
   
-  grunt.registerTask 'build', defaultTasks
+  grunt.registerTask 'build', buildTasks
   
-  grunt.registerTask 'default', ['build', 'watch']
+  grunt.registerTask 'default', ['build', 'connect', 'watch']
   
   # task list for 'dist' tasks
-  distTasks = _(defaultTasks)
+  distTasks = _(buildTasks)
     .without('concurrent:dev')
-    .union(['clean:tmpfiles', 'clean:debugFiles', 'addNoJekyll'])
+    .union(['clean:tmpfiles', 'clean:debugFiles'])
     .valueOf()
   
   grunt.registerTask 'dist',
@@ -439,8 +463,7 @@ module.exports = (grunt) ->
       grunt.loadNpmTasks 'grunt-gh-pages'
       grunt.loadNpmTasks 'grunt-open'
       
-      ini = require 'ini'
-      gitConfig = ini.parse grunt.file.read "#{ HOME_DIR }/.gitconfig"
+      gitConfig = require('git-config').sync()
       
       grunt.config 'gh-pages.options.user', gitConfig.user
 
