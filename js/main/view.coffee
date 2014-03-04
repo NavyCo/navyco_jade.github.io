@@ -104,21 +104,21 @@ HomeView = Backbone.View.extend
         placeholder: '/img/transparent.gif'
     
     $ '#logo'
-    .delay 200
-    .transition {
-      backgroundPosition: '0px 0px'
-    }, 500
+      .delay 200
+      .transition {
+        backgroundPosition: '0px 0px'
+      }, 500
 
 ProjectThumbnailView = Backbone.View.extend
   el: 'img[data-original]'
   
   render: ->
     this.$el
-    .removeAttr 'src'
-    .lazyload
-      effect : 'fadeIn'
-      threshold : $w.height() * 0.15
-      placeholder: '/img/transparent.gif'
+      .removeAttr 'src'
+      .lazyload
+        effect : 'fadeIn'
+        threshold : $w.height() * 0.15
+        placeholder: '/img/transparent.gif'
 
 ProjectImageView = Backbone.View.extend
   el: 'img[data-original]'
@@ -129,6 +129,7 @@ ProjectImageView = Backbone.View.extend
       .lazyload
         effect: 'fadeIn'
         threshold: $w.height() * 0.5
+        placeholder: '/img/transparent.gif'
         effect_speed:
           start: ->
             $this = $ this
