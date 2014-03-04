@@ -3,11 +3,14 @@
 [![devDependency Status](https://david-dm.org/shinnn/shinnn.github.io/dev-status.png)](https://david-dm.org/shinnn/shinnn.github.io#info=devDependencies)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
+Portfolio site of the man who codes and designs
+
 ## Features
 
-* Fast browsing and clean URL by using [pjax](https://github.com/defunkt/jquery-pjax/)
+* Static website
+* Fast browsing and clean URL with [Backbone.js](http://backbonejs.org/) and [pjax](https://github.com/defunkt/jquery-pjax/) technique
 * [Responsive web design](http://en.wikipedia.org/wiki/Responsive_web_design)
-* Flexible template system with [Jade](http://jade-lang.com/) and Frontmatter inspired by [Jekyll](http://jekyllrb.com/)
+* Flexible template system with [Jade](http://jade-lang.com/) and [front matter](http://jekyllrb.com/docs/frontmatter/) inspired by [Jekyll](http://jekyllrb.com/)
   * Based on this project, I'm developing a Yeoman generator *[generator-jade-frontmatter](https://github.com/shinnn/generator-jade-frontmatter)*.
 
 ## Development
@@ -27,7 +30,7 @@ To build the site and run it in a server, run `grunt` command. Then the [Grunt t
 
 ### Managing client-side JavaScript libraries
 
-This project uses [Bower](http://bower.io/) to manage client-side libraries, and uses [grunt-bower-task](https://github.com/yatskevich/grunt-bower-task) to override directory structure of the bower components.
+This project uses [Bower](http://bower.io/) to manage client-side libraries, and uses [grunt-bower-task](https://github.com/yatskevich/grunt-bower-task) to override directory structure of the components.
 
 Basically, installed bower components are minified and concatenated into single script file. However, if you describe `exportsOverride` in `bower.json` to specify export destination of the components, you can use them in other ways:
 
@@ -47,7 +50,7 @@ If successful, all files in the `master` directory will be copied to the [`maste
 
 ## License
 
-Copyright (c) 2013 - 2014 [Shinnosuke Watanabe](https://github.com/shinnn) All rights reserved.
+Copyright (c) 2013 - 2014 [Shinnosuke Watanabe](https://github.com/shinnn)
 
 Unless otherwise stated, all source code in this repository is licensed under the [MIT license](http://opensource.org/licenses/mit-license.php).
 
