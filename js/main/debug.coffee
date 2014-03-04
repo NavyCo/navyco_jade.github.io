@@ -14,7 +14,7 @@ if DEBUG
 
   suite
   .on 'cycle', (event) ->
-    console.log String(event.target)
+    console.log String event.target
   .on 'complete', ->
-    console.log 'Fastest is ' + this.filter('fastest').pluck('name')
+    console.log "Fastest is #{ this.filter('fastest').pluck('name') }"
     

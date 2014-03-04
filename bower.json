@@ -10,10 +10,11 @@
   "dependencies": {
     "jquery": "latest",
     "jquery1": "jquery#1",
-    "jquery-pjax": "latest",
     "jquery.transit": "latest",
     "jquery.lazyload": "latest",
+    "isMobile": "latest",
     "backbone": "latest",
+    "equalize": "latest",
     "nprogress": "latest",
     "html5shiv": "latest",
     "selectivizr": "latest",
@@ -33,8 +34,15 @@
     "jquery.lazyload": {
       "jquery.lazyload": "jquery.lazyload.min.js"
     },
+    "isMobile": {
+      "isMobile": "isMobile.min.js"
+    },
     "backbone": {
       "backbone": "backbone.js"
+    },
+    "underscore": {},
+    "equalize": {
+      "equalize": "js/equalize.min.js"
     },
     "html5shiv": {
       "ie": "dist/html5shiv.js"
