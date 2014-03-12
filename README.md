@@ -3,7 +3,7 @@
 [![devDependency Status](https://david-dm.org/shinnn/shinnn.github.io/dev-status.png)](https://david-dm.org/shinnn/shinnn.github.io#info=devDependencies)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
-Portfolio site of the man who codes and designs
+A portfolio site of the man who codes and designs
 
 ## Features
 
@@ -17,7 +17,7 @@ Portfolio site of the man who codes and designs
 
 You can build this site in your local directory.
 
-Make sure you have installed [Grunt](http://gruntjs.com/), [Sass](http://sass-lang.com/) and [Compass](http://compass-style.org/).
+Make sure you have installed [grunt-cli](https://github.com/gruntjs/grunt-cli), [Sass](http://sass-lang.com/), [Compass](http://compass-style.org/) and [WebP](https://developers.google.com/speed/webp/download).
 
 ### Installation
 
@@ -30,9 +30,9 @@ To build the site and run it in a server, run `grunt` command. Then the [Grunt t
 
 ### Managing client-side JavaScript libraries
 
-This project uses [Bower](http://bower.io/) to manage client-side libraries, and uses [grunt-bower-task](https://github.com/yatskevich/grunt-bower-task) to override directory structure of the components.
+This project uses [Bower](http://bower.io/) to manage client-side components, and uses [grunt-bower-task](https://github.com/yatskevich/grunt-bower-task) to override their directory structure.
 
-Basically, installed bower components are minified and concatenated into single script file. However, if you describe `exportsOverride` in `bower.json` to specify export destination of the components, you can use them in other ways:
+Basically, the components are minified and concatenated into a single file. However, if you describe `exportsOverride` in `bower.json` to specify export destination of the components, you can use them in other ways:
 
 * The files exported to `public` are not concatenated and directly copied to the `master` directory.
 
@@ -44,7 +44,7 @@ You can easily host the site on [Github Pages](http://pages.github.com/) in the 
 
 1. Run `grunt deploy` command.
 2. Enter the commit message.
-3. Enter username and password of your Github account.
+3. Enter the password of your Github account.
 
 If successful, all files in the `master` directory will be copied to the [`master` branch](https://github.com/shinnn/shinnn.github.io/tree/master).
 
