@@ -14,12 +14,13 @@
     "jquery.lazyload": "latest",
     "isMobile": "latest",
     "backbone": "latest",
-    "equalize": "latest",
     "nprogress": "latest",
+    "modernizr-on": "stucox/modernizr-on",
     "html5shiv": "latest",
     "selectivizr": "latest",
     "respond": "latest",
-    "jquery.belatedPNG": "wakuworks/jquery.belatedPNG"
+    "jquery.belatedPNG": "wakuworks/jquery.belatedPNG",
+    "benchmark": "latest"
   },
   "devDependencies": {
     "benchmark": "latest"
@@ -41,8 +42,8 @@
       "backbone": "backbone.js"
     },
     "underscore": {},
-    "equalize": {
-      "equalize": "js/equalize.min.js"
+    "modernizr-on": {
+      "modernizr-on": "modernizr-on.min.js"
     },
     "html5shiv": {
       "ie": "dist/html5shiv.js"
