@@ -3,8 +3,6 @@ module.exports = (grunt) ->
 
   require('jit-grunt') grunt, {
     bower: 'grunt-bower-task'
-    merge_data: 'grunt-merge-data'
-    flex_svg: 'grunt-flex-svg'
   }
 
   path = require 'path'
@@ -56,11 +54,12 @@ module.exports = (grunt) ->
           cssanimations: true
           rgba: true
           history: true
+          img_webp: true
   
     lodash:
       options:
         modifier: 'backbone'
-        #include: []
+        #plus: ['create']
         flags: ['--minify']
       custom:
         dest: "#{ JS }vendor/lodash.gruntbuild.min.js"
@@ -112,13 +111,6 @@ module.exports = (grunt) ->
           src: ['{,*/}*.css']
           dest: "#{ DEST }css/"
         ]
-    
-    csslint:
-      lax:
-        options:
-          import: false
-          ids: false
-        src: ['<%= compass.readable.options.cssDir %>/*.css']
     
     coffee:
       options:
@@ -201,6 +193,18 @@ module.exports = (grunt) ->
           dest: "#{ DEST }img/"
         ]
     
+    webp:
+      options:
+        quality: 100
+        multiThreading: true
+      all:
+        files: [
+          expand: true
+          cwd: "#{ SRC }img/"
+          src: ['**/*.{png,jpg}']
+          dest: "#{ DEST }img/webp/"
+        ]
+    
     flex_svg:
       dist:
         files: [
@@ -236,7 +240,10 @@ module.exports = (grunt) ->
               jquery_ver: getComponentVer 'jquery'
               jquery1_ver: getComponentVer 'jquery1'
             }
-        src: ["#{ SRC }jade/data/*.{json,yaml}"]
+        src: [
+          "#{ SRC }jade/data/*.{json,yaml}"
+          "#{ SRC }tmp/commits_*.json"
+        ]
         dest: "#{ DEST }.tmp/jade-data.json"
       router_data:
         options:
@@ -255,7 +262,6 @@ module.exports = (grunt) ->
               title: 'プロジェクト一覧'
             data = {}
             result
-            
         src: ["#{ SRC }jade/data/projects.yaml"]
         dest: "#{ DEST }.tmp/router-data.json"
     
@@ -288,6 +294,26 @@ module.exports = (grunt) ->
             .substr(2, 5)
         }"
         app: 'Google Chrome'
+        
+    'gh-pages':
+      options:
+        base: DEST
+        branch: 'master'
+        message: 'deployed by grunt-gh-pages'
+      site:
+        src: ['**/*']
+    
+    prompt:
+      message:
+        options:
+          questions: [
+            {
+              config: 'gh-pages.options.message'
+              type: 'input'
+              message: 'Enter the commit message.'
+              default: 'deployed by grunt-gh-pages'
+            }
+          ]
     
     watch:
       options:
@@ -313,47 +339,28 @@ module.exports = (grunt) ->
         tasks: ['concat:vendor_ie']
       images:
         files: ["#{ SRC }img/**/*.{png,jpg,gif}"]
-        tasks: ['imagemin:all']
+        tasks: ['concurrent:image']
       svg:
         files: ["#{ SRC }img/**/*.svg"]
         tasks: ['flex_svg', 'svgmin']
       jade:
         files: ["#{ SRC }jade/**/*.{jade,json,yaml,yml}"]
-        tasks: ['merge_data', 'jadeTemplate:dev', 'jadeTemplate:dist']
+        tasks: ['merge_data', 'concurrent:jade']
       copy:
         files: ["#{ SRC }public/**/*"]
         tasks: ['copy:public']
-        
-    'gh-pages':
-      options:
-        base: DEST
-        branch: 'master'
-        message: 'deployed by grunt-gh-pages'
-      site:
-        src: ['**/*']
-    
-    prompt:
-      message:
-        options:
-          questions: [
-            {
-              config: 'gh-pages.options.message'
-              type: 'input'
-              message: 'Enter the commit message.'
-              default: 'deployed by grunt-gh-pages'
-            }
-          ]
 
     concurrent:
       preparing: [
         'bower', 'shell'
       ]
-      dev: ['coffee:dev', 'jadeTemplate:dev']
+      dev: ['coffee:dev', 'jadeFrontmatter:dev']
       dist: [
         'compass'
         'coffee:dist'
-        'jadeTemplate:dist'
+        'jadeFrontmatter:dist'
         'imagemin'
+        'webp'
         'flex_svg'
       ]
       finishing: [
@@ -361,9 +368,19 @@ module.exports = (grunt) ->
         'postprocessCSS'
         'svgmin'
       ]
+      jade: [
+        'jadeFrontmatter:dev'
+        'jadeFrontmatter:dist'
+      ]
+      image: [
+        'imagemin'
+        'webp'
+        'jadeFrontmatter:dev'
+        'jadeFrontmatter:dist'
+      ]
   
   # Compile .jade files with frontmatter
-  grunt.registerTask 'jadeTemplate',
+  grunt.registerTask 'jadeFrontmatter',
   'Compile Jade files with front-matter', (mode) ->
     
     devMode = mode isnt 'dist'
@@ -424,7 +441,7 @@ module.exports = (grunt) ->
       
       jade.render jadeTxt, allData, (err, html) ->
         if err
-          console.warn err
+          console.log err
         else
           grunt.file.write destPath, html
           console.log "File \"#{ destPath }\" created."

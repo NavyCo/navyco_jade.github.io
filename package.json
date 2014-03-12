@@ -4,8 +4,7 @@
   "description": "Shinnosuke Watanabe's website hosted on Github Pages",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "grunt",
-    "postinstall": "grunt build"
+    "build": "node get-commit.js && grunt"
   },
   "repository": {
     "type": "git",
@@ -24,7 +23,7 @@
   "private": true,
   "dependencies": {},
   "devDependencies": {
-    "grunt": "~0.4.2",
+    "grunt": "~0.4.3",
     "grunt-contrib-watch": "~0.5.3",
     "grunt-contrib-uglify": "^0.4.0",
     "grunt-contrib-compass": "~0.7.0",
@@ -35,7 +34,7 @@
     "grunt-contrib-connect": "^0.7.0",
     "grunt-contrib-imagemin": "~0.4.1",
     "grunt-contrib-cssmin": "^0.9.0",
-    "grunt-concurrent": "~0.4.3",
+    "grunt-concurrent": "^0.5.0",
     "grunt-gh-pages": "~0.9.1",
     "grunt-shell": "~0.6.4",
     "grunt-lodash": "~0.3.0",
@@ -44,17 +43,20 @@
     "grunt-open": "~0.2.3",
     "grunt-prompt": "~1.0.0",
     "grunt-bower-task": "~0.3.4",
-    "grunt-merge-data": "~0.2.5",
+    "grunt-merge-data": "^0.3.0",
     "grunt-flex-svg": "~0.1.2",
     "grunt-autoprefixer": "^0.7.2",
+    "grunt-webp": "^0.0.4",
     "lodash": "~2.4.1",
     "coffeelint": "^1.1.0",
     "jade": "^1.2.0",
     "assemble-front-matter": "~0.1.2",
     "image-size": "~0.2.1",
-    "uglify-save-license": "^0.3.0",
-    "jit-grunt": "~0.2.1",
+    "uglify-save-license": "^0.4.0",
+    "jit-grunt": "~0.2.3",
     "git-config": "0.0.6",
-    "string.prototype.endswith": "~0.1.0"
+    "string.prototype.endswith": "~0.1.0",
+    "octonode": "^0.5.0",
+    "async": "^0.2.10"
   }
 }

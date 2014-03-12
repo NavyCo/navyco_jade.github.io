@@ -1,7 +1,9 @@
 .sass-cache
 .grunt
-master
+master/
 bower_components
+*-token.*
+tmp/
 
 npm-debug.log
 node_modules
