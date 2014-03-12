@@ -3,11 +3,11 @@ Router = Backbone.Router.extend
   constructor: ->
     if !Router.instance
       Router.instance = this
-      Backbone.Router.apply(Router.instance, arguments)
+      Backbone.Router.apply Router.instance, arguments
     Router.instance
   
   prev: Backbone.history.fragment
-    
+
   routes:
     '': 'index'
     'index.html' : 'index'
@@ -16,7 +16,7 @@ Router = Backbone.Router.extend
     'projects/:name': 'project-single'
   
   'index': ->
-    content.render '/', ->
+    content.render '/index.html', ->
       content.show()
       new HomeView().render()
 
@@ -28,6 +28,7 @@ Router = Backbone.Router.extend
     content.render '/projects.html', ->
       content.show()
       new ProjectThumbnailView().render()
+      new ShowMoreCommitsView()
 
   'project-single': (name) ->
     content.render "/projects/#{ name }", ->

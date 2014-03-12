@@ -3,13 +3,6 @@ NProgress.configure
   trickleSpeed: 265
   showSpinner: false
 
-# location.origin polyfill
-if not location.origin?
-  port = ''
-  if location.port
-    port = ":#{ location.port }"
-  location.origin = location.protocol + "//" + location.hostname + port
-
 AppView = Backbone.View.extend
   el: '#container'
   
@@ -45,6 +38,8 @@ ContentView = Backbone.View.extend
     callback() if callback
   
   render: (page, callback) ->
+    if DEBUG
+      page = "/debug#{ page }"
     this.$el.load "#{ page } #content", callback
 
 TabView = Backbone.View.extend
@@ -54,12 +49,30 @@ TabView = Backbone.View.extend
     this.$el
       .filter '.active'
       .removeClass 'active'
-    for page, i in ['about', 'project']
+    for page, i in ['project', 'about']
       if Backbone.history.fragment.indexOf(page) isnt -1
         this.$el.eq(i+1).addClass 'active'
         break
       if i is 1
         this.$el.eq(0).addClass 'active'
+
+VerticalLineView = Backbone.View.extend
+  el: '#vertical-line'
+  hide: ->
+    this.$el.transit
+      height: '0'
+  extendToFirst: ->
+    this.$el.transit
+      height: $('#first-location').centerHeight()
+
+LabelLinkView = Backbone.View.extend
+  el: '#first-location a'
+  
+  setHref: (basename) ->
+    _href = this.$el
+      .attr('href')
+      .replace /\/[^\/]+?.html/, "/#{ basename }.html"
+    this.$el.attr 'href', _href
 
 HomeView = Backbone.View.extend
   #TODO: separate logics to model!
@@ -68,12 +81,14 @@ HomeView = Backbone.View.extend
   
   reset: ->
     # Open the ribbon
+    ###
     $('#scroll-down').fadeOut 80, ->
       $(this).remove()
     $('#left-ribbon, #right-ribbon').transition {
       width: 0
     }, 250, ->
       $('#ribbon').remove()
+    ###
     
     $('.top .inner').transition {
       paddingTop: '0'
@@ -97,6 +112,7 @@ HomeView = Backbone.View.extend
     
     $ 'img[data-original]'
       .removeAttr 'src'
+      ._enableWebP()
       .lazyload
         effect : 'fadeIn'
         threshold : $w.height() * 0.25
@@ -115,6 +131,7 @@ ProjectThumbnailView = Backbone.View.extend
   render: ->
     this.$el
       .removeAttr 'src'
+      ._enableWebP()
       .lazyload
         effect : 'fadeIn'
         threshold : $w.height() * 0.15
@@ -124,8 +141,12 @@ ProjectImageView = Backbone.View.extend
   el: 'img[data-original]'
   
   render: ->
+    _hasVideo = $('.video-wrapper').length > 0
+    content.show() if _hasVideo
+    
     this.$el
       .removeAttr 'src'
+      ._enableWebP()
       .lazyload
         effect: 'fadeIn'
         threshold: $w.height() * 0.5
@@ -133,7 +154,7 @@ ProjectImageView = Backbone.View.extend
         effect_speed:
           start: ->
             $this = $ this
-            if $this.is '.project-image:eq(0)'
+            if not _hasVideo and $this.is '.project-image:eq(0)'
               $this.finish()
               content.show()
           always: ->
@@ -142,3 +163,12 @@ ProjectImageView = Backbone.View.extend
             $ '.image-wrapper'
               .find this
               .unwrap()
+
+ShowMoreCommitsView = Backbone.View.extend
+  el: '#show-more-commits span'
+  events:
+    'click': 'show'
+  show: ->
+    this.$el.remove()
+    $('#commits-rest').fadeIn()
+  
