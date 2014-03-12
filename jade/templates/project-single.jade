@@ -24,7 +24,7 @@ block inner
         .icon
         div!= prevProject.title
 
-  //section
+  //-section
     +project-menu
   
   mixin lazyload-image(image, caption)
@@ -35,12 +35,18 @@ block inner
         data-original= '/' + image.path,
         alt= caption)
     noscript
-      img.project-image(
-        src= '/' + image.path,
-        alt= caption)    
+      img.project-image(src= '/' + image.path, alt= caption)
   
   section
-    if projectImages.length
+    if project.vimeo
+      .video-wrapper
+        iframe(
+          src='//player.vimeo.com/video/#{ project.vimeo }',
+          frameborder='0',
+          webkitallowfullscreen,
+          mozallowfullscreen,
+          allowfullscreen)
+    else if projectImages.length
       +lazyload-image(
         projectImages.shift(),
         project.image_captions.shift() || '')
@@ -55,10 +61,12 @@ block inner
             each link in project.links
               tr
                 td.key
-                  div= link.name
+                  a(href=link.url, target='_blank')
+                    div= link.name
                 td.value
-                  div
-                    a(href=link.url, target='_blank')= link.url
+                  a(href=link.url, target='_blank')
+                    div
+                      span= link.url
 
       #description
         block content

@@ -39,7 +39,7 @@ $home-icon-size: 45px;
   }
 }
 
-header a {
+#menubar a {
 
   display: block;
   float: left;
@@ -154,12 +154,7 @@ header a {
 
 header > nav {
   > div {
-    margin-left: 12px;
     margin-top: 12px;
-    
-    div {
-      
-    }
   }
 }
 

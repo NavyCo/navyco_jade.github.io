@@ -68,8 +68,12 @@
     role: [グラフィックプログラミング, 映像撮影・編集]
     links:
       -
+        name: 映像
+        url: https://vimeo.com/88578221
+      -
         name: Github
         url: https://github.com/shinnn/twinkle-aquarium
+    vimeo: 88578221
     image_captions:
       - 5面
       - 挨拶
@@ -88,6 +92,15 @@
     image_captions:
       - 展示物全体
       - 挨拶
+
+  - 
+    name: thaw
+    title: 融雪（写真集）
+    time: '2009 - 2010, 2012'
+    genre: [写真]
+    role: [写真撮影, 画像編集]
+    image_captions:
+      - ファーストビュー
 
   - 
     name: led-workshop

@@ -1,5 +1,7 @@
 @charset 'UTF-8';
 
+@import "video";
+
 .project-menu {
   $_width: $main-width * 1/2;
   $_icon-size: $base-font-size + 6px;
@@ -69,15 +71,12 @@
 }
 
 #project-title {
-  @extend #page-title;
-  
   font-size: 20px;
   margin-top: $gutter * 1.25;
-  margin-bottom: 12px;
+  margin-bottom: 2px;
 }
 
 #project-info {
-  margin-top: -0.5em;
   margin-bottom: $gutter * 0.25;
 
   font-size: $base-font-size - 1px;
@@ -144,7 +143,7 @@
     margin-right: 0;
     
     &:first-child {
-      margin-bottom: 4px;
+      margin-bottom: 8px;
     }
   }
   
@@ -160,10 +159,15 @@
     padding: 0 12px;
     border-radius: $radius 0 0 $radius;
     //color: $common-violet;
+    
+    @media screen and(max-width: $main-width * 0.6){
+      border-radius: $radius;
+      padding: 0 24px;
+    }
   }
   
   .value {
-    > div {
+    div {
     	position: relative;
       background: #F9F9F9;
       background: linear-gradient(
@@ -176,11 +180,22 @@
       padding-left: 12px;
       margin-bottom: 3px;
       
-      > a {
+      span {
         line-height: 1.8;
         font-size: $base-font-size - 1px;
         text-shadow: 0 1px 2px $common-white;
       }
+    
+      @media screen and(max-width: $main-width * 0.6){
+        display: none;
+      }
+    }
+  }
+  
+  td {
+    // no underline
+    a {
+      text-decoration: none;
     }
   }
 }

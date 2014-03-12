@@ -123,6 +123,9 @@ main section {
   
   a {
     color: $common-violet;
+    &:hover {
+      text-decoration: underline;
+    };
   }
   
   h1, h2, h3 {
@@ -193,6 +196,10 @@ hr.line-wide {
 
 @mixin text-content {
   margin-left: $gutter * 0.5;
+  
+  @media screen and(max-width: $main-width * 0.5){
+    margin-left: 0;
+  }
 }
 
 .read-more {

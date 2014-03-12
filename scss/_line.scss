@@ -8,13 +8,51 @@
 }
 
 .intersection {
-  clear: both;
+  width: 100%;
+  float: left;
+}
+
+.intersection .point {
   
-  .point {
-    overflow: auto;
-    
-    width: 12px;
-    min-height: 8px;
+  float: left;
+  height: 1em;
+  width: 12px;
+
+  > div {
+    display: none;    
+    position: relative;
     float: left;
+    overflow: auto;
   }
+}
+
+.intersection .label {
+  overflow : hidden;
+}
+
+#first-location .label {
+  float: left;
+}
+
+@mixin intersection-point($width) {
+  width: $width;
+  height: $width;
+  margin-left: - floor($width * 0.5);
+  margin-top: - ceil($width * 0.5);
+  border-radius: $width;
+}
+
+#first-point {
+  @include intersection-point(5px);
+  border-color: $head-decoration-violet;
+  background: $head-decoration-violet;
+}
+
+#project-title-point {
+  @include intersection-point(7px);
+  background: lighten($common-gray, 24);
+}
+#project-info-point {
+  @include intersection-point(3px);
+  background-color: lighten($common-gray, 12);
 }

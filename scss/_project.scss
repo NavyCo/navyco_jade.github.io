@@ -55,10 +55,14 @@ $thumbnail-size: ($main-width - $grid-gutter * 2) / 4.0;
     overflow: hidden;
     height: 80px;
     
+    &:hover {
+      opacity: 0.6;
+    }
+    
     img {
       position: relative;
       left: 50%;
-      height: 250px;
+      height: 80px;
       margin-left: - 250px;
     }
   }
@@ -71,7 +75,6 @@ $thumbnail-size: ($main-width - $grid-gutter * 2) / 4.0;
   height: 4.5em;
   min-height: 70px;
   margin-top: 14px;
-  background-color: rgba(255, 255, 255, .92);
   
   .summary {
     float: left;
@@ -182,7 +185,145 @@ $thumbnail-size: ($main-width - $grid-gutter * 2) / 4.0;
   }
 }
 
-#commits {
+$cell-size: $thumbnail-size - $gutter * 0.25;
+
+#oss, .commits {
+  float: left;
+  
   li {
+    width: 100%;
+    float: left;
+    margin-bottom: $gutter * 0.75;
+    padding-bottom: $gutter * 0.5;
+    border-bottom: 1px solid $common-line-gray;
+    
+    > div {
+      float: left;
+    }
+  }
+    
+  @media screen and(max-width: $main-width * 0.65) {
+    li {
+      > div {
+        float: none;
+        margin-bottom: $gutter * 0.5;
+      }
+    }
+  }
+}
+
+#commits-selected, #commits-rest {
+  float: left;
+  width: 100%;
+}
+
+.js #commits-rest {
+  display: none;
+}
+
+.commits li {
+  margin-bottom: $gutter * 0.25;
+  padding-bottom: $gutter * 0.5;
+}
+
+.oss-title, .repo-full-name {
+  float: left;
+  width: $cell-size + $grid-gutter * 0.5;
+  margin-right: $grid-gutter * 0.5;
+  
+  .icon {
+    @extend .icon-angle-double-right;
+    float: right;
+    margin-right: $gutter;
+  }
+  
+  @media screen and(max-width: $main-width + $main-space-width * 2 + $gutter) {
+    margin-right: $gutter;
+  }
+  
+  @media screen and(max-width: $main-width * 0.65) {
+    width: 100%;
+    
+    .icon {
+      display: none;
+    }
+  }
+}
+
+.repo-full-name {
+  @media screen and(max-width: $main-width * 0.65) {
+    font-size: $base-font-size - 1px;
+  }
+}
+
+.oss-lang, .commit-type {
+  float: left;
+  width: $cell-size * 0.5;
+  margin-right: $gutter;
+  font-size: $base-font-size - 1px;
+  color: $common-text-gray;
+  
+  @media screen and(max-width: $main-width + $main-space-width * 2 + $gutter) {
+    float: none;
+    width: $cell-size;
+  }
+}
+
+.oss-description, .commit-title {
+  float: left;
+  width: 58%;
+  font-size: $base-font-size - 1px;
+
+  @media screen and(max-width: $main-width + $main-space-width * 2 + $gutter) {
+    width: 60%;
+  }
+
+  @media screen and(max-width: $main-width * 0.65 + $gutter * 8) {
+    width: 50%;
+  }
+  
+  @media screen and(max-width: $main-width * 0.65) {
+    width: 100%;
+  }
+}
+
+.repo-title {
+  float: left;
+  
+}
+
+.commit-title {
+  float: left;
+  
+  @media screen and(max-width: $main-width * 0.65) {
+    font-size: $base-font-size;
+  }
+}
+
+.repo-name {
+  float: left;
+}
+
+#show-more-commits {
+  float: left;
+  display: none;
+}
+
+.js #show-more-commits {
+  margin-top: $gutter * 0.5;
+  display: block;
+  color: $common-violet;
+  
+  span {
+    padding-right: 0.5em;
+    cursor: pointer;
+    
+    &:hover {
+      text-decoration: underline;
+    };
+  }
+  
+  .icon {
+    @extend %icon-down-open;
   }
 }

@@ -4,9 +4,9 @@ pageClass: top
 title: ''
 ---
 
-section.full-width
+section#top-section
   .inner(itemscope, itemtype='http://schema.org/Person')
-    #logo
+    //-#logo
     h1#top-title(itemprop='name')
       span.first-name
         span.capital S
@@ -19,7 +19,7 @@ section.full-width
       p.
         Webフロントエンド開発／デザイン、ユーザーインターフェースデザイン、<br>インタラクティブコンテンツ制作などを行う渡邉伸之介のウェブサイトです。
 
-#ribbon
+//-#ribbon
   #left-ribbon
   #right-ribbon
   .icon#scroll-down
@@ -28,7 +28,7 @@ mixin featured-work(name, role)
   - var _proj = getProject(name);
 
   .featured-works
-    a.wide-image(href= htmlPath('projects/' + name + '.html'))
+    a.wide-image(href= htmlPath('projects/#{ name }.html'))
       img(
         src= '/img/transparent.gif',
         data-original= '/img/large/#{ name }.jpg',
@@ -41,8 +41,8 @@ mixin featured-work(name, role)
         )
     h2.work-title
       span= _proj.title
-    .line-wide
-    .role= role
+    //-.line-wide
+    //-.role= role
 
 section
   +featured-work('musabi-degreeshow', 'フロントエンド・バックエンド開発 / ユーザーインターフェースデザイン')

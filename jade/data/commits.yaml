@@ -25,7 +25,6 @@ rest:
   - indieisaconcept/grunt-styleguide/pull/40
   - jonathanepollack/gulp-minify-css/pull/3
   - kozy4324/grunt-concat-sourcemap/pull/14
-  - firstandthird/load-grunt-config/pull/27
   - twolfson/grunt-curl/pull/13
   - firstandthird/load-grunt-config/pull/27
   - testdouble/grunt-asset-fingerprint/pull/2
@@ -47,7 +46,6 @@ rest:
 
 not_publish:
   - sindresorhus/screenfull.js/pull/39
-  - tkellen/node-adjunct/pull/1
   - caolan/forms/pull/92
   - docpad/docpad-plugin-coffeescript/pull/7
   - webdoc/grunt-concat-css/pull/4

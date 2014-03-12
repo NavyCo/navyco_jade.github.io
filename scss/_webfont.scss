@@ -45,12 +45,6 @@ src: url('../font/icon.svg?39909792#link') format('svg');
   }
 }
 
-@mixin icon-down(){
-  &:before{
-    content: '\e803';
-  }
-}
-
 @mixin icon-left(){
   line-height: 1;
   
@@ -94,16 +88,18 @@ src: url('../font/icon.svg?39909792#link') format('svg');
 .icon-tumblr:before { content: '\f311'; }
 .icon-link:before { content: '🔗'; }
 
-.icon-star {
+%icon-star {
   &:before {
     content: '\e800';
   }
 }
-.icon-code {
+
+%icon-code {
   &:before {
     content: '\e806';
   }
 }
+
 .icon-github {
   &:before {
     content: '\e805';
@@ -122,9 +118,6 @@ src: url('../font/icon.svg?39909792#link') format('svg');
     content: '\e808';
   }
 }
-
-//.icon-right-circled:before { content: '\e809'; }
-//.icon-left-circled:before { content: '\e80a'; }
 
 .icon-left-circled {
   &:before {
@@ -147,6 +140,12 @@ src: url('../font/icon.svg?39909792#link') format('svg');
 %icon-right-open {
   &:before {
     content: '\e80b';
+  }
+}
+
+%icon-down-open {
+  &:before{
+    content: '\e803';
   }
 }
 

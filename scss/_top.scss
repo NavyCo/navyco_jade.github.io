@@ -10,7 +10,11 @@
   }
 }
 
-$logo-size: 60px;
+#top-section {
+  margin-top: - $gutter * 0.25;
+}
+
+$logo-size: 64px;
 
 #logo {
   width: $logo-size;
@@ -39,7 +43,7 @@ $logo-size: 60px;
 // "Shinnosuke Watanabe"
 #top-title {
   font-family: Roboto, 'Open Sans', $sans-serif;
-  font-weight: 400;
+  font-weight: 300;
   color: $common-black;
   //color: $common-violet;
 }
@@ -51,10 +55,10 @@ $logo-size: 60px;
   margin-bottom: $gutter * 0.5;
   
   @media screen and(max-width: $main-width){
-    @include title-font-size(34px);
+    @include title-font-size(32px);
   }
   @media screen and(max-width: $main-width - 270){
-    @include title-font-size(32px);
+    @include title-font-size(30px);
   }
 
   .first-name {
@@ -67,7 +71,7 @@ $logo-size: 60px;
 }
 
 #top-subtitle {
-  margin-bottom: $gutter * 2;
+  margin-bottom: $gutter * 4.75;
 
   //font-size: 21px; //old
   font-size: $base-font-size - 1px;
@@ -101,7 +105,7 @@ $logo-size: 60px;
 
 section.full-width {
   max-width: none;
-  margin-top: -$gutter * 0.5;
+  margin-top: -$gutter * 2;
   margin-bottom: $gutter * 3;
   padding-left: 0;
   padding-right: 0;
@@ -141,7 +145,7 @@ section.full-width {
 }
 
 #scroll-down {
-  @include icon-down;
+  @extend %icon-down-open;
   
   position: relative;
   
@@ -212,7 +216,7 @@ $featured-image-height: 240px;
   background-color: $common-line-gray;
 }
 
-.wide-image {
+a.wide-image {
   display: block;
   overflow: hidden;
   height: $featured-image-height;
@@ -221,6 +225,10 @@ $featured-image-height: 240px;
   
   .js & {
     width: 0;
+  }
+  
+  &:hover {
+    opacity: 0.6;
   }
   
   $img-border-width: $gutter * 0.25;
