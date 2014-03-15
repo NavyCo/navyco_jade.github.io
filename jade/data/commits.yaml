@@ -43,9 +43,11 @@ rest:
   - brunch/uglify-js-brunch/pull/19
   - gulpjs/gulp/pull/260
   - github/choosealicense.com/pull/193
+  - jdcataldo/grunt-mocha-phantomjs/pull/27
+  - sindresorhus/screenfull.js/pull/39
+  - docpad/docpad-plugin-stylus/pull/7
 
 not_publish:
-  - sindresorhus/screenfull.js/pull/39
   - caolan/forms/pull/92
   - docpad/docpad-plugin-coffeescript/pull/7
   - webdoc/grunt-concat-css/pull/4
@@ -58,12 +60,11 @@ not_publish:
   - leecrossley/grunt-timer/pull/5
   - alex-seville/grunt-blanket/pull/8
   - ogt/slugify-url/pull/3
-  - docpad/docpad-plugin-stylus/pull/7
   - petrbela/grunt-z-schema/pull/2
   - ro-ka/grunt-hoodie/pull/7
   - callmehiphop/grunt-special-html/pull/1
   - STAH/grunt-preprocessor/pull/6
   - gruntjs/grunt-contrib-jshint/pull/141
-  - jdcataldo/grunt-mocha-phantomjs/pull/27
-  
-  
+  - somerandomdude/grunt-webp/pull/13
+  - gruntjs/grunt-contrib-csslint/pull/34
+  - ghalliday/grunt-mocha-test/pull/59
