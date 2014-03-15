@@ -15,16 +15,10 @@ module.exports = (grunt) ->
   
   settings = grunt.file.readYAML 'settings.yaml'
 
-  BIN = "#{ process.cwd() }/node_modules/.bin/"
+  BIN = "node_modules/.bin/"
 
-  # Add '/' to the string if its last character is not '/'
-  _addLastSlash = (str) ->
-    return false unless str?
-    return str if str.endsWith('/') or str is ''
-    return "#{ str }/"
-
-  SRC = _addLastSlash(settings.srcPath) or ''
-  DEST = _addLastSlash(settings.destPath) or 'site/'
+  SRC = settings.srcPath or ''
+  DEST = settings.destPath or 'site/'
   JS = "#{ SRC }js/"
 
   grunt.initConfig
@@ -323,7 +317,7 @@ module.exports = (grunt) ->
         files: ["#{ SRC }bower.json"]
         tasks: ['bower', 'uglify:bower']
       compass:
-        files: ["#{ SRC }scss/*.scss"]
+        files: ["#{ SRC }scss/*{,/*}.scss"]
         tasks: ['compass', 'postprocessCSS']
       coffee:
         files: ["#{ JS }main/*.coffee"]
@@ -476,10 +470,6 @@ module.exports = (grunt) ->
   grunt.registerTask 'deploy',
     'Deploy to Github Pages',
     ->
-      grunt.loadNpmTasks 'grunt-prompt'
-      grunt.loadNpmTasks 'grunt-gh-pages'
-      grunt.loadNpmTasks 'grunt-open'
-      
       gitConfig = require('git-config').sync()
       
       grunt.config 'gh-pages.options.user', gitConfig.user
