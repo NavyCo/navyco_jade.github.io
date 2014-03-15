@@ -70,9 +70,12 @@ LabelLinkView = Backbone.View.extend
   
   setHref: (basename) ->
     _href = this.$el
-      .attr('href')
+      .attr 'href'
       .replace /\/[^\/]+?.html/, "/#{ basename }.html"
     this.$el.attr 'href', _href
+
+PrevNextButtonView = Backbone.View.extend
+  el: ''
 
 HomeView = Backbone.View.extend
   #TODO: separate logics to model!
