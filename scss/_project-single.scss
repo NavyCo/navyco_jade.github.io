@@ -1,6 +1,7 @@
 @charset 'UTF-8';
 
-@import "video";
+@import "partial/video";
+@import "partial/project-button";
 
 .project-menu {
   $_width: $main-width * 1/2;

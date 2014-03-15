@@ -1,6 +1,6 @@
 @charset 'UTF-8';
 
-body{
+body {
   margin: 0;
   padding: 0;
   
@@ -14,16 +14,16 @@ body{
   -webkit-font-smoothing: subpixel-antialiased;
 }
 
-a{
+a {
   text-decoration: none;
   
-  &:focus, &:active, &::-moz-focus-inner{
-    border: none;
-    outline: 0;
+  &:focus, &:active, &::-moz-focus-inner {
+    //border: none;
+    //outline: 0;
   }
 }
 
-p, h1, h2, h3, h4, hr, ol, ul{
+p, h1, h2, h3, h4, hr, ol, ul {
   -webkit-margin-before: 0;
   -webkit-margin-after: 0;
   -webkit-margin-start: 0;
@@ -35,12 +35,11 @@ p, h1, h2, h3, h4, hr, ol, ul{
   padding: 0;
 }
 
-img, figure{
+img, figure {
   margin: 0;
   padding: 0;
 }
 
-ul, ol{
+ul, ol {
   list-style-type: none;
 }
-
