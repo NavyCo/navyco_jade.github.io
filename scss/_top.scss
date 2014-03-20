@@ -227,9 +227,7 @@ a.wide-image {
     width: 0;
   }
   
-  &:hover {
-    opacity: 0.6;
-  }
+  @include image-hover-animation();
   
   $img-border-width: $gutter * 0.25;
   
