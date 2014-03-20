@@ -16,6 +16,7 @@
     "backbone": "latest",
     "nprogress": "latest",
     "modernizr-on": "stucox/modernizr-on",
+    "string.prototype.contains": "mathiasbynens/String.prototype.contains",
     "html5shiv": "latest",
     "selectivizr": "latest",
     "respond": "latest",
@@ -44,6 +45,9 @@
     "underscore": {},
     "modernizr-on": {
       "modernizr-on": "modernizr-on.min.js"
+    },
+    "string.prototype.contains": {
+      "string.prototype.contains": "contains.js"
     },
     "html5shiv": {
       "ie": "dist/html5shiv.js"
