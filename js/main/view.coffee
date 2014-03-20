@@ -5,21 +5,133 @@ NProgress.configure
 
 AppView = Backbone.View.extend
   el: '#container'
-  
   events:
-    'click a:not([target])': 'render'
+    'click a:not([target])': 'setInternalLink'
   
-  render: (e) ->
+  initialize: ->
+    @menuTabs = new TabView()
+    @verticalNav = new VerticalNavView()
+    @model.on 'change:category', (model, value) =>
+      @menuTabs.activate value
+      @verticalNav.setLink value
+    @model.on 'change:basename', (model, value) =>
+      @verticalNav.render value
+    
+  setInternalLink: (e) ->
     e.preventDefault()
     
     content.hide ->
-      nextUrl = $(e.currentTarget)
+      nextUrl = $ e.currentTarget
         .attr 'href'
         .replace location.origin, ''
       router.navigate nextUrl, {trigger: true}
       if router.prev is Backbone.history.fragment
         content.show()
       scrollTo 0, 0
+
+  refresh: ->
+    @model.categorize()
+
+TabView = Backbone.View.extend
+  el: '#tabs > a'
+  
+  activate: (category) ->
+    @$el
+      .filter '.active'
+      .removeClass 'active'
+      .end()
+      .filter "[data-category=#{ category }]"
+      .addClass 'active'
+
+VerticalNavView = Backbone.View.extend
+  el: 'header div.intersection'
+  
+  initialize: ->
+    @labels = new NavLabelView()
+    @points = new NavPointView()
+    @line = new VerticalLineView()
+    
+  hide: ->
+    @line.hide()
+    @$el.fadeOut 42
+  
+  setLink: (category) ->
+    $link = @$el.find 'a'
+    _backToCategory = $link
+      .attr 'href'
+      .replace /\/[^\/]+?\.html/, "/#{ category }.html"
+    $link.attr 'href', _backToCategory
+  
+  render: (basename) ->
+    @points.show()
+    if basename is 'index'
+      @hide()
+    else
+      pageData = routerData[container.model.get('basename')]
+      if pageData.title
+        $('#first-location').show()
+        $('#first-location .label').text pageData.title
+        $('#project-title, #project-info').fadeOut 42
+        
+        @line.extendToFirst()
+        $('#first-point').css
+          top: "#{ $('#first-location').height() * 0.5 }px"
+          
+      if pageData.proj_title
+        $('#first-location .label').text 'プロジェクト一覧'
+        $('.intersection').show()
+        $('#project-title > .label').text pageData.proj_title
+        $('#project-info .time').text pageData.time
+        $('#project-info .roles').text pageData.role.join(' / ')
+        
+        @line.extendToProject()
+        
+        $('#first-point').css
+          top: "#{ $('#first-location').height() * 0.5 }px"
+        $('#project-title-point').css
+          top: "#{ $('#project-title').height() * 0.5 }px"
+        $('#project-info-point').css
+          top: "#{ $('#project-info').height() * 0.5 }px"
+    
+
+NavPointView = Backbone.View.extend
+  el: 'div.intersection .point > div'
+  
+  hide: ->
+    $first = @$el.eq(0)
+
+  show: ->
+    @$el.fadeIn()
+
+NavLabelView = Backbone.View.extend
+  el: 'div.intersection > .label'
+  
+VerticalLineView = Backbone.View.extend
+  el: '#vertical-line'
+  
+  hide: ->
+    @$el.transit
+      height: '0'
+
+  extendToFirst: ->
+    @$el.transit
+      height: $('#first-location').centerHeight() + 'px'
+
+  extendToProject: ->
+    @$el.transit
+      height: $('#project-info').centerHeight() + 'px'
+
+PrevNextButtonView = Backbone.View.extend
+  el: '#prev-project-button, #next-project-button'
+  
+  initialize: ->
+    $w.on 'resize', =>
+      @render()
+  
+  render: ->
+    if Modernizr.mq 'only screen and (min-width: 1280px)'
+      #console.log @$el
+      return #tmp
 
 ContentView = Backbone.View.extend
   el: 'main'
@@ -28,54 +140,19 @@ ContentView = Backbone.View.extend
     NProgress
       .set 0.0
       .start()
-    this.$el.fadeTo 8, 0.010, ->
+    @$el.fadeTo 8, 0.010, ->
       callback() if callback
     
   show: (callback) ->
     NProgress.done()
-    this.$el.fadeTo 80, 1
+    @$el.fadeTo 80, 1
     router.prev = Backbone.history.fragment
     callback() if callback
   
   render: (page, callback) ->
     if DEBUG
       page = "/debug#{ page }"
-    this.$el.load "#{ page } #content", callback
-
-TabView = Backbone.View.extend
-  el: '#tabs > a'
-  
-  activate: ->
-    this.$el
-      .filter '.active'
-      .removeClass 'active'
-    for page, i in ['project', 'about']
-      if Backbone.history.fragment.indexOf(page) isnt -1
-        this.$el.eq(i+1).addClass 'active'
-        break
-      if i is 1
-        this.$el.eq(0).addClass 'active'
-
-VerticalLineView = Backbone.View.extend
-  el: '#vertical-line'
-  hide: ->
-    this.$el.transit
-      height: '0'
-  extendToFirst: ->
-    this.$el.transit
-      height: $('#first-location').centerHeight()
-
-LabelLinkView = Backbone.View.extend
-  el: '#first-location a'
-  
-  setHref: (basename) ->
-    _href = this.$el
-      .attr 'href'
-      .replace /\/[^\/]+?.html/, "/#{ basename }.html"
-    this.$el.attr 'href', _href
-
-PrevNextButtonView = Backbone.View.extend
-  el: ''
+    @$el.load "#{ page } #content", callback
 
 HomeView = Backbone.View.extend
   #TODO: separate logics to model!
@@ -124,9 +201,7 @@ HomeView = Backbone.View.extend
     
     $ '#logo'
       .delay 200
-      .transition {
-        backgroundPosition: '0px 0px'
-      }, 500
+      .transition {backgroundPosition: '0px 0px'}, 500
 
 ProjectThumbnailView = Backbone.View.extend
   el: 'img[data-original]'

@@ -74,9 +74,9 @@ html(lang='ja')
                 a.icon.twitter(href='https://twitter.com/shinnn_tw', target='_blank')
                   span Twitter
               #tabs
-                a(href= htmlPath()) home
-                a(href= htmlPath('projects.html')) projects
-                a(href= htmlPath('about.html')) about
+                a(href= htmlPath(), data-category='index') home
+                a(href= htmlPath('projects.html'), data-category='projects') projects
+                a(href= htmlPath('about.html'), data-category='about') about
           .header-line
           nav.centered
             div
