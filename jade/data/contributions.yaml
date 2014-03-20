@@ -66,5 +66,6 @@ not_publish:
   - STAH/grunt-preprocessor/pull/6
   - gruntjs/grunt-contrib-jshint/pull/141
   - somerandomdude/grunt-webp/pull/13
-  - gruntjs/grunt-contrib-csslint/pull/34
-  - ghalliday/grunt-mocha-test/pull/59
+  - pghalliday/grunt-mocha-test/pull/59
+  - gruntjs/grunt-contrib-less/pull/158
+  - azu/inlining-node-require/pull/1

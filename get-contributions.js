@@ -4,7 +4,7 @@ var async = require('async');
 var grunt = require('grunt');
 var github = require('octonode');
 
-var data = grunt.file.readYAML('jade/data/commits.yaml');
+var data = grunt.file.readYAML('jade/data/contributions.yaml');
 
 var ACCESS_TOKEN = grunt.file.read('gh-access-token.txt').trim();
 var client = github.client(ACCESS_TOKEN);
@@ -28,7 +28,7 @@ async.each(keys, function(key, eachNext) {
       'tmp/all/commits_' + key + '_raw.json',
       JSON.stringify(result, null, 2)
     );
-  
+    
     var filteredResult = result.map(function(commit) {
       var _item = {
         url: commit.html_url,
