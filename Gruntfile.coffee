@@ -7,7 +7,6 @@ module.exports = (grunt) ->
 
   path = require 'path'
 
-  require 'string.prototype.endswith'
   _ = require 'lodash'
   yfm = require 'assemble-front-matter'
   sizeOf = require 'image-size'
@@ -173,8 +172,7 @@ module.exports = (grunt) ->
     
     clean:
       site: [DEST]
-      tmpfiles: ["#{ DEST }.tmp"]
-      debugFiles: ["#{ DEST }debug"]
+      dev: ["#{ DEST }{.tmp,debug}"]
       
     imagemin:
       all:
@@ -288,7 +286,7 @@ module.exports = (grunt) ->
             .substr(2, 5)
         }"
         app: 'Google Chrome'
-        
+    
     'gh-pages':
       options:
         base: DEST
@@ -428,7 +426,7 @@ module.exports = (grunt) ->
           width: _dimesions.width
           height: _dimesions.height
           
-      allData = _.assign globalData, localData, compileOptions
+      allData = _.assign {}, globalData, localData, compileOptions
       
       if devMode
         allData = _.assign allData, {DEBUG: true, pretty: true}
@@ -460,7 +458,7 @@ module.exports = (grunt) ->
   # task list for 'dist' tasks
   distTasks = _(buildTasks)
     .without('concurrent:dev')
-    .union(['clean:tmpfiles', 'clean:debugFiles'])
+    .union(['clean:dev'])
     .valueOf()
   
   grunt.registerTask 'dist',
