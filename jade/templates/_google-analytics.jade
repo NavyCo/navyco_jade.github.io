@@ -1,7 +1,0 @@
-//- cf. http://stackoverflow.com/a/8498629/1834093
-
-- var _matches = site.url.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i);
-- var domain = _matches && _matches[1];
-
-script.
-  !function(s,h,i,n,N){s.GoogleAnalyticsObject=i,s[i]||(s[i]=function(){(s[i].q=s[i].q||[]).push(arguments)}),s[i].l=+new Date,n=h.createElement("script"),N=h.scripts[0],n.src="//www.google-analytics.com/analytics.js",N.parentNode.insertBefore(n,N)}(this,document,"ga");ga("create","UA-#{ site.trackingID }","#{ domain }");ga("send","pageview");
