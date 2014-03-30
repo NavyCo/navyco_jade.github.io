@@ -1,7 +1,4 @@
 Page = Backbone.Model.extend
-  ss: ->
-    console.log 2
-
   categorize: ->
     _frag = Backbone.history.fragment
     _category = 'index'
