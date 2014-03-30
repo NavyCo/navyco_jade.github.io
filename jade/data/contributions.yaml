@@ -69,3 +69,4 @@ not_publish:
   - pghalliday/grunt-mocha-test/pull/59
   - gruntjs/grunt-contrib-less/pull/158
   - azu/inlining-node-require/pull/1
+  - hemanth/broccoli-md/pull/1
