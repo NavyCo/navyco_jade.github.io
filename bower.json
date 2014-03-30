@@ -16,6 +16,7 @@
     "backbone": "latest",
     "nprogress": "latest",
     "modernizr-on": "stucox/modernizr-on",
+    "location-origin": "latest",
     "string.prototype.contains": "mathiasbynens/String.prototype.contains",
     "html5shiv": "latest",
     "selectivizr": "latest",

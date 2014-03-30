@@ -17,13 +17,6 @@ jQuery.fn.safeAnimate = do ->
 if not $.support.transition
   $.fn.transition = $.fn.animate
 
-# location.origin polyfill
-if not location.origin?
-  port = ''
-  if location.port
-    port = ":#{ location.port }"
-  location.origin = location.protocol + "//" + location.hostname + port
-
 jQuery.fn.centerHeight = ->
   $this = $ this
   Math.round $this.position().top + $this.height() * 0.5
