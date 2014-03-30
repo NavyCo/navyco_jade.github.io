@@ -6,7 +6,14 @@ var github = require('octonode');
 
 var data = grunt.file.readYAML('jade/data/contributions.yaml');
 
-var ACCESS_TOKEN = grunt.file.read('gh-access-token.txt').trim();
+var ACCESS_TOKEN = '';
+try {
+  ACCESS_TOKEN = grunt.file.read('gh-access-token.txt').trim();
+} catch (e) {
+  console.error('Create a plain text file "gh-access-token.txt" which contains your Github access token.');
+  process.exit();
+}
+
 var client = github.client(ACCESS_TOKEN);
 
 var keys = Object.keys(data);
@@ -36,11 +43,11 @@ async.each(keys, function(key, eachNext) {
         state: commit.state,
         date: commit.created_at
       };
-    
-      var _repo = commit.url
-        .replace('https://api.github.com/repos/', '')
+
+      var _repo = _item.url
+        .replace('https://github.com/', '')
         .split('/');
-    
+
       _item.repo_owner = _repo[0];
       _item.repo_name = _repo[1];
     
