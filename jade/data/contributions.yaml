@@ -7,11 +7,11 @@ selected:
   - praveenvijayan/grunt-html-validation/pull/27
   - outaTiME/grunt-replace/issues/34
   - outaTiME/grunt-replace/pull/35
-  - Bartvds/grunt-dogescript/pull/3
   - brunch/clean-css-brunch/pull/8
   - pghalliday/grunt-mocha-test/pull/46
   - moznion/google-chrome-gist-more-url/pull/4
   - alex-seville/blanket/pull/379
+  - bower/json/pull/17
   
 rest:
   - pbakaus/domvas/pull/6
@@ -46,6 +46,7 @@ rest:
   - jdcataldo/grunt-mocha-phantomjs/pull/27
   - sindresorhus/screenfull.js/pull/39
   - docpad/docpad-plugin-stylus/pull/7
+  - Bartvds/grunt-dogescript/pull/3
 
 not_publish:
   - caolan/forms/pull/92
