@@ -16,6 +16,8 @@ AppView = Backbone.View.extend
       @verticalNav.setLink value
     @model.on 'change:basename', (model, value) =>
       @verticalNav.render value
+    $doc.on visibilityChange, =>
+      @verticalNav.render @model.get 'basename'
     
   setInternalLink: (e) ->
     e.preventDefault()
@@ -249,4 +251,3 @@ ShowMoreCommitsView = Backbone.View.extend
   show: ->
     this.$el.remove()
     $('#commits-rest').fadeIn()
-  

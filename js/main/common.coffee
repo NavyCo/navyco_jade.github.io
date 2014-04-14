@@ -35,3 +35,17 @@ Modernizr.on 'webp', (result) ->
           .replace '.png', '.webp'
         $this.attr 'data-original', webpPath
       this
+
+# Page Visibility API
+if typeof document.hidden isnt 'undefined'
+  hidden = 'hidden'
+  visibilityChange = 'visibilitychange'
+else if typeof document.mozHidden isnt 'undefined'
+  hidden = 'mozHidden'
+  visibilityChange = 'mozvisibilitychange'
+else if typeof document.msHidden isnt 'undefined'
+  hidden = 'msHidden'
+  visibilityChange = 'msvisibilitychange'
+else if typeof document.webkitHidden isnt 'undefined'
+  hidden = 'webkitHidden'
+  visibilityChange = 'webkitvisibilitychange'
