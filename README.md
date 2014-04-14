@@ -1,6 +1,6 @@
 # [Shinnosuke Watanabe's Website](http://shinnn.github.io)
 
-[![devDependency Status](https://david-dm.org/shinnn/shinnn.github.io/dev-status.png)](https://david-dm.org/shinnn/shinnn.github.io#info=devDependencies)
+[![devDependency Status](https://david-dm.org/shinnn/shinnn.github.io/dev-status.svg)](https://david-dm.org/shinnn/shinnn.github.io#info=devDependencies)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
 A portfolio site of the man who codes and designs
