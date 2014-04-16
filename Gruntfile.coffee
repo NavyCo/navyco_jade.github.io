@@ -174,7 +174,7 @@ module.exports = (grunt) ->
       site: [DEST]
       dev: ["#{ DEST }{.tmp,debug}"]
       
-    imagemin:
+    image:
       all:
         options:
           progressive: false
@@ -331,7 +331,7 @@ module.exports = (grunt) ->
         tasks: ['concat:vendor_ie']
       images:
         files: ["#{ SRC }img/**/*.{png,jpg,gif}"]
-        tasks: ['concurrent:image']
+        tasks: ['concurrent:images']
       svg:
         files: ["#{ SRC }img/**/*.svg"]
         tasks: ['flex_svg', 'svgmin']
@@ -351,7 +351,7 @@ module.exports = (grunt) ->
         'compass'
         'coffee:dist'
         'jadeFrontmatter:dist'
-        'imagemin'
+        'image'
         'webp'
         'flex_svg'
       ]
@@ -364,8 +364,8 @@ module.exports = (grunt) ->
         'jadeFrontmatter:dev'
         'jadeFrontmatter:dist'
       ]
-      image: [
-        'imagemin'
+      images: [
+        'image'
         'webp'
         'jadeFrontmatter:dev'
         'jadeFrontmatter:dist'
