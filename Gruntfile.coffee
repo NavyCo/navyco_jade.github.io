@@ -8,9 +8,8 @@ module.exports = (grunt) ->
   path = require 'path'
 
   _ = require 'lodash'
-  yfm = require 'assemble-front-matter'
+  frontmatter = require 'gray-matter'
   sizeOf = require 'image-size'
-  jade = require 'jade'
   
   settings = grunt.file.readYAML 'settings.yaml'
 
@@ -257,6 +256,66 @@ module.exports = (grunt) ->
         src: ["#{ SRC }jade/data/projects.yaml"]
         dest: "#{ DEST }.tmp/router-data.json"
     
+    jade:
+      options:
+        data: (dest, src) ->
+          data = grunt.file.readJSON "#{ DEST }.tmp/jade-data.json"
+          _.assign data, grunt.config 'jade.__context'
+
+          data.basename = path.basename dest, '.html'
+          
+          ## path and file size of project image
+          data.projectImages = []
+          
+          projectImagePaths = grunt.file.expand {
+            cwd: SRC
+          }, "img/projects/#{ data.basename }/**/*.{png,jpg,gif}"
+          
+          for imagePath, i in projectImagePaths
+            _dimesions = sizeOf imagePath
+        
+            data.projectImages[i] =
+              path: imagePath
+              width: _dimesions.width
+              height: _dimesions.height
+          
+          if dest.indexOf 'debug/' isnt -1
+            data.DEBUG = true
+          
+          data
+        basedir: __dirname
+        processContent: (original) ->
+          {context, content} = frontmatter original
+          grunt.config 'jade.__context', context
+
+          """
+          extend /jade/templates/#{
+            context.template or context.layout
+          }
+          block content
+          #{ content.replace(/\n/g, '\n  ') }
+          """
+      dev:
+        options:
+          pretty: true
+        files: [
+          expand: true
+          cwd: "#{ SRC }jade/pages/"
+          src: ['{,*/,*/*/}*.jade']
+          dest: "#{ DEST }debug/"
+          ext: '.html'
+        ]
+      dist:
+        options:
+          pretty: false
+        files: [
+          expand: true
+          cwd: "#{ SRC }jade/pages/"
+          src: ['{,*/,*/*/}*.jade']
+          dest: DEST
+          ext: '.html'
+        ]
+    
     shell:
       coffeelint:
         command:
@@ -346,11 +405,11 @@ module.exports = (grunt) ->
       preparing: [
         'bower', 'shell'
       ]
-      dev: ['coffee:dev', 'jadeFrontmatter:dev']
+      dev: ['coffee:dev', 'jade:dev']
       dist: [
         'compass'
         'coffee:dist'
-        'jadeFrontmatter:dist'
+        'jade:dist'
         'image'
         'webp'
         'flex_svg'
@@ -361,82 +420,14 @@ module.exports = (grunt) ->
         'svgmin'
       ]
       jade: [
-        'jadeFrontmatter:dev'
-        'jadeFrontmatter:dist'
+        'jade:dev'
+        'jade:dist'
       ]
       images: [
         'image'
         'webp'
-        'jadeFrontmatter:dev'
-        'jadeFrontmatter:dist'
+        'jade'
       ]
-  
-  # Compile .jade files with frontmatter
-  grunt.registerTask 'jadeFrontmatter',
-  'Compile Jade files with front-matter', (mode) ->
-    
-    devMode = mode isnt 'dist'
-
-    globalData = grunt.file.readJSON "#{ DEST }.tmp/jade-data.json"
-
-    mapOptions =
-      cwd: "#{ SRC }jade/pages/"
-      filter: 'isFile'
-      ext: '.html'
-      rename: (dest, src) ->
-        dest + (if devMode then 'debug/' else '') + src
-    
-    fileMap = grunt.file.expandMapping '**/*.jade', DEST, mapOptions
-    
-    compileOptions =
-      pretty: false
-      # HTMLファイルのパスは書き出し先のフォルダのルートが基準となる
-      filename: mapOptions.cwd + '../'
-    
-    for filePath in fileMap
-      srcPath = filePath.src[0]
-      destPath = filePath.dest
-      
-      raw = yfm.extract srcPath
-      
-      localData = raw.context
-      
-      jadeTxt = """
-      extend ../templates/#{ localData.template or localData.layout }
-      block content
-      #{ raw.content.replace(/\n/g, '\n  ') }
-      """
-      
-      # helper
-      ## basename
-      localData.basename = path.basename srcPath, '.jade'
-
-      ## path and file size of project image
-      localData.projectImages = []
-
-      projectImagePaths = grunt.file.expand {
-        cwd: SRC
-      }, "img/projects/#{ localData.basename }/**/*.{png,jpg,gif}"
-      
-      for imagePath, i in projectImagePaths
-        _dimesions = sizeOf imagePath
-        
-        localData.projectImages[i] =
-          path: imagePath
-          width: _dimesions.width
-          height: _dimesions.height
-          
-      allData = _.assign {}, globalData, localData, compileOptions
-      
-      if devMode
-        allData = _.assign allData, {DEBUG: true, pretty: true}
-      
-      jade.render jadeTxt, allData, (err, html) ->
-        if err
-          console.log err
-        else
-          grunt.file.write destPath, html
-          console.log "File \"#{ destPath }\" created."
   
   grunt.registerTask 'postprocessCSS', ['autoprefixer', 'cssmin']
 
