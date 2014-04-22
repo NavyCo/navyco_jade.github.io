@@ -2,7 +2,7 @@
 
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
-All files in this branch are produced by [grunt-gh-pages](https://github.com/tschaub/grunt-gh-pages). See the [`src` branch](https://github.com/shinnn/shinnn.github.io/tree/src) for more information.
+All files in this branch are produced by [grunt-gh-pages](https://github.com/tschaub/grunt-gh-pages). See [the `src` branch](https://github.com/shinnn/shinnn.github.io/tree/src) for more information about this repository.
 
 ## License
 
