@@ -278,22 +278,18 @@ module.exports = (grunt) ->
               path: imagePath
               width: _dimesions.width
               height: _dimesions.height
-          
-          if dest.indexOf 'debug/' isnt -1
-            data.DEBUG = true
-          
+
+          data.DEBUG = dest.indexOf('debug/') isnt -1
           data
         basedir: __dirname
         processContent: (original) ->
-          {context, content} = frontmatter original
+          { context, content } = frontmatter original
           grunt.config 'jade.__context', context
 
           """
-          extend /jade/templates/#{
-            context.template or context.layout
-          }
+          extend /jade/templates/#{ context.template or context.layout }
           block content
-          #{ content.replace(/\n/g, '\n  ') }
+          #{ content.replace /^/gm, '  ' }
           """
       dev:
         options:
