@@ -47,6 +47,9 @@ rest:
   - sindresorhus/screenfull.js/pull/39
   - docpad/docpad-plugin-stylus/pull/7
   - Bartvds/grunt-dogescript/pull/3
+  - 1000ch/grunt-image/pull/7
+  - kaimallea/isMobile/pull/13
+  - gulpjs/gulp/pull/402
 
 not_publish:
   - caolan/forms/pull/92
@@ -71,3 +74,5 @@ not_publish:
   - gruntjs/grunt-contrib-less/pull/158
   - azu/inlining-node-require/pull/1
   - hemanth/broccoli-md/pull/1
+  - btford/eshighlight/pull/1
+  - sindresorhus/gulp-esformatter/pull/2
