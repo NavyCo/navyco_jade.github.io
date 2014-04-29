@@ -173,10 +173,15 @@ module.exports = (grunt) ->
       site: [DEST]
       dev: ["#{ DEST }{.tmp,debug}"]
       
-    image:
+    imagemin:
       all:
         options:
           progressive: false
+          use: [
+            require('imagemin-pngcrush') {reduce: true}
+            require('imagemin-zopfli') {more: true}
+            require('imagemin-jpegtran')()
+          ]
         files: [
           expand: true
           cwd: "#{ SRC }img/"
@@ -406,7 +411,7 @@ module.exports = (grunt) ->
         'compass'
         'coffee:dist'
         'jade:dist'
-        'image'
+        'imagemin'
         'webp'
         'flex_svg'
       ]
@@ -420,7 +425,7 @@ module.exports = (grunt) ->
         'jade:dist'
       ]
       images: [
-        'image'
+        'imagemin'
         'webp'
         'jade'
       ]
