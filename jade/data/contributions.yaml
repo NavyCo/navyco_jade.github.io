@@ -50,6 +50,7 @@ rest:
   - 1000ch/grunt-image/pull/7
   - kaimallea/isMobile/pull/13
   - gulpjs/gulp/pull/402
+  - spenceralger/gulp-jshint/pull/40
 
 not_publish:
   - caolan/forms/pull/92
@@ -76,3 +77,6 @@ not_publish:
   - hemanth/broccoli-md/pull/1
   - btford/eshighlight/pull/1
   - sindresorhus/gulp-esformatter/pull/2
+  - godaddy/gulp-header/pull/9
+  - godaddy/gulp-footer/pull/5
+  
