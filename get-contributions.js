@@ -23,9 +23,13 @@ async.each(keys, function(key, eachNext) {
   
   var result = [];
   async.eachSeries(category, function(val, seriesNext) {
-    var _url = '/repos/' + val.replace('/pull/', '/pulls/');
-    console.log('Requesting... ' + _url);
-    client.get(_url, {}, function(err, status, body) {
+    var requestUrl = '/repos/' + val.replace('/pull/', '/pulls/');
+    client.get(requestUrl, {}, function(err, status, body) {
+      if (err) {
+        console.error('Error requesting ' + requestUrl + ':' + err);
+      } else {
+        console.log('✔ GET ' + requestUrl);
+      }
       result.push(body);
       seriesNext();
     });
