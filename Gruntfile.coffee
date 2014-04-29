@@ -265,7 +265,7 @@ module.exports = (grunt) ->
       options:
         data: (dest, src) ->
           data = grunt.file.readJSON "#{ DEST }.tmp/jade-data.json"
-          _.assign data, grunt.config 'jade.__context'
+          _.assign data, grunt.config.get 'jade.__context'
 
           data.basename = path.basename dest, '.html'
           
@@ -289,7 +289,7 @@ module.exports = (grunt) ->
         basedir: __dirname
         processContent: (original) ->
           { context, content } = frontmatter original
-          grunt.config 'jade.__context', context
+          grunt.config.set 'jade.__context', context
 
           """
           extend /jade/templates/#{ context.template or context.layout }
