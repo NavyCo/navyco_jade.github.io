@@ -51,6 +51,7 @@ rest:
   - kaimallea/isMobile/pull/13
   - gulpjs/gulp/pull/402
   - spenceralger/gulp-jshint/pull/40
+  - kevinbeaty/fs-promise/pull/2
 
 not_publish:
   - caolan/forms/pull/92
