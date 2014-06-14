@@ -18,7 +18,7 @@ module.exports = (grunt) ->
   SRC = settings.srcPath or ''
   DEST = settings.destPath or 'site/'
   JS = "#{ SRC }js/"
-
+  
   grunt.initConfig
     bower:
       options:
@@ -173,15 +173,8 @@ module.exports = (grunt) ->
       site: [DEST]
       dev: ["#{ DEST }{.tmp,debug}"]
       
-    imagemin:
+    image:
       all:
-        options:
-          progressive: false
-          use: [
-            require('imagemin-pngcrush') {reduce: true}
-            require('imagemin-zopfli') {more: true}
-            require('imagemin-jpegtran')()
-          ]
         files: [
           expand: true
           cwd: "#{ SRC }img/"
@@ -288,11 +281,11 @@ module.exports = (grunt) ->
           data
         basedir: __dirname
         processContent: (original) ->
-          { context, content } = frontmatter original
-          grunt.config.set 'jade.__context', context
+          { data, content } = frontmatter original
+          grunt.config.set 'jade.__context', data
 
           """
-          extend /jade/templates/#{ context.template or context.layout }
+          extend /jade/templates/#{ data.template or data.layout }
           block content
           #{ content.replace /^/gm, '  ' }
           """
@@ -411,7 +404,7 @@ module.exports = (grunt) ->
         'compass'
         'coffee:dist'
         'jade:dist'
-        'imagemin'
+        'image'
         'webp'
         'flex_svg'
       ]
@@ -425,7 +418,7 @@ module.exports = (grunt) ->
         'jade:dist'
       ]
       images: [
-        'imagemin'
+        'image'
         'webp'
         'jade'
       ]
