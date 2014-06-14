@@ -27,9 +27,10 @@ async.each(keys, function(key, eachNext) {
     client.get(requestUrl, {}, function(err, status, body) {
       if (err) {
         console.error('Error requesting ' + requestUrl + ':' + err);
-      } else {
-        console.log('✔ GET ' + requestUrl);
+        seriesNext();
+        return;
       }
+      console.log('✔ GET ' + requestUrl);
       result.push(body);
       seriesNext();
     });
