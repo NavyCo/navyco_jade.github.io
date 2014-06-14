@@ -46,12 +46,15 @@ rest:
   - jdcataldo/grunt-mocha-phantomjs/pull/27
   - sindresorhus/screenfull.js/pull/39
   - docpad/docpad-plugin-stylus/pull/7
-  - Bartvds/grunt-dogescript/pull/3
+  - dogescript/grunt-dogescript/pull/3
   - 1000ch/grunt-image/pull/7
   - kaimallea/isMobile/pull/13
   - gulpjs/gulp/pull/402
   - spenceralger/gulp-jshint/pull/40
   - kevinbeaty/fs-promise/pull/2
+  - GoalSmashers/clean-css/pull/285
+  - bower/json/pull/18
+  - azu/inlining-node-require/pull/4
 
 not_publish:
   - caolan/forms/pull/92
@@ -62,7 +65,7 @@ not_publish:
   - hurrymaplelad/grunt-relative-root/pull/3
   - thusoy/grunt-pylint/pull/6
   - timmywil/grunt-bowercopy/pull/11
-  - stephenplusplus/grunt-bower-install/pull/49
+  - stephenplusplus/grunt-wiredep/pull/49
   - leecrossley/grunt-timer/pull/5
   - alex-seville/grunt-blanket/pull/8
   - ogt/slugify-url/pull/3
@@ -80,4 +83,27 @@ not_publish:
   - sindresorhus/gulp-esformatter/pull/2
   - godaddy/gulp-header/pull/9
   - godaddy/gulp-footer/pull/5
-  
+  - jackfranklin/gulp-load-plugins/pull/23
+  - isaacs/rimraf/pull/40
+  - simonwhitaker/github-fork-ribbon-css/pull/29
+  - gruntjs/grunt-contrib-nodeunit/pull/28
+  - grncdr/merge-stream/pull/1
+  - 1000ch/node-jpeg-recompress-bin/pull/2
+  - hoyois/html5outliner/pull/6
+  - kevva/imagemin-jpegtran/pull/1
+  - azu/remove-use-strict/pull/1
+  - gulpjs/plugins/pull/109
+  - pghalliday/grunt-mocha-test/pull/72
+  - kaimallea/isMobile/pull/16
+  - systemjs/systemjs/pull/116
+  - 1000ch/node-cwebp-bin/pull/1
+  - 1000ch/node-cwebp-bin/pull/2
+  - alex-seville/blanket/pull/427
+  - alex-seville/blanket/pull/428
+  - chaijs/chai/pull/267
+  - cjohansen/Sinon.JS/pull/490
+  - yyx990803/vue/pull/302
+  - dogescript/dogescript.github.io/pull/3
+  - ripplejs/ripple/pull/32
+  - iamchrismiller/grunt-casper/pull/46
+  - GoalSmashers/clean-css/pull/296
