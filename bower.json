@@ -29,7 +29,7 @@
   },
   "exportsOverride": {
     "/jquery\\d?$/": {
-      "public": "jquery.min.js"
+      "public": "dist/jquery.min.js"
     },
     "jquery.transit": {
       "jquery.transit": "jquery.transit.js"
@@ -57,10 +57,10 @@
       "ie": "selectivizr.js"
     },
     "respond": {
-      "ie": "respond.min.js"
+      "ie": "dest/respond.min.js"
     },
     "jquery.belatedPNG": {
-      "ie": "js/jquery.belatedPNG.min.js"
+      "ie": "js/jquery.belatedPNG.js"
     },
     "benchmark": {
       "debug": "./benchmark.js"
