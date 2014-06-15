@@ -9,6 +9,7 @@ module.exports = (grunt) ->
 
   _ = require 'lodash'
   frontmatter = require 'gray-matter'
+  randomString = require 'randomstring'
   sizeOf = require 'image-size'
   
   settings = grunt.file.readYAML 'settings.yaml'
@@ -110,7 +111,7 @@ module.exports = (grunt) ->
       dev:
         options:
           bare: true
-        src: ["#{ JS }main/*.coffee", "#{ DEST }.tmp/router_data.coffee"]
+        src: ["#{ JS }main/*.coffee", '<%= concat.router_data.dest %>']
         dest: "#{ DEST }debug/js/main.js"
       dist:
         src: '<%= coffee.dev.src %>'
@@ -332,13 +333,8 @@ module.exports = (grunt) ->
     
     open:
       site:
-        # stackoverflow.com/questions/1349404/#comment13539914_8084248
-        path: "#{ settings.siteURL }?v=#{
-          Math.random()
-            .toString(36)
-            .substr(2, 5)
-        }"
-        app: 'Google Chrome'
+        path: "#{ settings.siteURL }?v=#{ randomString.generate(8) }"
+        app: 'Google Chrome Canary'
     
     'gh-pages':
       options:
