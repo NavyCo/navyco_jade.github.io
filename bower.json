@@ -16,54 +16,26 @@
     "backbone": "latest",
     "nprogress": "latest",
     "modernizr-on": "stucox/modernizr-on",
-    "location-origin": "latest",
-    "string.prototype.contains": "mathiasbynens/String.prototype.contains",
-    "html5shiv": "latest",
-    "selectivizr": "latest",
-    "respond": "latest",
-    "jquery.belatedPNG": "wakuworks/jquery.belatedPNG",
-    "benchmark": "latest"
+    "string.prototype.includes": "mathiasbynens/String.prototype.includes",
+    "lt-ie-9": "latest",
+    "normalize-css": "~3.0.2"
   },
-  "devDependencies": {
-    "benchmark": "latest"
-  },
-  "exportsOverride": {
-    "/jquery\\d?$/": {
-      "public": "dist/jquery.min.js"
-    },
-    "jquery.transit": {
-      "jquery.transit": "jquery.transit.js"
-    },
-    "jquery.lazyload": {
-      "jquery.lazyload": "jquery.lazyload.min.js"
-    },
+  "overrides": {
     "isMobile": {
-      "isMobile": "isMobile.min.js"
-    },
-    "backbone": {
-      "backbone": "backbone.js"
+      "main": "isMobile.min.js"
     },
     "underscore": {},
     "modernizr-on": {
-      "modernizr-on": "modernizr-on.min.js"
+      "main": "modernizr-on.min.js"
     },
-    "string.prototype.contains": {
-      "string.prototype.contains": "contains.js"
+    "string.prototype.includes": {
+      "main": "includes.js"
     },
-    "html5shiv": {
-      "ie": "dist/html5shiv.js"
+    "lt-ie-9": {
+      "main": "lt-ie-9.min.js"
     },
-    "selectivizr": {
-      "ie": "selectivizr.js"
-    },
-    "respond": {
-      "ie": "dest/respond.min.js"
-    },
-    "jquery.belatedPNG": {
-      "ie": "js/jquery.belatedPNG.js"
-    },
-    "benchmark": {
-      "debug": "./benchmark.js"
+    "nprogress": {
+      "main": "nprogress.js"
     }
   }
 }

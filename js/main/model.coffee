@@ -4,12 +4,12 @@ Page = Backbone.Model.extend
     _category = 'index'
     _basename = 'index'
 
-    if _frag.contains 'projects'
+    if _frag.includes 'projects'
       _category = 'projects'
       for _name of routerData
-        if location.href.contains "#{ _name }."
+        if location.href.includes "#{ _name }."
           _basename = _name
-    else if _frag.contains 'about'
+    else if _frag.includes 'about'
       _category = 'about'
       _basename = 'about'
     

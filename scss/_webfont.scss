@@ -78,7 +78,7 @@ src: url('../font/icon.svg?39909792#link') format('svg');
 .icon-list:before { content: '\e782'; }
 .icon-facebook:before { content: '\f300'; }
 
-.icon-twitter {
+%icon-twitter {
   &:before {
     content: '\f303';
     color: #00acee;
@@ -100,7 +100,7 @@ src: url('../font/icon.svg?39909792#link') format('svg');
   }
 }
 
-.icon-github {
+%icon-github {
   &:before {
     content: '\e805';
     color: #171515;

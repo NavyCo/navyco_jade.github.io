@@ -23,12 +23,8 @@ AppView = Backbone.View.extend
     e.preventDefault()
     
     content.hide ->
-      nextUrl = $ e.currentTarget
-        .attr 'href'
-        .replace location.origin, ''
-      router.navigate nextUrl, {trigger: true}
-      if router.prev is Backbone.history.fragment
-        content.show()
+      router.navigate e.currentTarget.pathname, {trigger: true}
+      content.show() if router.prev is Backbone.history.fragment
       scrollTo 0, 0
 
   refresh: ->
@@ -213,8 +209,8 @@ ProjectThumbnailView = Backbone.View.extend
       .removeAttr 'src'
       ._enableWebP()
       .lazyload
-        effect : 'fadeIn'
-        threshold : $w.height() * 0.15
+        effect: 'fadeIn'
+        threshold: $w.height() * 0.15
         placeholder: '/img/transparent.gif'
 
 ProjectImageView = Backbone.View.extend
@@ -223,7 +219,9 @@ ProjectImageView = Backbone.View.extend
   render: ->
     _hasVideo = $('.video-wrapper').length > 0
     content.show() if _hasVideo
-    
+
+    $imageWrapper = $ '.image-wrapper'
+
     this.$el
       .removeAttr 'src'
       ._enableWebP()
@@ -237,10 +235,10 @@ ProjectImageView = Backbone.View.extend
             if not _hasVideo and $this.is '.project-image:eq(0)'
               $this.finish()
               content.show()
-          always: ->
+
             # 「'.image-wrapper' の子孫である」要素に限定せずに .unwrap() すると、
             # ブラウザバックのたびに親要素を一つずつ消していってしまう
-            $ '.image-wrapper'
+            $imageWrapper
               .find this
               .unwrap()
 

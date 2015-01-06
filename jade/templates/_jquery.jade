@@ -10,8 +10,7 @@ mixin loadJQuery(version)
   - jQueryFallbacks[2] = '/js/jquery' + (version.charAt(0) === '1'? '1': '') +'.js';
 
   each url in jQueryFallbacks
-    script.
-      this.jQuery||document.write("<script src=#{ url }><\/script>");
+    script this.jQuery||document.write("<script src=#{ url }><\/script>");
   
 |<!--[if lt IE 9]>
 +loadJQuery(jquery1_ver)

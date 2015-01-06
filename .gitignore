@@ -1,9 +1,6 @@
 .sass-cache
-.grunt
-master/
-bower_components
 *-token.*
-tmp/
-
-npm-debug.log
+bower_components
 node_modules
+master
+tmp

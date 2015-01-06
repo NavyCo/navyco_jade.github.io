@@ -1,56 +1,53 @@
 ---
-template: default
 pageClass: top
 title: ''
 ---
 
-section#top-section
-  .inner(itemscope, itemtype='http://schema.org/Person')
-    //-#logo
-    h1#top-title(itemprop='name')
-      span.first-name
-        span.capital S
-        | hinnosuke
-      span.family-name
-        span.capital W
-        | atanabe
-    //-p.top-subtitle Software Engineer, User Interface Designer
-    #top-subtitle
-      p.
-        Webフロントエンド開発／デザイン、ユーザーインターフェースデザイン、<br>インタラクティブコンテンツ制作などを行う渡邉伸之介のウェブサイトです。
+extends /jade/templates/default
+block content
 
-//-#ribbon
-  #left-ribbon
-  #right-ribbon
-  .icon#scroll-down
+  section#top-section
+    .inner(itemscope, itemtype='http://schema.org/Person')
+      //-#logo
+      h1#top-title(itemprop='name')
+        span.first-name
+          span.capital S
+          | hinnosuke
+        span.family-name
+          span.capital W
+          | atanabe
+      //-p.top-subtitle Software Engineer, User Interface Designer
+      #top-subtitle
+        p.
+          Webフロントエンド開発／デザイン、ユーザーインターフェースデザイン、<br>インタラクティブコンテンツ制作などを行う渡邉伸之介のウェブサイトです。
 
-mixin featured-work(name, role)
-  - var _proj = getProject(name);
+  mixin featured-work(name, role)
+    - var _proj = getProject(name);
 
-  .featured-works
-    a.wide-image(href= htmlPath('projects/#{ name }.html'))
-      img(
-        src= '/img/transparent.gif',
-        data-original= '/img/large/#{ name }.jpg',
-        alt= _proj.title
-      )
-      noscript
+    .featured-works
+      a.wide-image(href= htmlPath('projects/#{ name }.html'))
         img(
-          src= '/img/large/#{ name }.jpg',
+          src= '/img/transparent.gif',
+          data-original= '/img/large/#{ name }.jpg',
           alt= _proj.title
         )
-    h2.work-title
-      span= _proj.title
-    //-.line-wide
-    //-.role= role
+        noscript
+          img(
+            src= '/img/large/#{ name }.jpg',
+            alt= _proj.title
+          )
+      h2.work-title
+        span= _proj.title
+      //-.line-wide
+      //-.role= role
 
-section
-  +featured-work('musabi-degreeshow', 'フロントエンド・バックエンド開発 / ユーザーインターフェースデザイン')
-  +featured-work('openstudio', 'フロントエンド開発 / ユーザーインターフェースデザイン')
-  +featured-work('aquarium', 'グラフィックプログラミング')
-  +featured-work('wave', '電子工作 / インタラクションデザイン')
+  section
+    +featured-work('musabi-degreeshow', 'フロントエンド・バックエンド開発 / ユーザーインターフェースデザイン')
+    +featured-work('openstudio', 'フロントエンド開発 / ユーザーインターフェースデザイン')
+    +featured-work('aquarium', 'グラフィックプログラミング')
+    +featured-work('wave', '電子工作 / インタラクションデザイン')
 
-  p
-    a(href=htmlPath('projects.html'))
-      | 全てのプロジェクト 
-      span.icon.icon-angle-double-right
+    p
+      a(href=htmlPath('projects.html'))
+        | 全てのプロジェクト 
+        span.icon.icon-angle-double-right

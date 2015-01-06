@@ -109,6 +109,7 @@
 
 .project-image {
   // to set z-index
+  display: block;
   position: relative;
   
   z-index: 2;
@@ -212,7 +213,7 @@
   
   p {
     margin-top: 0.5em;
-    line-height: 1.85;
+    line-height: 1.92;
     //color: #505050;
     // text-indent: 1em;
   }

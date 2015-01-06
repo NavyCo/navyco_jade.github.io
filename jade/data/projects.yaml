@@ -1,5 +1,4 @@
 ---
-
   - 
     name: musabi-degreeshow
     title: 武蔵野美大デザイン情報学科 卒業研究・制作展 2011 Webサイト
@@ -101,14 +100,3 @@
     role: [写真撮影, 画像編集]
     image_captions:
       - ファーストビュー
-
-  - 
-    name: led-workshop
-    title: ワークショップ「七色に光るLEDをつくる」
-    short_title: 七色に光るLEDをつくる
-    time: 2010
-    genre: [ワークショップ]
-    role: [マネジメント, グラフィックデザイン]
-    image_captions:
-      - 会場の様子
-      - 使用した部品

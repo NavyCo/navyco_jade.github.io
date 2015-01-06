@@ -1,7 +1,6 @@
-# [Shinnosuke Watanabe's Website](http://shinnn.github.io)
+# [Shinnosuke Watanabe's Website](https://shinnn.github.io)
 
 [![devDependency Status](https://david-dm.org/shinnn/shinnn.github.io/dev-status.svg)](https://david-dm.org/shinnn/shinnn.github.io#info=devDependencies)
-[![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
 A portfolio site of the man who codes and designs
 
@@ -50,8 +49,6 @@ If successful, all files in the `master` directory will be copied to the [`maste
 
 ## License
 
-Copyright (c) 2013 - 2014 [Shinnosuke Watanabe](https://github.com/shinnn)
+Copyright (c) 2013 - 2015 [Shinnosuke Watanabe](https://github.com/shinnn)
 
 Unless otherwise stated, all source code in this repository is licensed under the [MIT license](http://opensource.org/licenses/mit-license.php).
-
-[![endorse](https://api.coderwall.com/shinnn/endorsecount.png)](https://coderwall.com/shinnn)
