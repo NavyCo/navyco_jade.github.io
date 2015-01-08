@@ -237,6 +237,7 @@
         pageData = routerData[container.model.get('basename')];
         if (pageData.title) {
           $('#first-location').show();
+          $('#first-location .label').text(pageData.title);
           $('#article-title, #article-info').fadeOut(42);
           this.line.extendToFirst();
           $('#first-point').css({
@@ -339,10 +340,10 @@
         var $responseBody, docTitle;
         $responseBody = $(responseBody);
         docTitle = $responseBody.filter('title').text();
-        $('#article-title > .label').text(docTitle.replace(/\ -\ .*/, ''));
+        $('#article-title > .label').filter(':visible').text(docTitle.replace(/\ -\ .*/, ''));
+        document.title = docTitle;
         callback();
-        container.refresh();
-        return document.title = docTitle;
+        return container.refresh();
       });
     }
   });
